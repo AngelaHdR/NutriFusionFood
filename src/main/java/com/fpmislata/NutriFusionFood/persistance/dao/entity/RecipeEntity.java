@@ -5,14 +5,16 @@ public class RecipeEntity {
     private String description;
     private String name;
     private int time;
-    private Integer userId;
+    private Integer userId; //El usuario es siempre un nutricionista
+    private Integer categoryId;
 
-    public RecipeEntity(Integer id, String description, String name, int time, Integer userId) {
+    public RecipeEntity(Integer id, String name, String description, int time, Integer userId, Integer categoryId) {
         this.id = id;
         this.description = description;
         this.name = name;
         this.time = time;
         this.userId = userId;
+        this.categoryId = categoryId;
     }
 
     public Integer getId() {
@@ -33,5 +35,9 @@ public class RecipeEntity {
 
     public Integer getUserId() {
         return this.userId;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
     }
 }

@@ -1,21 +1,21 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.entity;
 
-import java.time.LocalDate;
-
 public class IngredientEntity {
     private Integer id;
     private Boolean gluten;
     private Boolean lactose;
     private String name;
-    private LocalDate season;
+    private Integer startseason;
+    private Integer endseason;
     private Integer typeId;
 
-    public IngredientEntity(Integer id, Boolean gluten, Boolean lactose, String name, LocalDate season, Integer typeId) {
+    public IngredientEntity(Integer id, Boolean gluten, Boolean lactose, String name, Integer startseason, Integer endseason, Integer typeId) {
         this.id = id;
         this.gluten = gluten;
         this.lactose = lactose;
         this.name = name;
-        this.season = season;
+        this.startseason = startseason;
+        this.endseason = endseason;
         this.typeId = typeId;
     }
 
@@ -35,11 +35,15 @@ public class IngredientEntity {
         return this.name;
     }
 
-    public LocalDate getSeason() {
-        return this.season;
-    }
-
     public Integer getTypeId() {
         return this.typeId;
+    }
+
+    public Integer getStartseason() {
+        return startseason;
+    }
+
+    public Integer getEndseason() {
+        return endseason;
     }
 }
