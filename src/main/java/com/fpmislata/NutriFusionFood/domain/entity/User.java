@@ -19,6 +19,7 @@ public class User {
         this.nutritionist = nutritionist;
     }
 
+
     public Integer getId() {
         return this.id;
     }
@@ -41,5 +42,29 @@ public class User {
 
     public Boolean getNutritionist() {
         return this.nutritionist;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname1(String surname1) {
+        this.surname1 = surname1;
+    }
+
+    public void setSurname2(String surname2) {
+        this.surname2 = surname2;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setNutritionist(Boolean nutritionist) {
+        this.nutritionist = nutritionist;
     }
 }

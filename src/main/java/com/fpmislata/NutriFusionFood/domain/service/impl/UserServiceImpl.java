@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.domain.service.impl;
 
+import com.fpmislata.NutriFusionFood.domain.entity.User;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
 
 import java.util.List;
