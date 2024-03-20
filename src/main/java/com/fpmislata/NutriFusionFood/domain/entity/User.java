@@ -1,16 +1,17 @@
 package com.fpmislata.NutriFusionFood.domain.entity;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class User {
     private Integer id;
     private String name;
     private String surname1;
     private String surname2;
-    private LocalDate birthDate;
+    private Date birthDate;
     private Boolean nutritionist;
 
-    public User(Integer id, String name, String surname1, String surname2, LocalDate birthDate, Boolean nutritionist) {
+    public User(Integer id, String name, String surname1, String surname2, Date birthDate, Boolean nutritionist) {
         this.id = id;
         this.name = name;
         this.surname1 = surname1;
@@ -19,6 +20,8 @@ public class User {
         this.nutritionist = nutritionist;
     }
 
+    public User() {
+    }
 
     public Integer getId() {
         return this.id;
@@ -36,7 +39,7 @@ public class User {
         return this.surname2;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return this.birthDate;
     }
 
@@ -60,7 +63,7 @@ public class User {
         this.surname2 = surname2;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 

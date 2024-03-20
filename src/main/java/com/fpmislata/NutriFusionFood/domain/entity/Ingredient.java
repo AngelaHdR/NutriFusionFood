@@ -7,7 +7,8 @@ public class Ingredient {
     private Boolean gluten;
     private Boolean lactose;
     private String name;
-    private LocalDate season;
+    private Integer startseason;
+    private Integer endseason;
     private Type type;
 
     public Ingredient(Integer id, Boolean gluten, Boolean lactose, String name, LocalDate season) {
@@ -15,7 +16,6 @@ public class Ingredient {
         this.gluten = gluten;
         this.lactose = lactose;
         this.name = name;
-        this.season = season;
     }
 
     public Integer getId() {
@@ -33,10 +33,7 @@ public class Ingredient {
     public String getName() {
         return this.name;
     }
-
-    public LocalDate getSeason() {
-        return this.season;
-    }
+    
 
     public Type getType() {
         return this.type;

@@ -7,32 +7,34 @@ import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@GetMapping ("/recipes")
+@RequestMapping("/recipes")
 public class RecipeController {
     RecipeService recipeService;
 
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController() {
         this.recipeService = recipeService;
     }
-@GetMapping
+    @GetMapping("/recipeList")
     public String findAllRecipe(Model model){
         model.addAttribute("recipelist",this.recipeService.findAllRecipe());
         return "recipeList";
     }
-    public String findByIdRecipe(Model model){
+    @GetMapping("/{id}")
+    public String findByIdRecipe(Model model, @PathVariable Integer id){
         model.addAttribute("recipeid", this.recipeService.findByIdRecipe(id));
         return "recipeDetail";
     }
+    @GetMapping("/add")
     public String newRecipe(Model model){
         UserService userService = UserIoC.getUserService();
         model.addAttribute("userlist",userService.findAllUser());
         model.addAttribute("recipe",new Recipe());
         return "recipeForm";
     }
+    @PostMapping("")
     public String save(Recipe recipe){
         UserService userService = UserIoC.getUserService();
         User user = new User();
@@ -41,14 +43,18 @@ public class RecipeController {
         recipeService.insert(recipe);
         return "redirect:/recipe";
     }
+    @DeleteMapping("/{id}")
     public String delete(@PathVariable Integer id){
         recipeService.delete(id);
         return "redirect:/recipe";
     }
-    public String findByCategory(){
 
+    @GetMapping("/categories/{categoryId}")
+    public String findByCategory(@PathVariable Integer id){
+        recipeService.findByCategory(id);
         return "recipeListCategory";
     }
+    @GetMapping("/categories")
     public String findAllCategories(){
         return "category";
     }
