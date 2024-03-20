@@ -30,10 +30,6 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         recipeDao.delete(id);
     }
 
-    @Override
-    public Recipe update() {
-        return null;
-    }
 
     public void insert(Recipe recipe) {
         recipeDao.insert(RecipeMapper.toRecipeEntity(recipe));

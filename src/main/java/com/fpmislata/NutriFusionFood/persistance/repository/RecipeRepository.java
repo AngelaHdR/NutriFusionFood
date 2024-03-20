@@ -8,7 +8,6 @@ public interface RecipeRepository {
     public List<Recipe> findAllRecipe();
     public Recipe findByIdRecipe(Integer id);
     public void delete(Integer id);
-    public Recipe update();
     public void insert(Recipe recipe);
     public List<Recipe> findByCategory(Integer categoryId);
 }

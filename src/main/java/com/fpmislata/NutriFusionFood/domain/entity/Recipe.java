@@ -1,12 +1,17 @@
 package com.fpmislata.NutriFusionFood.domain.entity;
 
+import java.util.List;
+
 public class Recipe {
     private Integer id;
     private String description;
     private String name;
     private int time;
-    private Ingredient ingredient;
-    private Tool tool;
+    private List<Ingredient> ingredientlist;
+    private List<Tool> toollist;
+    private User user;
+    private Category category;
+    private List<Boolean> allergen;
 
     public Recipe(Integer id, String description, String name, int time) {
         this.id = id;
@@ -31,19 +36,20 @@ public class Recipe {
         return this.time;
     }
 
-    public Ingredient getIngredient() {
-        return this.ingredient;
+
+    public List<Ingredient> getIngredientlist() {
+        return ingredientlist;
     }
 
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredientlist(List<Ingredient> ingredientlist) {
+        this.ingredientlist = ingredientlist;
     }
 
-    public Tool getTool() {
-        return this.tool;
+    public List<Tool> getToollist() {
+        return toollist;
     }
 
-    public void setTool(Tool tool) {
-        this.tool = tool;
+    public void setToollist(List<Tool> toollist) {
+        this.toollist = toollist;
     }
 }
