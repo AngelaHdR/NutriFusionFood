@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Categoria</title>
 </head>
 <body>
-
+<!--  Introducir el listado de recetas pertenecientes a la categoria  -->
+    <ul>
+        <a th:each="recipe:${recipeCategory}" th:href="@{${'/recipes/' + recipe.id}}">
+            <li th:text="|${recipe.name} (${recipe.category}|"></li>
+        </a>
+    </ul>
 </body>
 </html>

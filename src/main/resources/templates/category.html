@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Categorias</title>
 </head>
 <body>
-
+<!--  Introducir un objeto receta nuevo, el listado de categorias, listado de ingredientes  -->
+<ul>
+    <a th:each="category:${categoryList}" th:href="@{${'/recipes/categories/' + category.id}}">
+        <li th:text="category.name">Texto por defecto</li>
+    </a>
+</ul>
 </body>
 </html>

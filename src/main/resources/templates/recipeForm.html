@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Formulario recetas</title>
 </head>
 <body>
-
+<!--  Introducir un objeto receta nuevo, el listado de categorias, listado de ingredientes  -->
+<form action="#" th:action="@{/recipes}" th:object="$recipe">
+    <label for="title">Titulo de la receta</label>
+    <input id="title" type="text" th:field="*{name}" maxlength="50">
+    <p>Categoria de la receta</p>
+    <select name="category" th:field="*{category.id}">
+        <option th:each="category:${categoryList}" th:value="${category.id}" th:text="category.name"></option>
+    </select>
+    <label for="time">Tiempo de preparacion</label>
+    <input id="time" type="number" th:field="*{time}">
+    <select name="ingredient" th:field="*{ingredient.id}">
+        <option th:each="ingredient:${ingredientList}" th:value="${ingredient.id}" th:text="ingredient.name"></option>
+    </select>
+    <label for="descripcion">Pasos de la receta</label>
+    <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+</form>
 </body>
 </html>
