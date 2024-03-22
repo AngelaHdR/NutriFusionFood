@@ -6,20 +6,27 @@
 </head>
 <body>
 <!--  Introducir un objeto receta nuevo, el listado de categorias, listado de ingredientes  -->
-<form action="#" th:action="@{/recipes}" th:object="$recipe">
+<form action="#" th:action="@{/recipes}" th:object="${recipe}">
     <label for="title">Titulo de la receta</label>
     <input id="title" type="text" th:field="*{name}" maxlength="50">
     <p>Categoria de la receta</p>
+    <!--
     <select name="category" th:field="*{category.id}">
         <option th:each="category:${categoryList}" th:value="${category.id}" th:text="category.name"></option>
-    </select>
+    </select>-->
     <label for="time">Tiempo de preparacion</label>
-    <input id="time" type="number" th:field="*{time}">
+    <input id="time" type="number" th:field="*{time}"><br>
+   <!--
     <select name="ingredient" th:field="*{ingredient.id}">
         <option th:each="ingredient:${ingredientList}" th:value="${ingredient.id}" th:text="ingredient.name"></option>
     </select>
-    <label for="descripcion">Pasos de la receta</label>
-    <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+    -->
+    <label for="descripcion">Descripion</label>
+    <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
+    <label for="pasos">Pasos a seguir</label>
+    <textarea name="pasos" id="pasos" cols="30" rows="10"></textarea><br>
+
+    <input type="submit" value="Crear">
 </form>
 </body>
 </html>

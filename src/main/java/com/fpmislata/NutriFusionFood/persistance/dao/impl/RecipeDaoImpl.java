@@ -20,7 +20,7 @@ public class RecipeDaoImpl implements RecipeDao {
     @Override
     public RecipeEntity findByIdRecipe(Integer id) {
         for (RecipeEntity recipeEntity:recipeEntityList){
-            if (recipeEntity.getId()==id){
+            if (recipeEntity.getId().equals(id)){
                 return recipeEntity;
             }
         }

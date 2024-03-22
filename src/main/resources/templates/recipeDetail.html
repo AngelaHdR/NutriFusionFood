@@ -6,22 +6,31 @@
 </head>
 <body>
 <h1 th:text="${recipe.name}"></h1>
+
 <h3 th:text="${recipe.category}"></h3>
-<h4>Tiempo</h4>
-<p th:text="recipe.time"></p>
-<h4>Alergenos</h4>
-<h4>Nombre Nutricionista</h4>
-<p th:text="recipe.user.name"></p>
-<h4>(ICONO CORAZON) Añadir a favoritos</h4>
-<h2>Ingredientes</h2>
+
+
+
+<!--
+<p th:text="${recipe.user.name}"></p>
 <ul>
     <li th:each="ingredient : ${recipe.ingredientList}" th:text="ingredient"></li>
 </ul>
-<h2>Utensilios</h2>
 <ul>
     <li th:each="tool : ${recipe.toolList}" th:text="tool"></li>
 </ul>
+-->
+
+<h4>Tiempo</h4>
+<p th:text="${recipe.time}"></p>
+<h4>Alergenos</h4>
+<h4>Nombre Nutricionista</h4>
+<h4>(ICONO CORAZON) Añadir a favoritos</h4>
+<h2>Ingredientes</h2>
+
+<h2>Utensilios</h2>
+
 <h2>Preparacion</h2>
-<p th:text="recipe.description"></p>
+<p th:text="${recipe.description}"></p>
 </body>
 </html>

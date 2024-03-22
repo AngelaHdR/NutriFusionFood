@@ -17,12 +17,14 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 
     @Override
     public List<Recipe> findAllRecipe() {
-        return RecipeMapper.toRecipeList(recipeDao.findAllRecipe());
+        List<Recipe> recipes = RecipeMapper.toRecipeList(recipeDao.findAllRecipe());
+        return recipes;
     }
 
     @Override
     public Recipe findByIdRecipe(Integer id) {
-        return RecipeMapper.toRecipe(recipeDao.findByIdRecipe(id));
+        Recipe recipe= RecipeMapper.toRecipe(recipeDao.findByIdRecipe(id));
+        return recipe ;
     }
 
     @Override

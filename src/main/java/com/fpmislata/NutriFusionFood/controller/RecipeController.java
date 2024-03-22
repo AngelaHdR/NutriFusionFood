@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.controller;
 
+import com.fpmislata.NutriFusionFood.common.RecipeIoC;
 import com.fpmislata.NutriFusionFood.common.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
@@ -15,22 +16,21 @@ public class RecipeController {
     RecipeService recipeService;
 
     public RecipeController() {
-        this.recipeService = recipeService;
+        this.recipeService = RecipeIoC.getRecipeService();
     }
-    @GetMapping("/recipeList")
+    @GetMapping("")
     public String findAllRecipe(Model model){
-        model.addAttribute("recipelist",this.recipeService.findAllRecipe());
+        model.addAttribute("recipeList",this.recipeService.findAllRecipe());
         return "recipeList";
     }
     @GetMapping("/{id}")
     public String findByIdRecipe(Model model, @PathVariable Integer id){
-        model.addAttribute("recipeid", this.recipeService.findByIdRecipe(id));
+        model.addAttribute("recipe", this.recipeService.findByIdRecipe(id));
         return "recipeDetail";
     }
     @GetMapping("/add")
-    public String newRecipe(Model model){
-        UserService userService = UserIoC.getUserService();
-        model.addAttribute("userlist",userService.findAllUser());
+    public String insert(Model model){
+
         model.addAttribute("recipe",new Recipe());
         return "recipeForm";
     }
