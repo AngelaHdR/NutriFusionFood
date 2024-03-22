@@ -9,7 +9,11 @@ import java.util.List;
 
 public class RecipeDaoImpl implements RecipeDao {
     List<RecipeEntity> recipeEntityList = new ArrayList<>(Arrays.asList(
-            new RecipeEntity(1,"Tortilla patata", "Paso 1...", 115,1,1)
+            new RecipeEntity(1,"Tortilla patata", "Paso 1...", 30,3,1),
+            new RecipeEntity(2,"Salmorejo", "Paso 1...", 60,2,1),
+            new RecipeEntity(3,"Ramen", "Paso 1...", 240,1,1),
+            new RecipeEntity(4,"Torrijas", "Paso 1...", 45,4,2),
+            new RecipeEntity(5,"Smoothie", "Paso 1...", 15,2,3)
     ));
 
     @Override
@@ -37,16 +41,12 @@ public class RecipeDaoImpl implements RecipeDao {
         recipeEntityList.add(recipeEntity);
     }
 
-    @Override
-    public RecipeEntity update() {
-        return null;
-    }
 
     @Override
     public List<RecipeEntity> findByCategory(Integer categoryId) {
         List<RecipeEntity> recipeCategoryList = new ArrayList<>();
         for (RecipeEntity recipeEntity:recipeEntityList){
-            if (recipeEntity.getCategoryId()==categoryId){
+            if (recipeEntity.getCategoryId().equals(categoryId)){
                 recipeCategoryList.add(recipeEntity);
             }
         }
@@ -56,7 +56,7 @@ public class RecipeDaoImpl implements RecipeDao {
     public List<RecipeEntity> findByNutritionist(Integer nutritionistId) {
         List<RecipeEntity> nutritionistList = new ArrayList<>();
         for (RecipeEntity recipeEntity:recipeEntityList){
-            if (recipeEntity.getUserId()==nutritionistId){
+            if (recipeEntity.getUserId().equals(nutritionistId)){
                 nutritionistList.add(recipeEntity);
             }
         }

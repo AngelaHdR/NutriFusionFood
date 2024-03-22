@@ -12,7 +12,9 @@ public class UserDaoImpl implements UserDao {
 
     List<UserEntity> userEntityList = new ArrayList<>(Arrays.asList(
             new UserEntity(1,"Jose","Perez","Garcia",new Date("1989-08-18"), true),
-            new UserEntity(1,"Alicia","Fernandez","Lopez",new Date("2000-12-04"), false)
+            new UserEntity(2,"Alicia","Fernandez","Lopez",new Date("2000-12-04"), false),
+            new UserEntity(3,"Pepe","Escudero","Ramirez",new Date("1985-10-24"), true),
+            new UserEntity(4,"Mercedes","Gil","Diaz",new Date("2000-04-14"), false)
     ));
     @Override
     public List<UserEntity> findAllUser() {
@@ -22,7 +24,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public UserEntity findByIdUser(Integer id) {
         for (UserEntity userEntity:userEntityList){
-            if (userEntity.getId()==id){
+            if (userEntity.getId().equals(id)){
                 return userEntity;
             }
         }

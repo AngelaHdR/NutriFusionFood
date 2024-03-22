@@ -1,6 +1,5 @@
 package com.fpmislata.NutriFusionFood.domain.entity;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class User {

@@ -9,7 +9,6 @@ public interface RecipeDao {
     public RecipeEntity findByIdRecipe(Integer id);
     public void delete(Integer id);
     public void insert(RecipeEntity recipeEntity);
-    public RecipeEntity update();
     public List<RecipeEntity> findByCategory(Integer categoryId);
     public List<RecipeEntity> findByNutritionist(Integer nutritionistId);
 }

@@ -11,7 +11,6 @@ public class RecipeMapper {
         return new Recipe(recipeEntity.getId(),recipeEntity.getDescription(),recipeEntity.getName(),recipeEntity.getTime());
     }
     public static RecipeEntity toRecipeEntity(Recipe recipe){
-        //Añadir User y Category en Recipe, cambiar a List<Ingredient> y List<Tool>
         return new RecipeEntity(recipe.getId(),recipe.getName(),recipe.getDescription(),recipe.getTime(),recipe.getUser().getId(),recipe.getCategory().getId());
     }
     public static List<Recipe> toRecipeList(List<RecipeEntity> recipeEntityList){
