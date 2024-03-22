@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap');
+
+:root {
+    --font_logo: Forum;
+    --font_navbar: Playfair Display;
+    --font_footer: Montserrat;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F1856A;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    flex: 0 0 33.33%;
+}
+
+.logo .nf-logo {
+    max-height: 70px;
+}
+
+.logo .nutrifusion-food {
+    margin-left: 3px;
+    max-height: 40px;
+}
+
+.logo p {
+    margin-left: 5px;
+    font-size: 15px;
+    font-family: var(--font_logo)
+}
+
+.navbar {
+    flex: 0 0 33.33%;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+.navbar li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar a {
+    text-decoration: overline;
+    color: black;
+    font-family: var(--font_navbar);
+}
+
+.navbar a.Category {
+    text-decoration: overline;
+    color: #006272;
+}
+
+.navbar a:hover {
+    color: black;
+    text-decoration: overline 3px;
+}
+
+.signup-button {
+    flex: 0 0 33.33%;
+    text-align: right;
+}
+
+.signup-button button {
+    padding: 10px;
+    background-color: #006272;
+    border: white;
+    color: white;
+    border-radius: 5px;
+    border-style: double;
+    transition: all 1.5 ease-in-out;
+    letter-spacing: 2px;
+    font-family: var(--font_navbar);
+    margin-right: 50px;
+}
+
+.signup-button button:hover {
+    background-color: #D0EEF4;
+    color: black;
+    border: #006272;
+    border-radius: 5px;
+    border-style: double;
+}
+
+footer {
+    font-family: var(--font_footer);
+    background-color: #F1856A;
+    text-align: center;
+}
+
+p.footer {
+    color: #006272;
+}
