@@ -2,9 +2,38 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/recipeList.css}">
     <title>Receta</title>
 </head>
 <body>
+<header>
+    <div class="logo">
+        <div class="nf-logo">
+            <img th:src="@{/images/logo_NFF.png}" alt="NF-Logo" class="nf-logo">
+        </div>
+        <div class="logo&text">
+            <div class="nutrifusion-food">
+                <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
+            </div>
+            <div class="logo-text">
+                <p>Fusionando Sabor y Nutrición</p>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a th:href="home" class="Home">INICIO</a></li>
+            <li><a th:href="category" class="Category">CATEGORIAS</a></li>
+            <li><a th:href="recipes" class="Recipe">RECETAS</a></li>
+            <li><a th:href="profile" class="Profile">PERFIL</a></li>
+        </ul>
+    </nav>
+    <div class="signup-button">
+        <button>SIGN UP</button>
+    </div>
+</header>
 <h1 th:text="${recipe.name}"></h1>
 
 
