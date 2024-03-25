@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
     <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
@@ -13,11 +13,11 @@
     <header>
         <div class="logo">
             <div class="nf-logo">
-                <img src="../static/images/logo_NFF.png" alt="NF-Logo" class="nf-logo">
+                <img th:src="@{/images/logo_NFF.png}" alt="NF-Logo" class="nf-logo">
             </div>
             <div class="logo&text">
                 <div class="nutrifusion-food">
-                    <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food">
+                    <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
                 </div>
                 <div class="logo-text">
                     <p>Fusionando Sabor y Nutrición</p>
@@ -26,10 +26,10 @@
         </div>
         <nav class="navbar">
             <ul>
-                <li><a href="home.html" class="Home">INICIO</a></li>
-                <li><a href="category.html" class="Category">CATEGORIAS</a></li>
-                <li><a href="recipeList.html" class="Recipe">RECETAS</a></li>
-                <li><a href="profile.html" class="Profile">PERFIL</a></li>
+                <li><a th:href="home" class="Home">INICIO</a></li>
+                <li><a th:href="category" class="Category">CATEGORIAS</a></li>
+                <li><a th:href="recipes" class="Recipe">RECETAS</a></li>
+                <li><a th:href="profile" class="Profile">PERFIL</a></li>
             </ul>
         </nav>
         <div class="signup-button">
@@ -41,7 +41,7 @@
         <section class="welcome">
             <br>
             <p class="welcome">
-                Bienvenido a<img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food">
+                Bienvenido a<img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
             </p>
             <i class="fa-solid fa-heart"></i>
             <br>
@@ -55,23 +55,23 @@
             <p class="categories">CATEGORIAS</p>
             <article class="images">
                 <div class="recipes">
-                    <img src="../static/images/recetas.png" alt="recipes">
+                    <img th:src="@{/images/recetas.png}" alt="recipes">
                     <p>Recetas</p>
                 </div>
                 <div class="drinks">
-                    <img src="../static/images/bebidas.png" alt="drinks">
+                    <img th:src="@{/images/bebidas.png}" alt="drinks">
                     <p>Bebidas</p>
                 </div>
                 <div class="salty">
-                    <img src="../static/images/salados.png" alt="salty">
+                    <img th:src="@{/images/salados.png}" alt="salty">
                     <p>Salados</p>
                 </div>
                 <div class="desserts">
-                    <img src="../static/images/postres.png" alt="desserts">
+                    <img th:src="@{/images/postres.png}" alt="desserts">
                     <p>Postres</p>
                 </div>
                 <div class="snacks">
-                    <img src="../static/images/snacks.png" alt="snacks">
+                    <img th:src="@{/images/snacks.png}" alt="snacks">
                     <p>Snacks</p>
                 </div>
             </article>
@@ -85,7 +85,7 @@
             <br>
             <div class="about-us">
                 <div class="about-us-image">
-                    <img src="../static/images/about-us.png" alt="about-us">
+                    <img th:src="@{/images/about-us.png}" alt="about-us">
                 </div>
                 <div class="text">
                     <br>

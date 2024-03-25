@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/recipeList.css">
     <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{/css/recipeList.css}">
     <title>Recipe List</title>
@@ -27,10 +26,10 @@
         </div>
         <nav class="navbar">
             <ul>
-                <li><a href="home.html" class="Home">INICIO</a></li>
-                <li><a href="category.html" class="Category">CATEGORIAS</a></li>
-                <li><a href="recipeList.html" class="Recipe">RECETAS</a></li>
-                <li><a href="profile.html" class="Profile">PERFIL</a></li>
+                <li><a th:href="home" class="Home">INICIO</a></li>
+                <li><a th:href="category" class="Category">CATEGORIAS</a></li>
+                <li><a th:href="recipes" class="Recipe">RECETAS</a></li>
+                <li><a th:href="profile" class="Profile">PERFIL</a></li>
             </ul>
         </nav>
         <div class="signup-button">
@@ -39,7 +38,7 @@
     </header>
     <ul>
         <a th:each="recipe : ${recipeList}" th:href="@{${'/recipes/' + recipe.id}}">
-            <li th:text="|${recipe.name} (${recipe.category}|">Texto por defecto</li>
+            <li th:text="|${recipe.name} (${recipe.category})|">Texto por defecto</li>
         </a>
     </ul>
     <br><br><br>
