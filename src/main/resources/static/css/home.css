@@ -11,6 +11,7 @@
 * {
     margin: 0;
     padding: 0;
+    line-height: 1.75;
 }
 
 header {
@@ -98,6 +99,18 @@ header {
     border-style: double;
 }
 
+hr.header {
+    background-color: #006272;
+    height: 5px;
+}
+
+hr.main {
+    background-color: black;
+    height: 2px;
+    max-width: 90%;
+    margin-left: 5%;
+}
+
 main {
     background-color: #D0EEF4;
     font-family: var(--font_logo);
@@ -109,11 +122,14 @@ main {
 main p.welcome {
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
+    font-size: 48px;
 }
 
-main img {
-    max-height: 60px;
+main p img {
+    max-height: 80px;
+    margin-left: 15px;
 }
 
 main i {
@@ -123,6 +139,24 @@ main i {
 main p.message {
     color: black;
     font-style: italic;
+    margin-left: 32.5%;
+    max-width: 35%;
+}
+
+main p.categories {
+    font-size: 52px;
+    font-style: italic;
+}
+
+main section.categories img {
+    border-radius: 5%;
+    margin-right: 50px;
+    max-height: 200px;
+}
+
+hr.footer {
+    background-color: #006272;
+    height: 5px;
 }
 
 footer {
