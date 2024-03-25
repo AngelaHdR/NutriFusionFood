@@ -8,10 +8,10 @@ public class UserEntity {
     private String name;
     private String surname1;
     private String surname2;
-    private Date birthDate;
+    private String birthDate;
     private Boolean nutritionist;
 
-    public UserEntity(Integer id, String name, String surname1, String surname2, Date birthDate, Boolean nutritionist) {
+    public UserEntity(Integer id, String name, String surname1, String surname2, String birthDate, Boolean nutritionist) {
         this.id = id;
         this.name = name;
         this.surname1 = surname1;
@@ -36,11 +36,13 @@ public class UserEntity {
         return this.surname2;
     }
 
-    public Date getBirthDate() {
-        return this.birthDate;
-    }
+
 
     public Boolean getNutritionist() {
         return this.nutritionist;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
     }
 }

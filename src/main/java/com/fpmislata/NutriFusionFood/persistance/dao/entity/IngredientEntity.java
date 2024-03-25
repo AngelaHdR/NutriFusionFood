@@ -19,6 +19,19 @@ public class IngredientEntity {
         this.typeId = typeId;
     }
 
+    public IngredientEntity(Integer id, Boolean gluten, Boolean lactose, String name, Integer startseason, Integer endseason) {
+        this.id = id;
+        this.gluten = gluten;
+        this.lactose = lactose;
+        this.name = name;
+        this.startseason = startseason;
+        this.endseason = endseason;
+    }
+
+    public IngredientEntity() {
+
+    }
+
     public Integer getId() {
         return this.id;
     }

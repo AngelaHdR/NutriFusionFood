@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/recipeList.css">
+    <link rel="stylesheet" href="../static/css/recipeList.css">
     <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" th:href="@{/css/recipeList.css}">
     <title>Recipe List</title>
 </head>
 
@@ -14,11 +14,11 @@
     <header>
         <div class="logo">
             <div class="nf-logo">
-                <img src="./images/logo_NFF.png" alt="NF-Logo" class="nf-logo">
+                <img th:src="@{/images/logo_NFF.png}" alt="NF-Logo" class="nf-logo">
             </div>
             <div class="logo&text">
                 <div class="nutrifusion-food">
-                    <img src="./images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food">
+                    <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
                 </div>
                 <div class="logo-text">
                     <p>Fusionando Sabor y Nutrición</p>

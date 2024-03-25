@@ -7,7 +7,7 @@ import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
 import java.util.List;
 
 public class RecipeServiceImpl implements RecipeService {
-    RecipeRepository recipeRepository;
+    private RecipeRepository recipeRepository;
 
     public RecipeServiceImpl(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;

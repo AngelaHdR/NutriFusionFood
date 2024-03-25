@@ -11,12 +11,29 @@ public class Ingredient {
     private Integer endseason;
     private Type type;
 
-    public Ingredient(Integer id, Boolean gluten, Boolean lactose, String name, LocalDate season) {
+    public Ingredient(Integer id, Boolean gluten, Boolean lactose, String name, Integer startseason, Integer endseason, Type type) {
         this.id = id;
         this.gluten = gluten;
         this.lactose = lactose;
         this.name = name;
+        this.startseason = startseason;
+        this.endseason = endseason;
+        this.type = type;
     }
+
+    public Ingredient() {
+
+    }
+
+    public Ingredient(Integer id, Boolean gluten, Boolean lactose, String name, Integer startseason, Integer endseason) {
+        this.id = id;
+        this.gluten = gluten;
+        this.lactose = lactose;
+        this.name = name;
+        this.startseason = startseason;
+        this.endseason = endseason;
+    }
+
 
     public Integer getId() {
         return this.id;
@@ -42,4 +59,16 @@ public class Ingredient {
     public void setType(Type type) {
         this.type = type;
     }
+
+    public Integer getStartseason() {
+        return startseason;
+    }
+
+
+
+    public Integer getEndseason() {
+        return endseason;
+    }
+
+
 }
