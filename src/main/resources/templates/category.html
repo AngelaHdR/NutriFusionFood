@@ -4,43 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/category.css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
     <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
     <title>Category</title>
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <div class="nf-logo">
-                <img src="../static/images/logo_NFF.png" alt="NF-Logo" class="nf-logo">
+<header>
+    <div class="logo">
+        <div class="nf-logo">
+            <img th:src="@{/images/logo_NFF.png}" alt="NF-Logo" class="nf-logo">
+        </div>
+        <div class="logo&text">
+            <div class="nutrifusion-food">
+                <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
             </div>
-            <div class="logo&text">
-                <div class="nutrifusion-food">
-                    <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food">
-                </div>
-                <div class="logo-text">
-                    <p>Fusionando Sabor y Nutrición</p>
-                </div>
+            <div class="logo-text">
+                <p>Fusionando Sabor y Nutrición</p>
             </div>
         </div>
-        <nav class="navbar">
-            <ul>
-                <li><a href="home.html" class="Home">INICIO</a></li>
-                <li><a href="category.html" class="Category">CATEGORIAS</a></li>
-                <li><a href="recipeList.html" class="Recipe">RECETAS</a></li>
-                <li><a href="profile.html" class="Profile">PERFIL</a></li>
-            </ul>
-        </nav>
-        <div class="signup-button">
-            <button>SIGN UP</button>
-        </div>
-    </header>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/home" class="Home">INICIO</a></li>
+            <li><a href="/recipes/categories" class="Category">CATEGORIAS</a></li>
+            <li><a href="/recipes" class="Recipe">RECETAS</a></li>
+            <li><a href="/profile" class="Profile">PERFIL</a></li>
+        </ul>
+    </nav>
+    <div class="signup-button">
+        <button>SIGN UP</button>
+    </div>
+</header>
+    <!--
     <ul>
         <a th:each="category:${categoryList}" th:href="@{${'/recipes/categories/' + category.id}}">
             <li th:text="category.name">Texto por defecto</li>
         </a>
-    </ul>
+    </ul> -->
     <br><br><br>
     <footer>
         <br>

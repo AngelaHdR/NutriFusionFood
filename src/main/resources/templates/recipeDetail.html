@@ -24,10 +24,10 @@
     </div>
     <nav class="navbar">
         <ul>
-            <li><a th:href="home" class="Home">INICIO</a></li>
-            <li><a th:href="category" class="Category">CATEGORIAS</a></li>
-            <li><a th:href="recipes" class="Recipe">RECETAS</a></li>
-            <li><a th:href="profile" class="Profile">PERFIL</a></li>
+            <li><a href="/home" class="Home">INICIO</a></li>
+            <li><a href="/recipes/categories" class="Category">CATEGORIAS</a></li>
+            <li><a href="/recipes" class="Recipe">RECETAS</a></li>
+            <li><a href="/profile" class="Profile">PERFIL</a></li>
         </ul>
     </nav>
     <div class="signup-button">
@@ -35,10 +35,6 @@
     </div>
 </header>
 <h1 th:text="${recipe.name}"></h1>
-
-
-
-
 
 <!--
 <h3 th:text="${recipe.category}"></h3>
@@ -62,5 +58,14 @@
 
 <h2>Preparacion</h2>
 <p th:text="${recipe.description}"></p>
+<br><br><br>
+<footer>
+    <br>
+    <i class="fa-brands fa-facebook"></i>
+    <i class="fa-brands fa-twitter"></i>
+    <i class="fa-brands fa-linkedin"></i>
+    <i class="fa-brands fa-instagram"></i>
+    <p class="footer">©2024 by NutriFusion Food</p>
+</footer>
 </body>
 </html>

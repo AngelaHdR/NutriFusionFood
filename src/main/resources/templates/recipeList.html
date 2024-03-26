@@ -26,10 +26,10 @@
         </div>
         <nav class="navbar">
             <ul>
-                <li><a th:href="home" class="Home">INICIO</a></li>
-                <li><a th:href="category" class="Category">CATEGORIAS</a></li>
-                <li><a th:href="recipes" class="Recipe">RECETAS</a></li>
-                <li><a th:href="profile" class="Profile">PERFIL</a></li>
+                <li><a href="/home" class="Home">INICIO</a></li>
+                <li><a href="/recipes/categories" class="Category">CATEGORIAS</a></li>
+                <li><a href="/recipes" class="Recipe">RECETAS</a></li>
+                <li><a href="/profile" class="Profile">PERFIL</a></li>
             </ul>
         </nav>
         <div class="signup-button">
@@ -38,10 +38,12 @@
     </header>
     <ul>
         <a th:each="recipe : ${recipeList}" th:href="@{${'/recipes/' + recipe.id}}">
-            <li th:text="|${recipe.name} (${recipe.category})|">Texto por defecto</li>
+            <li th:text="|${recipe.name} (${recipe.time} min)|">Texto por defecto</li>
         </a>
     </ul>
-    <br><br><br>
+    <br><br>
+    <h4><a href="/recipes/add">Añadir receta</a></h4>
+    <br><br>
     <footer>
         <br>
         <i class="fa-brands fa-facebook"></i>
