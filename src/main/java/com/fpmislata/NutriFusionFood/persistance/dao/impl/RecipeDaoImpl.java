@@ -9,11 +9,11 @@ import java.util.List;
 
 public class RecipeDaoImpl implements RecipeDao {
     List<RecipeEntity> recipeEntityList = new ArrayList<>(Arrays.asList(
-            new RecipeEntity(1,"Tortilla patata", "Paso 1...", 30,3,1),
-            new RecipeEntity(2,"Salmorejo", "Paso 1...", 60,2,1),
-            new RecipeEntity(3,"Ramen", "Paso 1...", 240,1,1),
-            new RecipeEntity(4,"Torrijas", "Paso 1...", 45,4,2),
-            new RecipeEntity(5,"Smoothie", "Paso 1...", 15,2,3)
+            new RecipeEntity(1,"Tortilla patata","es", "x","Paso 1...", 30,3,1),
+            new RecipeEntity(2,"Salmorejo","es","x", "Paso 1...", 60,2,1),
+            new RecipeEntity(3,"Ramen", "es","x","Paso 1...", 240,1,1),
+            new RecipeEntity(4,"Torrijas", "es","x","Paso 1...", 45,4,2),
+            new RecipeEntity(5,"Smoothie", "es","x","Paso 1...", 15,2,3)
     ));
 
     @Override

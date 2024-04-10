@@ -8,10 +8,10 @@ import java.util.List;
 public class CategoryDaoImpl implements CategoryDao {
     //Aqui son List.of porque son inmutables, una forma de simular un enumerado mas facil
     List<CategoryEntity> categoryEntityList = List.of(
-            new CategoryEntity(1,"salado"),
-            new CategoryEntity(2,"postre"),
-            new CategoryEntity(3,"bebida"),
-            new CategoryEntity(4,"snack")
+            new CategoryEntity(1,"salado","main dish"),
+            new CategoryEntity(2,"postre","dessert"),
+            new CategoryEntity(3,"bebida","drink"),
+            new CategoryEntity(4,"snack","snack")
     );
 
     //No se pueden insertar ni borrar, solo buscar

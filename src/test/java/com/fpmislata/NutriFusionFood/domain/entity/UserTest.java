@@ -22,25 +22,25 @@ class UserTest {
         @DisplayName("Create All parameters")
         @Test
         void createAllParameters() {
-            user = new User(1,"Soledad","Berenguer","Reyes",new Date("2002-03-28"),false);
+            user = new User(1,"Soledad","Berenguer","Reyes","2002-03-28",false);
         }
         @Test
         @DisplayName("Verify the name")
         void checkName(){
-            user = new User(1,"Soledad","Berenguer","Reyes",new Date("2002-03-28"),false);
+            user = new User(1,"Soledad","Berenguer","Reyes","2002-03-28",false);
             assertEquals("Soledad",user.getName());
         }
         @Test
         @DisplayName("Verify the surname")
-        void checkName(){
-            user = new User(1,"Soledad","Berenguer","Reyes",new Date("2002-03-28"),false);
+        void checkName1(){
+            user = new User(1,"Soledad","Berenguer","Reyes","2002-03-28",false);
             assertEquals("Soledad",user.getName());
         }
         @DisplayName("")
         @ParameterizedTest()
 
         void checkUser(){
-            user = new User(1,"Soledad","Berenguer","Reyes",new Date("2002-03-28"),false);
+            user = new User(1,"Soledad","Berenguer","Reyes","2002-03-28",false);
 
         }
 

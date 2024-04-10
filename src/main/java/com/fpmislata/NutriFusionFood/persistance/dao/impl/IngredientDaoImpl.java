@@ -13,11 +13,11 @@ public class IngredientDaoImpl implements IngredientDao {
     private ComposedDao composedDao;
 
     List<IngredientEntity> ingredientEntityList = new ArrayList<>(Arrays.asList(
-            new IngredientEntity(1,true,false,"pan",10,12, 6),
-            new IngredientEntity(2,false,false,"pollo",10,12, 1),
-            new IngredientEntity(3,false,false,"tomate",10,12, 5),
-            new IngredientEntity(4,false,false,"puerro",10,12, 4),
-            new IngredientEntity(5,false,true,"helado",10,12, 3)
+            new IngredientEntity(1,true,false,"pan","bread",10,12, 6),
+            new IngredientEntity(2,false,false,"pollo","chicken",10,12, 1),
+            new IngredientEntity(3,false,false,"tomate","tomato",10,12, 5),
+            new IngredientEntity(4,false,false,"puerro","leek",10,12, 4),
+            new IngredientEntity(5,false,true,"helado","ice cream",10,12, 3)
     ));
 
     public IngredientDaoImpl() {

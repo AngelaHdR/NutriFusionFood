@@ -1,8 +1,5 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.entity;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 public class UserEntity {
     private Integer id;
     private String name;
@@ -11,6 +8,7 @@ public class UserEntity {
     private String birthDate;
     private Boolean nutritionist;
 
+    //Constructor
     public UserEntity(Integer id, String name, String surname1, String surname2, String birthDate, Boolean nutritionist) {
         this.id = id;
         this.name = name;
@@ -20,29 +18,46 @@ public class UserEntity {
         this.nutritionist = nutritionist;
     }
 
+    //Getters and setters
     public Integer getId() {
         return this.id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return this.name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getSurname1() {
         return this.surname1;
+    }
+    public void setSurname1(String surname1) {
+        this.surname1 = surname1;
     }
 
     public String getSurname2() {
         return this.surname2;
     }
-
-
-
-    public Boolean getNutritionist() {
-        return this.nutritionist;
+    public void setSurname2(String surname2) {
+        this.surname2 = surname2;
     }
 
     public String getBirthDate() {
         return birthDate;
+    }
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Boolean isNutritionist() {
+        return this.nutritionist;
+    }
+    public void setNutritionist(Boolean nutritionist) {
+        this.nutritionist = nutritionist;
     }
 }

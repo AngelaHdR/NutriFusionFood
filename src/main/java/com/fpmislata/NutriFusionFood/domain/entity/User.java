@@ -1,7 +1,5 @@
 package com.fpmislata.NutriFusionFood.domain.entity;
 
-import java.util.Date;
-
 public class User {
     private Integer id;
     private String name;
@@ -10,6 +8,9 @@ public class User {
     private String birthDate;
     private Boolean nutritionist;
 
+    //Constructors (void and all parameters)
+    public User() {
+    }
     public User(Integer id, String name, String surname1, String surname2, String birthDate, Boolean nutritionist) {
         this.id = id;
         this.name = name;
@@ -19,58 +20,47 @@ public class User {
         this.nutritionist = nutritionist;
     }
 
-    public User() {
-    }
-
+    //Getters and setters
     public Integer getId() {
         return this.id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return this.name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getSurname1() {
         return this.surname1;
+    }
+    public void setSurname1(String surname1) {
+        this.surname1 = surname1;
     }
 
     public String getSurname2() {
         return this.surname2;
     }
-
-
-
-    public Boolean getNutritionist() {
-        return this.nutritionist;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname1(String surname1) {
-        this.surname1 = surname1;
-    }
-
     public void setSurname2(String surname2) {
         this.surname2 = surname2;
-    }
-
-
-
-    public void setNutritionist(Boolean nutritionist) {
-        this.nutritionist = nutritionist;
     }
 
     public String getBirthDate() {
         return birthDate;
     }
-
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
+
+    public Boolean isNutritionist() {
+        return this.nutritionist;
+    }
+    public void setNutritionist(Boolean nutritionist) {
+        this.nutritionist = nutritionist;
+    }
+
 }

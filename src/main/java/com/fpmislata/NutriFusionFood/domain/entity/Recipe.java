@@ -1,80 +1,103 @@
 package com.fpmislata.NutriFusionFood.domain.entity;
 
 import java.util.List;
+import java.util.Map;
 
 public class Recipe {
     private Integer id;
     private String description;
     private String name;
+    private String languaje;
     private int time;
-    private List<Ingredient> ingredientlist;
-    private List<Tool> toollist;
+    private String steps;
+    private List<Ingredient> ingredientList;
+    private List<Tool> toolList;
     private User user;
     private Category category;
-    private List<Boolean> allergen;
+    private Map<String,Boolean> allergen;
 
+    //Constructors (void and basic parameters)
     public Recipe() {
     }
 
-    public Recipe(Integer id, String description, String name, int time) {
+    public Recipe(Integer id, String name, String languaje, String description, String steps, int time) {
         this.id = id;
         this.description = description;
         this.name = name;
+        this.languaje = languaje;
         this.time = time;
+        this.steps = steps;
+        this.allergen = Map.of("gluten",false,"lactose",false);
     }
 
+
+    //Getters and setters
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLanguaje() {
+        return languaje;
+    }
+    public void setLanguaje(String languaje) {
+        this.languaje = languaje;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Map<String,Boolean> getAllergen() {
+        return allergen;
+    }
+    public void setAllergen(Map<String,Boolean> allergen) {
+        this.allergen = allergen;
+    }
+
+    public String getSteps() {
+        return steps;
+    }
+    public void setSteps(String steps) {
+        this.steps = steps;
     }
 
     public int getTime() {
         return time;
     }
-
     public void setTime(int time) {
         this.time = time;
     }
 
-    public List<Ingredient> getIngredientlist() {
-        return ingredientlist;
+    public List<Ingredient> getIngredientList() {
+        return ingredientList;
+    }
+    public void setIngredientList(List<Ingredient> ingredientList) {
+        this.ingredientList = ingredientList;
     }
 
-    public void setIngredientlist(List<Ingredient> ingredientlist) {
-        this.ingredientlist = ingredientlist;
+    public List<Tool> getToolList() {
+        return toolList;
     }
-
-    public List<Tool> getToollist() {
-        return toollist;
-    }
-
-    public void setToollist(List<Tool> toollist) {
-        this.toollist = toollist;
+    public void setToolList(List<Tool> toolList) {
+        this.toolList = toolList;
     }
 
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -82,16 +105,8 @@ public class Recipe {
     public Category getCategory() {
         return category;
     }
-
     public void setCategory(Category category) {
         this.category = category;
     }
 
-    public List<Boolean> getAllergen() {
-        return allergen;
-    }
-
-    public void setAllergen(List<Boolean> allergen) {
-        this.allergen = allergen;
-    }
 }

@@ -13,12 +13,12 @@ public class ToolDaoImpl implements ToolDao {
     private RequireDao requireDao;
 
     List<ToolEntity> toolEntityList = new ArrayList<>(Arrays.asList(
-            new ToolEntity(1,"cuchara"),
-            new ToolEntity(2,"bol"),
-            new ToolEntity(3,"sarten"),
-            new ToolEntity(4,"olla"),
-            new ToolEntity(5,"vaso medidor"),
-            new ToolEntity(6,"batidora")
+            new ToolEntity(1,"cuchara","spoon"),
+            new ToolEntity(2,"bol","bowl"),
+            new ToolEntity(3,"sarten","frying pan"),
+            new ToolEntity(4,"olla","pot"),
+            new ToolEntity(5,"vaso medidor","measuring cup"),
+            new ToolEntity(6,"batidora","blender")
     ));
 
     public ToolDaoImpl() {

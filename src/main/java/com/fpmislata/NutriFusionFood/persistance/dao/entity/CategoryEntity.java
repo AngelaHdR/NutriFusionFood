@@ -2,18 +2,35 @@ package com.fpmislata.NutriFusionFood.persistance.dao.entity;
 
 public class CategoryEntity {
     private Integer id;
-    private String name;
+    private String name_es;
+    private String name_en;
 
-    public CategoryEntity(Integer id, String name) {
+    //Constructor (all parameters)
+    public CategoryEntity(Integer id, String name_es, String name_en) {
         this.id = id;
-        this.name = name;
+        this.name_es = name_es;
+        this.name_en = name_en;
     }
 
+    //Getters and setters
     public Integer getId() {
         return this.id;
     }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public String getName() {
-        return this.name;
+    public String getName_es() {
+        return this.name_es;
+    }
+    public void setName_es(String name_es) {
+        this.name_es = name_es;
+    }
+
+    public String getName_en() {
+        return name_en;
+    }
+    public void setName_en(String name_en) {
+        this.name_en = name_en;
     }
 }

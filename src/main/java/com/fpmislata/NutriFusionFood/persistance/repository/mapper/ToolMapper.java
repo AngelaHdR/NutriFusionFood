@@ -5,10 +5,10 @@ import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 
 public class ToolMapper {
     public static Tool toTool(ToolEntity toolEntity){
-        return new Tool(toolEntity.getId(),toolEntity.gtName());
+        return new Tool(toolEntity.getId(),toolEntity.getName_es(), toolEntity.getName_en());
     }
 
     public static ToolEntity toToolEntity(Tool tool){
-        return new ToolEntity(tool.getId(),tool.getName());
+        return new ToolEntity(tool.getId(),tool.getName_es(), tool.getName_en());
     }
 }

@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
     public List<UserEntity> findAllNutritionist() {
         List<UserEntity> nutritionistList = new ArrayList<>();
         for (UserEntity userEntity:userEntityList){
-            if (userEntity.getNutritionist()){
+            if (userEntity.isNutritionist()){
                 nutritionistList.add(userEntity);
             }
         }

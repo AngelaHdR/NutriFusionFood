@@ -8,10 +8,10 @@ import java.util.List;
 
 public class RecipeMapper {
     public static Recipe toRecipe(RecipeEntity recipeEntity){
-        return new Recipe(recipeEntity.getId(),recipeEntity.getDescription(),recipeEntity.getName(),recipeEntity.getTime());
+        return new Recipe(recipeEntity.getId(),recipeEntity.getName(), recipeEntity.getLanguaje(),recipeEntity.getDescription(), recipeEntity.getSteps(), recipeEntity.getTime());
     }
     public static RecipeEntity toRecipeEntity(Recipe recipe){
-        return new RecipeEntity(recipe.getId(),recipe.getName(),recipe.getDescription(),recipe.getTime(),recipe.getUser().getId(),recipe.getCategory().getId());
+        return new RecipeEntity(recipe.getId(),recipe.getName(), recipe.getLanguaje(), recipe.getDescription(), recipe.getSteps(), recipe.getTime(),recipe.getUser().getId(),recipe.getCategory().getId());
     }
     public static List<Recipe> toRecipeList(List<RecipeEntity> recipeEntityList){
         List<Recipe> recipeList = new ArrayList<>();
