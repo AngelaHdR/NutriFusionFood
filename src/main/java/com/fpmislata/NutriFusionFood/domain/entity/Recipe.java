@@ -7,7 +7,7 @@ public class Recipe {
     private Integer id;
     private String description;
     private String name;
-    private String languaje;
+    private String language;
     private int time;
     private String steps;
     private List<Ingredient> ingredientList;
@@ -20,11 +20,11 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(Integer id, String name, String languaje, String description, String steps, int time) {
+    public Recipe(Integer id, String name, String language, String description, String steps, int time) {
         this.id = id;
         this.description = description;
         this.name = name;
-        this.languaje = languaje;
+        this.language = language;
         this.time = time;
         this.steps = steps;
         this.allergen = Map.of("gluten",false,"lactose",false);
@@ -46,11 +46,11 @@ public class Recipe {
         this.name = name;
     }
 
-    public String getLanguaje() {
-        return languaje;
+    public String getLanguage() {
+        return language;
     }
-    public void setLanguaje(String languaje) {
-        this.languaje = languaje;
+    public void setLanguaje(String language) {
+        this.language = language;
     }
 
     public String getDescription() {
