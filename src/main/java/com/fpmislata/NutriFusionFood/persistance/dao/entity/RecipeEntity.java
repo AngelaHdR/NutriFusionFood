@@ -3,7 +3,7 @@ package com.fpmislata.NutriFusionFood.persistance.dao.entity;
 public class RecipeEntity {
     private Integer id;
     private String name;
-    private String languaje;
+    private String language;
     private String description;
     private String steps;
     private int time;
@@ -12,11 +12,11 @@ public class RecipeEntity {
 
     //Constructor
 
-    public RecipeEntity(Integer id, String name,String languaje, String description, String steps, int time, Integer userId, Integer categoryId) {
+    public RecipeEntity(Integer id, String name,String language, String description, String steps, int time, Integer userId, Integer categoryId) {
         this.id = id;
         this.description = description;
         this.name = name;
-        this.languaje = languaje;
+        this.language = language;
         this.time = time;
         this.steps = steps;
         this.userId = userId;
@@ -38,11 +38,11 @@ public class RecipeEntity {
         this.name = name;
     }
 
-    public String getLanguaje() {
-        return languaje;
+    public String getLanguage() {
+        return language;
     }
-    public void setLanguaje(String languaje) {
-        this.languaje = languaje;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public String getDescription() {

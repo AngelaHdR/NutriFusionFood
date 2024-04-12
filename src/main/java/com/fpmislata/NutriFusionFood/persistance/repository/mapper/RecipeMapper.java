@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RecipeMapper {
     public static Recipe toRecipe(RecipeEntity recipeEntity){
-        return new Recipe(recipeEntity.getId(),recipeEntity.getName(), recipeEntity.getLanguaje(),recipeEntity.getDescription(), recipeEntity.getSteps(), recipeEntity.getTime());
+        return new Recipe(recipeEntity.getId(),recipeEntity.getName(), recipeEntity.getLanguage(),recipeEntity.getDescription(), recipeEntity.getSteps(), recipeEntity.getTime());
     }
     public static RecipeEntity toRecipeEntity(Recipe recipe){
         return new RecipeEntity(recipe.getId(),recipe.getName(), recipe.getLanguage(), recipe.getDescription(), recipe.getSteps(), recipe.getTime(),recipe.getUser().getId(),recipe.getCategory().getId());
