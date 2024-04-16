@@ -27,13 +27,20 @@
             <li><a href="/home" class="Home">INICIO</a></li>
             <li><a href="/recipes/categories" class="Category">CATEGORIAS</a></li>
             <li><a href="/recipes" class="Recipe">RECETAS</a></li>
-            <li><a href="/profile" class="Profile">PERFIL</a></li>
+            <li><a href="/nutritionist" class="Profile">PERFIL</a></li>
         </ul>
     </nav>
     <div class="signup-button">
         <button>SIGN UP</button>
     </div>
 </header>
+<h1>Nombre de usuario</h1>
+<h2>Nombre: </h2>
+<p th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|"></p>
+<h2>Email: </h2>
+
+<h2>Fecha de nacimiento: </h2>
+<p th:text="${nutritionist.birthDate}"></p>
     <br><br><br>
     <footer>
         <br>

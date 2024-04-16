@@ -12,7 +12,7 @@ import com.fpmislata.NutriFusionFood.common.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/nutritionists")
 public class UserController {
     UserService userService;
     public UserController(){

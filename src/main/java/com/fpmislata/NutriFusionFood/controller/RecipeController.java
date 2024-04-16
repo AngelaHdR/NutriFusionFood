@@ -38,7 +38,7 @@ public class RecipeController {
     public String save(Recipe recipe){
         UserService userService = UserIoC.getUserService();
         User user = new User();
-        user.setId(userService.findAllUser().size()+1);
+        user.setId(userService.findAllNutritionist().size()+1);
         recipe.setUser(user);
         recipeService.insert(recipe);
         return "redirect:/recipe";

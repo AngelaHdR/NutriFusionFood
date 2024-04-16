@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Usuario</title>
+</head>
+<body>
+    <form action="#" th:action="@{/nutritionists}" th:object="${user}">
+        <label for="name">Nombre</label>
+        <input id="name" type="text" th:field="*{name}" maxlength="15">
+        <label for="sur1">Primer apellido</label>
+        <input id="sur1" type="text" th:field="*{surname1}" maxlength="15">
+        <label for="sur2">Segundo apellido</label>
+        <input id="sur2" type="text" th:field="*{surname2}" maxlength="15">
+    </form>
+</body>
+</html>
