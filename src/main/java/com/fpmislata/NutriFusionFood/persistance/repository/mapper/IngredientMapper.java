@@ -9,6 +9,6 @@ public class IngredientMapper {
     }
 
     public static IngredientEntity toIngredientEntity(Ingredient ingredient){
-        return new IngredientEntity(ingredient.getId(),ingredient.isGluten(),ingredient.isLactose(),ingredient.getName_es(), ingredient.getName_en(), ingredient.getStartSeason(),ingredient.getEndSeason());
+        return new IngredientEntity(ingredient.getId(),ingredient.isGluten(),ingredient.isLactose(),ingredient.getName_es(), ingredient.getName_en(), ingredient.getStartSeason(),ingredient.getEndSeason(),ingredient.getType().getId());
     }
 }

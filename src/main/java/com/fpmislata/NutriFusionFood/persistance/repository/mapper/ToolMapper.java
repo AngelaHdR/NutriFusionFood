@@ -1,5 +1,8 @@
 package com.fpmislata.NutriFusionFood.persistance.repository.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fpmislata.NutriFusionFood.domain.entity.Tool;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 
@@ -10,5 +13,12 @@ public class ToolMapper {
 
     public static ToolEntity toToolEntity(Tool tool){
         return new ToolEntity(tool.getId(),tool.getName_es(), tool.getName_en());
+    }
+    public static List<Tool> toToolList(List<ToolEntity> toolEntityList){
+        List<Tool> toolList = new ArrayList<>();
+        for(ToolEntity toolEntity:toolEntityList){
+            toolList.add(toTool(toolEntity));
+        }
+        return toolList;
     }
 }
