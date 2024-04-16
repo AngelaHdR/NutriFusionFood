@@ -1,6 +1,5 @@
 package com.fpmislata.NutriFusionFood.domain.service.impl;
 
-import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
 import com.fpmislata.NutriFusionFood.persistance.repository.UserRepository;
@@ -15,19 +14,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllUser() {
-        return this.userRepository.findAllUser();
+    public User findByIdNutritionist(Integer id) {
+        return this.userRepository.findByIdNutritionist(id);
     }
 
-    @Override
-    public User findByIdUser(Integer id) {
-        return this.userRepository.findByIdUser(id);
-    }
-
-    @Override
-    public void delete(Integer id) {
-       userRepository.delete(id);
-    }
     @Override
     public void insert(User user) {
         userRepository.insert(user);

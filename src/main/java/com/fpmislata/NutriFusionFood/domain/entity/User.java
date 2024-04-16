@@ -7,17 +7,19 @@ public class User {
     private String surname2;
     private String birthDate;
     private Boolean nutritionist;
+    private String password;
 
     //Constructors (void and all parameters)
-    public User() {
+    public User(){
     }
-    public User(Integer id, String name, String surname1, String surname2, String birthDate, Boolean nutritionist) {
+    public User(Integer id, String name, String surname1, String surname2, String birthDate, Boolean nutritionist, String password) {
         this.id = id;
         this.name = name;
         this.surname1 = surname1;
         this.surname2 = surname2;
         this.birthDate = birthDate;
         this.nutritionist = nutritionist;
+        this.password = password;
     }
 
     //Getters and setters
@@ -63,4 +65,10 @@ public class User {
         this.nutritionist = nutritionist;
     }
 
+    public String getPassword() {
+        return this.password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

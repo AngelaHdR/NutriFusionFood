@@ -1,9 +1,7 @@
 package com.fpmislata.NutriFusionFood.persistance.repository.impl;
 
 import com.fpmislata.NutriFusionFood.domain.entity.User;
-
 import com.fpmislata.NutriFusionFood.persistance.dao.UserDao;
-
 import com.fpmislata.NutriFusionFood.persistance.repository.UserRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.mapper.UserMapper;
 
@@ -17,18 +15,8 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> findAllUser() {
-        return UserMapper.toUserList(userDao.findAllUser());
-    }
-
-    @Override
-    public User findByIdUser(Integer id) {
-        return UserMapper.toUser(userDao.findByIdUser(id));
-    }
-
-    @Override
-    public void delete(Integer id) {
-        userDao.delete(id);
+    public User findByIdNutritionist(Integer id) {
+        return UserMapper.toUser(userDao.findByIdNutritionist(id));
     }
 
     @Override

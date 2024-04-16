@@ -41,7 +41,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 
         //Añadir usuario
         int idUser = recipeEntity.getUserId();
-        User user = UserMapper.toUser(userDao.findByIdUser(idUser));
+        User user = UserMapper.toUser(userDao.findByIdNutritionist(idUser));
         recipe.setUser(user);
 
         //Añadir categoria
