@@ -1,7 +1,5 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.entity;
 
-import com.fpmislata.NutriFusionFood.domain.entity.Type;
-
 public class IngredientEntity {
     private Integer id;
     private Boolean gluten;
