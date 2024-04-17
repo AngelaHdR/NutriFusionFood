@@ -38,7 +38,7 @@ public class UserDaoUnitTest {
         assertEquals(expectedNutritionistList, actualNutritionistList);
     }
 
-    @DisplayName("Find the nutritionists by its id")
+    @DisplayName("Find the nutritionists by their id")
     @Test
     public void testFindNutritionistById() {
         UserEntity actualNutritionist = userDao.findByIdNutritionist(1);
