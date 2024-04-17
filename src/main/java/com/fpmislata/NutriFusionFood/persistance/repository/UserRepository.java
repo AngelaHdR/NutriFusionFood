@@ -8,4 +8,5 @@ public interface UserRepository {
     public User findByIdNutritionist(Integer id);
     public void insert(User user);
     public List<User> findAllNutritionist();
+    public List<User> findAllUser();
 }

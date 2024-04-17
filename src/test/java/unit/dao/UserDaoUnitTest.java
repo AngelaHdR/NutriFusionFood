@@ -50,13 +50,13 @@ public class UserDaoUnitTest {
     @Test
     public void testInsertNewUser() {
         userDao.insert(new UserEntity(5, "Marcos", "Monleon", "Miguel", "2005-10-06", true, "pass5", "mail5", "marcos"));
-        List<UserEntity> actualNutritionistList = userDao.findAllNutritionist();
-        List<UserEntity> expectedNutritionistList = new ArrayList<>(Arrays.asList(
+        List<UserEntity> actualUsersList = userDao.findAllUser();
+        List<UserEntity> expectedUsersList = new ArrayList<>(Arrays.asList(
             new UserEntity(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose"),
             new UserEntity(2,"Alicia","Fernandez","Lopez","2000-12-04", false, "pass2", "mail2", "alicia"),
             new UserEntity(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe"),
             new UserEntity(4,"Mercedes","Gil","Diaz","2000-04-14", false, "pass4", "mail4", "mercedes"),
             new UserEntity(5, "Marcos", "Monleon", "Miguel", "2005-10-06", true, "pass5", "mail5", "marcos")));
-        assertEquals(expectedNutritionistList, actualNutritionistList);
+        assertEquals(expectedUsersList, actualUsersList);
     }
 }

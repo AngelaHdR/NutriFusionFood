@@ -28,4 +28,9 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> findAllNutritionist() {
         return UserMapper.toUserList(userDao.findAllNutritionist());
     }
+
+    @Override
+    public List<User> findAllUser() {
+        return UserMapper.toUserList(userDao.findAllUser());
+    }
 }
