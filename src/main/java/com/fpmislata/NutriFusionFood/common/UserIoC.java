@@ -29,4 +29,18 @@ public class UserIoC {
         }
         return userDao;
     }
+    public static void setUserService(UserService userService) {
+        UserIoC.userService = userService;
+    }
+    public static void setUserRepository(UserRepository userRepository) {
+        UserIoC.userRepository = userRepository;
+    }
+    public static void setUserDao(UserDao userDao) {
+        UserIoC.userDao = userDao;
+    }
+    public static void reset() {
+        userService = null;
+        userRepository = null;
+        userDao = null;
+    }
 }

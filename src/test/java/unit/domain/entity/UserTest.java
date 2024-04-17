@@ -1,11 +1,11 @@
-package com.fpmislata.NutriFusionFood.domain.entity;
+package unit.domain.entity;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 
-import java.util.Date;
+import com.fpmislata.NutriFusionFood.domain.entity.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 

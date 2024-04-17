@@ -1,7 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.dao;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 
 import java.util.List;
 

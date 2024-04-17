@@ -1,8 +1,10 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.entity;
+package unit.persistance.dao.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 
 public class CategoryEntityTest {
     CategoryEntity categoryEntity;

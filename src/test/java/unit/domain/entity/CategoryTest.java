@@ -1,8 +1,10 @@
-package com.fpmislata.NutriFusionFood.domain.entity;
+package unit.domain.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
+import com.fpmislata.NutriFusionFood.domain.entity.Category;
 
 public class CategoryTest {
     Category category;
