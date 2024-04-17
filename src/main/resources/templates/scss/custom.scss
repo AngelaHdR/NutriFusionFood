@@ -1,0 +1,88 @@
+//importar variables de bootstrap
+@import '../bootstrap/scss/functions';
+@import '../bootstrap/scss/variables';
+
+
+//importar fuentes
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+// variables propias
+$font_title: Forum;
+$font_body: Playfair Display;
+$font-weight-bold: 580;
+$bg_color: #D0EEF4;
+$font_color: #000000;
+$highlight_color: #F1856A;
+$title_color: #006272;
+$base_size: 1.2rem;
+$title_size: $base_size*3.5;
+$title_normal: $base_size*1.5;
+$subtitle_size: $base_size*2.5;
+$info:$base_size*1;
+$border_nav: 1.5px;
+$border_space: 3px;
+
+
+//variables de bootstrap
+$theme-colors: (
+  "secundary": $bg_color,
+  "primary": $font_color,
+  "warning": $highlight_color,
+  "info": $title_color
+);
+
+
+$font_sizes: (
+  1: $title_size,
+  2: $subtitle-size,
+  3: $title_normal,
+  4: $info
+
+);
+
+$margin: 1rem;
+$body-color: $font_color;
+$heading-color: $title_color;
+$body-margin: 1rem;
+$body-font-size: 20px;
+$border-width: 1px;
+$border-widths: (
+  1: $border-nav,
+  2: $border-space
+);
+
+
+.nf-logo {
+  height: 70px;
+}
+
+.nutrifusion-food {
+  height: 45px;
+}
+
+.nutrifusion-food-welcome {
+  height: 90px;
+}
+
+ul {
+  list-style: none
+}
+
+
+.welcome-text,.categories-text,.aboutus-text {
+  font-family: $font_title;
+}
+
+.message, .title-recipe, 
+.title-drink, .title-maindish, 
+.title-desserts, .title-snacks,
+.description-aboutus{
+font-family: $font_body;
+}
+.img-aboutus{
+  width: 40vw;
+}
+
+@import "../bootstrap/scss/bootstrap.scss";

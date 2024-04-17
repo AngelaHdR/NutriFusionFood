@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <title>fragments</title>
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid px-3 py-3 border-primary bg-warning">
+            <div class="logo d-inline">
+                <div class="nf-logo d-inline rounded float-start">
+                    <!--  <img src="../static/images/logo_NFF.png" alt="NF-Logo" class="nf-logo"> -->
+                    <img th:src="@{/images/logo_NFF.png}" alt="NF-Logo" class="nf-logo">
+
+                </div>
+                <div class="logotext d-inline rounded float-start">
+                    <div class="nutrifusion-food d-block">
+                        <!--  <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food"> --><img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
+
+                    </div>
+                    <div class="slogan d-block">
+                        <p>Fusionando Sabor y Nutrición</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-expand-lg d-inline-block col-md-6">
+                <div class="container-fluid-nav mt-3 px-5 text-center ">
+                    <ul class="navbar px-3">
+                        <li class="nav-item border-top border-primary"><a href="/home"
+                                class="nav-link active">INICIO</a></li>
+
+                        <a class="nav-link dropdown-toggle border-top border-primary "
+                            id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            CATEGORIAS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Todo</a>
+                            <a class="dropdown-item" href="#">Snacks</a>
+                            <a class="dropdown-item" href="#">Bebidas</a>
+                            <a class="dropdown-item" href="#">Salados</a>
+                            <a class="dropdown-item" href="#">Postre</a>
+                        </div>
+                        </li>
+                        <li class="nav-item border-top border-primary"><a href="/recipes"
+                                class="nav-link active">RECETAS</a></li>
+                        <li class="nav-item border-top border-primary"><a href="/nutritionists"
+                                class="nav-link active">PERFIL</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="signup-button d-inline rounded float-end">
+                <button type="button" class="btn btn-info border mt-3 mx-3 p-2">SIGN UP</button>
+
+            </div>
+           
+        </div>
+            
+       <!-- <hr class="header border border-primary">-->
+    </header>
+    <br>
+
+    <footer>
+        <div class="container-fluid bg-warning border-top border-primary">
+            <div class="icons text-center mt-3">
+                <i class=" fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class=" fa-brands fa-linkedin"></i>
+                <i class="  fa-brands fa-instagram"></i></div>
+            <p class="footer-text text-center mt-2">©2024 by NutriFusion Food</p>
+            <br>
+        </div>
+    </footer>
+</body>
+
+</html>
