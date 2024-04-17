@@ -8,9 +8,11 @@ public class UserEntity {
     private String birthDate;
     private Boolean nutritionist;
     private String password;
+    private String email;
+    private String username;
 
     //Constructor
-    public UserEntity(Integer id, String name, String surname1, String surname2, String birthDate, Boolean nutritionist, String password) {
+    public UserEntity(Integer id, String name, String surname1, String surname2, String birthDate, Boolean nutritionist, String password, String email, String username) {
         this.id = id;
         this.name = name;
         this.surname1 = surname1;
@@ -18,6 +20,8 @@ public class UserEntity {
         this.birthDate = birthDate;
         this.nutritionist = nutritionist;
         this.password = password;
+        this.email = email;
+        this.username = username;
     }
 
     //Getters and setters
@@ -69,4 +73,19 @@ public class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getEmail() {
+        return this.email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 }
