@@ -10,16 +10,17 @@
 
 <body>
     <header>
-        <div class="container-fluid px-3 py-3 border-primary bg-warning">
+        <div class="container-fluid p-4 border-primary bg-warning">
             <div class="logo d-inline">
                 <div class="nf-logo d-inline rounded float-start">
-                    <!--  <img src="../static/images/logo_NFF.png" alt="NF-Logo" class="nf-logo"> -->
+                    <!--   <img src="../static/images/logo_NFF.png" alt="NF-Logo" class="nf-logo">-->
                     <img th:src="@{/images/logo_NFF.png}" alt="NF-Logo" class="nf-logo">
 
                 </div>
                 <div class="logotext d-inline rounded float-start">
                     <div class="nutrifusion-food d-block">
-                        <!--  <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food"> --><img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
+                        <!-- <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food"> -->
+                        <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
 
                     </div>
                     <div class="slogan d-block">
@@ -32,7 +33,24 @@
                     <ul class="navbar px-3">
                         <li class="nav-item border-top border-primary"><a href="/home"
                                 class="nav-link active">INICIO</a></li>
-
+                        <li class="nav-item border-top border-primary"><a href="/category"
+                                class="nav-link active">CATEGORIAS</a></li>
+                        <!--
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <button class="dropdown-item" type="button">Action</button>
+                                    <button class="dropdown-item" type="button">Another action</button>
+                                    <button class="dropdown-item" type="button">Something else here</button>
+                                </div>
+                            </div>
+                        </li>
+                        -->
+                        <!-- <li>
                         <a class="nav-link dropdown-toggle border-top border-primary "
                             id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -45,7 +63,7 @@
                             <a class="dropdown-item" href="#">Salados</a>
                             <a class="dropdown-item" href="#">Postre</a>
                         </div>
-                        </li>
+                        </li> -->
                         <li class="nav-item border-top border-primary"><a href="/recipes"
                                 class="nav-link active">RECETAS</a></li>
                         <li class="nav-item border-top border-primary"><a href="/nutritionists"
@@ -57,10 +75,10 @@
                 <button type="button" class="btn btn-info border mt-3 mx-3 p-2">SIGN UP</button>
 
             </div>
-           
+
         </div>
-            
-       <!-- <hr class="header border border-primary">-->
+
+        <!-- <hr class="header border border-primary">-->
     </header>
     <br>
 
@@ -70,7 +88,8 @@
                 <i class=" fa-brands fa-facebook"></i>
                 <i class="fa-brands fa-twitter"></i>
                 <i class=" fa-brands fa-linkedin"></i>
-                <i class="  fa-brands fa-instagram"></i></div>
+                <i class="  fa-brands fa-instagram"></i>
+            </div>
             <p class="footer-text text-center mt-2">©2024 by NutriFusion Food</p>
             <br>
         </div>

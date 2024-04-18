@@ -16,9 +16,9 @@
     <div class="container-fluid bg-secundary">
         <section class="section-welcome py-5 border-bottom border-primary text-center">
             <h2 class="welcome-text fs-1 text-info">
-                Bienvenido a<!--
-                    <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">-->
-                    <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food-welcome">
+                Bienvenido a
+                    <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food-welcome">
+                   <!-- <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food-welcome">-->
             </h2>
             <div class="icon pb-3 fs-3">
                 <i class="fa-solid fa-heart"></i>
@@ -33,28 +33,28 @@
             <h2 class="categories-text text-info fs-2 fst-italic fw-bold ">CATEGORIAS</h2>
             <article class="images px-5 py-3">
                 <div class="recipes d-inline-block  px-4 ">
-                   <!--<img th:src="@{/images/recetas.png}" alt="recipes">--> 
-                    <img src="../static/images/recetas.png" alt="recipes" class="img-recipes d-block pb-3">
+                   <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3">
+                   <!-- <img src="../static/images/recetas.png" alt="recipes" class="img-recipes d-block pb-3"> --> 
                     <p class="title-recipe fs-3 bg-warning d-inline-block ">Recetas</p>
                 </div>
                 <div class="drinks d-inline-block px-4">
-                   <!--<img th:src="@{/images/bebidas.png}" alt="drinks" class="img-drinks d-block">--> 
-                    <img src="../static/images/bebidas.png" alt="drinks" class="img-drinks d-block pb-3">
+                  <img th:src="@{/images/bebidas.png}" alt="drinks" class="img-drinks d-block pb-3">
+                    <!-- <img src="../static/images/bebidas.png" alt="drinks" class="img-drinks d-block pb-3 "> --> 
                     <p class="title-drink fs-3 bg-warning d-inline-block ">Bebidas</p>
                 </div>
                 <div class="main-dish d-inline-block  px-4">
-                    <!--<img th:src="@{/images/salados.png}" alt="main-dish">--> 
-                    <img src="../static/images/salados.png" alt="main-dish" class="img-maindish d-block pb-3 ">
+                    <img th:src="@{/images/salados.png}" alt="main-dish" class="img-maindish d-block pb-3 ">
+                   <!-- <img src="../static/images/salados.png" alt="main-dish" class="img-maindish d-block pb-3 "> --> 
                     <p class="title-maindish fs-3 bg-warning d-inline-block ">Salados</p>
                 </div>
                 <div class="desserts d-inline-block px-4">
-                     <!--<img th:src="@{/images/postres.png}" alt="desserts">-->
-                     <img src="../static/images/postres.png" alt="desserts" class="img-desserts d-block pb-3">
+                     <img th:src="@{/images/postres.png}" alt="desserts" class="img-desserts d-block pb-3">
+                   <!--  <img src="../static/images/postres.png" alt="desserts" class="img-desserts d-block pb-3">-->
                     <p class="title-desserts fs-3 bg-warning d-inline-block ">Postres</p>
                 </div>
                 <div class="snacks d-inline-block  px-4">
-                     <!--<img th:src="@{/images/snacks.png}" alt="snacks">-->
-                     <img src="../static/images/snacks.png" alt="snacks" class="img-snacks d-block pb-3">
+                     <img th:src="@{/images/snacks.png}" alt="snacks" class="img-snacks d-block pb-3">
+                   <!--  <img src="../static/images/snacks.png" alt="snacks" class="img-snacks d-block pb-3">-->
                     <p class="title-snacks fs-3 bg-warning d-inline-block ">Snacks</p>
                 </div>
             </article>
@@ -63,12 +63,12 @@
         </section>
         <section class="about-us text-center px-2 py-4">
             <i class="fa-solid fa-mitten fs-3 py-3"></i>
-            <p class="aboutus-text text-info fs-2">ACERCA DE NOSOTROS</p>
+            <p class="aboutus-text text-info fs-2 pb-2">ACERCA DE NOSOTROS</p>
         
             <div class="about-us ">
                 <div class="about-us-image d-inline-block">
-                     <!-- <img th:src="@{/images/about-us.png}" alt="about-us">-->
-                    <img src="../static/images/about-us.png" alt="about-us" class="img-aboutus">
+                    <img th:src="@{/images/about-us.png}" alt="about-us" class="img-aboutus">
+                    <!--  <img src="../static/images/about-us.png" alt="about-us" class="img-aboutus">-->
                 </div>
                 <div class="text d-inline-block mx-5">
                     <p class="NFF-title fs-3 ">NutriFusion Food</p> <br>
@@ -86,5 +86,4 @@
 </main>
 <footer th:insert="fragments.html::footer"></footer>
 </body>
-
 </html>
