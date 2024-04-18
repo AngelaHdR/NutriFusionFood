@@ -3,37 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/custom.css}"> <!--link para verlo con chrome enlace css-->
+    <link rel="stylesheet" href="../static/css/custom.css"> <!-- link verlo previsualizador enlace css-->
     <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
     <title>Formulario recetas</title>
 </head>
 <body>
-<header>
-    <div class="logo">
-        <div class="nf-logo">
-            <img th:src="@{/images/logo_NFF.png}" alt="NF-Logo" class="nf-logo">
-        </div>
-        <div class="logo&text">
-            <div class="nutrifusion-food">
-                <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
-            </div>
-            <div class="logo-text">
-                <p>Fusionando Sabor y Nutrición</p>
-            </div>
-        </div>
-    </div>
-    <nav class="navbar">
-        <ul>
-            <li><a href="/home" class="Home">INICIO</a></li>
-            <li><a href="/recipes/categories" class="Category">CATEGORIAS</a></li>
-            <li><a href="/recipes" class="Recipe">RECETAS</a></li>
-            <li><a href="/profile" class="Profile">PERFIL</a></li>
-        </ul>
-    </nav>
-    <div class="signup-button">
-        <button>SIGN UP</button>
-    </div>
-</header>
+<header th:insert="fragments.html :: header">Header</header>
 <!--  Introducir un objeto receta nuevo, el listado de categorias, listado de ingredientes  -->
 <form action="#" th:action="@{/recipes}" th:object="${recipe}">
     <label for="title">Titulo de la receta</label>
@@ -58,14 +34,6 @@
     <input type="submit" value="Crear">
 </form>
 
-<footer>
-    <br>
-    <i class="fa-brands fa-facebook"></i>
-    <i class="fa-brands fa-twitter"></i>
-    <i class="fa-brands fa-linkedin"></i>
-    <i class="fa-brands fa-instagram"></i>
-    <p class="footer">©2024 by NutriFusion Food</p>
-    <br>
-</footer>
+<footer th:insert="fragments.html::footer"></footer>
 </body>
 </html>

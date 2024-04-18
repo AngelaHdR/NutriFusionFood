@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/custom.css}"> <!--link para verlo con chrome enlace css-->
+    <link rel="stylesheet" href="../static/css/custom.css"> <!-- link verlo previsualizador enlace css-->
     <title>Nutritionists</title>
 </head>
 <body>
+<header th:insert="fragments.html :: header">Header</header>
     <ul>
         <a th:each="nutritionist : ${nutritionistList}" th:href="@{${'/nutritionists/' + nutritionist.id}}">
             <li th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|">Texto por defecto</li>
         </a>
     </ul>
+<footer th:insert="fragments.html::footer"></footer>
 </body>
 </html>
