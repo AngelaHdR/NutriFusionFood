@@ -90,6 +90,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         recipe.setToolList(toolList);
         
         //Editar los alergenos
+        //Da error
         Map<String,Boolean> allergens = recipe.getAllergen();
         for(Ingredient ingredient : recipe.getIngredientList()){
             if (ingredient.isGluten()) {

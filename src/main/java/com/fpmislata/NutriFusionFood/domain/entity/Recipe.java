@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.domain.entity;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,9 @@ public class Recipe {
         this.language = language;
         this.time = time;
         this.steps = steps;
-        this.allergen = Map.of("gluten",false,"lactose",false);
+        this.allergen = new HashMap<>();
+        allergen.put("gluten", false);
+        allergen.put("lactose", false);
     }
 
 

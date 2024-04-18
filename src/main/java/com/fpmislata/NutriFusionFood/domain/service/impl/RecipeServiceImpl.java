@@ -15,6 +15,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public List<Recipe> findAllRecipe() {
+
         return this.recipeRepository.findAllRecipe();
 
     }
