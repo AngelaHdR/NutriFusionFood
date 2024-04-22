@@ -27,10 +27,10 @@
     </select>
     -->
     <label for="descripcion">Descripion</label>
-    <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
+    <textarea name="descripcion" id="descripcion" cols="30" rows="10" th:field="*{description}"></textarea><br>
     <label for="pasos">Pasos a seguir</label>
-    <textarea name="pasos" id="pasos" cols="30" rows="10"></textarea><br>
-
+    <textarea name="pasos" id="pasos" cols="30" rows="10" th:field="*{steps}"></textarea><br>
+    <!-- Añadir opcion de adjuntar imagen -->
     <input type="submit" value="Crear">
 </form>
 

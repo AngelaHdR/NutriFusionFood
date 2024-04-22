@@ -10,13 +10,14 @@
 </head>
 <body>
 <header th:insert="fragments.html :: header">Header</header>
-<h1>Nombre de usuario</h1>
+<h1 th:text="${nutritionist.username}"></h1>
 <h2>Nombre: </h2>
 <p th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|"></p>
 <h2>Email: </h2>
-
+<p th:text="${nutritionist.email}"></p>
 <h2>Fecha de nacimiento: </h2>
 <p th:text="${nutritionist.birthDate}"></p>
+<!-- Falta añadir el listado de recetas favoritas y recetas creadas -->
     <br><br><br>
 <footer th:insert="fragments.html::footer"></footer>
 </body>

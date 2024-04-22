@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/recipes")
 public class RecipeController {
@@ -21,6 +23,7 @@ public class RecipeController {
     @GetMapping("")
     public String findAllRecipe(Model model){
         model.addAttribute("recipeList",this.recipeService.findAllRecipe());
+        model.addAttribute("category","Todas las recetas");
         return "recipeList";
     }
     @GetMapping("/{id}")
@@ -49,10 +52,13 @@ public class RecipeController {
         return "redirect:/recipe";
     }
 
-    @GetMapping("/categories/{categoryId}")
-    public String findByCategory(@PathVariable Integer id){
-        recipeService.findByCategory(id);
-        return "recipeListCategory";
+    @GetMapping("/categories/{id}")
+    public String findByCategory(@PathVariable Integer id, Model model){
+        List<Recipe> recipeList = this.recipeService.findByCategory(id);
+        model.addAttribute("recipeList",recipeList);
+        String category=recipeList.get(0).getCategory().getName_es();
+        model.addAttribute("category",category);
+        return "recipeList";
     }
     @GetMapping("/categories")
     public String findAllCategories(){

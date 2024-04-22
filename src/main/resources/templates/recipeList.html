@@ -12,10 +12,22 @@
 
 <body>
 <header th:insert="fragments.html :: header">Header</header>
+<h1 th:text="${category}"></h1>
     <ul>
         <a th:each="recipe : ${recipeList}" th:href="@{${'/recipes/' + recipe.id}}">
-            <li th:text="|${recipe.name} (${recipe.time} min)|">Texto por defecto</li>
+            <li>
+                <h1 th:text="${recipe.name}"></h1>
+
+                <a th:href="@{${'/recipes/categories/' + recipe.category.id}}"><h2 th:text="${recipe.category.name_es}">Texto por defecto</h2></a>
+                <ul>
+                    <a th:href="@{${'/nutritionists/' + recipe.user.id}}"><li th:text="|${'Nutricionista: ' + recipe.user.name}|"></li></a>
+                    <li th:text="|${'Tiempo de preparación: ' + recipe.time + ' min'}|">
+                    <li>Alergenos: </li>
+                    <li th:text="|${'Descripción: ' + recipe.description}|"></li>
+                </ul>
+            </li>
         </a>
+        <hr>
     </ul>
     <br><br>
     <h4><a href="/recipes/add">Añadir receta</a></h4>

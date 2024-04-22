@@ -11,30 +11,32 @@
 <body>
 <header th:insert="fragments.html :: header">Header</header>
 <h1 th:text="${recipe.name}"></h1>
-
-
 <h3 th:text="${recipe.category.name_es}"></h3>
-
-<!--<ul>
-    <li th:each="ingredient : ${recipe.ingredientList}" th:text="ingredient"></li>
-</ul>
-<ul>
-    <li th:each="tool : ${recipe.toolList}" th:text="tool"></li>
-</ul>-->
-
 
 <h4>Tiempo</h4>
 <p th:text="${recipe.time}"></p>
 <h4>Alergenos</h4>
+<ul>
+    <li th:each="allergen : ${recipe.allergen}">
+    <span th:text="${allergen.key}"></span> : <span th:text="${allergen.value}"></span>
+    </li>
+</ul>
 <h4>Nombre Nutricionista</h4>
 <p th:text="${recipe.user.name}"></p>
-<h4>(ICONO CORAZON) Añadir a favoritos</h4>
+<div class="icon pb-3 fs-3">
+    <i class="fa-solid fa-heart"></i>
+</div>
+<h4>Añadir a favoritos</h4>
 <h2>Ingredientes</h2>
-
+<ul>
+    <li th:each="ingredient : ${recipe.ingredientList}" th:text="${ingredient.name_es}"></li>
+</ul>
 <h2>Utensilios</h2>
-
+<ul>
+    <li th:each="tool : ${recipe.toolList}" th:text="${tool.name_es}"></li>
+</ul>
 <h2>Preparacion</h2>
-<p th:text="${recipe.description}"></p>
+<p th:text="${recipe.steps}"></p>
 <br><br><br>
 <footer th:insert="fragments.html::footer"></footer>
 </body>

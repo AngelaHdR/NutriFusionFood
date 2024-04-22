@@ -10,46 +10,40 @@
 </head>
 
 <body>
-<header>
-    <div class="logo">
-        <div class="nf-logo">
-            <img th:src="@{/images/logo_NFF.png}" alt="NF-Logo" class="nf-logo">
+<header th:insert="fragments.html :: header">Header</header>
+<!-- Añadido de forma manual, hay que crear todas las capas de category para hacer un findAll, findById -->
+<section class="section-categories border-bottom border-primary text-center py-4">
+    <h2 class="categories-text text-info fs-2 fst-italic fw-bold ">CATEGORIAS</h2>
+    <article class="images px-5 py-3">
+        <div class="recipes d-inline-block  px-4 ">
+            <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3">
+            <!-- <img src="../static/images/recetas.png" alt="recipes" class="img-recipes d-block pb-3"> -->
+            <a href="/recipes"><p class="title-recipe fs-3 bg-warning d-inline-block ">Recetas</p></a>
         </div>
-        <div class="logo&text">
-            <div class="nutrifusion-food">
-                <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food">
-            </div>
-            <div class="logo-text">
-                <p>Fusionando Sabor y Nutrición</p>
-            </div>
+        <div class="drinks d-inline-block px-4">
+            <img th:src="@{/images/bebidas.png}" alt="drinks" class="img-drinks d-block pb-3">
+            <!-- <img src="../static/images/bebidas.png" alt="drinks" class="img-drinks d-block pb-3 "> -->
+            <a href="/recipes/categories/1"><p class="title-drink fs-3 bg-warning d-inline-block ">Bebidas</p></a>
         </div>
-    </div>
-    <nav class="navbar">
-        <ul>
-            <li><a href="/home" class="Home">INICIO</a></li>
-            <li><a href="/recipes/categories" class="Category">CATEGORIAS</a></li>
-            <li><a href="/recipes" class="Recipe">RECETAS</a></li>
-            <li><a href="/profile" class="Profile">PERFIL</a></li>
-        </ul>
-    </nav>
-    <div class="signup-button">
-        <button>SIGN UP</button>
-    </div>
-</header>
-    <!--
-    <ul>
-        <a th:each="category:${categoryList}" th:href="@{${'/recipes/categories/' + category.id}}">
-            <li th:text="category.name">Texto por defecto</li>
-        </a>
-    </ul> -->
-    <br><br><br>
-    <footer>
-        <br>
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-twitter"></i>
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-instagram"></i>
-        <p class="footer">©2024 by NutriFusion Food</p>
-    </footer>
+        <div class="main-dish d-inline-block  px-4">
+            <img th:src="@{/images/salados.png}" alt="main-dish" class="img-maindish d-block pb-3 ">
+            <!-- <img src="../static/images/salados.png" alt="main-dish" class="img-maindish d-block pb-3 "> -->
+            <a href="/recipes/categories/2"><p class="title-maindish fs-3 bg-warning d-inline-block ">Salados</p></a>
+        </div>
+        <div class="desserts d-inline-block px-4">
+            <img th:src="@{/images/postres.png}" alt="desserts" class="img-desserts d-block pb-3">
+            <!--  <img src="../static/images/postres.png" alt="desserts" class="img-desserts d-block pb-3">-->
+            <a href="/recipes/categories/3"><p class="title-desserts fs-3 bg-warning d-inline-block ">Postres</p></a>
+        </div>
+        <div class="snacks d-inline-block  px-4">
+            <img th:src="@{/images/snacks.png}" alt="snacks" class="img-snacks d-block pb-3">
+            <!--  <img src="../static/images/snacks.png" alt="snacks" class="img-snacks d-block pb-3">-->
+            <a href="/recipes/categories/4"><p class="title-snacks fs-3 bg-warning d-inline-block ">Snacks</p></a>
+        </div>
+    </article>
+    <br>
+
+</section>
+<footer th:insert="fragments.html::footer"></footer>
 </body>
 </html>
