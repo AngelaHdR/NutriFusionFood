@@ -1,6 +1,6 @@
 //importar variables de bootstrap
-@import '../bootstrap/scss/functions';
-@import '../bootstrap/scss/variables';
+@import '../../static/bootstrap/scss/functions';
+@import '../../static/bootstrap/scss/variables';
 
 
 //importar fuentes
@@ -12,6 +12,7 @@
 $font_title: Forum;
 $font_body: Playfair Display;
 $font-weight-bold: 580;
+
 $bg_color: #D0EEF4;
 $font_color: #000000;
 $highlight_color: #F1856A;
@@ -85,4 +86,4 @@ font-family: $font_body;
   width: 40vw;
 }
 
-@import "../bootstrap/scss/bootstrap.scss";
+@import "../../static/bootstrap/scss/bootstrap.scss";
