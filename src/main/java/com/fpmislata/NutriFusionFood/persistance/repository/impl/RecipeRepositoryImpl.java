@@ -1,6 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.repository.impl;
 
-import com.fpmislata.NutriFusionFood.common.UserIoC;
+import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.entity.Category;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;

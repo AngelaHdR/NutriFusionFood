@@ -1,4 +1,4 @@
-package com.fpmislata.NutriFusionFood.common;
+package com.fpmislata.NutriFusionFood.common.container;
 
 import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
 import com.fpmislata.NutriFusionFood.domain.service.impl.RecipeServiceImpl;

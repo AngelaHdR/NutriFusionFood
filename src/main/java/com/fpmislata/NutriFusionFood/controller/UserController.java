@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
 
-import com.fpmislata.NutriFusionFood.common.UserIoC;
+import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
 
 @Controller

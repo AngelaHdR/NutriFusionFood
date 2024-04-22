@@ -36,6 +36,11 @@
 			<artifactId>bootstrap</artifactId>
 			<version>4.6.0</version>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.22</version>
+		</dependency>
 
 	</dependencies>
 

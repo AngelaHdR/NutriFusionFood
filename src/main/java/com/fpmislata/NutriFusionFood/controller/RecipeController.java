@@ -1,7 +1,7 @@
 package com.fpmislata.NutriFusionFood.controller;
 
-import com.fpmislata.NutriFusionFood.common.RecipeIoC;
-import com.fpmislata.NutriFusionFood.common.UserIoC;
+import com.fpmislata.NutriFusionFood.common.container.RecipeIoC;
+import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
 import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
