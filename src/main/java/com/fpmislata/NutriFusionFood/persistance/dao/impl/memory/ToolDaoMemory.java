@@ -1,4 +1,4 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.impl;
+package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.RequireDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ToolDaoImpl implements ToolDao {
+public class ToolDaoMemory implements ToolDao {
     private RequireDao requireDao;
 
     List<ToolEntity> toolEntityList = new ArrayList<>(Arrays.asList(
@@ -21,8 +21,8 @@ public class ToolDaoImpl implements ToolDao {
             new ToolEntity(6,"batidora","blender")
     ));
 
-    public ToolDaoImpl() {
-        this.requireDao = new RequireDaoImpl();
+    public ToolDaoMemory() {
+        this.requireDao = new RequireDaoMemory();
     }
 
     @Override

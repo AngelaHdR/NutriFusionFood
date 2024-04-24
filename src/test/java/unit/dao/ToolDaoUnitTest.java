@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 import com.fpmislata.NutriFusionFood.persistance.dao.RequireDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.RequireDaoImpl;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.ToolDaoImpl;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.RequireDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
 
 public class ToolDaoUnitTest {
-    ToolDao toolDao = new ToolDaoImpl();
-    RequireDao requireDao = new RequireDaoImpl();
+    ToolDao toolDao = new ToolDaoMemory();
+    RequireDao requireDao = new RequireDaoMemory();
 
     @DisplayName("Find all the tools in the database")
     @Test

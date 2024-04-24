@@ -1,11 +1,11 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.impl;
+package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 
 import java.util.List;
 
-public class CategoryDaoImpl implements CategoryDao {
+public class CategoryDaoMemory implements CategoryDao {
     //Aqui son List.of porque son inmutables, una forma de simular un enumerado mas facil
     List<CategoryEntity> categoryEntityList = List.of(
             new CategoryEntity(1,"salado","main dish"),

@@ -1,11 +1,11 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.impl;
+package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 
 import java.util.List;
 
-public class TypeDaoImpl implements TypeDao {
+public class TypeDaoMemory implements TypeDao {
     //Aqui son List.of porque son inmutables, una forma de simular un enumerado mas facil
     List<TypeEntity> typeEntityList = List.of(
             new TypeEntity(1,"carne","meet"),

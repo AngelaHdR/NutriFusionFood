@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 import com.fpmislata.NutriFusionFood.persistance.dao.ComposedDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.ComposedDaoImpl;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.IngredientDaoImpl;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ComposedDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.IngredientDaoMemory;
 
 public class IngredientDaoUnitTest {
-    IngredientDao ingredientDao = new IngredientDaoImpl();
-    ComposedDao composedDao = new ComposedDaoImpl();
+    IngredientDao ingredientDao = new IngredientDaoMemory();
+    ComposedDao composedDao = new ComposedDaoMemory();
 
     @DisplayName("Find all the ingredients in the database")
     @Test

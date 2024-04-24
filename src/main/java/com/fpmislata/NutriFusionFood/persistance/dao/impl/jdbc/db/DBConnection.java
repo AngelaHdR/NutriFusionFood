@@ -1,4 +1,4 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.db;
+package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 
@@ -15,9 +15,9 @@ public class DBConnection {
         System.out.println("Establishing connection with the database...");
         try {
             connection = DriverManager.getConnection(
-                    appPropertiesReader.getProperty("daw1bookstore.datasource.url"),
-                    appPropertiesReader.getProperty("daw1bookstore.datasource.username"),
-                    appPropertiesReader.getProperty("daw1bookstore.datasource.password")
+                    appPropertiesReader.getProperty("nutrifusionfood.datasource.url"),
+                    appPropertiesReader.getProperty("nutrifusionfood.datasource.username"),
+                    appPropertiesReader.getProperty("nutrifusionfood.datasource.password")
             );
             System.out.println("Connection established with the database");
         } catch (SQLException e) {

@@ -1,4 +1,4 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.impl;
+package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RecipeDaoImpl implements RecipeDao {
+public class RecipeDaoMemory implements RecipeDao {
     List<RecipeEntity> recipeEntityList = new ArrayList<>(Arrays.asList(
             new RecipeEntity(1,"Tortilla patata","es", "x","Paso 1...", 30,3,1),
             new RecipeEntity(2,"Salmorejo","es","x", "Paso 1...", 60,2,1),

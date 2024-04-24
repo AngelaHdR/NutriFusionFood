@@ -15,10 +15,11 @@ import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.UserDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.CategoryDaoImpl;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.IngredientDaoImpl;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.ToolDaoImpl;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.TypeDaoImpl;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.CategoryDaoJdbc;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.TypeDaoJdbc;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.IngredientDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.TypeDaoMemory;
 import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.mapper.CategoryMapper;
 import com.fpmislata.NutriFusionFood.persistance.repository.mapper.IngredientMapper;
@@ -27,6 +28,7 @@ import com.fpmislata.NutriFusionFood.persistance.repository.mapper.ToolMapper;
 import com.fpmislata.NutriFusionFood.persistance.repository.mapper.UserMapper;
 import com.fpmislata.NutriFusionFood.persistance.repository.mapper.TypeMapper;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,10 +44,10 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     public RecipeRepositoryImpl(RecipeDao recipeDao) {
         this.recipeDao = recipeDao;
         this.userDao = UserIoC.getUserDao();
-        this.categoryDao = new CategoryDaoImpl();
-        this.toolDao = new ToolDaoImpl();
-        this.ingredientDao = new IngredientDaoImpl();
-        this.typeDao = new TypeDaoImpl();
+        this.categoryDao = new CategoryDaoJdbc();
+        this.toolDao = new ToolDaoMemory();
+        this.ingredientDao = new IngredientDaoMemory();
+        this.typeDao = new TypeDaoJdbc();
     }
 
 
@@ -71,7 +73,9 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 
         //Añadir categoria
         int idCategory = recipeEntity.getCategoryId();
-        Category category = CategoryMapper.toCategory(categoryDao.findByIdCategory(idCategory));
+        Category category = null;
+        category = CategoryMapper.toCategory(categoryDao.findByIdCategory(idCategory));
+
         recipe.setCategory(category);
 
         //Añadir listado ingredientes, cambiar a map para poder añadir cantidades?

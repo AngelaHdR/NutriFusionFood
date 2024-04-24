@@ -1,4 +1,4 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.impl;
+package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.ComposedDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ComposedEntity;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ComposedDaoImpl implements ComposedDao {
+public class ComposedDaoMemory implements ComposedDao {
     List<ComposedEntity> composedEntityList = new ArrayList<>(Arrays.asList(
             new ComposedEntity(3, 2),
             new ComposedEntity(1, 4),

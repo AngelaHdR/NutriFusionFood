@@ -1,4 +1,4 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.impl;
+package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.ComposedDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class IngredientDaoImpl implements IngredientDao {
+public class IngredientDaoMemory implements IngredientDao {
     private ComposedDao composedDao;
 
     List<IngredientEntity> ingredientEntityList = new ArrayList<>(Arrays.asList(
@@ -20,8 +20,8 @@ public class IngredientDaoImpl implements IngredientDao {
             new IngredientEntity(5,false,true,"helado","ice cream",10,12, 3)
     ));
 
-    public IngredientDaoImpl() {
-        this.composedDao = new ComposedDaoImpl();
+    public IngredientDaoMemory() {
+        this.composedDao = new ComposedDaoMemory();
     }
 
     @Override

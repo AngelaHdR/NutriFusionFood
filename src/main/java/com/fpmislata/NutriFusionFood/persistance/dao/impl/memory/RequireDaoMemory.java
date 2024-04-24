@@ -1,4 +1,4 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.impl;
+package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.RequireDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RequireEntity;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RequireDaoImpl implements RequireDao {
+public class RequireDaoMemory implements RequireDao {
     List<RequireEntity> requireEntityList = new ArrayList<>(Arrays.asList(
             new RequireEntity(3, 1),
             new RequireEntity(4, 3),
