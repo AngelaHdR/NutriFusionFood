@@ -26,21 +26,21 @@ public class RecipeDaoJdbc implements RecipeDao {
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
         }
-        System.out.println(recipeEntityList);
         return recipeEntityList;
     }
 
     @Override
     public RecipeEntity findByIdRecipe(Integer id) {
-        String sql = "SELECT * FROM recipe WHERE id_recipe = ?";
-        List<Object> params = List.of(id);
-        ResultSet resultSet = Rawsql.select(sql, params);
         try {
+            String sql = "SELECT * FROM recipe WHERE id_recipe = ?";
+            List<Object> params = List.of(id);
+            ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
+            recipeEntity = RecipeEntityMapper.toRecipeEntity(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        recipeEntity = RecipeEntityMapper.toRecipeEntity(resultSet);
+
         return recipeEntity;
     }
 
@@ -67,10 +67,8 @@ public class RecipeDaoJdbc implements RecipeDao {
             List<Object> params = List.of(categoryId);
             ResultSet resultSet = Rawsql.select(sql, params);
             recipeEntityList = new ArrayList<>();
-            resultSet.next();
             while (resultSet.next()) {
                 recipeEntityList.add(RecipeEntityMapper.toRecipeEntity(resultSet));
-                resultSet.next();
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -85,10 +83,8 @@ public class RecipeDaoJdbc implements RecipeDao {
             List<Object> params = List.of(nutritionistId);
             ResultSet resultSet = Rawsql.select(sql, params);
             recipeEntityList = new ArrayList<>();
-            resultSet.next();
             while (resultSet.next()) {
                 recipeEntityList.add(RecipeEntityMapper.toRecipeEntity(resultSet));
-                resultSet.next();
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");

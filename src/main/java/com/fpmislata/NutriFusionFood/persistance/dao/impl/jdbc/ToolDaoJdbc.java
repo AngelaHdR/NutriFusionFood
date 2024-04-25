@@ -20,10 +20,8 @@ public class ToolDaoJdbc implements ToolDao {
             String sql = "SELECT * FROM tool";
             ResultSet resultSet = Rawsql.select(sql, null);
             toolEntityList = new ArrayList<>();
-            resultSet.next();
             while (resultSet.next()) {
                 toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet));
-                resultSet.next();
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -33,15 +31,15 @@ public class ToolDaoJdbc implements ToolDao {
 
     @Override
     public ToolEntity findByIdTool(Integer id) {
-        String sql = "SELECT * FROM tool WHERE id_tool = ?";
-        List<Object> params = List.of(id);
-        ResultSet resultSet = Rawsql.select(sql, params);
         try {
+            String sql = "SELECT * FROM tool WHERE id_tool = ?";
+            List<Object> params = List.of(id);
+            ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
+            toolEntity = ToolEntityMapper.toToolEntity(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        toolEntity = ToolEntityMapper.toToolEntity(resultSet);
         return toolEntity;
     }
 
@@ -53,10 +51,8 @@ public class ToolDaoJdbc implements ToolDao {
             List<Object> params = List.of(recipeId);
             ResultSet resultSet = Rawsql.select(sql, params);
             toolEntityList = new ArrayList<>();
-            resultSet.next();
             while (resultSet.next()) {
                 toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet));
-                resultSet.next();
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");

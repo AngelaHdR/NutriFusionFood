@@ -12,7 +12,7 @@ import java.util.List;
 
 public class CategoryDaoJdbc implements CategoryDao {
     private List<CategoryEntity> categoryEntityList;
-    private  CategoryEntity categoryEntity;
+    private CategoryEntity categoryEntity;
 
     @Override
     public List<CategoryEntity> findAllCategory() {
@@ -20,10 +20,8 @@ public class CategoryDaoJdbc implements CategoryDao {
             categoryEntityList = new ArrayList<>();
             String sql = "SELECT * FROM category";
             ResultSet resultSet = Rawsql.select(sql, null);
-            resultSet.next();
             while (resultSet.next()) {
                 categoryEntityList.add(CategoryEntityMapper.toCategoryEntity(resultSet));
-                resultSet.next();
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -33,16 +31,16 @@ public class CategoryDaoJdbc implements CategoryDao {
     }
 
     @Override
-    public CategoryEntity findByIdCategory(Integer id){
-       String sql = "SELECT * FROM category WHERE id_category = ?";
-        List<Object> params = List.of(id);
-        ResultSet resultSet = Rawsql.select(sql, params);
+    public CategoryEntity findByIdCategory(Integer id) {
         try {
+            String sql = "SELECT * FROM category WHERE id_category = ?";
+            List<Object> params = List.of(id);
+            ResultSet resultSet = Rawsql.select(sql, params);
+            categoryEntity = CategoryEntityMapper.toCategoryEntity(resultSet);
             resultSet.next();
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
         }
-        categoryEntity = CategoryEntityMapper.toCategoryEntity(resultSet);
         return categoryEntity;
     }
 }

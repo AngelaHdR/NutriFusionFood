@@ -22,10 +22,8 @@ public class IngredientDaoJdbc implements IngredientDao {
             ingredientEntityList = new ArrayList<>();
             String sql = "SELECT * from ingredient";
             ResultSet resultSet = Rawsql.select(sql, null);
-            resultSet.next();
             while (resultSet.next()) {
                 ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet));
-                resultSet.next();
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -38,7 +36,6 @@ public class IngredientDaoJdbc implements IngredientDao {
     @Override
     public IngredientEntity findByIdIngredient(Integer id) {
         try {
-
             String sql = "SELECT * from ingredient where id_ingredient=?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
@@ -76,10 +73,8 @@ public class IngredientDaoJdbc implements IngredientDao {
             List<Object> params = List.of(recipeId);
             ResultSet resultSet = Rawsql.select(sql, params);
             ingredientEntityList = new ArrayList<>();
-            resultSet.next();
             while (resultSet.next()) {
                 ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet));
-                resultSet.next();
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");

@@ -14,18 +14,17 @@ import java.util.List;
 public class TypeDaoJdbc implements TypeDao {
     private List<TypeEntity> typeEntityList;
     private TypeEntity typeEntity;
+
     @Override
     public List<TypeEntity> findAllType() {
-        try{
+        try {
             String sql = " SELECT * FROM type";
             ResultSet resultSet = Rawsql.select(sql, null);
-            typeEntityList=new ArrayList<>();
-            resultSet.next();
-            while(resultSet.next()){
+            typeEntityList = new ArrayList<>();
+            while (resultSet.next()) {
                 typeEntityList.add(TypeEntityMapper.toTypeEntity(resultSet));
-                resultSet.next();
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
         }
         return typeEntityList;
@@ -33,15 +32,15 @@ public class TypeDaoJdbc implements TypeDao {
 
     @Override
     public TypeEntity findByIdType(Integer id) {
-        String sql = " SELECT * FROM type WHERE id_type = ?";
-        List<Object> params = List.of(id);
-        ResultSet resultSet = Rawsql.select(sql, params);
         try {
+            String sql = " SELECT * FROM type WHERE id_type = ?";
+            List<Object> params = List.of(id);
+            ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
+            typeEntity = TypeEntityMapper.toTypeEntity(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        typeEntity = TypeEntityMapper.toTypeEntity(resultSet);
         return typeEntity;
     }
 }
