@@ -17,20 +17,20 @@ public class Type {
         return this.id;
     }
     public void setId(Integer id) {
-        this.id = id;
+        /* Funcionalidad no Implementada para Clientes */
     }
 
     public String getName_es() {
         return this.name_es;
     }
     public void setName_es(String name_es) {
-        this.name_es = name_es;
+        /* Funcionalidad no Implementada para Clientes */
     }
 
     public String getName_en() {
         return name_en;
     }
     public void setName_en(String name_en) {
-        this.name_en = name_en;
+        /* Funcionalidad no Implementada para Clientes */
     }
 }
