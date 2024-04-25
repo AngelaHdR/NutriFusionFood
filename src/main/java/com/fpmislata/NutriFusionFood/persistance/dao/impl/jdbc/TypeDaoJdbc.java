@@ -20,9 +20,10 @@ public class TypeDaoJdbc implements TypeDao {
             String sql = " SELECT * FROM type";
             ResultSet resultSet = Rawsql.select(sql, null);
             typeEntityList=new ArrayList<>();
+            resultSet.next();
             while(resultSet.next()){
-                resultSet.next();
                 typeEntityList.add(TypeEntityMapper.toTypeEntity(resultSet));
+                resultSet.next();
             }
         }catch (SQLException e){
             System.out.println("Hay un problema con la bbdd");

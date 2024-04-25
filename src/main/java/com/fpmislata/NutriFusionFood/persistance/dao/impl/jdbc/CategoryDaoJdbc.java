@@ -20,9 +20,10 @@ public class CategoryDaoJdbc implements CategoryDao {
             categoryEntityList = new ArrayList<>();
             String sql = "SELECT * FROM category";
             ResultSet resultSet = Rawsql.select(sql, null);
+            resultSet.next();
             while (resultSet.next()) {
-
                 categoryEntityList.add(CategoryEntityMapper.toCategoryEntity(resultSet));
+                resultSet.next();
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -39,7 +40,7 @@ public class CategoryDaoJdbc implements CategoryDao {
         try {
             resultSet.next();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Hay un problema con la bbdd");
         }
         categoryEntity = CategoryEntityMapper.toCategoryEntity(resultSet);
         return categoryEntity;

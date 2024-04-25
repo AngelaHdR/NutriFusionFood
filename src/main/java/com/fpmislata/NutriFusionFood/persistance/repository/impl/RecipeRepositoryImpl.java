@@ -16,6 +16,8 @@ import com.fpmislata.NutriFusionFood.persistance.dao.UserDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.CategoryDaoJdbc;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.IngredientDaoJdbc;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.ToolDaoJdbc;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.TypeDaoJdbc;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.IngredientDaoMemory;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
@@ -45,8 +47,8 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         this.recipeDao = recipeDao;
         this.userDao = UserIoC.getUserDao();
         this.categoryDao = new CategoryDaoJdbc();
-        this.toolDao = new ToolDaoMemory();
-        this.ingredientDao = new IngredientDaoMemory();
+        this.toolDao = new ToolDaoJdbc();
+        this.ingredientDao = new IngredientDaoJdbc();
         this.typeDao = new TypeDaoJdbc();
     }
 
@@ -73,9 +75,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 
         //Añadir categoria
         int idCategory = recipeEntity.getCategoryId();
-        Category category = null;
-        category = CategoryMapper.toCategory(categoryDao.findByIdCategory(idCategory));
-
+        Category category = CategoryMapper.toCategory(categoryDao.findByIdCategory(idCategory));
         recipe.setCategory(category);
 
         //Añadir listado ingredientes, cambiar a map para poder añadir cantidades?
@@ -88,13 +88,12 @@ public class RecipeRepositoryImpl implements RecipeRepository {
             ingredientList.add(ingredient);
         }
         recipe.setIngredientList(ingredientList);
-        
+
         //Añadir listado herramientas
         List<Tool> toolList = ToolMapper.toToolList(toolDao.findByRecipe(id));
         recipe.setToolList(toolList);
         
         //Editar los alergenos
-        //Da error
         Map<String,Boolean> allergens = recipe.getAllergen();
         for(Ingredient ingredient : recipe.getIngredientList()){
             if (ingredient.isGluten()) {
