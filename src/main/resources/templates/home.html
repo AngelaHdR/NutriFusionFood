@@ -13,9 +13,9 @@
 <body>
 <header th:insert="fragments.html :: header">Header</header>
 <main>
-    <div class="container-fluid bg-secondary">
-        <section class="section-welcome py-5 border-bottom border-primary text-center">
-            <h2 class="welcome-text text-info">
+    <div class="container-fluid bg-fondo">
+        <section class="section-welcome py-5 border-bottom border-fuente text-center">
+            <h2 class="welcome-text text-info h2">
                 Bienvenido a
                     <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food-welcome">
                    <!-- <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food-welcome">-->
@@ -29,35 +29,39 @@
             </p>
         </section>
     
-        <section class="section-categories border-bottom border-primary text-center py-4">
-            <h2 class="categories-text text-info fw-bold ">CATEGORIAS</h2>
+        <section class="section-categories border-bottom border-fuente text-center py-4">
+            <h2 class="categories-text font-size-2 text-info fw-bold">CATEGORIAS</h2>
             <article class="images px-5 py-3">
-                <div class="recipes d-inline-block  px-4 ">
+                <div class="recipes d-inline-block px-4 ">
                    <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3">
                    <!-- <img src="../static/images/recetas.png" alt="recipes" class="img-recipes d-block pb-3"> --> 
-                    <p class="title-recipe bg-warning d-inline-block ">Recetas</p>
+                    <p class="title-recipe bg-resalte d-inline-block ">Recetas</p>
                 </div>
                 <div class="drinks d-inline-block px-4">
                   <img th:src="@{/images/bebidas.png}" alt="drinks" class="img-drinks d-block pb-3">
 
                     <!-- <img src="../static/images/bebidas.png" alt="drinks" class="img-drinks d-block pb-3 "> --> 
-                    <p class="title-drink bg-warning d-inline-block ">Bebidas</p>
+                    <p class="title-drink bg-resalte d-inline-block ">Bebidas</p>
                 </div>
                 <div class="main-dish d-inline-block  px-4">
                     <img th:src="@{/images/salados.png}" alt="main-dish" class="img-maindish d-block pb-3 ">
                    <!-- <img src="../static/images/salados.png" alt="main-dish" class="img-maindish d-block pb-3 "> --> 
-                    <p class="title-maindish bg-warning d-inline-block ">Salados</p>
+                    <p class="title-maindish bg-resalte d-inline-block ">Salados</p>
                 </div>
                 <div class="desserts d-inline-block px-4">
                      <img th:src="@{/images/postres.png}" alt="desserts" class="img-desserts d-block pb-3">
                    <!--  <img src="../static/images/postres.png" alt="desserts" class="img-desserts d-block pb-3">-->
-                    <p class="title-desserts bg-warning d-inline-block ">Postres</p>
+                    <p class="title-desserts bg-resalte d-inline-block ">Postres</p>
                 </div>
                 <div class="snacks d-inline-block  px-4">
                      <img th:src="@{/images/snacks.png}" alt="snacks" class="img-snacks d-block pb-3">
                    <!--  <img src="../static/images/snacks.png" alt="snacks" class="img-snacks d-block pb-3">-->
+<<<<<<< HEAD
                     <p class="title-snacks bg-warning d-inline-block ">Snacks</p>
 
+=======
+                    <p class="title-snacks bg-resalte d-inline-block ">Snacks</p>
+>>>>>>> 943e190 (Modified Sass)
                 </div>
             </article>
             <br>
@@ -65,7 +69,7 @@
         </section>
         <section class="about-us text-center px-2 py-4">
             <i class="globe-icon fa-solid fa-mitten py-3"></i>
-            <p class="aboutus-text text-info pb-2">ACERCA DE NOSOTROS</p>
+            <p class="aboutus-text fs-2 text-info pb-2">ACERCA DE NOSOTROS</p>
         
             <div class="about-us ">
                 <div class="about-us-image d-inline-block">

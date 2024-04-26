@@ -3,34 +3,129 @@
 @import url('https://fonts.googleapis.com/css2?family=Forum&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-// variables propias
-$font_title: Forum;
+
+// variables simples
+/*$font_title: Forum;
 $font_body: Playfair Display;
 $font-weight-bold: 580;
 $bg_color: #D0EEF4;
 $font_color: #000000;
 $highlight_color: #F1856A;
 $title_color: #006272;
-$base_size: 1.2rem;
-$title_size: $base_size*3.5;
-$title_normal: $base_size*1.5;
-$subtitle_size: $base_size*2.5;
-$info: $base_size*1;
-$border_nav: 1.5px;
-$border_space: 3px;
-
-
-//variables de bootstrap
 $theme-colors: (
   "primary": $font_color,
   "secondary": $bg_color,
   "warning": $highlight_color,
   "info": $title_color
 );
+$title_size: $base_size*3.5;
+$title_normal: $base_size*1.5;
+$subtitle_size: $base_size*2.5;
+$info: $base_size*1;*/
+
+$font-family:(
+  "titulo":Forum,
+  "cuerpo":Playfair Display
+);
+$font-weights: (
+  "light":300,
+  "regular":400,
+  "bold":580
+);
+$font-styles: (
+  "cursiva":italic,
+  "normal":normal
+  );
+$theme-colors: (
+  "fuente": #000000,
+  "fondo": #D0EEF4,
+  "resalte": #F1856A,
+  "info": #006272
+);
+$base_size: 1.2rem;
+$font-sizes: (
+  "cuerpo":1.1rem,
+  "subtitle":2rem,
+  "section":2.5rem,
+  "title":3.5rem,
+  "nav ul li":1.5rem,
+  "footer p":1.3rem
+);
+
+
+$border_nav: 1.5px;
+$border_space: 3px;
+
+//variables compuestas
+//cualquier texto general
+$cuerpo: (
+  "weight": map-get($font-weights,"regular"),
+  "size": map-get($font-sizes,"cuerpo"), 
+  "family": map-get($font_family,"cuerpo"), 
+  "style": map-get($font_styles,"normal")
+); 
+//titulos tipo h1 de las paginas
+$titulo: (
+  "weight": map-get($font-weights,"regular"), 
+  "size": map-get($font-sizes,"title"), 
+  "family": map-get($font_family,"titulo"),
+  "style": map-get($font_styles,"normal")
+); 
+//titulos de secciones y recetas
+$seccion: (
+"weight": map-get($font-weights,"bold"),
+"size": map-get($font-sizes,"section"), 
+"family":  map-get($font_family,"titulo"),
+"style": map-get($font_styles,"cursiva")
+); 
+//textos grandes
+$subtitulo: (
+  "weight":map-get($font-weights, "regular"),
+  "size": map-get($font-sizes,"subtitle"), 
+  "family": map-get($font_family,"cuerpo"),
+  "style": map-get($font_styles,"normal")
+); 
+//texto dinamicos en listados
+$info: (
+  "weight":map-get($font-weights, "regular"),
+  "size": map-get($font-sizes,"cuerpo"), 
+  "family": map-get($font_family,"titulo"),
+  "style": map-get($font_styles,"normal")
+); 
+$menu: (
+  "weight":map-get($font-weights, "regular"),
+  "size": map-get($font-sizes,"nav ul li"), 
+  "family": map-get($font_family,"titulo"),
+  "style": map-get($font_styles, "normal"),
+  "color": map-get($theme-colors,"fuente")
+);
+
+@mixin apply-font-style($style-map){
+  font-weight: map-get($style-map,"weight");
+  font-size: map-get($style-map,"size");
+  font-family: map-get($style-map,"family");
+  font-style: map-get($style-map,"style");
+}
+
+h1{
+  @include apply-font-style($titulo);
+}
+h2{
+  @include apply-font-style($seccion);
+}
+h3{
+  @include apply-font-style($subtitulo);
+}
+h1{
+  @include apply-font-style($menu);
+}
+
+//estilos globales
 
 $margin: 1rem;
-$body-color: $font_color;
-$heading-color: $title_color;
+$body-color: map-get($theme-colors,"fuente");
+$heading-color: map-get($theme-colors,"info");
+$bg_color:map-get($theme-colors,"fondo");
 $body-margin: 1rem;
 $body-font-size: 20px;
 $border-width: 1px;
@@ -39,6 +134,7 @@ $border-widths: (
   2: $border-space
 );
 
+//HEADER
 .nf-logo {
   height: 70px;
 }
@@ -60,7 +156,10 @@ ul {
   list-style: none
 }
 
-.welcome-text, .title-categories{
+//Footer
+
+
+/*.welcome-text, .title-categories{
   font-size: $title_size;
 }
 
@@ -78,8 +177,8 @@ ul {
 
 .description-aboutus, .recipe-all-data{
   font-size: $info;
-}
-
+}*/
+/*
 .categories-text, .title-categories,
 .recipe-name{
   font-style: italic;
@@ -109,6 +208,7 @@ ul {
   height: 400px;
   width: 100%;
 }
+*/
 
 //importar variables de bootstrap
 @import '../../static/bootstrap/scss/functions';
