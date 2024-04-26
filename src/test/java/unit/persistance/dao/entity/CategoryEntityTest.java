@@ -8,6 +8,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 
 public class CategoryEntityTest {
     CategoryEntity categoryEntity;
+
     @Test
     void createAllParameters() {
         categoryEntity = new CategoryEntity(1, "postre", "dessert");
