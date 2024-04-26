@@ -12,26 +12,35 @@
 
 <body>
 <header th:insert="fragments.html :: header">Header</header>
-<h1 th:text="${category}"></h1>
+<main class="bg-secondary">
+    <h1 class="title-categories bg-warning text-center fw-normal border-top border-primary py-3" th:text="${category}"></h1>
     <ul>
         <a th:each="recipe : ${recipeList}" th:href="@{${'/recipes/' + recipe.id}}">
-            <li>
-                <h1 th:text="${recipe.name}"></h1>
-
-                <a th:href="@{${'/recipes/categories/' + recipe.category.id}}"><h2 th:text="${recipe.category.name_es}">Texto por defecto</h2></a>
-                <ul>
-                    <a th:href="@{${'/nutritionists/' + recipe.user.id}}"><li th:text="|${'Nutricionista: ' + recipe.user.name}|"></li></a>
-                    <li th:text="|${'Tiempo de preparación: ' + recipe.time + ' min'}|">
-                    <li>Alergenos: </li>
-                    <li th:text="|${'Descripción: ' + recipe.description}|"></li>
-                </ul>
-            </li>
+            <div class="recipes-info bg-secondary p-2 d-flex">
+                <div class="recipe-picture flex-fill">
+                    <img th:src="@{/images/}+recipe_+${recipe.id}+.png" alt="Recipe Image">
+                </div>
+                <div class="recipe-data p-2 flex-fill justify-content-center align-center border-top py-3">
+                    <li class="recipe-category-name fw-normal">
+                        <h1 class="recipe-name text-primary text-uppercase
+                        " th:text="${recipe.name}"></h1>
+                        <a class="text-primary text-uppercase" th:href="@{${'/recipes/categories/' + recipe.category.id}}"><h2 th:text="${recipe.category.name_es}">Nombre de Categoria</h2></a>
+                    <ul class="recipe-all-data text-info">
+                        <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}"><li th:text="|${'Nutricionista: ' + recipe.user.name}|"></li></a>
+                        <li th:text="|${'Tiempo de preparación: ' + recipe.time + ' min'}|">
+                        <li>Alergenos: </li>
+                        <li th:text="|${'Descripción: ' + recipe.description}|"></li>
+                    </ul>
+                    </li>
+                </div>
+            </div>
         </a>
         <hr>
     </ul>
     <br><br>
     <h4><a href="/recipes/add">Añadir receta</a></h4>
     <br><br>
+</main>
 <footer th:insert="fragments.html::footer"></footer>
 </body>
 

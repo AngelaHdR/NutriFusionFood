@@ -1,8 +1,3 @@
-//importar variables de bootstrap
-@import '../../static/bootstrap/scss/functions';
-@import '../../static/bootstrap/scss/variables';
-
-
 //importar fuentes
 @import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Forum&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
@@ -12,7 +7,6 @@
 $font_title: Forum;
 $font_body: Playfair Display;
 $font-weight-bold: 580;
-
 $bg_color: #D0EEF4;
 $font_color: #000000;
 $highlight_color: #F1856A;
@@ -21,26 +15,17 @@ $base_size: 1.2rem;
 $title_size: $base_size*3.5;
 $title_normal: $base_size*1.5;
 $subtitle_size: $base_size*2.5;
-$info:$base_size*1;
+$info: $base_size*1;
 $border_nav: 1.5px;
 $border_space: 3px;
 
 
 //variables de bootstrap
 $theme-colors: (
-  "secundary": $bg_color,
   "primary": $font_color,
+  "secondary": $bg_color,
   "warning": $highlight_color,
   "info": $title_color
-);
-
-
-$font_sizes: (
-  1: $title_size,
-  2: $subtitle-size,
-  3: $title_normal,
-  4: $info
-
 );
 
 $margin: 1rem;
@@ -54,13 +39,17 @@ $border-widths: (
   2: $border-space
 );
 
-
 .nf-logo {
   height: 70px;
 }
 
 .nutrifusion-food {
-  height: 45px;
+  height: 40px;
+  margin-left: 3px;
+}
+
+.slogan {
+  margin-left: 5px;
 }
 
 .nutrifusion-food-welcome {
@@ -71,19 +60,58 @@ ul {
   list-style: none
 }
 
+.welcome-text, .title-categories{
+  font-size: $title_size;
+}
 
-.welcome-text,.categories-text,.aboutus-text {
+.categories-text, .aboutus-text{
+  font-size: $subtitle_size;
+}
+
+.heart-icon, .message,
+.title-recipe, .title-drink,
+.title-maindish, .title-desserts,
+.title-snacks, .globe-icon,
+.NFF-title{
+  font-size: $title_normal;
+}
+
+.description-aboutus, .recipe-all-data{
+  font-size: $info;
+}
+
+.categories-text, .title-categories,
+.recipe-name{
+  font-style: italic;
+}
+
+.welcome-text, .categories-text,
+.aboutus-text, .title-categories,
+.recipe-category-name, .recipe-all-data{
   font-family: $font_title;
 }
 
-.message, .title-recipe, 
+.message, .title-recipe,
 .title-drink, .title-maindish, 
 .title-desserts, .title-snacks,
 .description-aboutus{
-font-family: $font_body;
+  font-family: $font_body;
 }
 .img-aboutus{
   width: 40vw;
 }
+
+.recipe-picture,.recipe-data{
+  flex: 1;
+}
+
+.recipe-picture img {
+  height: 400px;
+  width: 100%;
+}
+
+//importar variables de bootstrap
+@import '../../static/bootstrap/scss/functions';
+@import '../../static/bootstrap/scss/variables';
 
 @import "../../static/bootstrap/scss/bootstrap.scss";
