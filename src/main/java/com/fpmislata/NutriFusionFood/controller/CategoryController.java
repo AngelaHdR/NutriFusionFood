@@ -23,7 +23,7 @@ public class CategoryController {
 
     @GetMapping("/{id]/recipes")
     public String findByIdCategory(Model model, @PathVariable Integer id) {
-        model.addAttribute("category", this.categoryService.findByIdCategory(id));
+        model.addAttribute("recipeList", this.categoryService.findRecipeByCategory(id) );
         return "recipeList";
     }
 }
