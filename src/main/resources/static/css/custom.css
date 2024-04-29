@@ -15,109 +15,11 @@ $theme-colors: (
   "warning": $highlight_color,
   "info": $title_color
 );
+$base_size: 1.2rem;
 $title_size: $base_size*3.5;
 $title_normal: $base_size*1.5;
 $subtitle_size: $base_size*2.5;
 $info: $base_size*1;*/
-h1 {
-  font-weight: 400;
-  font-size: 3.5rem;
-  font-family: Forum;
-  font-style: normal;
-}
-
-h2 {
-  font-weight: 580;
-  font-size: 2.5rem;
-  font-family: Forum;
-  font-style: italic;
-}
-
-h3 {
-  font-weight: 400;
-  font-size: 2rem;
-  font-family: Playfair Display;
-  font-style: normal;
-}
-
-h1 {
-  font-weight: 400;
-  font-size: 1.5rem;
-  font-family: Forum;
-  font-style: normal;
-}
-
-.nf-logo {
-  height: 70px;
-}
-
-.nutrifusion-food {
-  height: 40px;
-  margin-left: 3px;
-}
-
-.slogan {
-  margin-left: 5px;
-}
-
-.nutrifusion-food-welcome {
-  height: 90px;
-}
-
-ul {
-  list-style: none;
-}
-
-/*.welcome-text, .title-categories{
-  font-size: $title_size;
-}
-
-.categories-text, .aboutus-text{
-  font-size: $subtitle_size;
-}
-
-.heart-icon, .message,
-.title-recipe, .title-drink,
-.title-maindish, .title-desserts,
-.title-snacks, .globe-icon,
-.NFF-title{
-  font-size: $title_normal;
-}
-
-.description-aboutus, .recipe-all-data{
-  font-size: $info;
-}*/
-/*
-.categories-text, .title-categories,
-.recipe-name{
-  font-style: italic;
-}
-
-.welcome-text, .categories-text,
-.aboutus-text, .title-categories,
-.recipe-category-name, .recipe-all-data{
-  font-family: $font_title;
-}
-
-.message, .title-recipe,
-.title-drink, .title-maindish, 
-.title-desserts, .title-snacks,
-.description-aboutus{
-  font-family: $font_body;
-}
-.img-aboutus{
-  width: 40vw;
-}
-
-.recipe-picture,.recipe-data{
-  flex: 1;
-}
-
-.recipe-picture img {
-  height: 400px;
-  width: 100%;
-}
-*/
 /*!
  * Bootstrap v4.0.0 (https://getbootstrap.com)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -172,6 +74,10 @@ html {
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+@-ms-viewport {
+  width: device-width;
+}
 article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
@@ -184,7 +90,7 @@ body {
   line-height: 1.5;
   color: #000000;
   text-align: left;
-  background-color: #fff;
+  background-color: #D0EEF4;
 }
 
 [tabindex="-1"]:focus {
@@ -210,8 +116,7 @@ p {
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
   cursor: help;
   border-bottom: 0;
 }
@@ -479,7 +384,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
-  color: inherit;
+  color: #006272;
 }
 
 h1, .h1 {
@@ -597,7 +502,7 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #fff;
+  background-color: #D0EEF4;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
@@ -1489,7 +1394,7 @@ pre code {
   border-top: 2px solid #dee2e6;
 }
 .table .table {
-  background-color: #fff;
+  background-color: #D0EEF4;
 }
 
 .table-sm th,
@@ -1686,7 +1591,7 @@ pre code {
 }
 
 .table .thead-dark th {
-  color: #fff;
+  color: #D0EEF4;
   background-color: #212529;
   border-color: #32383e;
 }
@@ -1697,7 +1602,7 @@ pre code {
 }
 
 .table-dark {
-  color: #fff;
+  color: #D0EEF4;
   background-color: #212529;
 }
 .table-dark th,
@@ -1797,10 +1702,6 @@ pre code {
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-.form-control::-moz-placeholder {
-  color: #6c757d;
-  opacity: 1;
 }
 .form-control::placeholder {
   color: #6c757d;
@@ -2030,7 +1931,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   background-color: #34ce57;
 }
 .was-validated .custom-control-input:valid:focus ~ .custom-control-label::before, .custom-control-input.is-valid:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+  box-shadow: 0 0 0 1px #D0EEF4, 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
 .was-validated .custom-file-input:valid ~ .custom-file-label, .custom-file-input.is-valid ~ .custom-file-label {
@@ -2116,7 +2017,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   background-color: #e4606d;
 }
 .was-validated .custom-control-input:invalid:focus ~ .custom-control-label::before, .custom-control-input.is-invalid:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  box-shadow: 0 0 0 1px #D0EEF4, 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
 
 .was-validated .custom-file-input:invalid ~ .custom-file-label, .custom-file-input.is-invalid ~ .custom-file-label {
@@ -2195,9 +2096,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
@@ -3318,7 +3217,7 @@ tbody.collapse.show {
   background-color: #007bff;
 }
 .custom-control-input:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  box-shadow: 0 0 0 1px #D0EEF4, 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 .custom-control-input:active ~ .custom-control-label::before {
   color: #fff;
@@ -3343,9 +3242,7 @@ tbody.collapse.show {
   height: 1rem;
   pointer-events: none;
   content: "";
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   background-color: #dee2e6;
 }
 .custom-control-label::after {
@@ -3408,9 +3305,7 @@ tbody.collapse.show {
   background-size: 8px 10px;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
 }
 .custom-select:focus {
   border-color: #80bdff;
@@ -3547,8 +3442,8 @@ tbody.collapse.show {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #fff;
-  border-color: #dee2e6 #dee2e6 #fff;
+  background-color: #D0EEF4;
+  border-color: #dee2e6 #dee2e6 #D0EEF4;
 }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -4152,10 +4047,8 @@ tbody.collapse.show {
 }
 @media (min-width: 576px) {
   .card-columns {
-    -moz-column-count: 3;
-         column-count: 3;
-    -moz-column-gap: 1.25rem;
-         column-gap: 1.25rem;
+    column-count: 3;
+    column-gap: 1.25rem;
   }
   .card-columns .card {
     display: inline-block;
@@ -5252,7 +5145,7 @@ button.close {
   padding: 0.5rem 0.75rem;
   margin-bottom: 0;
   font-size: 1rem;
-  color: inherit;
+  color: #006272;
   background-color: #f7f7f7;
   border-bottom: 1px solid #ebebeb;
   border-top-left-radius: calc(0.3rem - 1px);
@@ -6506,8 +6399,7 @@ button.bg-resalte:focus {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
+  clip-path: inset(50%);
   border: 0;
 }
 
@@ -6518,8 +6410,7 @@ button.bg-resalte:focus {
   overflow: visible;
   clip: auto;
   white-space: normal;
-  -webkit-clip-path: none;
-          clip-path: none;
+  clip-path: none;
 }
 
 .w-25 {
@@ -8144,4 +8035,134 @@ a.text-resalte:hover, a.text-resalte:focus {
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
-}/*# sourceMappingURL=custom.css.map */
+}
+.nf-logo {
+  height: 70px;
+}
+
+.nutrifusion-food {
+  height: 40px;
+  margin-left: 3px;
+}
+
+.slogan {
+  margin-left: 5px;
+}
+
+ul {
+  list-style: none;
+}
+
+.nutrifusion-food-welcome {
+  height: 50px;
+}
+
+.heart-icon, .globe-icon {
+  font-size: 3.5rem;
+}
+
+.img-aboutus {
+  width: 40vw;
+}
+
+.recipe-picture img {
+  height: 400px;
+  width: 100%;
+}
+
+/*.welcome-text, .title-categories{
+  font-size: $title_size;
+}
+
+.categories-text, .aboutus-text{
+  font-size: $subtitle_size;
+}
+
+.heart-icon, .message,
+.title-recipe, .title-drink,
+.title-maindish, .title-desserts,
+.title-snacks, .globe-icon,
+.NFF-title{
+  font-size: $title_normal;
+}
+
+.description-aboutus, .recipe-all-data{
+  font-size: $info;
+}
+.categories-text, .title-categories,
+.recipe-name{
+  font-style: italic;
+}
+
+.welcome-text, .categories-text,
+.aboutus-text, .title-categories,
+.recipe-category-name, .recipe-all-data{
+  font-family: $font_title;
+}
+
+.message, .title-recipe,
+.title-drink, .title-maindish, 
+.title-desserts, .title-snacks,
+.description-aboutus{
+  font-family: $font_body;
+}
+.img-aboutus{
+  width: 40vw;
+}
+
+.recipe-picture,.recipe-data{
+  flex: 1;
+}
+
+.recipe-picture img {
+  height: 400px;
+  width: 100%;
+}
+*/
+h1 {
+  font-weight: 400;
+  font-size: 3.5rem;
+  font-family: Forum;
+  font-style: normal;
+  color: #000000;
+}
+
+h2 {
+  font-weight: 580;
+  font-size: 2.5rem;
+  font-family: Forum;
+  font-style: italic;
+  color: #000000;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: 2rem;
+  font-family: Playfair Display;
+  font-style: normal;
+  color: #000000;
+}
+
+nav li a {
+  font-weight: 400;
+  font-size: 1.5rem;
+  font-family: Forum;
+  font-style: normal;
+  color: #000000;
+}
+
+h5 {
+  font-weight: 400;
+  font-size: 1.1rem;
+  font-family: Forum;
+  font-style: normal;
+  color: #006272;
+}
+
+p {
+  font-weight: 400;
+  font-size: 1.1rem;
+  font-family: Playfair Display;
+  font-style: normal;
+  color: #000000;
+}

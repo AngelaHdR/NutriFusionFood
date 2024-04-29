@@ -18,6 +18,7 @@ $theme-colors: (
   "warning": $highlight_color,
   "info": $title_color
 );
+$base_size: 1.2rem;
 $title_size: $base_size*3.5;
 $title_normal: $base_size*1.5;
 $subtitle_size: $base_size*2.5;
@@ -25,7 +26,7 @@ $info: $base_size*1;*/
 
 $font-family:(
   "titulo":Forum,
-  "cuerpo":Playfair Display
+  "cuerpo":Playfair Display,
 );
 $font-weights: (
   "light":300,
@@ -35,14 +36,13 @@ $font-weights: (
 $font-styles: (
   "cursiva":italic,
   "normal":normal
-  );
+);
 $theme-colors: (
   "fuente": #000000,
   "fondo": #D0EEF4,
   "resalte": #F1856A,
   "info": #006272
 );
-$base_size: 1.2rem;
 $font-sizes: (
   "cuerpo":1.1rem,
   "subtitle":2rem,
@@ -51,10 +51,11 @@ $font-sizes: (
   "nav ul li":1.5rem,
   "footer p":1.3rem
 );
-
-
-$border_nav: 1.5px;
-$border_space: 3px;
+$border-widths: (
+  1: 1rem,
+  2: 2rem,
+  3: 4rem
+);
 
 //variables compuestas
 //cualquier texto general
@@ -62,35 +63,40 @@ $cuerpo: (
   "weight": map-get($font-weights,"regular"),
   "size": map-get($font-sizes,"cuerpo"), 
   "family": map-get($font_family,"cuerpo"), 
-  "style": map-get($font_styles,"normal")
+  "style": map-get($font_styles,"normal"),
+  "color": map-get($theme-colors,"fuente")
 ); 
 //titulos tipo h1 de las paginas
 $titulo: (
   "weight": map-get($font-weights,"regular"), 
   "size": map-get($font-sizes,"title"), 
   "family": map-get($font_family,"titulo"),
-  "style": map-get($font_styles,"normal")
+  "style": map-get($font_styles,"normal"),
+  "color": map-get($theme-colors,"fuente")
 ); 
 //titulos de secciones y recetas
 $seccion: (
-"weight": map-get($font-weights,"bold"),
-"size": map-get($font-sizes,"section"), 
-"family":  map-get($font_family,"titulo"),
-"style": map-get($font_styles,"cursiva")
+  "weight": map-get($font-weights,"bold"),
+  "size": map-get($font-sizes,"section"), 
+  "family":  map-get($font_family,"titulo"),
+  "style": map-get($font_styles,"cursiva"),
+  "color": map-get($theme-colors,"fuente")
 ); 
 //textos grandes
 $subtitulo: (
   "weight":map-get($font-weights, "regular"),
   "size": map-get($font-sizes,"subtitle"), 
   "family": map-get($font_family,"cuerpo"),
-  "style": map-get($font_styles,"normal")
+  "style": map-get($font_styles,"normal"),
+  "color": map-get($theme-colors,"fuente")
 ); 
 //texto dinamicos en listados
 $info: (
   "weight":map-get($font-weights, "regular"),
   "size": map-get($font-sizes,"cuerpo"), 
   "family": map-get($font_family,"titulo"),
-  "style": map-get($font_styles,"normal")
+  "style": map-get($font_styles,"normal"),
+  "color": map-get($theme-colors,"info")
 ); 
 $menu: (
   "weight":map-get($font-weights, "regular"),
@@ -100,41 +106,19 @@ $menu: (
   "color": map-get($theme-colors,"fuente")
 );
 
-@mixin apply-font-style($style-map){
-  font-weight: map-get($style-map,"weight");
-  font-size: map-get($style-map,"size");
-  font-family: map-get($style-map,"family");
-  font-style: map-get($style-map,"style");
-}
-
-h1{
-  @include apply-font-style($titulo);
-}
-h2{
-  @include apply-font-style($seccion);
-}
-h3{
-  @include apply-font-style($subtitulo);
-}
-h1{
-  @include apply-font-style($menu);
-}
-
-//estilos globales
-
-$margin: 1rem;
+//estilos globales, creo que no se usa
+$body-bg: map-get($theme-colors,"fondo");
 $body-color: map-get($theme-colors,"fuente");
-$heading-color: map-get($theme-colors,"info");
-$bg_color:map-get($theme-colors,"fondo");
-$body-margin: 1rem;
-$body-font-size: 20px;
-$border-width: 1px;
-$border-widths: (
-  1: $border-nav,
-  2: $border-space
-);
+$headings-color: map-get($theme-colors,"info");
 
-//HEADER
+//importar variables de bootstrap con las modificaciones anteriores
+@import '../../static/bootstrap/scss/functions';
+@import '../../static/bootstrap/scss/variables';
+
+@import "../../static/bootstrap/scss/bootstrap.scss";
+
+
+//HEADER cambiar a medidas relativas
 .nf-logo {
   height: 70px;
 }
@@ -148,16 +132,30 @@ $border-widths: (
   margin-left: 5px;
 }
 
-.nutrifusion-food-welcome {
-  height: 90px;
-}
-
 ul {
   list-style: none
 }
 
-//Footer
+//FOOTER
 
+//HOME 
+.nutrifusion-food-welcome {
+  height: 50px;
+}
+
+.heart-icon, .globe-icon{
+  font-size: map-get($font-sizes,"title");
+}
+
+.img-aboutus{
+  width: 40vw;
+}
+
+//RECIPE LIST
+.recipe-picture img {
+  height: 400px;
+  width: 100%;
+}
 
 /*.welcome-text, .title-categories{
   font-size: $title_size;
@@ -177,8 +175,7 @@ ul {
 
 .description-aboutus, .recipe-all-data{
   font-size: $info;
-}*/
-/*
+}
 .categories-text, .title-categories,
 .recipe-name{
   font-style: italic;
@@ -210,8 +207,30 @@ ul {
 }
 */
 
-//importar variables de bootstrap
-@import '../../static/bootstrap/scss/functions';
-@import '../../static/bootstrap/scss/variables';
+//Añadir nuevas variable a continuacion de la importadas por bootstrap
+@mixin apply-font-style($style-map){
+  font-weight: map-get($style-map,"weight");
+  font-size: map-get($style-map,"size");
+  font-family: map-get($style-map,"family");
+  font-style: map-get($style-map,"style");
+  color: map-get($style-map,"color")
+}
 
-@import "../../static/bootstrap/scss/bootstrap.scss";
+h1{
+  @include apply-font-style($titulo);
+}
+h2{
+  @include apply-font-style($seccion);
+}
+h3{
+  @include apply-font-style($subtitulo);
+}
+nav li a{
+  @include apply-font-style($menu);
+}
+h5{
+  @include apply-font-style($info);
+}
+p{
+  @include apply-font-style($cuerpo);
+}
