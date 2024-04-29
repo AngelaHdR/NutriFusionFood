@@ -37,8 +37,8 @@ public class UserDaoJdbc implements UserDao {
             String sql = "select * from user where id_user = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
-            userEntity = UserEntityMapper.toUserEntity(resultSet);
             resultSet.next();
+            userEntity = UserEntityMapper.toUserEntity(resultSet);
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
         }
