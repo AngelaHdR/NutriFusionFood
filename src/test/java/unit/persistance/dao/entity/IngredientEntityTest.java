@@ -1,7 +1,11 @@
 package unit.persistance.dao.entity;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
+import com.fpmislata.NutriFusionFood.domain.entity.Type;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
@@ -14,6 +18,38 @@ public class IngredientEntityTest {
         ingredientEntity = new IngredientEntity();
     }
 
+
+    @Test
+    @DisplayName("Constructor with 7 parameters")
+    void createIngredientWithoutType() {
+        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2);
+        assertAll(
+                () -> assertEquals(1, ingredientEntity.getId()),
+                () -> assertEquals(false, ingredientEntity.isGluten()),
+                () -> assertEquals(false, ingredientEntity.isLactose()),
+                () -> assertEquals("tomate", ingredientEntity.getName_es()),
+                () -> assertEquals("tomato", ingredientEntity.getName_en()),
+                () -> assertEquals(1, ingredientEntity.getStartSeason()),
+                () -> assertEquals(2, ingredientEntity.getEndSeason())
+        );
+    }
+
+    @Test
+    @DisplayName("Constructor with 8 parameters")
+    void createIngredientWithType() {
+        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
+        assertAll(
+                () -> assertEquals(1, ingredientEntity.getId()),
+                () -> assertEquals(false, ingredientEntity.isGluten()),
+                () -> assertEquals(false, ingredientEntity.isLactose()),
+                () -> assertEquals("tomate", ingredientEntity.getName_es()),
+                () -> assertEquals("tomato", ingredientEntity.getName_en()),
+                () -> assertEquals(1, ingredientEntity.getStartSeason()),
+                () -> assertEquals(2, ingredientEntity.getEndSeason()),
+                () -> assertEquals(1, ingredientEntity.getTypeId())
+        );
+    }
+
     @Test
     void createIngredientEntityWithoutType() {
         ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2);
@@ -22,53 +58,5 @@ public class IngredientEntityTest {
     @Test
     void createIngredientEntityWithType() {
         ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
-    }
-
-    @Test
-    void checkId() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
-        assertEquals(1, ingredientEntity.getId());
-    }
-
-    @Test
-    void checkGluten() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
-        assertEquals(false, ingredientEntity.isGluten());
-    }
-
-    @Test
-    void checkLactose() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
-        assertEquals(false, ingredientEntity.isLactose());
-    }
-
-    @Test
-    void checkNameEs() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
-        assertEquals("tomate", ingredientEntity.getName_es());
-    }
-
-    @Test
-    void checkNameEn() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
-        assertEquals("tomato", ingredientEntity.getName_en());
-    }
-
-    @Test
-    void checkStartSeason() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
-        assertEquals(1, ingredientEntity.getStartSeason());
-    }
-
-    @Test
-    void checkEndSeason() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
-        assertEquals(2, ingredientEntity.getEndSeason());
-    }
-
-    @Test
-    void checkType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
-        assertEquals(1, ingredientEntity.getTypeId());
     }
 }

@@ -1,52 +1,29 @@
 package unit.persistance.dao.entity;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.fpmislata.NutriFusionFood.domain.entity.User;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.UserEntity;
 
 public class UserEntityTest {
-    UserEntity userEntity;
-
     @Test
+    @DisplayName("Constructor 9 parameters")
     void createAllParameters() {
-        userEntity = new UserEntity(1, "Soledad", "Berenguer", "Reyes", "2002-03-28", false, "pass1", "mail1", "sole");
-    }
-
-    @Test
-    void checkId() {
-        userEntity = new UserEntity(1, "Soledad", "Berenguer", "Reyes", "2002-03-28", false, "pass1", "mail1", "sole");
-        assertEquals(1, userEntity.getId());
-    }
-
-    @Test
-    void checkName() {
-        userEntity = new UserEntity(1, "Soledad", "Berenguer", "Reyes", "2002-03-28", false, "pass1", "mail1", "sole");
-        assertEquals("Soledad", userEntity.getName());
-    }
-
-    @Test
-    void checkSurname1() {
-        userEntity = new UserEntity(1, "Soledad", "Berenguer", "Reyes", "2002-03-28", false, "pass1", "mail1", "sole");
-        assertEquals("Berenguer", userEntity.getSurname1());
-    }
-
-    @Test
-    void checkSurname2() {
-        userEntity = new UserEntity(1, "Soledad", "Berenguer", "Reyes", "2002-03-28", false, "pass1", "mail1", "sole");
-        assertEquals("Reyes", userEntity.getSurname2());
-    }
-
-    @Test
-    void checkBirthDate() {
-        userEntity = new UserEntity(1, "Soledad", "Berenguer", "Reyes", "2002-03-28", false, "pass1", "mail1", "sole");
-        assertEquals("2002-03-28", userEntity.getBirthDate());
-    }
-
-    @Test
-    void checkNutritionist() {
-        userEntity = new UserEntity(1, "Soledad", "Berenguer", "Reyes", "2002-03-28", false, "pass1", "mail1", "sole");
-        assertEquals(false, userEntity.isNutritionist());
+        UserEntity userEntity = new UserEntity(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose");
+        assertAll(
+                () -> assertEquals(1, userEntity.getId()),
+                () -> assertEquals("Jose", userEntity.getName()),
+                () -> assertEquals("Perez", userEntity.getSurname1()),
+                () -> assertEquals("Garcia", userEntity.getSurname2()),
+                () -> assertEquals("1989-08-18", userEntity.getBirthDate()),
+                () -> assertEquals(true, userEntity.isNutritionist()),
+                () -> assertEquals("p1", userEntity.getPassword()),
+                () -> assertEquals("mail1", userEntity.getEmail()),
+                () -> assertEquals("jose", userEntity.getUsername())
+        );
     }
 }
