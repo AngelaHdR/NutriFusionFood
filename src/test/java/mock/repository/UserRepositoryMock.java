@@ -19,7 +19,8 @@ public class UserRepositoryMock implements UserRepository {
 
     @Override
     public User findByIdNutritionist(Integer id) {
-        for (User user:userList){
+        List<User> nutritionistList = findAllNutritionist();
+        for (User user:nutritionistList){
             if (user.getId()==id){
                 return user;
             }
@@ -29,7 +30,7 @@ public class UserRepositoryMock implements UserRepository {
 
     @Override
     public void insert(User user) {
-        insert(user);
+        userList.add(user);
     }
     public boolean verifyInsert(User user){
         insert(user);
