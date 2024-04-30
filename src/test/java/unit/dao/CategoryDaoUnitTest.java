@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.CategoryDaoMemory;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CategoryDaoUnitTest {
     CategoryDao categoryDao = new CategoryDaoMemory();
@@ -35,16 +37,12 @@ public class CategoryDaoUnitTest {
         CategoryEntity expectedCategory = new CategoryEntity(1,"salado","main dish");
         assertEquals(expectedCategory, actualCategory);
     }
-    @Test
-    @DisplayName("Return null for negative id")
-    public void notAcceptIdNegative(){
-        CategoryEntity actualCategory = categoryDao.findByIdCategory(-3);
+    @ParameterizedTest
+    @ValueSource(ints={0,-3,30})
+    @DisplayName("Return null for negative,zero or wrong id")
+    public void returnNullWrongId(int id){
+        CategoryEntity actualCategory = categoryDao.findByIdCategory(id);
         assertNull(actualCategory);
     }
-    @Test
-    @DisplayName("Return null for other id")
-    public void notAcceptOtherId(){
-        CategoryEntity actualCategory = categoryDao.findByIdCategory(6);
-        assertNull(actualCategory);
-    }
+
 }

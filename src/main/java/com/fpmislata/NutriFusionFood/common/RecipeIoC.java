@@ -4,6 +4,7 @@ import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
 import com.fpmislata.NutriFusionFood.domain.service.impl.RecipeServiceImpl;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.RecipeDaoImpl;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.RecipeDaoMemory;
 import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.RecipeRepositoryImpl;
 
@@ -25,7 +26,7 @@ public class RecipeIoC {
     }
     public static RecipeDao getRecipeDao(){
         if (recipeDao==null){
-            recipeDao = new RecipeDaoImpl();
+            recipeDao = new RecipeDaoMemory();
         }
         return recipeDao;
     }
