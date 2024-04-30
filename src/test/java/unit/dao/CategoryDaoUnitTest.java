@@ -1,6 +1,7 @@
 package unit.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
@@ -9,10 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.CategoryDaoImpl;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.CategoryDaoMemory;
 
 public class CategoryDaoUnitTest {
-    CategoryDao categoryDao = new CategoryDaoImpl();
+    CategoryDao categoryDao = new CategoryDaoMemory();
 
     @DisplayName("Find all the categories in the database")
     @Test
@@ -33,5 +34,17 @@ public class CategoryDaoUnitTest {
         CategoryEntity actualCategory = categoryDao.findByIdCategory(1);
         CategoryEntity expectedCategory = new CategoryEntity(1,"salado","main dish");
         assertEquals(expectedCategory, actualCategory);
+    }
+    @Test
+    @DisplayName("Return null for negative id")
+    public void notAcceptIdNegative(){
+        CategoryEntity actualCategory = categoryDao.findByIdCategory(-3);
+        assertNull(actualCategory);
+    }
+    @Test
+    @DisplayName("Return null for other id")
+    public void notAcceptOtherId(){
+        CategoryEntity actualCategory = categoryDao.findByIdCategory(6);
+        assertNull(actualCategory);
     }
 }

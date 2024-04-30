@@ -1,11 +1,14 @@
 package unit.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.RecipeDaoMemory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +20,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.IngredientDaoMe
 
 public class IngredientDaoUnitTest {
     IngredientDao ingredientDao = new IngredientDaoMemory();
-    ComposedDao composedDao = new ComposedDaoMemory();
+    RecipeDao recipeDao = new RecipeDaoMemory();
 
     @DisplayName("Find all the ingredients in the database")
     @Test
@@ -40,6 +43,19 @@ public class IngredientDaoUnitTest {
         IngredientEntity expectedIngredient = new IngredientEntity(1,true,false,"pan","bread",10,12, 6);
         assertEquals(expectedIngredient, actualIngredient);
     }
+    @Test
+    @DisplayName("Return null for ingredient id negative")
+    public void notAcceptIngredientIdNegative(){
+        IngredientEntity actualIngredient = ingredientDao.findByIdIngredient(-3);
+        assertNull(actualIngredient);
+    }
+    @Test
+    @DisplayName("Return null for ingredient id not in the list")
+    public void notAcceptIngredientIdNotInList(){
+        int i = ingredientDao.findAllIngredient().size();
+        IngredientEntity actualIngredient = ingredientDao.findByIdIngredient(i+1);
+        assertNull(actualIngredient);
+    }
 
     @DisplayName("Find the ingredients by their recipes")
     @Test
@@ -47,6 +63,21 @@ public class IngredientDaoUnitTest {
         List<IngredientEntity> actualIngredientList = ingredientDao.findByRecipe(2);
         List<IngredientEntity> expectedIngredientList = new ArrayList<>(Arrays.asList(new IngredientEntity(3,false,false,"tomate","tomato",10,12, 5)));
         assertEquals(expectedIngredientList, actualIngredientList);
+    }
+    @Test
+    @DisplayName("Return null for recipe id negative")
+    public void notAcceptRecipeIdNegative(){
+        List<IngredientEntity> actualIngredientList = ingredientDao.findByRecipe(-3);
+        List<IngredientEntity> expectedIngredientList = new ArrayList<>();
+        assertEquals(expectedIngredientList,actualIngredientList);
+    }
+    @Test
+    @DisplayName("Return null for recipe id not in the list")
+    public void notAcceptRecipeIdNotInList(){
+        int i = recipeDao.findAllRecipe().size();
+        List<IngredientEntity> actualIngredientList = ingredientDao.findByRecipe(i+1);
+        List<IngredientEntity> expectedIngredientList = new ArrayList<>();
+        assertEquals(expectedIngredientList,actualIngredientList);
     }
 
     @DisplayName("Insert new ingredients into the database")
