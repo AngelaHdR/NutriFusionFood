@@ -22,7 +22,8 @@ public class UserDaoMock implements UserDao {
 
     @Override
     public UserEntity findByIdNutritionist(Integer id) {
-        for (UserEntity userEntity:userEntityList){
+        List<UserEntity> nutritionistList = findAllNutritionist();
+        for (UserEntity userEntity:nutritionistList){
             if (userEntity.getId().equals(id)){
                 return userEntity;
             }

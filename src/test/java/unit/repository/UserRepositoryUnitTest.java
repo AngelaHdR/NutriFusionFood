@@ -1,6 +1,7 @@
 package unit.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,14 +17,17 @@ import com.fpmislata.NutriFusionFood.domain.entity.User;
 import com.fpmislata.NutriFusionFood.persistance.repository.UserRepository;
 
 import mock.dao.UserDaoMock;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class UserRepositoryUnitTest {
     private static UserRepository userRepository;
 
     @BeforeAll
     public static void setupAll() {
-        userRepository = UserIoC.getUserRepository();
         UserIoC.setUserDao(new UserDaoMock());
+        userRepository = UserIoC.getUserRepository();
+
     }
 
     @AfterAll
@@ -37,6 +41,19 @@ public class UserRepositoryUnitTest {
         User actualUser = userRepository.findByIdNutritionist(1);
         User expectedUser = new User(1,"Jose","Perez","Garcia","1989-08-18", true,"p1","mail1","jose");
         assertEquals(expectedUser, actualUser);
+    }
+    @DisplayName("Return null for user id not nutritionist")
+    @Test
+    public void returnNullIdNotNutritionist(){
+        User actualUser= userRepository.findByIdNutritionist(2);
+        assertNull(actualUser);
+    }
+    @DisplayName("Return null for user id not in list")
+    @ParameterizedTest
+    @ValueSource(ints = {0,-2,8})
+    public void returnNullWrongId(int id){
+        User actualUser= userRepository.findByIdNutritionist(id);
+        assertNull(actualUser);
     }
 
     @DisplayName("Find all the users in the database")
