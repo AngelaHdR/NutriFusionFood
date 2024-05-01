@@ -1,10 +1,11 @@
-package unit.service;
-
+package unit.repository;
 
 import com.fpmislata.NutriFusionFood.domain.entity.*;
 import com.fpmislata.NutriFusionFood.domain.service.impl.RecipeServiceImpl;
+import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
 import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
+import com.fpmislata.NutriFusionFood.persistance.repository.impl.RecipeRepositoryImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -20,16 +21,20 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RecipeServiceImplMockito {
+public class RecipeRepositoryImplMockito {
     @Mock
-    private RecipeRepository recipeRepositoryMock;
+    private RecipeDao recipeDaoMock;
 
     @InjectMocks
-    private RecipeServiceImpl recipeService;
+    private RecipeRepositoryImpl recipeRepository;
+    private final RecipeEntity recipe3 = new RecipeEntity(2, "Salmorejo", "es", "x", "Paso 1...", 60, 2, 1);
+    private final RecipeEntity recipe4 = new RecipeEntity(4, "Torrijas", "es", "x", "Paso 1...", 45, 2, 2);
+    private final List<RecipeEntity> recipeEntityList=List.of(recipe3,recipe4);
+
     private final Recipe recipe1 = new Recipe(2, "Salmorejo", "es", "x", 60, "Paso 1...",
             new ArrayList<>(List.of(new Ingredient(1, true, false, "pan", "bread", 1, 12))),
             new ArrayList<>(List.of(new Tool(1, "batidora", "blender"))),
@@ -43,15 +48,15 @@ public class RecipeServiceImplMockito {
         @Test
         @DisplayName("when repository return empty list, Service return empty list")
         void returnEmptyList() {
-            when(recipeRepositoryMock.findAllRecipe()).thenReturn(new ArrayList<>());
-            assertEquals(0, recipeService.findAllRecipe().size());
+            when(recipeDaoMock.findAllRecipe()).thenReturn(new ArrayList<>());
+            assertEquals(0, recipeRepository.findAllRecipe().size());
         }
 
         @Test
         @DisplayName("when repository return recipes, service return all recipe")
         void returnAllRecipe() {
-            when(recipeRepositoryMock.findAllRecipe()).thenReturn(recipeList);
-            assertEquals(recipeList, recipeService.findAllRecipe());
+            when(recipeDaoMock.findAllRecipe()).thenReturn(recipeEntityList);
+            assertEquals(recipeList.size(), recipeRepository.findAllRecipe().size());
         }
     }
 
@@ -61,15 +66,15 @@ public class RecipeServiceImplMockito {
         @ValueSource(ints = {0, 8, -28})
         @DisplayName("when id not in list , Service return null")
         void returnEmptyList(int id) {
-            when(recipeRepositoryMock.findByIdRecipe(id)).thenReturn(null);
-            assertEquals(null, recipeService.findByIdRecipe(id));
+            when(recipeDaoMock.findByIdRecipe(id)).thenReturn(null);
+            assertEquals(null, recipeRepository.findByIdRecipe(id));
         }
 
         @Test
         @DisplayName("when id in list, service return only that recipe")
         void returnRecipeById() {
-            when(recipeRepositoryMock.findByIdRecipe(2)).thenReturn(recipe1);
-            assertEquals(recipe1, recipeService.findByIdRecipe(2));
+            when(recipeDaoMock.findByIdRecipe(2)).thenReturn(recipe3);
+            assertEquals(recipe1, recipeRepository.findByIdRecipe(2));
         }
     }
 
@@ -83,9 +88,9 @@ public class RecipeServiceImplMockito {
                     new ArrayList<>(List.of(new Tool(2, "cazo", "pot"))),
                     new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
                     new Category(1, "salado", "main dish"), new HashMap<>());
-            recipeService.insert(recipe3);
-            recipeService.delete(recipe3.getId());
-            verify(recipeRepositoryMock).delete(recipe3.getId());
+            recipeRepository.insert(recipe3);
+            recipeRepository.delete(recipe3.getId());
+            verify(recipeDaoMock).delete(recipe3.getId());
 
         }
     }
@@ -96,13 +101,14 @@ public class RecipeServiceImplMockito {
         @Test
         @DisplayName("Insert new recipe")
         void insertNewRecipe() {
-            Recipe recipe3 = new Recipe(3, "Ramen", "es", "x", 240, "Paso 1...",
+            Recipe recipe5 = new Recipe(3, "Ramen", "es", "x", 240, "Paso 1...",
                     new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", "chinesse ramen", 1, 12))),
                     new ArrayList<>(List.of(new Tool(2, "cazo", "pot"))),
                     new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
                     new Category(1, "salado", "main dish"), new HashMap<>());
-            recipeService.insert(recipe3);
-            verify(recipeRepositoryMock).insert(recipe3);
+            RecipeEntity recipe6 = new RecipeEntity(3, "Ramen", "es", "x", "Paso 1...",240,1,1);
+            recipeRepository.insert(recipe5);
+            verify(recipeDaoMock).insert(recipe6);
         }
     }
 
@@ -112,15 +118,15 @@ public class RecipeServiceImplMockito {
         @ValueSource(ints = {0, 8, -28})
         @DisplayName("when id not in list , Service return empty list")
         void returnEmptyList(int id) {
-            when(recipeRepositoryMock.findByCategory(id)).thenReturn(new ArrayList<>());
-            assertEquals(new ArrayList<>(), recipeService.findByCategory(id));
+            when(recipeDaoMock.findByCategory(id)).thenReturn(new ArrayList<>());
+            assertEquals(new ArrayList<>(), recipeRepository.findByCategory(id));
         }
 
         @Test
         @DisplayName("given one category id, service return all recipe from one  category")
         void returnAllRecipe() {
-            when(recipeRepositoryMock.findByCategory(1)).thenReturn(List.of(recipe1));
-            assertEquals(List.of(recipe1), recipeService.findByCategory(1));
+            when(recipeDaoMock.findByCategory(1)).thenReturn(List.of(recipe3));
+            assertEquals(List.of(recipe1).size(), recipeRepository.findByCategory(1).size());
         }
     }
 }

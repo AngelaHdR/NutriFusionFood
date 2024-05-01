@@ -66,6 +66,9 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     @Override
     public Recipe findByIdRecipe(Integer id) {
         RecipeEntity recipeEntity = recipeDao.findByIdRecipe(id);
+        if (recipeEntity==null){
+            return null;
+        }
         Recipe recipe = RecipeMapper.toRecipe(recipeEntity);
 
         //Añadir usuario
