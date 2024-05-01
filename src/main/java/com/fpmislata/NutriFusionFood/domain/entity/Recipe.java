@@ -33,6 +33,24 @@ public class Recipe {
         allergen.put("lactose", false);
     }
 
+    public Recipe(Integer id, String description, String name, String language, int time,
+                  String steps, List<Ingredient> ingredientList, List<Tool> toolList, User user,
+                  Category category, Map<String, Boolean> allergen) {
+        this.id = id;
+        this.description = description;
+        this.name = name;
+        this.language = language;
+        this.time = time;
+        this.steps = steps;
+        this.ingredientList = ingredientList;
+        this.toolList = toolList;
+        this.user = user;
+        this.category = category;
+        this.allergen = allergen;
+        allergen.put("gluten", false);
+        allergen.put("lactose", false);
+    }
+
 
     //Getters and setters
     public Integer getId() {
