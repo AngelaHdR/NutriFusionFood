@@ -1,5 +1,7 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.entity;
 
+import java.util.Objects;
+
 public class TypeEntity {
     private Integer id;
     private String name_es;
@@ -32,5 +34,18 @@ public class TypeEntity {
     }
     public void setName_en(String name_en) {
         this.name_en = name_en;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TypeEntity that = (TypeEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
