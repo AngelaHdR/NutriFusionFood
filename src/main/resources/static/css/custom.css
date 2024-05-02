@@ -8093,6 +8093,16 @@ ul {
   width: 13vw;
 }
 
+.recipe-picture {
+  width: 47.5vw;
+  margin-left: 10px;
+}
+
+.recipe-data {
+  width: 47.5vw;
+  margin-left: 10px;
+}
+
 .recipe-picture img {
   height: 400px;
   width: 100%;

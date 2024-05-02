@@ -16,22 +16,26 @@
 <main class="content bg-fondo">
     <h1 class="title-categories bg-resalte text-center fw-normal border-top border-fuente py-3" th:text="${category}"></h1>
     <ul>
-        <a th:each="recipe : ${recipeList}" th:href="@{${'/recipes/' + recipe.id}}">
-            <div class="recipes-info bg-fondo p-2 d-flex">
+        <a th:each="recipe, stat : ${recipeList}" th:href="@{${'/recipes/' + recipe.id}}">
+            <div class="recipes-info bg-fondo p-2 d-flex"
+            th:classappend="${stat.index % 2 == 0 ? 'flex-row' : 'flex-row-reverse'}">
                 <div class="recipe-picture flex-fill">
                     <img th:src="@{/images/}+recipe_+${recipe.id}+.png" alt="Recipe Image">
                 </div>
-                <div class="recipe-data p-2 flex-fill justify-content-center align-center border-top py-3">
+                <div class="recipe-data p-2 flex-fill justify-content-center align-center border-top">
                     <li class="recipe-category-name fw-normal">
-                        <h1 class="recipe-name fs-1 text-fuente text-uppercase
-                        " th:text="${recipe.name}"></h1>
-                        <a class="text-fuente text-uppercase" th:href="@{${'/recipes/categories/' + recipe.category.id}}"><h2 th:text="${recipe.category.name_es}">Nombre de Categoria</h2></a>
-                    <ul class="recipe-all-data text-info">
-                        <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}"><li th:text="|${'Nutricionista: ' + recipe.user.name}|"></li></a>
-                        <li th:text="|${'Tiempo de preparación: ' + recipe.time + ' min'}|">
-                        <li>Alergenos: </li>
-                        <li th:text="|${'Descripción: ' + recipe.description}|"></li>
-                    </ul>
+                        <h1 class="recipe-name fs-1 text-fuente text-uppercase" th:text="${recipe.name}"></h1>
+                        <a class="text-fuente text-uppercase" th:href="@{${'/recipes/categories/' + recipe.category.id}}">
+                            <h2 th:text="${recipe.category.name_es}">Nombre de Categoria</h2>
+                        </a>
+                        <ul class="recipe-all-data text-info">
+                            <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}">
+                                <li th:text="|${'Nutricionista: ' + recipe.user.name}|"></li>
+                            </a>
+                            <li th:text="|${'Tiempo de preparación: ' + recipe.time + ' min'}|">
+                            <li>Alergenos: </li>
+                            <li th:text="|${'Descripción: ' + recipe.description}|"></li>    
+                        </ul>
                     </li>
                 </div>
             </div>
