@@ -9,8 +9,10 @@
     <title>Receta</title>
 </head>
 <body>
+    <div class="container">
 <header th:insert="fragments.html :: header">Header</header>
-<h1 th:text="${recipe.name}"></h1>
+<main class="content">
+    <h1 th:text="${recipe.name}"></h1>
 <h3 th:text="${recipe.category.name_es}"></h3>
 
 <h4>Tiempo</h4>
@@ -38,6 +40,8 @@
 <h2>Preparacion</h2>
 <p th:text="${recipe.steps}"></p>
 <br><br><br>
+</main>
 <footer th:insert="fragments.html::footer"></footer>
+</div>
 </body>
 </html>

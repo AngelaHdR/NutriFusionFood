@@ -11,8 +11,9 @@
 </head>
 
 <body>
+    <div class="container">
 <header th:insert="fragments.html :: header">Header</header>
-<main class="bg-fondo">
+<main class="content bg-fondo">
     <h1 class="title-categories bg-resalte text-center fw-normal border-top border-fuente py-3" th:text="${category}"></h1>
     <ul>
         <a th:each="recipe : ${recipeList}" th:href="@{${'/recipes/' + recipe.id}}">
@@ -42,6 +43,7 @@
     <br><br>
 </main>
 <footer th:insert="fragments.html::footer"></footer>
+</div>
 </body>
 
 </html>

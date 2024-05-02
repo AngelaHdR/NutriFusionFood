@@ -10,23 +10,27 @@
 </head>
 
 <body>
-<header th:insert="fragments.html :: header">Header</header>
+    <div class="container">
+        <header th:insert="fragments.html :: header">Header</header>
 <!-- Añadido de forma manual, hay que crear todas las capas de category para hacer un findAll, findById -->
-<section class="section-categories border-bottom border-primary text-center py-4">
-    <h2 class="categories-text text-info fs-2 fst-italic fw-bold ">CATEGORIAS</h2>
-    <article class="images px-5 py-3">
-        <div class="recipes d-inline-block  px-4 ">
-            <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3">
-            <a href="/recipes"><h2 class="title-recipe fs-3 bg-warning d-inline-block ">Recetas</h2></a>
-        </div>
-       <div>
-           <a th:each="category :${categoryList}" th:href="@{${'/categories/' + category.id + '/recipes'}}">
-               <img th:src="@{/images/} + category_ + ${category.id} + .png">
-               <h2 th:text="${category.name_es}"></h2>
-           </a>
-       </div>
-    </article>
-</section>
+<main class="content">
+    <section class="section-categories border-bottom border-primary text-center py-4">
+        <h2 class="categories-text text-info fs-2 fst-italic fw-bold ">CATEGORIAS</h2>
+        <article class="images px-5 py-3">
+            <div class="recipes d-inline-block  px-4 ">
+                <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3">
+                <a href="/recipes"><h2 class="title-recipe fs-3 bg-warning d-inline-block ">Recetas</h2></a>
+            </div>
+           <div>
+               <a th:each="category :${categoryList}" th:href="@{${'/categories/' + category.id + '/recipes'}}">
+                   <img th:src="@{/images/} + category_ + ${category.id} + .png">
+                   <h2 th:text="${category.name_es}"></h2>
+               </a>
+           </div>
+        </article>
+    </section>
+</main>
 <footer th:insert="fragments.html::footer"></footer>
+    </div>
 </body>
 </html>

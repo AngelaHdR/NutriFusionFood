@@ -137,6 +137,17 @@ ul {
 }
 
 //FOOTER
+.content{
+  flex:1;
+}
+.container{
+  padding:0;
+  margin:0;
+  min-height: 100vh; 
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 //HOME 
 .nutrifusion-food-welcome {
@@ -234,3 +245,5 @@ h5{
 p{
   @include apply-font-style($cuerpo);
 }
+
+

@@ -11,8 +11,9 @@
 </head>
 
 <body>
+    <div class="container">
 <header th:insert="fragments.html :: header">Header</header>
-<main>
+<main class="content">
     <div class="container-fluid bg-fondo">
         <section class="section-welcome py-5 border-bottom border-fuente text-center">
             <h2 class="welcome-text text-info h2">
@@ -39,7 +40,6 @@
                 </div>
                 <div class="drinks d-inline-block px-4">
                   <img th:src="@{/images/bebidas.png}" alt="drinks" class="img-drinks d-block pb-3">
-
                     <!-- <img src="../static/images/bebidas.png" alt="drinks" class="img-drinks d-block pb-3 "> --> 
                     <p class="title-drink bg-resalte d-inline-block ">Bebidas</p>
                 </div>
@@ -56,12 +56,8 @@
                 <div class="snacks d-inline-block  px-4">
                      <img th:src="@{/images/snacks.png}" alt="snacks" class="img-snacks d-block pb-3">
                    <!--  <img src="../static/images/snacks.png" alt="snacks" class="img-snacks d-block pb-3">-->
-<<<<<<< HEAD
-                    <p class="title-snacks bg-warning d-inline-block ">Snacks</p>
-
-=======
                     <p class="title-snacks bg-resalte d-inline-block ">Snacks</p>
->>>>>>> 943e190 (Modified Sass)
+
                 </div>
             </article>
             <br>
@@ -90,6 +86,8 @@
         </section>
     </div>
 </main>
+
 <footer th:insert="fragments.html::footer"></footer>
+</div>
 </body>
 </html>

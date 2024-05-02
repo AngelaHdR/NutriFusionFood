@@ -11,8 +11,9 @@
 </head>
 
 <body>
+    <div class="container">
 <header th:insert="fragments.html :: header">Header</header>
-<main>
+<main class="content">
     <div class="container-fluid bg-fondo">
         <section class="py-5 border-bottom border-fuente text-center">
             <h1 class="text-info">
@@ -81,5 +82,6 @@
     </div>
 </main>
 <footer th:insert="fragments.html::footer"></footer>
+</div>
 </body>
 </html>

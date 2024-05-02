@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/custom.css}"> <!--link para verlo con chrome enlace css-->
     <link rel="stylesheet" href="../static/css/custom.css"> <!-- link verlo previsualizador enlace css-->
+    <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
     <title>Nutritionists</title>
 </head>
 <body>
+    <div class="container">
 <header th:insert="fragments.html :: header">Header</header>
+<main class="content">
     <ul>
         <a th:each="nutritionist : ${nutritionistList}" th:href="@{${'/nutritionists/' + nutritionist.id}}">
             <li th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|">Texto por defecto</li>
         </a>
     </ul>
+</main>
 <footer th:insert="fragments.html::footer"></footer>
+</div>
 </body>
 </html>
