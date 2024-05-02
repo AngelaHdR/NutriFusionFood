@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
     <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
     <title>Category</title>
 </head>
@@ -15,19 +15,26 @@
 <!-- Añadido de forma manual, hay que crear todas las capas de category para hacer un findAll, findById -->
 <main class="content">
     <section class="section-categories border-bottom border-primary text-center py-4">
-        <h2 class="categories-text text-info fs-2 fst-italic fw-bold ">CATEGORIAS</h2>
-        <article class="images px-5 py-3">
-            <div class="recipes d-inline-block  px-4 ">
-                <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3">
-                <a href="/recipes"><h2 class="title-recipe fs-3 bg-warning d-inline-block ">Recetas</h2></a>
-            </div>
-           <div>
-               <a th:each="category :${categoryList}" th:href="@{${'/categories/' + category.id + '/recipes'}}">
-                   <img th:src="@{/images/} + category_ + ${category.id} + .png">
-                   <h2 th:text="${category.name_es}"></h2>
-               </a>
-           </div>
-        </article>
+        <h2 class="text-info">CATEGORIAS</h2>
+                    <article class="d-inline-block px-5 py-3">
+                        <div class="d-inline-block px-4 ">
+                            <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3 rounded">
+                            <div class="recipe-tags bg-resalte d-inline-block text-left">
+                                <a href="/recipes">
+                                    <h3 class="d-inline-block ml-2">Recetas</h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-inline-block px-4" th:each="category :${categoryList}">
+                            <img class="d-block pb-3 img-recipes rounded" th:src="@{/images/} + category_ + ${category.id} + .png">
+                            <div class=" bg-resalte recipe-tags text-left">
+                                <a th:href="@{${'/categories/' + category.id + '/recipes'}}">
+                                    <h3 class="d-inline-block ml-2" th:text="${category.name_es}">
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
     </section>
 </main>
 <footer th:insert="fragments.html::footer"></footer>
