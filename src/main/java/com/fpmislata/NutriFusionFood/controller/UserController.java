@@ -26,6 +26,7 @@ public class UserController {
     @GetMapping("/{id}")
     public String findByIdNutritionist(Model model, @PathVariable Integer id){
         model.addAttribute("nutritionist", this.userService.findByIdNutritionist(id));
+        model.addAttribute("recipeList",this.userService.findRecipeByNutritionist(id));
         return "profile";
     }
     @GetMapping("/add")

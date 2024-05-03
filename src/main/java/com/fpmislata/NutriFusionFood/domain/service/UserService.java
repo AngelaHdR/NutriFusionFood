@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.domain.service;
 
+import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
 
 import java.util.List;
@@ -9,4 +10,5 @@ public interface UserService {
     public void insert(User user);
     public List<User> findAllNutritionist();
     public List<User> findAllUser();
+    public List<Recipe> findRecipeByNutritionist(Integer nutritionistId);
 }
