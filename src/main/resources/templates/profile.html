@@ -55,6 +55,15 @@
 </section>
 <section class="container-lg text-center py-4">
     <h2 class="text-info">MIS RECETAS</h2>
+    <div class="d-inline-block px-4" th:each="recipe :${recipeList}">
+        <img class="d-block pb-3 img-recipes rounded" th:src="@{/images/} + recipe_ + ${recipe.id} + .png">
+        <div class=" bg-resalte recipe-tags text-left">
+            <a th:href="@{${'/recipes/' + recipe.id}}">
+                <h3 class="d-inline-block ml-2" th:text="${recipe.name_es}">
+                </h3>
+            </a>
+        </div>
+    </div>
 </section>
 <!-- Falta añadir el listado de recetas favoritas y recetas creadas -->
     <br><br><br>

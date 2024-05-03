@@ -8098,8 +8098,8 @@ ul {
 }
 
 .profile-picture {
-  max-height: 20vh;
-  width: 100%;
+  max-height: 50vh;
+  width: 90%;
 }
 
 /*.welcome-text, .title-categories{
