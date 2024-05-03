@@ -9,16 +9,53 @@
     <title>Profile</title>
 </head>
 <body>
-    <div class="container">
+<div class="container">
 <header th:insert="fragments.html :: header">Header</header>
 <main class="content">
-    <h1 th:text="${nutritionist.username}"></h1>
-<h2>Nombre: </h2>
-<p th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|"></p>
-<h2>Email: </h2>
-<p th:text="${nutritionist.email}"></p>
-<h2>Fecha de nacimiento: </h2>
-<p th:text="${nutritionist.birthDate}"></p>
+    <section class="container-lg border-bottom border-fuente text-center py-4">
+        <h2 class="text-info">MI PERFIL</h2>
+    <div class="row align-items-stretch bg-resalte m-3 p-5">
+        <div class="d-none d-md-block col-md-5 align-items-center text-center py-4 bg-fondo">
+            <div class="container-fluid">
+                <img class="profile-picture" th:src="@{/images/}+user_+${nutritionist.id}+.png" alt="imagen perfil">
+            </div>
+        </div>
+        <div class="col-md-7 px-4 py-4 bg-fondo">
+            <div class="container-fluid py-4 align-items-center text-left">
+                <div class="row">
+                    <div class="col text-center">
+                        <h1 th:text="${nutritionist.username}"></h1>
+                    </div>
+                </div>
+                <div class="row py-1">
+                    <div class="col">
+                        <h2 class="d-inline mr-2 text-info">Nombre: </h2>
+                        <h3 class="d-inline" th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|"></h3>
+                    </div>
+                </div>
+                <div class="row py-1">
+                    <div class="col">
+                        <h2 class="d-inline mr-2 text-info">Email: </h2>
+                        <h3 class="d-inline" th:text="${nutritionist.email}"></h3>
+                    </div>
+                </div>
+                <div class="row py-1">
+                    <div class="col">
+                        <h2 class="d-inline mr-2 text-info">Fecha de nacimiento: </h2>
+                        <h3 class="d-inline" th:text="${nutritionist.birthDate}"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container-lg border-bottom border-fuente text-center py-4">
+    <h2 class="text-info">RECETAS FAVORITAS</h2>
+
+</section>
+<section class="container-lg text-center py-4">
+    <h2 class="text-info">MIS RECETAS</h2>
+</section>
 <!-- Falta añadir el listado de recetas favoritas y recetas creadas -->
     <br><br><br>
 </main>

@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.repository.impl;
 
+import com.fpmislata.NutriFusionFood.common.container.CategoryIoC;
 import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.entity.Category;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
@@ -46,18 +47,17 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     public RecipeRepositoryImpl(RecipeDao recipeDao) {
         this.recipeDao = recipeDao;
         this.userDao = UserIoC.getUserDao();
-        this.categoryDao = new CategoryDaoJdbc();
+        this.categoryDao = CategoryIoC.getCategoryDao();
         this.toolDao = new ToolDaoJdbc();
         this.ingredientDao = new IngredientDaoJdbc();
         this.typeDao = new TypeDaoJdbc();
     }
 
-
     @Override
     public List<Recipe> findAllRecipe() {
         List<RecipeEntity> recipeEntityList = recipeDao.findAllRecipe();
         List<Recipe> recipeList = new ArrayList<>();
-        for(RecipeEntity recipeEntity:recipeEntityList){
+        for (RecipeEntity recipeEntity : recipeEntityList) {
             recipeList.add(findByIdRecipe(recipeEntity.getId()));
         }
         return recipeList;
@@ -66,25 +66,25 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     @Override
     public Recipe findByIdRecipe(Integer id) {
         RecipeEntity recipeEntity = recipeDao.findByIdRecipe(id);
-        if (recipeEntity==null){
+        if (recipeEntity == null) {
             return null;
         }
         Recipe recipe = RecipeMapper.toRecipe(recipeEntity);
 
-        //Añadir usuario
+        // Añadir usuario
         int idUser = recipeEntity.getUserId();
         User user = UserMapper.toUser(userDao.findByIdNutritionist(idUser));
         recipe.setUser(user);
 
-        //Añadir categoria
+        // Añadir categoria
         int idCategory = recipeEntity.getCategoryId();
         Category category = CategoryMapper.toCategory(categoryDao.findByIdCategory(idCategory));
         recipe.setCategory(category);
 
-        //Añadir listado ingredientes, cambiar a map para poder añadir cantidades?
+        // Añadir listado ingredientes, cambiar a map para poder añadir cantidades?
         List<IngredientEntity> ingredientEntityList = ingredientDao.findByRecipe(id);
         List<Ingredient> ingredientList = new ArrayList<>();
-        for(IngredientEntity ingredientEntity : ingredientEntityList){
+        for (IngredientEntity ingredientEntity : ingredientEntityList) {
             Type type = TypeMapper.toType(typeDao.findByIdType(ingredientEntity.getTypeId()));
             Ingredient ingredient = IngredientMapper.toIngredient(ingredientEntity);
             ingredient.setType(type);
@@ -92,18 +92,18 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         }
         recipe.setIngredientList(ingredientList);
 
-        //Añadir listado herramientas
+        // Añadir listado herramientas
         List<Tool> toolList = ToolMapper.toToolList(toolDao.findByRecipe(id));
         recipe.setToolList(toolList);
-        
-        //Editar los alergenos
-        Map<String,Boolean> allergens = recipe.getAllergen();
-        for(Ingredient ingredient : recipe.getIngredientList()){
+
+        // Editar los alergenos
+        Map<String, Boolean> allergens = recipe.getAllergen();
+        for (Ingredient ingredient : recipe.getIngredientList()) {
             if (ingredient.isGluten()) {
-                allergens.put("gluten",true);
+                allergens.put("gluten", true);
             }
             if (ingredient.isLactose()) {
-                allergens.put("lactose",true);
+                allergens.put("lactose", true);
             }
         }
         recipe.setAllergen(allergens);
@@ -124,7 +124,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     public List<Recipe> findByCategory(Integer categoryId) {
         List<RecipeEntity> recipeEntityCategory = recipeDao.findByCategory(categoryId);
         List<Recipe> recipeCategory = new ArrayList<>();
-        for(RecipeEntity recipeEntity:recipeEntityCategory){
+        for (RecipeEntity recipeEntity : recipeEntityCategory) {
             recipeCategory.add(findByIdRecipe(recipeEntity.getId()));
         }
         return recipeCategory;
@@ -134,7 +134,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     public List<Recipe> findByNutritionist(Integer nutritionistId) {
         List<RecipeEntity> recipeEntityNutritionist = recipeDao.findByNutritionist(nutritionistId);
         List<Recipe> recipeNutritionist = new ArrayList<>();
-        for(RecipeEntity recipeEntity:recipeEntityNutritionist){
+        for (RecipeEntity recipeEntity : recipeEntityNutritionist) {
             recipeNutritionist.add(findByIdRecipe(recipeEntity.getId()));
         }
         return recipeNutritionist;

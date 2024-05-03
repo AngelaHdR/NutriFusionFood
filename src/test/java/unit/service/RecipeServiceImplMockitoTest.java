@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class RecipeServiceImplMockito {
+public class RecipeServiceImplMockitoTest {
     @Mock
     private RecipeRepository recipeRepositoryMock;
 
@@ -57,12 +57,11 @@ public class RecipeServiceImplMockito {
 
     @Nested
     class FindById {
-        @ParameterizedTest
-        @ValueSource(ints = {0, 8, -28})
+        @Test
         @DisplayName("when id not in list , Service return null")
-        void returnEmptyList(int id) {
-            when(recipeRepositoryMock.findByIdRecipe(id)).thenReturn(null);
-            assertEquals(null, recipeService.findByIdRecipe(id));
+        void returnEmptyList() {
+            when(recipeRepositoryMock.findByIdRecipe(-1)).thenReturn(null);
+            assertEquals(null, recipeService.findByIdRecipe(-1));
         }
 
         @Test
@@ -74,24 +73,18 @@ public class RecipeServiceImplMockito {
     }
 
     @Nested
-    class delete {
+    class Delete {
         @Test
         @DisplayName("delete recipe by id")
         void deleteRecipeById() {
-            Recipe recipe3 = new Recipe(3, "Ramen", "es", "x", 240, "Paso 1...",
-                    new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", "chinesse ramen", 1, 12))),
-                    new ArrayList<>(List.of(new Tool(2, "cazo", "pot"))),
-                    new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
-                    new Category(1, "salado", "main dish"), new HashMap<>());
-            recipeService.insert(recipe3);
-            recipeService.delete(recipe3.getId());
-            verify(recipeRepositoryMock).delete(recipe3.getId());
+            recipeService.delete(recipe2.getId());
+            verify(recipeRepositoryMock).delete(recipe2.getId());
 
         }
     }
 
     @Nested
-    class insert {
+    class Insert {
 
         @Test
         @DisplayName("Insert new recipe")
