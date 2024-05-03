@@ -51,17 +51,4 @@ public class RecipeController {
         recipeService.delete(id);
         return "redirect:/recipe";
     }
-
-    @GetMapping("/categories/{id}")
-    public String findByCategory(@PathVariable Integer id, Model model){
-        List<Recipe> recipeList = this.recipeService.findByCategory(id);
-        model.addAttribute("recipeList",recipeList);
-        String category=recipeList.get(0).getCategory().getName_es();
-        model.addAttribute("category",category);
-        return "recipeList";
-    }
-    @GetMapping("/categories")
-    public String findAllCategories(){
-        return "category";
-    }
 }

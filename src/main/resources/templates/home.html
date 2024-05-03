@@ -12,82 +12,72 @@
 
 <body>
     <div class="container">
-<header th:insert="fragments.html :: header">Header</header>
-<main class="content">
-    <div class="container-fluid bg-fondo">
-        <section class="section-welcome py-5 border-bottom border-fuente text-center">
-            <h2 class="welcome-text text-info h2">
-                Bienvenido a
-                    <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food" class="nutrifusion-food-welcome">
-                   <!-- <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food-welcome">-->
-            </h2>
-            <div class="heart-icon pb-3">
-                <i class="fa-solid fa-heart"></i>
+        <header th:insert="fragments.html :: header">Header</header>
+        <main class="content">
+            <div class="container-fluid bg-fondo">
+                <section class="py-5 border-bottom border-fuente text-center">
+                    <h1 class="text-info">
+                        Bienvenido a
+                        <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food"
+                            class="nutrifusion-food-welcome">
+                        <!-- <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food-welcome">-->
+                    </h1>
+                    <i class="fa-solid fa-heart heart-icon pb-3"></i>
+                    <h3 class="pt-2">
+                        "This Is a Message from the Blogger, Write Something Inspirational for the Readers to Enjoy"
+                    </h3>
+                </section>
+
+                <section class="container-lg border-bottom border-fuente text-center py-4">
+                    <h2 class="text-info">CATEGORIAS</h2>
+                    <article class="d-inline-block px-5 py-3">
+                        <div class="d-inline-block px-4 ">
+                            <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3 rounded">
+                            <!-- <img src="../static/images/recetas.png" alt="recipes" class="img-recipes d-block pb-3"> -->
+                            <div class="recipe-tags bg-resalte d-inline-block text-left">
+                                <a href="/recipes">
+                                    <h3 class="d-inline-block ml-2">Recetas</h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-inline-block px-4" th:each="category :${categoryList}">
+                            <img class="d-block pb-3 img-recipes rounded" th:src="@{/images/} + category_ + ${category.id} + .png">
+                            <div class=" bg-resalte recipe-tags text-left">
+                                <a th:href="@{${'/categories/' + category.id + '/recipes'}}">
+                                    <h3 class="d-inline-block ml-2" th:text="${category.name_es}">
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    <br>
+                </section>
+
+                <section class="text-center px-2 py-4">
+                    <i class="globe-icon fa-solid fa-mitten py-3"></i>
+                    <h2 class="text-info pb-2">ACERCA DE NOSOTROS</h2>
+                    <div>
+                        <div class="d-inline-block">
+                            <img th:src="@{/images/about-us.png}" alt="about-us" class="img-aboutus rounded">
+                            <!--  <img src="../static/images/about-us.png" alt="about-us" class="img-aboutus">-->
+                        </div>
+                        <div class="d-inline-block mx-5">
+                            <h3 class="pt-2">NutriFusion Food</h3> <br>
+                            <p>We want to propose a site for the cooking fans to find healthy and tasty
+                                recipes created
+                                by nutritionists. <br>
+                                Our name came from our interest of the fusion between food and nutrition. <br>
+                                We want to create a site more minimalist with all the main information but that
+                                maintains an
+                                attractive style.</p>
+                        </div>
+                    </div>
+
+                </section>
             </div>
-    
-            <p class="message pt-2">
-                "This Is a Message from the Blogger, Write Something Inspirational for the Readers to Enjoy"
-            </p>
-        </section>
-    
-        <section class="section-categories border-bottom border-fuente text-center py-4">
-            <h2 class="categories-text font-size-2 text-info fw-bold">CATEGORIAS</h2>
-            <article class="images px-5 py-3">
-                <div class="recipes d-inline-block px-4 ">
-                   <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3">
-                   <!-- <img src="../static/images/recetas.png" alt="recipes" class="img-recipes d-block pb-3"> --> 
-                    <p class="title-recipe bg-resalte d-inline-block ">Recetas</p>
-                </div>
-                <div class="drinks d-inline-block px-4">
-                  <img th:src="@{/images/bebidas.png}" alt="drinks" class="img-drinks d-block pb-3">
-                    <!-- <img src="../static/images/bebidas.png" alt="drinks" class="img-drinks d-block pb-3 "> --> 
-                    <p class="title-drink bg-resalte d-inline-block ">Bebidas</p>
-                </div>
-                <div class="main-dish d-inline-block  px-4">
-                    <img th:src="@{/images/salados.png}" alt="main-dish" class="img-maindish d-block pb-3 ">
-                   <!-- <img src="../static/images/salados.png" alt="main-dish" class="img-maindish d-block pb-3 "> --> 
-                    <p class="title-maindish bg-resalte d-inline-block ">Salados</p>
-                </div>
-                <div class="desserts d-inline-block px-4">
-                     <img th:src="@{/images/postres.png}" alt="desserts" class="img-desserts d-block pb-3">
-                   <!--  <img src="../static/images/postres.png" alt="desserts" class="img-desserts d-block pb-3">-->
-                    <p class="title-desserts bg-resalte d-inline-block ">Postres</p>
-                </div>
-                <div class="snacks d-inline-block  px-4">
-                     <img th:src="@{/images/snacks.png}" alt="snacks" class="img-snacks d-block pb-3">
-                   <!--  <img src="../static/images/snacks.png" alt="snacks" class="img-snacks d-block pb-3">-->
-                    <p class="title-snacks bg-resalte d-inline-block ">Snacks</p>
-
-                </div>
-            </article>
-            <br>
-
-        </section>
-        <section class="about-us text-center px-2 py-4">
-            <i class="globe-icon fa-solid fa-mitten py-3"></i>
-            <p class="aboutus-text fs-2 text-info pb-2">ACERCA DE NOSOTROS</p>
-        
-            <div class="about-us ">
-                <div class="about-us-image d-inline-block">
-                    <img th:src="@{/images/about-us.png}" alt="about-us" class="img-aboutus">
-                    <!--  <img src="../static/images/about-us.png" alt="about-us" class="img-aboutus">-->
-                </div>
-                <div class="text d-inline-block mx-5">
-                    <p class="NFF-title">NutriFusion Food</p> <br>
-                    <p class="description-aboutus">We want to propose a site for the cooking fans to find healthy and tasty
-                        recipes created
-                        by nutritionists. <br>
-                        Our name came from our interest of the fusion between food and nutrition. <br>
-                        We want to create a site more minimalist with all the main information but that maintains an
-                        attractive style.</p>
-                </div>
-            </div>
-
-        </section>
+        </main>
+        <footer th:insert="fragments.html::footer"></footer>
     </div>
-</main>
-
-<footer th:insert="fragments.html::footer"></footer>
-</div>
 </body>
+
 </html>

@@ -19,6 +19,6 @@ public class MainController {
     @GetMapping("/home")
     public String showMainPage(Model model) {
         model.addAttribute("categoryList", categoryService.findAllCategory());
-        return "homecopy";
+        return "home";
     }
 }
