@@ -1,4 +1,4 @@
-package unit.repository;
+package unit.persistance.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

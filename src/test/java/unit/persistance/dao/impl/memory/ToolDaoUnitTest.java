@@ -1,4 +1,4 @@
-package unit.dao;
+package unit.persistance.dao.impl.memory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -12,10 +12,8 @@ import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.RecipeDaoMemory
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.fpmislata.NutriFusionFood.persistance.dao.RequireDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.RequireDaoMemory;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

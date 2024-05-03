@@ -1,4 +1,4 @@
-package unit.dao;
+package unit.persistance.dao.impl.memory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

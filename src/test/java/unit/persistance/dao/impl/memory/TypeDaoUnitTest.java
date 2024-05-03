@@ -1,4 +1,4 @@
-package unit.dao;
+package unit.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;

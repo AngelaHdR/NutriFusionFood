@@ -1,4 +1,4 @@
-package unit.repository;
+package unit.persistance.repository;
 
 import com.fpmislata.NutriFusionFood.domain.entity.*;
 import com.fpmislata.NutriFusionFood.domain.service.impl.RecipeServiceImpl;
