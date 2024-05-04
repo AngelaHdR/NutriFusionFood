@@ -8092,13 +8092,30 @@ ul {
   margin-left: 10px;
 }
 
+.recipe-tags {
+  width: 13vw;
+  height: 40px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.recipe-tags ::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0px;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid #D0EEF4;
+}
+
 .recipe-picture img {
   height: 400px;
   width: 100%;
 }
 
 .profile-picture {
-  max-height: 50vh;
+  max-height: 55vh;
   width: 90%;
 }
 
@@ -8151,23 +8168,6 @@ ul {
   width: 100%;
 }
 */
-.recipe-tags {
-  width: 13vw;
-  height: 40px;
-  letter-spacing: 2px;
-  position: relative;
-}
-
-.recipe-tags ::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0px;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-right: 20px solid #D0EEF4;
-}
-
 h1 {
   font-weight: 400;
   font-size: 3.5rem;

@@ -176,6 +176,23 @@ ul {
   margin-left: 10px;
 }
 
+.recipe-tags {
+  width: 13vw;
+  height: 40px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.recipe-tags ::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0px;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid #D0EEF4;
+}
+
 //RECIPE LIST
 .recipe-picture img {
   height: 400px;
@@ -186,9 +203,11 @@ ul {
 //PROFILE
 
 .profile-picture{
-  max-height: 50vh;
+  max-height: 55vh;
   width: 90%;
 }
+
+
 /*.welcome-text, .title-categories{
   font-size: $title_size;
 }
@@ -239,22 +258,7 @@ ul {
 }
 */
 
-.recipe-tags {
-  width: 13vw;
-  height: 40px;
-  letter-spacing: 2px;
-  position: relative;
-}
 
-.recipe-tags ::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0px;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-right: 20px solid #D0EEF4;
-}
 
 
 //Añadir nuevas variable a continuacion de la importadas por bootstrap
