@@ -8,12 +8,16 @@ public class TypeMapper {
         if (typeEntity == null){
             return null;
         }
-        return new Type(typeEntity.getId(), typeEntity.getName_es(), typeEntity.getName_en());
+        return new Type(
+                typeEntity.getId(),
+                typeEntity.getName());
     }
     public static TypeEntity toTypeEntity(Type type){
         if (type == null){
             return null;
         }
-        return new TypeEntity(type.getId(),type.getName_es(), type.getName_en());
+        return new TypeEntity(
+                type.getId(),
+                type.getName());
     }
 }

@@ -8,13 +8,26 @@ public class IngredientMapper {
         if (ingredientEntity == null){
             return null;
         }
-        return new Ingredient(ingredientEntity.getId(), ingredientEntity.isGluten(),ingredientEntity.isLactose(),ingredientEntity.getName_es(), ingredientEntity.getName_en(), ingredientEntity.getStartSeason(),ingredientEntity.getEndSeason());
+        return new Ingredient(
+                ingredientEntity.getId(),
+                ingredientEntity.isGluten(),
+                ingredientEntity.isLactose(),
+                ingredientEntity.getName(),
+                ingredientEntity.getStartSeason(),
+                ingredientEntity.getEndSeason());
     }
 
     public static IngredientEntity toIngredientEntity(Ingredient ingredient){
         if (ingredient == null){
             return null;
         }
-        return new IngredientEntity(ingredient.getId(),ingredient.isGluten(),ingredient.isLactose(),ingredient.getName_es(), ingredient.getName_en(), ingredient.getStartSeason(),ingredient.getEndSeason(),ingredient.getType().getId());
+        return new IngredientEntity(
+                ingredient.getId(),
+                ingredient.isGluten(),
+                ingredient.isLactose(),
+                ingredient.getName(),
+                ingredient.getStartSeason(),
+                ingredient.getEndSeason(),
+                ingredient.getType().getId());
     }
 }

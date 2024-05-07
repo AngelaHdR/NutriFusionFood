@@ -11,14 +11,18 @@ public class ToolMapper {
         if (toolEntity == null){
             return null;
         }
-        return new Tool(toolEntity.getId(),toolEntity.getName_es(), toolEntity.getName_en());
+        return new Tool(
+                toolEntity.getId(),
+                toolEntity.getName());
     }
 
     public static ToolEntity toToolEntity(Tool tool){
         if (tool == null){
             return null;
         }
-        return new ToolEntity(tool.getId(),tool.getName_es(), tool.getName_en());
+        return new ToolEntity(
+                tool.getId(),
+                tool.getName());
     }
     public static List<Tool> toToolList(List<ToolEntity> toolEntityList){
         List<Tool> toolList = new ArrayList<>();

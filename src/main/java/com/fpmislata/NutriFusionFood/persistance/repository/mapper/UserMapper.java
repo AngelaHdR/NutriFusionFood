@@ -11,13 +11,31 @@ public class UserMapper {
         if (userEntity == null) {
             return null;
         }
-        return new User(userEntity.getId(),userEntity.getName(),userEntity.getSurname1(), userEntity.getSurname2(), userEntity.getBirthDate(),userEntity.isNutritionist(),userEntity.getPassword(),userEntity.getEmail(),userEntity.getUsername());
+        return new User(
+                userEntity.getId(),
+                userEntity.getName(),
+                userEntity.getSurname1(),
+                userEntity.getSurname2(),
+                userEntity.getBirthDate(),
+                userEntity.isNutritionist(),
+                userEntity.getPassword(),
+                userEntity.getEmail(),
+                userEntity.getUsername());
     }
     public static UserEntity toUserEntity(User user){
         if (user == null) {
             return null;
         }
-        return new UserEntity(user.getId(), user.getName(), user.getSurname1(), user.getSurname2(), user.getBirthDate(),user.isNutritionist(),user.getPassword(),user.getEmail(),user.getUsername());
+        return new UserEntity(
+                user.getId(),
+                user.getName(),
+                user.getSurname1(),
+                user.getSurname2(),
+                user.getBirthDate(),
+                user.isNutritionist(),
+                user.getPassword(),
+                user.getEmail(),
+                user.getUsername());
     }
     public static List<User> toUserList(List<UserEntity> userEntityList){
         List<User> userList = new ArrayList<>();

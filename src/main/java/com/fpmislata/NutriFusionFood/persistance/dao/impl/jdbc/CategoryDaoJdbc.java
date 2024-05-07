@@ -15,17 +15,7 @@ import java.util.List;
 public class CategoryDaoJdbc implements CategoryDao {
     private List<CategoryEntity> categoryEntityList;
     private CategoryEntity categoryEntity;
-    private String lang;
-    private final AppPropertiesReader appPropertiesReader = AppPropertiesReader.getInstance();
-    public CategoryDaoJdbc(){
-        System.out.println("Changing the language...");
-        try {
-            lang = appPropertiesReader.getProperty("lang");
-            System.out.println("Language changed to: " + lang);
-        } catch (Exception e) {
-            throw new RuntimeException("Error changing language");
-        }
-    }
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
 
     @Override
     public List<CategoryEntity> findAllCategory() {

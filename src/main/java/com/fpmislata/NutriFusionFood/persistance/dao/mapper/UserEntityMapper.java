@@ -11,10 +11,15 @@ public class UserEntityMapper {
             return null;
         }
         try {
-            return new UserEntity(resultSet.getInt("id_user"),resultSet.getString("name_user"),
-                    resultSet.getString("surname1"),resultSet.getString("surname2"),
-                    resultSet.getString("birth_date"),resultSet.getBoolean("nutritionist"),
-                    resultSet.getString("pwd"),resultSet.getString("email"),
+            return new UserEntity(
+                    resultSet.getInt("id_user"),
+                    resultSet.getString("name_user"),
+                    resultSet.getString("surname1"),
+                    resultSet.getString("surname2"),
+                    resultSet.getString("birth_date"),
+                    resultSet.getBoolean("nutritionist"),
+                    resultSet.getString("pwd"),
+                    resultSet.getString("email"),
                     resultSet.getString("username"));
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -11,9 +11,15 @@ public class RecipeEntityMapper {
             return null;
         }
         try {
-            return new RecipeEntity(resultSet.getInt("id_recipe"),resultSet.getString("name_recipe"),
-                    resultSet.getString("lang"), resultSet.getString("description_recipe"), resultSet.getString("steps"),
-                    resultSet.getInt("time_recipe"), resultSet.getInt("id_user"),resultSet.getInt("id_category"));
+            return new RecipeEntity(
+                    resultSet.getInt("id_recipe"),
+                    resultSet.getString("name_recipe"),
+                    resultSet.getString("lang"),
+                    resultSet.getString("description_recipe"),
+                    resultSet.getString("steps"),
+                    resultSet.getInt("time_recipe"),
+                    resultSet.getInt("id_user"),
+                    resultSet.getInt("id_category"));
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

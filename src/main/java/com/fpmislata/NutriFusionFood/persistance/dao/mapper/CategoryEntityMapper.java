@@ -12,7 +12,8 @@ public class CategoryEntityMapper {
             return null;
         }
         try {
-            return new CategoryEntity(resultSet.getInt("id_category"),
+            return new CategoryEntity(
+                    resultSet.getInt("id_category"),
                     resultSet.getString("name"));
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.RequireDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RequireEntity;
@@ -12,14 +13,24 @@ import java.util.List;
 public class ToolDaoMemory implements ToolDao {
     private RequireDao requireDao;
 
-    List<ToolEntity> toolEntityList = new ArrayList<>(Arrays.asList(
-            new ToolEntity(1,"cuchara","spoon"),
-            new ToolEntity(2,"bol","bowl"),
-            new ToolEntity(3,"sarten","frying pan"),
-            new ToolEntity(4,"olla","pot"),
-            new ToolEntity(5,"vaso medidor","measuring cup"),
-            new ToolEntity(6,"batidora","blender")
+    List<ToolEntity> toolEntityList_es = new ArrayList<>(Arrays.asList(
+            new ToolEntity(1,"cuchara"),
+            new ToolEntity(2,"bol"),
+            new ToolEntity(3,"sarten"),
+            new ToolEntity(4,"olla"),
+            new ToolEntity(5,"vaso medidor"),
+            new ToolEntity(6,"batidora")
     ));
+    List<ToolEntity> toolEntityList_en = new ArrayList<>(Arrays.asList(
+            new ToolEntity(1,"spoon"),
+            new ToolEntity(2,"bowl"),
+            new ToolEntity(3,"frying pan"),
+            new ToolEntity(4,"pot"),
+            new ToolEntity(5,"measuring cup"),
+            new ToolEntity(6,"blender")
+    ));
+
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
 
     public ToolDaoMemory() {
         this.requireDao = new RequireDaoMemory();
@@ -27,11 +38,23 @@ public class ToolDaoMemory implements ToolDao {
 
     @Override
     public List<ToolEntity> findAllTool() {
+        List<ToolEntity> toolEntityList=null;
+        if (lang.equals("es")){
+            toolEntityList=toolEntityList_es;
+        } else if (lang.equals("en")) {
+            toolEntityList=toolEntityList_en;
+        }
         return toolEntityList;
     }
 
     @Override
     public ToolEntity findByIdTool(Integer id) {
+        List<ToolEntity> toolEntityList=null;
+        if (lang.equals("es")){
+            toolEntityList=toolEntityList_es;
+        } else if (lang.equals("en")) {
+            toolEntityList=toolEntityList_en;
+        }
         for (ToolEntity toolEntity:toolEntityList){
             if (toolEntity.getId().equals(id)){
                 return toolEntity;
@@ -52,11 +75,19 @@ public class ToolDaoMemory implements ToolDao {
 
     @Override
     public void insert(ToolEntity toolEntity) {
-        toolEntityList.add(toolEntity);
+        if (lang.equals("es")){
+            toolEntityList_es.add(toolEntity);
+        } else if (lang.equals("en")) {
+            toolEntityList_en.add(toolEntity);
+        }
     }
 
     @Override
     public void delete(Integer id) {
-        toolEntityList.remove(findByIdTool(id));
+        if (lang.equals("es")){
+            toolEntityList_es.remove(findByIdTool(id));
+        } else if (lang.equals("en")) {
+            toolEntityList_en.remove(findByIdTool(id));
+        }
     }
 }

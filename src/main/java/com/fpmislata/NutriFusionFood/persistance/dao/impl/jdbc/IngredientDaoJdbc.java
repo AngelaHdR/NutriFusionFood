@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
@@ -15,7 +16,6 @@ import java.util.List;
 public class IngredientDaoJdbc implements IngredientDao {
     private IngredientEntity ingredientEntity;
     private List<IngredientEntity> ingredientEntityList;
-
     @Override
     public List<IngredientEntity> findAllIngredient() {
         try {
@@ -44,18 +44,18 @@ public class IngredientDaoJdbc implements IngredientDao {
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
         }
-
         return ingredientEntity;
     }
 
 
     @Override
     public void insert(IngredientEntity ingredientEntity) {
-    String sql = "INSERT INTO ingredient(id_ingredient, gluten, lactose, name_es, name_en, start_season, end_season, id_type) VALUES(?,?,?,?,?,?,?,?)";
-    List<Object> params = List.of(ingredientEntity.getId(), ingredientEntity.isGluten(), ingredientEntity.isLactose(),
-            ingredientEntity.getName_es(), ingredientEntity.getName_en(), ingredientEntity.getStartSeason(),
-            ingredientEntity.getEndSeason(), ingredientEntity.getTypeId());
-    Rawsql.insert(sql, params);
+        String lang = AppPropertiesReader.getInstance().getProperty("lang");
+        String sql = "INSERT INTO ingredient(id_ingredient, gluten, lactose, name_"+lang+", start_season, end_season, id_type) VALUES(?,?,?,?,?,?,?,?)";
+        List<Object> params = List.of(ingredientEntity.getId(), ingredientEntity.isGluten(), ingredientEntity.isLactose(),
+                ingredientEntity.getName(), ingredientEntity.getStartSeason(),
+                ingredientEntity.getEndSeason(), ingredientEntity.getTypeId());
+        Rawsql.insert(sql, params);
     }
 
     @Override
@@ -68,8 +68,7 @@ public class IngredientDaoJdbc implements IngredientDao {
     @Override
     public List<IngredientEntity> findByRecipe(Integer recipeId) {
         try {
-            String sql = "SELECT i.id_ingredient, i.gluten, i.lactose, i.name_es, i.name_en, i.start_season, i.end_season, i.id_type " +
-                    "FROM ingredient i inner join composed c on i.id_ingredient= c.id_ingredient where c.id_recipe= ?;";
+            String sql = "SELECT i.* FROM ingredient i inner join composed c on i.id_ingredient = c.id_ingredient where c.id_recipe= ?;";
             List<Object> params = List.of(recipeId);
             ResultSet resultSet = Rawsql.select(sql, params);
             ingredientEntityList = new ArrayList<>();

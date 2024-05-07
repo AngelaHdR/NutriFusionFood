@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
@@ -14,11 +15,12 @@ import java.util.List;
 public class TypeDaoJdbc implements TypeDao {
     private List<TypeEntity> typeEntityList;
     private TypeEntity typeEntity;
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
 
     @Override
     public List<TypeEntity> findAllType() {
         try {
-            String sql = " SELECT * FROM type";
+            String sql = " SELECT id_type,name_"+lang+" FROM type";
             ResultSet resultSet = Rawsql.select(sql, null);
             typeEntityList = new ArrayList<>();
             while (resultSet.next()) {
@@ -33,7 +35,7 @@ public class TypeDaoJdbc implements TypeDao {
     @Override
     public TypeEntity findByIdType(Integer id) {
         try {
-            String sql = " SELECT * FROM type WHERE id_type = ?";
+            String sql = " SELECT id_type,name_"+lang+" FROM type WHERE id_type = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();

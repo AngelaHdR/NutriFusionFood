@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
@@ -13,11 +14,12 @@ import java.util.List;
 public class ToolDaoJdbc implements ToolDao {
     private List<ToolEntity> toolEntityList;
     private ToolEntity toolEntity;
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
 
     @Override
     public List<ToolEntity> findAllTool() {
         try {
-            String sql = "SELECT * FROM tool";
+            String sql = "SELECT id_tool,name_"+lang+" FROM tool";
             ResultSet resultSet = Rawsql.select(sql, null);
             toolEntityList = new ArrayList<>();
             while (resultSet.next()) {
@@ -32,7 +34,7 @@ public class ToolDaoJdbc implements ToolDao {
     @Override
     public ToolEntity findByIdTool(Integer id) {
         try {
-            String sql = "SELECT * FROM tool WHERE id_tool = ?";
+            String sql = "SELECT id_tool,name_"+lang+" FROM tool WHERE id_tool = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
@@ -46,7 +48,7 @@ public class ToolDaoJdbc implements ToolDao {
     @Override
     public List<ToolEntity> findByRecipe(Integer recipeId) {
         try {
-            String sql = "SELECT t.id_tool,t.name_es,t.name_en FROM tool t " +
+            String sql = "SELECT t.id_tool,t.name_"+lang+" FROM tool t " +
                     "inner join required r on t.id_tool= r.id_tool where r.id_recipe = ?";
             List<Object> params = List.of(recipeId);
             ResultSet resultSet = Rawsql.select(sql, params);
@@ -62,8 +64,8 @@ public class ToolDaoJdbc implements ToolDao {
 
     @Override
     public void insert(ToolEntity toolEntity) {
-        String sql = "INSERT INTO tool(id_tool, name_es, name_en) VALUES(?,?,?)";
-        List<Object> params = List.of(toolEntity.getId(), toolEntity.getName_es(), toolEntity.getName_en());
+        String sql = "INSERT INTO tool(id_tool,name_"+lang+") VALUES(?,?,?)";
+        List<Object> params = List.of(toolEntity.getId(), toolEntity.getName());
         Rawsql.insert(sql, params);
     }
 

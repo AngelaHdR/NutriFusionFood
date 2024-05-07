@@ -21,17 +21,7 @@ public class CategoryDaoMemory implements CategoryDao {
             new CategoryEntity(3,"drink"),
             new CategoryEntity(4,"snack")
     );
-    private final AppPropertiesReader appPropertiesReader = AppPropertiesReader.getInstance();
-    private String lang;
-    public CategoryDaoMemory(){
-        System.out.println("Changing the language...");
-        try {
-            lang = appPropertiesReader.getProperty("lang");
-            System.out.println("Language changed to: " + lang);
-        } catch (Exception e) {
-            throw new RuntimeException("Error changing language");
-        }
-    }
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
 
     //No se pueden insertar ni borrar, solo buscar
     @Override
