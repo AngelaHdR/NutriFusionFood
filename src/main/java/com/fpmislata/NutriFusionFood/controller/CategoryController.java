@@ -30,7 +30,7 @@ public class CategoryController {
     public String findRecipeByIdCategory(Model model, @PathVariable Integer id) {
         List<Recipe> recipeList = this.categoryService.findRecipeByCategory(id);
         model.addAttribute("recipeList", recipeList);
-        String category=recipeList.get(0).getCategory().getName_es();
+        String category=recipeList.get(0).getCategory().getName();
         model.addAttribute("category",category);
         return "recipeList";
     }

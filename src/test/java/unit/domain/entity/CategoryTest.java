@@ -15,33 +15,26 @@ public class CategoryTest {
     @ParameterizedTest
     @CsvSource({"1,salado,main dish","2,postre,dessert","3,bebida,drink","4,snack,snack"})
     @DisplayName("Constructor with 3 parameters")
-    void createConstructorAllParameters(int id, String name_es, String name_en) {
-        category = new Category(id, name_es, name_en);
+    void createConstructorAllParameters(int id, String name) {
+        category = new Category(id, name);
         assertAll(
                 ()->assertEquals(id, category.getId()),
-                ()->assertEquals(name_es, category.getName_es()),
-                ()->assertEquals(name_en, category.getName_en())
+                ()->assertEquals(name, category.getName())
         );
     }
     @Test
     @DisplayName("Not allow to modify the id")
     void notModifyId() {
-        category = new Category(1, "postre", "dessert");
+        category = new Category(1, "postre");
         category.setId(2);
         assertEquals(1, category.getId());
     }
     @Test
     @DisplayName("Not allow to modify the name in spanish")
     void notModifyNameEs() {
-        category = new Category(1, "postre", "dessert");
-        category.setName_es("dessert");
-        assertEquals("postre", category.getName_es());
+        category = new Category(1, "postre");
+        category.setName("dessert");
+        assertEquals("postre", category.getName());
     }
-    @Test
-    @DisplayName("Not allow to modify the name in english")
-    void notModifyNameEn() {
-        category = new Category(1, "postre", "dessert");
-        category.setName_en("postre");
-        assertEquals("dessert", category.getName_en());
-    }
+
 }

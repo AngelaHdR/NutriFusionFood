@@ -23,10 +23,10 @@ public class CategoryDaoUnitTest {
     public void testFindAllCategories() {
         List<CategoryEntity> actualCategoryList = categoryDao.findAllCategory();
         List<CategoryEntity> expectedCategoryList = List.of(
-            new CategoryEntity(1,"salado","main dish"),
-            new CategoryEntity(2,"postre","dessert"),
-            new CategoryEntity(3,"bebida","drink"),
-            new CategoryEntity(4,"snack","snack")
+            new CategoryEntity(1,"salado"),
+            new CategoryEntity(2,"postre"),
+            new CategoryEntity(3,"bebida"),
+            new CategoryEntity(4,"snack")
         );
         assertEquals(expectedCategoryList, actualCategoryList);
     }
@@ -35,7 +35,7 @@ public class CategoryDaoUnitTest {
     @Test
     public void testFindCategoryById() {
         CategoryEntity actualCategory = categoryDao.findByIdCategory(1);
-        CategoryEntity expectedCategory = new CategoryEntity(1,"salado","main dish");
+        CategoryEntity expectedCategory = new CategoryEntity(1,"salado");
         assertEquals(expectedCategory, actualCategory);
     }
     @ParameterizedTest

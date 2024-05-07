@@ -8,13 +8,13 @@ public class CategoryMapper {
         if (categoryEntity == null){
             return null;
         }
-        return new Category(categoryEntity.getId(),categoryEntity.getName_es(), categoryEntity.getName_en());
+        return new Category(categoryEntity.getId(),categoryEntity.getName());
     }
 
     public static CategoryEntity toCategoryEntity(Category category){
         if (category == null){
             return null;
         }
-        return new CategoryEntity(category.getId(), category.getName_es(), category.getName_en());
+        return new CategoryEntity(category.getId(), category.getName());
     }
 }

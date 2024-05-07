@@ -29,7 +29,7 @@
                             <img class="d-block pb-3 img-recipes rounded" th:src="@{/images/} + category_ + ${category.id} + .png">
                             <div class=" bg-resalte recipe-tags text-left">
                                 <a th:href="@{${'/categories/' + category.id + '/recipes'}}">
-                                    <h3 class="d-inline-block ml-2" th:text="${category.name_es}">
+                                    <h3 class="d-inline-block ml-2" th:text="${category.name}">
                                     </h3>
                                 </a>
                             </div>
