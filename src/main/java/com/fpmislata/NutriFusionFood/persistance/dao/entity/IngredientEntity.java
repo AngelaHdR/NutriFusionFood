@@ -4,7 +4,7 @@ public class IngredientEntity {
     private Integer id;
     private Boolean gluten;
     private Boolean lactose;
-    private String name
+    private String name;
     private Integer startSeason;
     private Integer endSeason;
     private Integer typeId;

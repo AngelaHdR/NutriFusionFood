@@ -4,8 +4,7 @@ public class Ingredient {
     private Integer id;
     private Boolean gluten;
     private Boolean lactose;
-    private String name_es;
-    private String name_en;
+    private String name;
     private Integer startSeason;
     private Integer endSeason;
     private Type type;
@@ -13,12 +12,11 @@ public class Ingredient {
     //Constructors (void, basic parameters and all parameters)
     public Ingredient() {
     }
-    public Ingredient(Integer id, Boolean gluten, Boolean lactose, String name_es, String name_en, Integer startSeason, Integer endSeason) {
+    public Ingredient(Integer id, Boolean gluten, Boolean lactose, String name, Integer startSeason, Integer endSeason) {
         this.id = id;
         this.gluten = gluten;
         this.lactose = lactose;
-        this.name_es = name_es;
-        this.name_en = name_en;
+        this.name = name;
         this.startSeason = startSeason;
         this.endSeason = endSeason;
     }
@@ -26,8 +24,7 @@ public class Ingredient {
         this.id = id;
         this.gluten = gluten;
         this.lactose = lactose;
-        this.name_es = name_es;
-        this.name_en = name_en;
+        this.name = name;
         this.startSeason = startSeason;
         this.endSeason = endSeason;
         this.type = type;
@@ -55,18 +52,11 @@ public class Ingredient {
         this.lactose = lactose;
     }
 
-    public String getName_es() {
-        return name_es;
+    public String getName() {
+        return name;
     }
-    public void setName_es(String name_es) {
-        this.name_es = name_es;
-    }
-
-    public String getName_en() {
-        return name_en;
-    }
-    public void setName_en(String name_en) {
-        this.name_en = name_en;
+    public void setName_es(String name) {
+        this.name = name;
     }
 
     public Integer getStartSeason() {
