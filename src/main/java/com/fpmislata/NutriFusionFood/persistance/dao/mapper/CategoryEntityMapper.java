@@ -13,8 +13,7 @@ public class CategoryEntityMapper {
         }
         try {
             return new CategoryEntity(resultSet.getInt("id_category"),
-                    resultSet.getString("name_es"),
-                    resultSet.getString("name_en"));
+                    resultSet.getString("name"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -1,6 +1,6 @@
 package unit.service;
 
-import com.fpmislata.NutriFusionFood.common.UserIoC;
+import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
 import mock.repository.UserRepositoryMock;

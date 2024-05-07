@@ -1,10 +1,12 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.CategoryEntityMapper;
 
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,12 +15,23 @@ import java.util.List;
 public class CategoryDaoJdbc implements CategoryDao {
     private List<CategoryEntity> categoryEntityList;
     private CategoryEntity categoryEntity;
+    private String lang;
+    private final AppPropertiesReader appPropertiesReader = AppPropertiesReader.getInstance();
+    public CategoryDaoJdbc(){
+        System.out.println("Changing the language...");
+        try {
+            lang = appPropertiesReader.getProperty("lang");
+            System.out.println("Language changed to: " + lang);
+        } catch (Exception e) {
+            throw new RuntimeException("Error changing language");
+        }
+    }
 
     @Override
     public List<CategoryEntity> findAllCategory() {
         try {
             categoryEntityList = new ArrayList<>();
-            String sql = "SELECT * FROM category";
+            String sql = "SELECT id_category,name_"+lang+" as name FROM category";
             ResultSet resultSet = Rawsql.select(sql, null);
             while (resultSet.next()) {
                 categoryEntityList.add(CategoryEntityMapper.toCategoryEntity(resultSet));
@@ -33,7 +46,7 @@ public class CategoryDaoJdbc implements CategoryDao {
     @Override
     public CategoryEntity findByIdCategory(Integer id) {
         try {
-            String sql = "SELECT * FROM category WHERE id_category = ?";
+            String sql = "SELECT id_category,name_"+lang+" as name FROM category WHERE id_category = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
