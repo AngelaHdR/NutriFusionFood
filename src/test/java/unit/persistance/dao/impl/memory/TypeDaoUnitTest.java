@@ -20,12 +20,12 @@ public class TypeDaoUnitTest {
     public void testFindAllTypes(){
         List<TypeEntity> actualList = typeDao.findAllType();
         List<TypeEntity> expectedList = List.of(
-                new TypeEntity(1,"carne","meet"),
-                new TypeEntity(2,"pescado","fish"),
-                new TypeEntity(3,"lacteo","dairy"),
-                new TypeEntity(4,"verdura","vegetable"),
-                new TypeEntity(5,"fruta","fruit"),
-                new TypeEntity(6,"hidrados","carbs")
+                new TypeEntity(1,"carne"),
+                new TypeEntity(2,"pescado"),
+                new TypeEntity(3,"lacteo"),
+                new TypeEntity(4,"verdura"),
+                new TypeEntity(5,"fruta"),
+                new TypeEntity(6,"hidrados")
         );
         assertEquals(expectedList,actualList);
     }
@@ -33,7 +33,7 @@ public class TypeDaoUnitTest {
     @DisplayName("Find types for given id")
     public void testFindTypeById(){
         TypeEntity actualType = typeDao.findByIdType(5);
-        TypeEntity expectedType =   new TypeEntity(5,"fruta","fruit");
+        TypeEntity expectedType =   new TypeEntity(5,"fruta");
         assertEquals(expectedType, actualType);
     }
 

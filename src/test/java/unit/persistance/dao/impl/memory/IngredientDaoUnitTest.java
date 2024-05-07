@@ -24,11 +24,11 @@ public class IngredientDaoUnitTest {
     public void testFindAllIngredients() {
         List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
         List<IngredientEntity> expectedIngredientList = new ArrayList<>(Arrays.asList(
-            new IngredientEntity(1,true,false,"pan","bread",10,12, 6),
-            new IngredientEntity(2,false,false,"pollo","chicken",10,12, 1),
-            new IngredientEntity(3,false,false,"tomate","tomato",10,12, 5),
-            new IngredientEntity(4,false,false,"puerro","leek",10,12, 4),
-            new IngredientEntity(5,false,true,"helado","ice cream",10,12, 3)
+            new IngredientEntity(1,true,false,"pan",10,12, 6),
+            new IngredientEntity(2,false,false,"pollo",10,12, 1),
+            new IngredientEntity(3,false,false,"tomate",10,12, 5),
+            new IngredientEntity(4,false,false,"puerro",10,12, 4),
+            new IngredientEntity(5,false,true,"helado",10,12, 3)
         ));
         assertEquals(expectedIngredientList, actualIngredientList);
     }
@@ -37,7 +37,7 @@ public class IngredientDaoUnitTest {
     @Test
     public void testFindIngredientsById() {
         IngredientEntity actualIngredient = ingredientDao.findByIdIngredient(1);
-        IngredientEntity expectedIngredient = new IngredientEntity(1,true,false,"pan","bread",10,12, 6);
+        IngredientEntity expectedIngredient = new IngredientEntity(1,true,false,"pan",10,12, 6);
         assertEquals(expectedIngredient, actualIngredient);
     }
     @ParameterizedTest
@@ -52,7 +52,7 @@ public class IngredientDaoUnitTest {
     @Test
     public void testFindIngredientsByRecipe() {
         List<IngredientEntity> actualIngredientList = ingredientDao.findByRecipe(2);
-        List<IngredientEntity> expectedIngredientList = new ArrayList<>(Arrays.asList(new IngredientEntity(3,false,false,"tomate","tomato",10,12, 5)));
+        List<IngredientEntity> expectedIngredientList = new ArrayList<>(Arrays.asList(new IngredientEntity(3,false,false,"tomate",10,12, 5)));
         assertEquals(expectedIngredientList, actualIngredientList);
     }
     @ParameterizedTest
@@ -67,15 +67,15 @@ public class IngredientDaoUnitTest {
     @DisplayName("Insert new ingredients into the database")
     @Test
     public void testInsertNewIngredients() {
-        ingredientDao.insert(new IngredientEntity(6,false,true,"queso","cheese",10,12, 2));
+        ingredientDao.insert(new IngredientEntity(6,false,true,"queso",10,12, 2));
         List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
         List<IngredientEntity> expectedIngredientList = new ArrayList<>(Arrays.asList(
-            new IngredientEntity(1,true,false,"pan","bread",10,12, 6),
-            new IngredientEntity(2,false,false,"pollo","chicken",10,12, 1),
-            new IngredientEntity(3,false,false,"tomate","tomato",10,12, 5),
-            new IngredientEntity(4,false,false,"puerro","leek",10,12, 4),
-            new IngredientEntity(5,false,true,"helado","ice cream",10,12, 3),
-            new IngredientEntity(6,false,true,"queso","cheese",10,12, 2)
+            new IngredientEntity(1,true,false,"pan",10,12, 6),
+            new IngredientEntity(2,false,false,"pollo",10,12, 1),
+            new IngredientEntity(3,false,false,"tomate",10,12, 5),
+            new IngredientEntity(4,false,false,"puerro",10,12, 4),
+            new IngredientEntity(5,false,true,"helado",10,12, 3),
+            new IngredientEntity(6,false,true,"queso",10,12, 2)
         ));
         assertEquals(expectedIngredientList, actualIngredientList);
     }
@@ -86,10 +86,10 @@ public class IngredientDaoUnitTest {
         ingredientDao.delete(5);
         List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
         List<IngredientEntity> expectedIngredientList = new ArrayList<>(Arrays.asList(
-            new IngredientEntity(1,true,false,"pan","bread",10,12, 6),
-            new IngredientEntity(2,false,false,"pollo","chicken",10,12, 1),
-            new IngredientEntity(3,false,false,"tomate","tomato",10,12, 5),
-            new IngredientEntity(4,false,false,"puerro","leek",10,12, 4)
+            new IngredientEntity(1,true,false,"pan",10,12, 6),
+            new IngredientEntity(2,false,false,"pollo",10,12, 1),
+            new IngredientEntity(3,false,false,"tomate",10,12, 5),
+            new IngredientEntity(4,false,false,"puerro",10,12, 4)
         ));
         assertEquals(expectedIngredientList, actualIngredientList);
     }

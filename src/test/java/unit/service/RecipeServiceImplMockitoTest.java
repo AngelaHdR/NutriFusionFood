@@ -31,10 +31,10 @@ public class RecipeServiceImplMockitoTest {
     @InjectMocks
     private RecipeServiceImpl recipeService;
     private final Recipe recipe1 = new Recipe(2, "Salmorejo", "es", "x", 60, "Paso 1...",
-            new ArrayList<>(List.of(new Ingredient(1, true, false, "pan", "bread", 1, 12))),
-            new ArrayList<>(List.of(new Tool(1, "batidora", "blender"))),
+            new ArrayList<>(List.of(new Ingredient(1, true, false, "pan", 1, 12))),
+            new ArrayList<>(List.of(new Tool(1, "batidora"))),
             new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
-            new Category(1, "salado", "main dish"), new HashMap<>());
+            new Category(1, "salado"), new HashMap<>());
     private final Recipe recipe2 = new Recipe(4, "Torrijas", "es", "x", "Paso 1...", 45);
     private final List<Recipe> recipeList = List.of(recipe1, recipe2);
 
@@ -90,10 +90,10 @@ public class RecipeServiceImplMockitoTest {
         @DisplayName("Insert new recipe")
         void insertNewRecipe() {
             Recipe recipe3 = new Recipe(3, "Ramen", "es", "x", 240, "Paso 1...",
-                    new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", "chinesse ramen", 1, 12))),
-                    new ArrayList<>(List.of(new Tool(2, "cazo", "pot"))),
+                    new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", 1, 12))),
+                    new ArrayList<>(List.of(new Tool(2, "cazo"))),
                     new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
-                    new Category(1, "salado", "main dish"), new HashMap<>());
+                    new Category(1, "salado"), new HashMap<>());
             recipeService.insert(recipe3);
             verify(recipeRepositoryMock).insert(recipe3);
         }

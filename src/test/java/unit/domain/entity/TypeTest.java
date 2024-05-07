@@ -16,33 +16,25 @@ public class TypeTest {
     @ParameterizedTest
     @CsvSource({"1,carne,meet","2,pescado,fish","3,lacteo,dairy","4,verdura,vegetable","5,fruta,fruit","6,hidrados,carbs"})
     @DisplayName("Constructor with 3 parameters")
-    void createAllParameters(int id, String name_es, String name_en) {
-        type = new Type(id, name_es, name_en);
+    void createAllParameters(int id, String name) {
+        type = new Type(id, name);
         assertAll(
                 ()->assertEquals(id, type.getId()),
-                ()->assertEquals(name_es, type.getName_es()),
-                ()->assertEquals(name_en, type.getName_en())
+                ()->assertEquals(name, type.getName())
         );
     }
     @Test
     @DisplayName("Not allow to modify the id")
     void notModifyId() {
-        type = new Type(1, "carne", "meat");
+        type = new Type(1, "carne");
         type.setId(2);
         assertEquals(1, type.getId());
     }
     @Test
     @DisplayName("Not allow to modify the name in spanish")
-    void notModifyNameEs() {
-        type = new Type(1, "carne", "meat");
-        type.setName_es("meat");
-        assertEquals("carne", type.getName_es());
-    }
-    @Test
-    @DisplayName("Not allow to modify the name in english")
-    void notModifyNameEn() {
-        type = new Type(1, "carne", "meat");
-        type.setName_en("carne");
-        assertEquals("meat", type.getName_en());
+    void notModifyName() {
+        type = new Type(1, "carne");
+        type.setName("meat");
+        assertEquals("carne", type.getName());
     }
 }

@@ -27,12 +27,12 @@ public class ToolDaoUnitTest {
     public void testFindAllTools() {
         List<ToolEntity> actualToolList = toolDao.findAllTool();
         List<ToolEntity> expectedToolList = new ArrayList<>(Arrays.asList(
-            new ToolEntity(1,"cuchara","spoon"),
-            new ToolEntity(2,"bol","bowl"),
-            new ToolEntity(3,"sarten","frying pan"),
-            new ToolEntity(4,"olla","pot"),
-            new ToolEntity(5,"vaso medidor","measuring cup"),
-            new ToolEntity(6,"batidora","blender")
+            new ToolEntity(1,"cuchara"),
+            new ToolEntity(2,"bol"),
+            new ToolEntity(3,"sarten"),
+            new ToolEntity(4,"olla"),
+            new ToolEntity(5,"vaso medidor"),
+            new ToolEntity(6,"batidora")
         ));
         assertEquals(expectedToolList, actualToolList);
     }
@@ -41,7 +41,7 @@ public class ToolDaoUnitTest {
     @Test
     public void testFindToolById() {
         ToolEntity actualTool = toolDao.findByIdTool(1);
-        ToolEntity expectedTool = new ToolEntity(1,"cuchara","spoon");
+        ToolEntity expectedTool = new ToolEntity(1,"cuchara");
         assertEquals(expectedTool, actualTool);
     }
 
@@ -56,7 +56,7 @@ public class ToolDaoUnitTest {
     @Test
     public void testFindToolByRecipe() {
         List<ToolEntity> actualToolList = toolDao.findByRecipe(1);
-        List<ToolEntity> expectedToolList = new ArrayList<>(Arrays.asList(new ToolEntity(3,"sarten","frying pan")));
+        List<ToolEntity> expectedToolList = new ArrayList<>(Arrays.asList(new ToolEntity(3,"sarten")));
         assertEquals(expectedToolList, actualToolList);
     }
     @ParameterizedTest
@@ -71,16 +71,16 @@ public class ToolDaoUnitTest {
     @DisplayName("Insert new tools in the database")
     @Test
     public void testInsertNewTools() {
-        toolDao.insert(new ToolEntity(7, "freidora", "fryer"));
+        toolDao.insert(new ToolEntity(7, "freidora"));
         List<ToolEntity> actualToolList = toolDao.findAllTool();
         List<ToolEntity> expectedToolList = new ArrayList<>(Arrays.asList(
-            new ToolEntity(1,"cuchara","spoon"),
-            new ToolEntity(2,"bol","bowl"),
-            new ToolEntity(3,"sarten","frying pan"),
-            new ToolEntity(4,"olla","pot"),
-            new ToolEntity(5,"vaso medidor","measuring cup"),
-            new ToolEntity(6,"batidora","blender"),
-            new ToolEntity(7, "freidora", "fryer")
+            new ToolEntity(1,"cuchara"),
+            new ToolEntity(2,"bol"),
+            new ToolEntity(3,"sarten"),
+            new ToolEntity(4,"olla"),
+            new ToolEntity(5,"vaso medidor"),
+            new ToolEntity(6,"batidora"),
+            new ToolEntity(7, "freidora")
         ));
         assertEquals(expectedToolList, actualToolList);
     }
@@ -91,11 +91,11 @@ public class ToolDaoUnitTest {
         toolDao.delete(6);
         List<ToolEntity> actualToolList = toolDao.findAllTool();
         List<ToolEntity> expectedToolList = new ArrayList<>(Arrays.asList(
-            new ToolEntity(1,"cuchara","spoon"),
-            new ToolEntity(2,"bol","bowl"),
-            new ToolEntity(3,"sarten","frying pan"),
-            new ToolEntity(4,"olla","pot"),
-            new ToolEntity(5,"vaso medidor","measuring cup")
+            new ToolEntity(1,"cuchara"),
+            new ToolEntity(2,"bol"),
+            new ToolEntity(3,"sarten"),
+            new ToolEntity(4,"olla"),
+            new ToolEntity(5,"vaso medidor")
         ));
         assertEquals(expectedToolList, actualToolList);
     }

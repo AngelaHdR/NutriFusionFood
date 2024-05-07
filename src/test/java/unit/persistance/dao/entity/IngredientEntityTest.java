@@ -22,13 +22,12 @@ public class IngredientEntityTest {
     @Test
     @DisplayName("Constructor with 7 parameters")
     void createIngredientWithoutType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2);
+        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2);
         assertAll(
                 () -> assertEquals(1, ingredientEntity.getId()),
                 () -> assertEquals(false, ingredientEntity.isGluten()),
                 () -> assertEquals(false, ingredientEntity.isLactose()),
-                () -> assertEquals("tomate", ingredientEntity.getName_es()),
-                () -> assertEquals("tomato", ingredientEntity.getName_en()),
+                () -> assertEquals("tomate", ingredientEntity.getName()),
                 () -> assertEquals(1, ingredientEntity.getStartSeason()),
                 () -> assertEquals(2, ingredientEntity.getEndSeason())
         );
@@ -37,13 +36,12 @@ public class IngredientEntityTest {
     @Test
     @DisplayName("Constructor with 8 parameters")
     void createIngredientWithType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
+        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2, 1);
         assertAll(
                 () -> assertEquals(1, ingredientEntity.getId()),
                 () -> assertEquals(false, ingredientEntity.isGluten()),
                 () -> assertEquals(false, ingredientEntity.isLactose()),
-                () -> assertEquals("tomate", ingredientEntity.getName_es()),
-                () -> assertEquals("tomato", ingredientEntity.getName_en()),
+                () -> assertEquals("tomate", ingredientEntity.getName()),
                 () -> assertEquals(1, ingredientEntity.getStartSeason()),
                 () -> assertEquals(2, ingredientEntity.getEndSeason()),
                 () -> assertEquals(1, ingredientEntity.getTypeId())
@@ -52,11 +50,11 @@ public class IngredientEntityTest {
 
     @Test
     void createIngredientEntityWithoutType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2);
+        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2);
     }
 
     @Test
     void createIngredientEntityWithType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", "tomato", 1, 2, 1);
+        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2, 1);
     }
 }

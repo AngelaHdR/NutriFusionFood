@@ -14,21 +14,21 @@
     <div class="container">
 <header th:insert="fragments.html :: header">Header</header>
 <main class="content bg-fondo">
-    <h1 class="title-categories bg-resalte text-center fw-normal border-top border-fuente py-3" th:text="${category}"></h1>
-    <ul>
+    <h1 class="title-categories bg-resalte text-center fw-normal border-top border-bottom border-fuente py-3 mb-0" th:text="${category}"></h1>
+    <ul class="px-0 mb-0">
         <a th:each="recipe, stat : ${recipeList}" th:href="@{${'/recipes/' + recipe.id}}">
-            <div class="recipes-info bg-fondo p-2 d-flex"
+            <div class="recipes-info bg-fondo d-flex border-top border-bottom border-fuente"
             th:classappend="${stat.index % 2 == 0 ? 'flex-row' : 'flex-row-reverse'}">
                 <div class="recipe-picture flex-fill">
                     <img th:src="@{/images/}+recipe_+${recipe.id}+.png" alt="Recipe Image">
                 </div>
-                <div class="recipe-data p-2 flex-fill justify-content-center align-center border-top">
+                <div class="recipe-data flex-fill justify-content-center align-center border-top pt-3">
                     <li class="recipe-category-name fw-normal">
-                        <h1 class="recipe-name fs-1 text-fuente text-uppercase" th:text="${recipe.name}"></h1>
-                        <a class="text-fuente text-uppercase" th:href="@{${'/categories/' + recipe.category.id + '/recipes'}}">
-                            <h2 th:text="${recipe.category.name}">Nombre de Categoria</h2>
+                        <h2 class="recipe-name fs-1 text-fuente text-uppercase text-center" th:text="${recipe.name}"></h2>
+                        <a class="text-fuente text-uppercase text-center" th:href="@{${'/categories/' + recipe.category.id + '/recipes'}}">
+                            <h4 th:text="${recipe.category.name}" class="text-fuente">Nombre de Categoria</h4>
                         </a>
-                        <ul class="recipe-all-data text-info">
+                        <ul class="recipe-all-data text-info px-3">
                             <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}">
                                 <li th:text="|${'Nutricionista: ' + recipe.user.name}|"></li>
                             </a>
@@ -40,11 +40,7 @@
                 </div>
             </div>
         </a>
-        <hr>
     </ul>
-    <br><br>
-    <h4><a href="/recipes/add">Añadir receta</a></h4>
-    <br><br>
 </main>
 <footer th:insert="fragments.html::footer"></footer>
 </div>

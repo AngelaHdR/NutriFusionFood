@@ -36,10 +36,10 @@ public class RecipeRepositoryImplMockitoTest {
     private final List<RecipeEntity> recipeEntityList=List.of(recipe3,recipe4);
 
     private final Recipe recipe1 = new Recipe(2, "Salmorejo", "es", "x", 60, "Paso 1...",
-            new ArrayList<>(List.of(new Ingredient(1, true, false, "pan", "bread", 1, 12))),
-            new ArrayList<>(List.of(new Tool(1, "batidora", "blender"))),
+            new ArrayList<>(List.of(new Ingredient(1, true, false, "pan", 1, 12))),
+            new ArrayList<>(List.of(new Tool(1, "batidora"))),
             new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
-            new Category(1, "salado", "main dish"), new HashMap<>());
+            new Category(1, "salado"), new HashMap<>());
     private final Recipe recipe2 = new Recipe(4, "Torrijas", "es", "x", "Paso 1...", 45);
     private final List<Recipe> recipeList = List.of(recipe1, recipe2);
 
@@ -84,10 +84,10 @@ public class RecipeRepositoryImplMockitoTest {
         @DisplayName("delete recipe by id")
         void deleteRecipeById() {
             Recipe recipe3 = new Recipe(3, "Ramen", "es", "x", 240, "Paso 1...",
-                    new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", "chinesse ramen", 1, 12))),
-                    new ArrayList<>(List.of(new Tool(2, "cazo", "pot"))),
+                    new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", 1, 12))),
+                    new ArrayList<>(List.of(new Tool(2, "cazo"))),
                     new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
-                    new Category(1, "salado", "main dish"), new HashMap<>());
+                    new Category(1, "salado"), new HashMap<>());
             recipeRepository.insert(recipe3);
             recipeRepository.delete(recipe3.getId());
             verify(recipeDaoMock).delete(recipe3.getId());
@@ -102,10 +102,10 @@ public class RecipeRepositoryImplMockitoTest {
         @DisplayName("Insert new recipe")
         void insertNewRecipe() {
             Recipe recipe5 = new Recipe(3, "Ramen", "es", "x", 240, "Paso 1...",
-                    new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", "chinesse ramen", 1, 12))),
-                    new ArrayList<>(List.of(new Tool(2, "cazo", "pot"))),
+                    new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", 1, 12))),
+                    new ArrayList<>(List.of(new Tool(2, "cazo"))),
                     new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
-                    new Category(1, "salado", "main dish"), new HashMap<>());
+                    new Category(1, "salado"), new HashMap<>());
             RecipeEntity recipe6 = new RecipeEntity(3, "Ramen", "es", "x", "Paso 1...",240,1,1);
             recipeRepository.insert(recipe5);
             verify(recipeDaoMock).insert(recipe6);

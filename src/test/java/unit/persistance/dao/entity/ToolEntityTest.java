@@ -15,11 +15,10 @@ public class ToolEntityTest {
     @Test
     @DisplayName("Constructor with 3 parameters")
     void createConstructorAllParameters() {
-        ToolEntity toolEntity = new ToolEntity(1, "sarten", "pan");
+        ToolEntity toolEntity = new ToolEntity(1, "sarten");
         assertAll(
                 () -> assertEquals(1, toolEntity.getId()),
-                () -> assertEquals("sarten", toolEntity.getName_es()),
-                () -> assertEquals("pan", toolEntity.getName_en())
+                () -> assertEquals("sarten", toolEntity.getName())
         );
     }
 

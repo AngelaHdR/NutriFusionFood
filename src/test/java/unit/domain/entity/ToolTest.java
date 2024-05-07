@@ -12,11 +12,10 @@ public class ToolTest {
     @Test
     @DisplayName("Constructor with 3 parameters")
     void createConstructorAllParameters() {
-        Tool tool = new Tool(1, "sarten", "pan");
+        Tool tool = new Tool(1, "sarten");
         assertAll(
                 ()->assertEquals(1, tool.getId()),
-                ()->assertEquals("sarten", tool.getName_es()),
-                ()->assertEquals("pan", tool.getName_en())
+                ()->assertEquals("sarten", tool.getName())
         );
     }
 

@@ -17,12 +17,11 @@ public class TypeEntityTest {
     @ParameterizedTest
     @CsvSource({"1,carne,meet", "2,pescado,fish", "3,lacteo,dairy", "4,verdura,vegetable", "5,fruta,fruit", "6,hidrados,carbs"})
     @DisplayName("Constructor with 3 parameters")
-    void createAllParameters(int id, String name_es, String name_en) {
-        typeEntity = new TypeEntity(id, name_es, name_en);
+    void createAllParameters(int id, String name) {
+        typeEntity = new TypeEntity(id, name);
         assertAll(
                 () -> assertEquals(id, typeEntity.getId()),
-                () -> assertEquals(name_es, typeEntity.getName_es()),
-                () -> assertEquals(name_en, typeEntity.getName_en())
+                () -> assertEquals(name, typeEntity.getName())
         );
     }
 }
