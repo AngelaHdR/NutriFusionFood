@@ -13,7 +13,6 @@ public class UserIoC {
     private static UserService userService;
     private static UserRepository userRepository;
     private static UserDao userDao;
-    private final AppPropertiesReader appPropertiesReader = AppPropertiesReader.getInstance();
     public static UserService getUserService(){
         if (userService==null){
             userService = new UserServiceImpl(getUserRepository());

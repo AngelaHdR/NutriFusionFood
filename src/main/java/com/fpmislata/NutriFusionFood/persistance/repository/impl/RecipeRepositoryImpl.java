@@ -1,7 +1,7 @@
 package com.fpmislata.NutriFusionFood.persistance.repository.impl;
 
-import com.fpmislata.NutriFusionFood.common.container.CategoryIoC;
-import com.fpmislata.NutriFusionFood.common.container.UserIoC;
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
+import com.fpmislata.NutriFusionFood.common.container.*;
 import com.fpmislata.NutriFusionFood.domain.entity.Category;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
@@ -48,9 +48,9 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         this.recipeDao = recipeDao;
         this.userDao = UserIoC.getUserDao();
         this.categoryDao = CategoryIoC.getCategoryDao();
-        this.toolDao = new ToolDaoJdbc();
-        this.ingredientDao = new IngredientDaoJdbc();
-        this.typeDao = new TypeDaoJdbc();
+        this.toolDao = ToolIoC.getToolDao();
+        this.ingredientDao = IngredientIoC.getIngredientDao();
+        this.typeDao = TypeIoC.getTypeDao();
     }
 
     @Override
