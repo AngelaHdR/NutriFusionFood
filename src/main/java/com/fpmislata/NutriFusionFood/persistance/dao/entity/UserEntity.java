@@ -24,6 +24,9 @@ public class UserEntity {
         this.username = username;
     }
 
+    public UserEntity() {
+    }
+
     //Getters and setters
     public Integer getId() {
         return this.id;

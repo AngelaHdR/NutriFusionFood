@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.IngredientDaoMemory;
+import antiguo.memory.IngredientDaoMemory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

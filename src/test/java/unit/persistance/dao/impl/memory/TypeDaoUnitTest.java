@@ -2,7 +2,7 @@ package unit.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.TypeDaoMemory;
+import antiguo.memory.TypeDaoMemory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

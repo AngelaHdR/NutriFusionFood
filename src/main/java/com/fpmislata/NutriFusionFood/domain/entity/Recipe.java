@@ -34,8 +34,8 @@ public class Recipe {
         allergen.put("lactose", false);
     }
 
-    public Recipe(Integer id, String description, String name, String language, int time,
-                  String steps, List<Ingredient> ingredientList, List<Tool> toolList, User user,
+    public Recipe(Integer id, String name, String language, String description, String steps,
+                  int time, List<Ingredient> ingredientList, List<Tool> toolList, User user,
                   Category category, Map<String, Boolean> allergen) {
         this.id = id;
         this.description = description;
@@ -48,6 +48,20 @@ public class Recipe {
         this.user = user;
         this.category = category;
         this.allergen = allergen;
+        allergen.put("gluten", false);
+        allergen.put("lactose", false);
+    }
+
+    public Recipe(Integer id, String name, String language, String description, String steps, int time, User user, Category category) {
+        this.id = id;
+        this.description = description;
+        this.name = name;
+        this.language = language;
+        this.time = time;
+        this.steps = steps;
+        this.user = user;
+        this.category = category;
+        this.allergen = new HashMap<>();
         allergen.put("gluten", false);
         allergen.put("lactose", false);
     }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.UserDaoMemory;
+import antiguo.memory.UserDaoMemory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

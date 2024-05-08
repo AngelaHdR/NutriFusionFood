@@ -1,4 +1,4 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
+package antiguo.memory;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;

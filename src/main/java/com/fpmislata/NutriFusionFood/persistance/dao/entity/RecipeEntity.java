@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.entity;
 
+
 import java.util.Objects;
 
 public class RecipeEntity {
@@ -9,20 +10,20 @@ public class RecipeEntity {
     private String description;
     private String steps;
     private int time;
-    private Integer userId; //El usuario es siempre un nutricionista
-    private Integer categoryId;
+    private UserEntity user; //El usuario es siempre un nutricionista
+    private CategoryEntity category;
 
     //Constructor
 
-    public RecipeEntity(Integer id, String name,String language, String description, String steps, int time, Integer userId, Integer categoryId) {
+    public RecipeEntity(Integer id, String name,String language, String description, String steps, int time, UserEntity user, CategoryEntity category) {
         this.id = id;
         this.description = description;
         this.name = name;
         this.language = language;
         this.time = time;
         this.steps = steps;
-        this.userId = userId;
-        this.categoryId = categoryId;
+        this.user = user;
+        this.category = category;
     }
 
     //Getters and setters
@@ -61,18 +62,18 @@ public class RecipeEntity {
         this.time = time;
     }
 
-    public Integer getUserId() {
-        return this.userId;
+    public UserEntity getUser() {
+        return this.user;
     }
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public CategoryEntity getCategory() {
+        return category;
     }
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
 
     public String getSteps() {

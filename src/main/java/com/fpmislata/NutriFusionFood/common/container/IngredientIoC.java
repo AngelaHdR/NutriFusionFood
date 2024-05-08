@@ -3,7 +3,7 @@ package com.fpmislata.NutriFusionFood.common.container;
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.IngredientDaoJdbc;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.IngredientDaoMemory;
+import antiguo.memory.IngredientDaoMemory;
 
 public class IngredientIoC {
     private static IngredientDao ingredientDao;

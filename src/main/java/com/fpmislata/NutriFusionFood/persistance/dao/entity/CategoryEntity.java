@@ -10,6 +10,9 @@ public class CategoryEntity {
         this.name = name;
     }
 
+    public CategoryEntity() {
+    }
+
     //Getters and setters
     public Integer getId() {
         return this.id;

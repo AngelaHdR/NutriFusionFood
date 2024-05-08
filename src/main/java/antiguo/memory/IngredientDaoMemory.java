@@ -1,9 +1,8 @@
-package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
+package antiguo.memory;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.ComposedDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
-import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ComposedEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 

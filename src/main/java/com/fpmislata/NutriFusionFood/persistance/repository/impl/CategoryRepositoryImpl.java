@@ -18,18 +18,11 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     @Override
     public List<Category> findAllCategory() {
-        List<CategoryEntity> categoryEntityList = categoryDao.findAllCategory();
-        List<Category> categoryList = new ArrayList<>();
-        for (CategoryEntity categoryEntity:categoryEntityList) {
-            categoryList.add(findByIdCategory(categoryEntity.getId()));
-        }
-        return categoryList;
+        return CategoryMapper.toCategoryList(categoryDao.findAllCategory());
     }
 
     @Override
     public Category findByIdCategory(Integer id) {
-        CategoryEntity categoryEntity = categoryDao.findByIdCategory(id);
-        Category category = CategoryMapper.toCategory(categoryEntity);
-        return category;
+        return CategoryMapper.toCategory(categoryDao.findByIdCategory(id));
     }
 }

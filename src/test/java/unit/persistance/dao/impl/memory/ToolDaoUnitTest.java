@@ -8,13 +8,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.RecipeDaoMemory;
+import antiguo.memory.RecipeDaoMemory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
+import antiguo.memory.ToolDaoMemory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

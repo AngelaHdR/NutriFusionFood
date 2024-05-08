@@ -3,7 +3,7 @@ package com.fpmislata.NutriFusionFood.common.container;
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.TypeDaoJdbc;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.TypeDaoMemory;
+import antiguo.memory.TypeDaoMemory;
 
 public class TypeIoC {
     private static TypeDao typeDao;
