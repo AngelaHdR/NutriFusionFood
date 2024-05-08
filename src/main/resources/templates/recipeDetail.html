@@ -12,33 +12,50 @@
     <div class="container">
 <header th:insert="fragments.html :: header">Header</header>
 <main class="content">
-    <h1 th:text="${recipe.name}"></h1>
-<h3 th:text="${recipe.category.name}"></h3>
-
-<h4>Tiempo</h4>
-<p th:text="${recipe.time}"></p>
-<h4>Alergenos</h4>
-<ul>
-    <li th:each="allergen : ${recipe.allergen}">
-    <span th:text="${allergen.key}"></span> : <span th:text="${allergen.value}"></span>
-    </li>
-</ul>
-<h4>Nombre Nutricionista</h4>
-<p th:text="${recipe.user.name}"></p>
-<div class="icon pb-3 fs-3">
-    <i class="fa-solid fa-heart"></i>
-</div>
-<h4>Añadir a favoritos</h4>
-<h2>Ingredientes</h2>
-<ul>
-    <li th:each="ingredient : ${recipe.ingredientList}" th:text="${ingredient.name}"></li>
-</ul>
-<h2>Utensilios</h2>
-<ul>
-    <li th:each="tool : ${recipe.toolList}" th:text="${tool.name}"></li>
-</ul>
-<h2>Preparacion</h2>
-<p th:text="${recipe.steps}"></p>
+    <div class="recipe-container d-flex justify-content-center align-items-center border-top border-bottom border-fuente">
+        <div class="recipe-info bg-fondo d-flex border-top border-bottom border-left border-right border-fuente">
+            <div class="recipe-image flex-fill">
+                <img th:src="@{/images/}+recipe_+${recipe.id}+.png" alt="Recipe Image">
+            </div>
+            <div class="recipe-full-info flex-fill py-3 px-4">
+                <h3 th:text="${recipe.name}"></h3>
+                <h4 class="text-fuente" th:text="${recipe.category.name}"></h4>
+                <br>
+                <p>Tiempo</p>
+                <p class="text-info" th:text="${recipe.time}"></p>
+                <p>Alergenos</p>
+                <ul>
+                    <li th:each="allergen : ${recipe.allergen}">
+                    <p class="text-info" th:if="${allergen.value}" th:text="${allergen.key}"></p>
+                    </li>
+                </ul>
+                <p>Nombre Nutricionista</p>
+                <p class="text-info" th:text="${recipe.user.name}"></p>
+                <div class="icon pb-3 fs-3">
+                    <i class="fa-solid fa-heart text-resalte"></i>
+                    <p>Añadir a favoritos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="recipe-preparation">
+        <div class="recipe-section py-3">
+            <h2>Ingredientes</h2>
+            <ul>
+                <li class="text-info" th:each="ingredient : ${recipe.ingredientList}" th:text="${ingredient.name}"></li>
+            </ul>
+        </div>
+        <div class="recipe-section py-3">
+            <h2>Utensilios</h2>
+            <ul>
+                <li class="text-info" th:each="tool : ${recipe.toolList}" th:text="${tool.name}"></li>
+            </ul>
+        </div>
+        <div class="recipe-steps py-3">
+            <h2>Preparacion</h2>
+            <p class="text-info" th:text="${recipe.steps}"></p>
+        </div>
+    </div>
 <br><br><br>
 </main>
 <footer th:insert="fragments.html::footer"></footer>

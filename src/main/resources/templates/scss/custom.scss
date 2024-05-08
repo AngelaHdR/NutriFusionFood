@@ -199,6 +199,55 @@ ul {
   width: 100%;
 }
 
+.recipe-container{
+  background: linear-gradient(#F1856A 50%, #D0EEF4 50%);
+  height: 75vh;
+}
+
+.recipe-info{
+  height: 50vh;
+}
+
+.recipe-image {
+  width: 65vh;
+}
+
+.recipe-full-info {
+  width: 65vh;
+}
+
+.recipe-image img {
+  height: 100%;
+  width: 100%;
+}
+
+.recipe-preparation{
+  margin-left: 0;
+}
+
+.recipe-section{
+  padding-left: 35vh;
+  position: relative;
+}
+
+.recipe-steps{
+  padding-left: 35vh;
+}
+
+.recipe-section ul{
+  margin: 0;
+  padding-left: 0;
+}
+
+.recipe-section h2::after, .recipe-section ul::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #000000;
+}
 
 //PROFILE
 
