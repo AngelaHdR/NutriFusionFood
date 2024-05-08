@@ -28,7 +28,7 @@
                         <a class="text-fuente text-uppercase text-center" th:href="@{${'/categories/' + recipe.category.id + '/recipes'}}">
                             <h4 th:text="${recipe.category.name}" class="text-fuente">Nombre de Categoria</h4>
                         </a>
-                        <ul class="recipe-all-data text-info px-3">
+                        <ul class="recipe-all-data text-info px-4">
                             <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}">
                                 <li th:text="|${'Nutricionista: ' + recipe.user.name}|"></li>
                             </a>

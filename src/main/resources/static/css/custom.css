@@ -189,7 +189,13 @@ a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
-a:hover {
+
+li h2:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+ul a:hover {
   color: #0056b3;
   text-decoration: underline;
 }
