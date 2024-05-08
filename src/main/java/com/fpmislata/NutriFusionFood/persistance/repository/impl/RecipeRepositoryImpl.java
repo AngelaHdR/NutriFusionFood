@@ -46,13 +46,13 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 
         // Añadir listado ingredientes, cambiar a map para poder añadir cantidades?
         List<IngredientEntity> ingredientEntityList = ingredientDao.findByRecipe(id);
-        List<Ingredient> ingredientList = new ArrayList<>();
-        for (IngredientEntity ingredientEntity : ingredientEntityList) {
-            Type type = TypeMapper.toType(typeDao.findByIdType(ingredientEntity.getTypeId()));
+        List<Ingredient> ingredientList = IngredientMapper.toIngredientList(ingredientDao.findByRecipe(id));
+        /*for (IngredientEntity ingredientEntity : ingredientEntityList) {
+            Type type = TypeMapper.toType(typeDao.findByIdType(ingredientEntity.getType()));
             Ingredient ingredient = IngredientMapper.toIngredient(ingredientEntity);
             ingredient.setType(type);
             ingredientList.add(ingredient);
-        }
+        }*/
         recipe.setIngredientList(ingredientList);
 
         // Añadir listado herramientas

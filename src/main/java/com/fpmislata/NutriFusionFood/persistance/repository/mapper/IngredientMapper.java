@@ -3,6 +3,9 @@ package com.fpmislata.NutriFusionFood.persistance.repository.mapper;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class IngredientMapper {
     public static Ingredient toIngredient(IngredientEntity ingredientEntity){
         if (ingredientEntity == null){
@@ -14,7 +17,8 @@ public class IngredientMapper {
                 ingredientEntity.isLactose(),
                 ingredientEntity.getName(),
                 ingredientEntity.getStartSeason(),
-                ingredientEntity.getEndSeason());
+                ingredientEntity.getEndSeason(),
+                TypeMapper.toType(ingredientEntity.getType()));
     }
 
     public static IngredientEntity toIngredientEntity(Ingredient ingredient){
@@ -28,6 +32,13 @@ public class IngredientMapper {
                 ingredient.getName(),
                 ingredient.getStartSeason(),
                 ingredient.getEndSeason(),
-                ingredient.getType().getId());
+                TypeMapper.toTypeEntity(ingredient.getType()));
+    }
+    public static List<Ingredient> toIngredientList(List<IngredientEntity> ingredientEntityList){
+        List<Ingredient> ingredientList = new ArrayList<>();
+        for (IngredientEntity ingredientEntity:ingredientEntityList){
+            ingredientList.add(toIngredient(ingredientEntity));
+        }
+        return ingredientList;
     }
 }

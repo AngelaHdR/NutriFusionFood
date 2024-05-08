@@ -20,7 +20,7 @@ public class Ingredient {
         this.startSeason = startSeason;
         this.endSeason = endSeason;
     }
-    public Ingredient(Integer id, Boolean gluten, Boolean lactose, String name_es, String name_en, Integer startSeason, Integer endSeason, Type type) {
+    public Ingredient(Integer id, Boolean gluten, Boolean lactose, String name, Integer startSeason, Integer endSeason, Type type) {
         this.id = id;
         this.gluten = gluten;
         this.lactose = lactose;

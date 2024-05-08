@@ -12,6 +12,9 @@ public class TypeEntity {
         this.name = name;
     }
 
+    public TypeEntity() {
+    }
+
     //Getters and setters
     public Integer getId() {
         return this.id;

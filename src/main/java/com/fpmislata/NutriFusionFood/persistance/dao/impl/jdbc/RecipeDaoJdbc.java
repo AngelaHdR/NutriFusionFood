@@ -60,7 +60,7 @@ public class RecipeDaoJdbc implements RecipeDao {
         String sql = "INSERT INTO recipe (id_recipe, name_recipe, lang, description_recipe, steps, time_recipe, id_user, id_category)" +
                 " VALUES(?,?,?,?,?,?,?,?)";
         List<Object> params = List.of(recipeEntity.getId(), recipeEntity.getName(), recipeEntity.getLanguage(), recipeEntity.getDescription(),
-                recipeEntity.getSteps(), recipeEntity.getTime(), recipeEntity.getUser(), recipeEntity.getCategory());
+                recipeEntity.getSteps(), recipeEntity.getTime(), recipeEntity.getUser().getId(), recipeEntity.getCategory().getId());
         Rawsql.insert(sql, params);
     }
 

@@ -2,6 +2,7 @@ package com.fpmislata.NutriFusionFood.persistance.dao.mapper;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +22,10 @@ public class IngredientEntityMapper {
                     resultSet.getString("name_"+lang),
                     resultSet.getInt("start_season"),
                     resultSet.getInt("end_season"),
-                    resultSet.getInt("id_type"));
+                    new TypeEntity(
+                            resultSet.getInt("id_type"),
+                            resultSet.getString("name")
+                    ));
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

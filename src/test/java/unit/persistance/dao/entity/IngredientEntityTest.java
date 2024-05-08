@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.domain.entity.Type;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +37,8 @@ public class IngredientEntityTest {
     @Test
     @DisplayName("Constructor with 8 parameters")
     void createIngredientWithType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2, 1);
+
+        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2, new TypeEntity());
         assertAll(
                 () -> assertEquals(1, ingredientEntity.getId()),
                 () -> assertEquals(false, ingredientEntity.isGluten()),
@@ -44,7 +46,7 @@ public class IngredientEntityTest {
                 () -> assertEquals("tomate", ingredientEntity.getName()),
                 () -> assertEquals(1, ingredientEntity.getStartSeason()),
                 () -> assertEquals(2, ingredientEntity.getEndSeason()),
-                () -> assertEquals(1, ingredientEntity.getTypeId())
+                () -> assertEquals(1, ingredientEntity.getType())
         );
     }
 
@@ -55,6 +57,6 @@ public class IngredientEntityTest {
 
     @Test
     void createIngredientEntityWithType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2, 1);
+        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2, new TypeEntity());
     }
 }

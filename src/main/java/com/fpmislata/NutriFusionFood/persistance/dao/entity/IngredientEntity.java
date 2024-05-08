@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.entity;
 
+
 public class IngredientEntity {
     private Integer id;
     private Boolean gluten;
@@ -7,7 +8,7 @@ public class IngredientEntity {
     private String name;
     private Integer startSeason;
     private Integer endSeason;
-    private Integer typeId;
+    private TypeEntity type;
 
     //Constructors (void, basic parameters and all parameters)
     public IngredientEntity() {
@@ -20,14 +21,14 @@ public class IngredientEntity {
         this.startSeason = startSeason;
         this.endSeason = endSeason;
     }
-    public IngredientEntity(Integer id, Boolean gluten, Boolean lactose, String name, Integer startSeason, Integer endSeason, Integer typeId) {
+    public IngredientEntity(Integer id, Boolean gluten, Boolean lactose, String name, Integer startSeason, Integer endSeason, TypeEntity type) {
         this.id = id;
         this.gluten = gluten;
         this.lactose = lactose;
         this.name = name;
         this.startSeason = startSeason;
         this.endSeason = endSeason;
-        this.typeId = typeId;
+        this.type = type;
     }
 
     //Getters and setters
@@ -73,11 +74,11 @@ public class IngredientEntity {
         this.endSeason = endSeason;
     }
 
-    public Integer getTypeId() {
-        return this.typeId;
+    public TypeEntity getType() {
+        return this.type;
     }
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setTypeId(TypeEntity type) {
+        this.type = type;
     }
     @Override
     public int hashCode() {

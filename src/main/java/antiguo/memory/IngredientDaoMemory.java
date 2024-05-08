@@ -5,6 +5,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.ComposedDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ComposedEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,18 +15,18 @@ public class IngredientDaoMemory implements IngredientDao {
     private ComposedDao composedDao;
 
     List<IngredientEntity> ingredientEntityList_es = new ArrayList<>(Arrays.asList(
-            new IngredientEntity(1,true,false,"pan",10,12, 6),
-            new IngredientEntity(2,false,false,"pollo",10,12, 1),
-            new IngredientEntity(3,false,false,"tomate",10,12, 5),
-            new IngredientEntity(4,false,false,"puerro",10,12, 4),
-            new IngredientEntity(5,false,true,"helado",10,12, 3)
+            new IngredientEntity(1,true,false,"pan",10,12, new TypeEntity()),
+            new IngredientEntity(2,false,false,"pollo",10,12, new TypeEntity()),
+            new IngredientEntity(3,false,false,"tomate",10,12, new TypeEntity()),
+            new IngredientEntity(4,false,false,"puerro",10,12, new TypeEntity()),
+            new IngredientEntity(5,false,true,"helado",10,12, new TypeEntity())
     ));
     List<IngredientEntity> ingredientEntityList_en = new ArrayList<>(Arrays.asList(
-            new IngredientEntity(1,true,false,"bread",10,12, 6),
-            new IngredientEntity(2,false,false,"chicken",10,12, 1),
-            new IngredientEntity(3,false,false,"tomato",10,12, 5),
-            new IngredientEntity(4,false,false,"leek",10,12, 4),
-            new IngredientEntity(5,false,true,"ice cream",10,12, 3)
+            new IngredientEntity(1,true,false,"bread",10,12, new TypeEntity()),
+            new IngredientEntity(2,false,false,"chicken",10,12, new TypeEntity()),
+            new IngredientEntity(3,false,false,"tomato",10,12, new TypeEntity()),
+            new IngredientEntity(4,false,false,"leek",10,12, new TypeEntity()),
+            new IngredientEntity(5,false,true,"ice cream",10,12, new TypeEntity())
     ));
     private String lang = AppPropertiesReader.getInstance().getProperty("lang");
 
