@@ -3,6 +3,7 @@ package unit.domain.entity;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,7 @@ import com.fpmislata.NutriFusionFood.domain.entity.Type;
 
 public class IngredientTest {
     Ingredient ingredient;
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
     @Test
     @DisplayName("Constructor void")
     void voidConstructor() {
@@ -20,12 +22,21 @@ public class IngredientTest {
     @Test
     @DisplayName("Constructor with 7 parameters")
     void createIngredientWithoutType() {
-        ingredient = new Ingredient(1, false, false, "tomate", 1, 2);
+        String name;
+        if (lang.equals("es")){
+            ingredient = new Ingredient(1, false, false, "tomate", 1, 2);
+            name="tomate";
+        } else if (lang.equals("en")) {
+            ingredient = new Ingredient(1, false, false, "tomato", 1, 2);
+            name="tomato";
+        } else {
+            name = null;
+        }
         assertAll(
                 ()->assertEquals(1, ingredient.getId()),
                 ()->assertEquals(false, ingredient.isGluten()),
                 ()->assertEquals(false, ingredient.isLactose()),
-                ()->assertEquals("tomate", ingredient.getName()),
+                ()->assertEquals(name, ingredient.getName()),
                 ()->assertEquals(1, ingredient.getStartSeason()),
                 ()->assertEquals(2, ingredient.getEndSeason())
         );
@@ -34,16 +45,31 @@ public class IngredientTest {
     @Test
     @DisplayName("Constructor with 8 parameters")
     void createIngredientWithType() {
-        Type type = new Type(1, "verdura");
-        ingredient = new Ingredient(1, false, false, "tomate", "tomato", 1, 2, type);
+        String name;
+        String typeName;
+        if (lang.equals("es")){
+            Type type = new Type(1, "verdura");
+            ingredient = new Ingredient(1, false, false, "tomate", 1, 2, type);
+            name="tomate";
+            typeName="verdura";
+        } else if (lang.equals("en")) {
+            Type type = new Type(1, "vegetable");
+            ingredient = new Ingredient(1, false, false, "tomato", 1, 2, type);
+            name="tomato";
+            typeName="vegetable";
+        } else {
+            name = null;
+            typeName = null;
+        }
+
         assertAll(
                 ()->assertEquals(1, ingredient.getId()),
                 ()->assertEquals(false, ingredient.isGluten()),
                 ()->assertEquals(false, ingredient.isLactose()),
-                ()->assertEquals("tomate", ingredient.getName()),
+                ()->assertEquals(name, ingredient.getName()),
                 ()->assertEquals(1, ingredient.getStartSeason()),
                 ()->assertEquals(2, ingredient.getEndSeason()),
-                ()->assertEquals(type, ingredient.getType())
+                ()->assertEquals(typeName, ingredient.getType().getName())
         );
     }
 }

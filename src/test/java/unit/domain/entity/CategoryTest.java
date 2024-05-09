@@ -3,6 +3,7 @@ package unit.domain.entity;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,15 +13,25 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class CategoryTest {
     Category category;
+
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
     @ParameterizedTest
     @CsvSource({"1,salado,main dish","2,postre,dessert","3,bebida,drink","4,snack,snack"})
     @DisplayName("Constructor with 3 parameters")
-    void createConstructorAllParameters(int id, String name) {
-        category = new Category(id, name);
-        assertAll(
-                ()->assertEquals(id, category.getId()),
-                ()->assertEquals(name, category.getName())
-        );
+    void createConstructorAllParameters(int id, String name_es, String name_en) {
+        if (lang.equals("es")){
+            category = new Category(id, name_es);
+            assertAll(
+                    ()->assertEquals(id, category.getId()),
+                    ()->assertEquals(name_es, category.getName())
+            );
+        } else if (lang.equals("en")) {
+            category = new Category(id, name_en);
+            assertAll(
+                    ()->assertEquals(id, category.getId()),
+                    ()->assertEquals(name_en, category.getName())
+            );
+        }
     }
     @Test
     @DisplayName("Not allow to modify the id")
@@ -30,7 +41,7 @@ public class CategoryTest {
         assertEquals(1, category.getId());
     }
     @Test
-    @DisplayName("Not allow to modify the name in spanish")
+    @DisplayName("Not allow to modify the name")
     void notModifyNameEs() {
         category = new Category(1, "postre");
         category.setName("dessert");

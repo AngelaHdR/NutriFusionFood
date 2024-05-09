@@ -20,10 +20,10 @@ public class RecipeTest {
     @Test()
     @DisplayName("Constructor with 6 parameters")
     void createAllParameters() {
-        recipe = new Recipe(1, "tortilla", "spanish", "receta tipica castellana", "paso 1", 120);
+        recipe = new Recipe(1, "tortilla", "es", "receta tipica castellana", "paso 1", 120);
         assertAll(
                 ()->assertEquals(1, recipe.getId()),
-                ()->assertEquals("spanish", recipe.getLanguage()),
+                ()->assertEquals("es", recipe.getLanguage()),
                 ()->assertEquals("tortilla", recipe.getName()),
                 ()->assertEquals("receta tipica castellana", recipe.getDescription()),
                 ()->assertEquals("paso 1", recipe.getSteps()),
