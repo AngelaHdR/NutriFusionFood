@@ -18,7 +18,7 @@ public class Recipe {
     private Category category;
     private Map<String,Boolean> allergen;
 
-    //Constructors (void and basic parameters)
+    //Constructors (void, basic parameters, with user and category and all parameters)
     public Recipe() {
     }
 
@@ -52,7 +52,8 @@ public class Recipe {
         allergen.put("lactose", false);
     }
 
-    public Recipe(Integer id, String name, String language, String description, String steps, int time, User user, Category category) {
+    public Recipe(Integer id, String name, String language, String description, String steps,
+                  int time, User user, Category category) {
         this.id = id;
         this.description = description;
         this.name = name;

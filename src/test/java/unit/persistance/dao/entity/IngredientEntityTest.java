@@ -3,6 +3,7 @@ package unit.persistance.dao.entity;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.domain.entity.Type;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
@@ -14,6 +15,8 @@ import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 public class IngredientEntityTest {
     IngredientEntity ingredientEntity;
 
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
+
     @Test
     void voidConstructor() {
         ingredientEntity = new IngredientEntity();
@@ -23,12 +26,21 @@ public class IngredientEntityTest {
     @Test
     @DisplayName("Constructor with 7 parameters")
     void createIngredientWithoutType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2);
+        String name;
+        if (lang.equals("es")) {
+            ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2);
+            name="tomate";
+        }else if (lang.equals("en")) {
+            ingredientEntity = new IngredientEntity(1, false, false, "tomato", 1, 2);
+            name="tomato";
+        }else {
+            name = null;
+        }
         assertAll(
                 () -> assertEquals(1, ingredientEntity.getId()),
                 () -> assertEquals(false, ingredientEntity.isGluten()),
                 () -> assertEquals(false, ingredientEntity.isLactose()),
-                () -> assertEquals("tomate", ingredientEntity.getName()),
+                () -> assertEquals(name, ingredientEntity.getName()),
                 () -> assertEquals(1, ingredientEntity.getStartSeason()),
                 () -> assertEquals(2, ingredientEntity.getEndSeason())
         );
@@ -37,26 +49,29 @@ public class IngredientEntityTest {
     @Test
     @DisplayName("Constructor with 8 parameters")
     void createIngredientWithType() {
+        String name;
+        String typeName;
+        if (lang.equals("es")) {
+            ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2, new TypeEntity(1,"verdura"));
+            name="tomate";
+            typeName="verdura";
+        }else if (lang.equals("en")) {
+            ingredientEntity = new IngredientEntity(1, false, false, "tomato", 1, 2, new TypeEntity(1,"vegetable"));
+            name="tomato";
+            typeName="vegetable";
+        }else {
+            name = null;
+            typeName = null;
+        }
 
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2, new TypeEntity());
         assertAll(
                 () -> assertEquals(1, ingredientEntity.getId()),
                 () -> assertEquals(false, ingredientEntity.isGluten()),
                 () -> assertEquals(false, ingredientEntity.isLactose()),
-                () -> assertEquals("tomate", ingredientEntity.getName()),
+                () -> assertEquals(name, ingredientEntity.getName()),
                 () -> assertEquals(1, ingredientEntity.getStartSeason()),
                 () -> assertEquals(2, ingredientEntity.getEndSeason()),
-                () -> assertEquals(1, ingredientEntity.getType())
+                () -> assertEquals(typeName, ingredientEntity.getType().getName())
         );
-    }
-
-    @Test
-    void createIngredientEntityWithoutType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2);
-    }
-
-    @Test
-    void createIngredientEntityWithType() {
-        ingredientEntity = new IngredientEntity(1, false, false, "tomate", 1, 2, new TypeEntity());
     }
 }
