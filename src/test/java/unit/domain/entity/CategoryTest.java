@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
+import data.CategoryData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,16 +37,16 @@ public class CategoryTest {
     @Test
     @DisplayName("Not allow to modify the id")
     void notModifyId() {
-        category = new Category(1, "postre");
+        category = CategoryData.categoryList_es.get(0);
         category.setId(2);
         assertEquals(1, category.getId());
     }
     @Test
     @DisplayName("Not allow to modify the name")
     void notModifyNameEs() {
-        category = new Category(1, "postre");
-        category.setName("dessert");
-        assertEquals("postre", category.getName());
+        category = CategoryData.categoryList_es.get(0);
+        category.setName("postre");
+        assertEquals("salado", category.getName());
     }
 
 }
