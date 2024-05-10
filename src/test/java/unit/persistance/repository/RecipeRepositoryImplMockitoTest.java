@@ -1,11 +1,12 @@
 package unit.persistance.repository;
 
 import com.fpmislata.NutriFusionFood.domain.entity.*;
-import com.fpmislata.NutriFusionFood.domain.service.impl.RecipeServiceImpl;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
-import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.RecipeRepositoryImpl;
+import data.CategoryData;
+import data.RecipeData;
+import data.UserData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -31,17 +33,6 @@ public class RecipeRepositoryImplMockitoTest {
 
     @InjectMocks
     private RecipeRepositoryImpl recipeRepository;
-    private final RecipeEntity recipe3 = new RecipeEntity(2, "Salmorejo", "es", "x", "Paso 1...", 60, 2, 1);
-    private final RecipeEntity recipe4 = new RecipeEntity(4, "Torrijas", "es", "x", "Paso 1...", 45, 2, 2);
-    private final List<RecipeEntity> recipeEntityList=List.of(recipe3,recipe4);
-
-    private final Recipe recipe1 = new Recipe(2, "Salmorejo", "es", "x", 60, "Paso 1...",
-            new ArrayList<>(List.of(new Ingredient(1, true, false, "pan", 1, 12))),
-            new ArrayList<>(List.of(new Tool(1, "batidora"))),
-            new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
-            new Category(1, "salado"), new HashMap<>());
-    private final Recipe recipe2 = new Recipe(4, "Torrijas", "es", "x", "Paso 1...", 45);
-    private final List<Recipe> recipeList = List.of(recipe1, recipe2);
 
     @Nested
     class FindAll {
@@ -55,8 +46,11 @@ public class RecipeRepositoryImplMockitoTest {
         @Test
         @DisplayName("when repository return recipes, service return all recipe")
         void returnAllRecipe() {
-            when(recipeDaoMock.findAllRecipe()).thenReturn(recipeEntityList);
-            assertEquals(recipeList.size(), recipeRepository.findAllRecipe().size());
+            when(recipeDaoMock.findAllRecipe()).thenReturn(RecipeData.recipeEntityList);
+            assertAll(
+
+            );
+            assertEquals(RecipeData.recipeList.size(), recipeRepository.findAllRecipe().size());
         }
     }
 
@@ -73,8 +67,8 @@ public class RecipeRepositoryImplMockitoTest {
         @Test
         @DisplayName("when id in list, service return only that recipe")
         void returnRecipeById() {
-            when(recipeDaoMock.findByIdRecipe(2)).thenReturn(recipe3);
-            assertEquals(recipe1, recipeRepository.findByIdRecipe(2));
+            when(recipeDaoMock.findByIdRecipe(2)).thenReturn(RecipeData.recipeEntityList.get(1));
+            assertEquals(RecipeData.recipeList.get(1), recipeRepository.findByIdRecipe(2));
         }
     }
 
@@ -83,7 +77,7 @@ public class RecipeRepositoryImplMockitoTest {
         @Test
         @DisplayName("delete recipe by id")
         void deleteRecipeById() {
-            Recipe recipe3 = new Recipe(3, "Ramen", "es", "x", 240, "Paso 1...",
+            Recipe recipe3 = new Recipe(3, "Ramen", "es", "x", "Paso 1...",240,
                     new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", 1, 12))),
                     new ArrayList<>(List.of(new Tool(2, "cazo"))),
                     new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
@@ -101,12 +95,12 @@ public class RecipeRepositoryImplMockitoTest {
         @Test
         @DisplayName("Insert new recipe")
         void insertNewRecipe() {
-            Recipe recipe5 = new Recipe(3, "Ramen", "es", "x", 240, "Paso 1...",
+            Recipe recipe5 = new Recipe(3, "Ramen", "es", "x","Paso 1...", 240,
                     new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", 1, 12))),
                     new ArrayList<>(List.of(new Tool(2, "cazo"))),
                     new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
                     new Category(1, "salado"), new HashMap<>());
-            RecipeEntity recipe6 = new RecipeEntity(3, "Ramen", "es", "x", "Paso 1...",240,1,1);
+            RecipeEntity recipe6 = new RecipeEntity(3, "Ramen", "es", "x", "Paso 1...",240, UserData.userEntityList.get(0), CategoryData.categoryEntityList_es.get(0));
             recipeRepository.insert(recipe5);
             verify(recipeDaoMock).insert(recipe6);
         }
@@ -125,8 +119,13 @@ public class RecipeRepositoryImplMockitoTest {
         @Test
         @DisplayName("given one category id, service return all recipe from one  category")
         void returnAllRecipe() {
-            when(recipeDaoMock.findByCategory(1)).thenReturn(List.of(recipe3));
-            assertEquals(List.of(recipe1).size(), recipeRepository.findByCategory(1).size());
+            when(recipeDaoMock.findByCategory(1)).thenReturn(List.of(
+                    RecipeData.recipeEntityList.get(0),
+                    RecipeData.recipeEntityList.get(1),
+                    RecipeData.recipeEntityList.get(2)));
+            assertEquals(List.of(RecipeData.recipeList.get(0),
+                    RecipeData.recipeList.get(1),
+                    RecipeData.recipeList.get(2)).size(), recipeRepository.findByCategory(1).size());
         }
     }
 }

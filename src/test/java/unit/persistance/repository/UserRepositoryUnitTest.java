@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import data.UserData;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -39,7 +40,7 @@ public class UserRepositoryUnitTest {
     @Test
     public void testFindNutritionistById() {
         User actualUser = userRepository.findByIdNutritionist(1);
-        User expectedUser = new User(1,"Jose","Perez","Garcia","1989-08-18", true,"p1","mail1","jose");
+        User expectedUser = UserData.userList.get(0);
         assertEquals(expectedUser, actualUser);
     }
     @DisplayName("Return null for user id not nutritionist")
@@ -60,12 +61,7 @@ public class UserRepositoryUnitTest {
     @Test
     public void testFindAllUsers() {
         List<User> actualUserList = userRepository.findAllUser();
-        List<User> expectedUserList = new ArrayList<>(Arrays.asList(
-            new User(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose"),
-            new User(2,"Alicia","Fernandez","Lopez","2000-12-04", false, "pass2", "mail2", "alicia"),
-            new User(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe"),
-            new User(4,"Mercedes","Gil","Diaz","2000-04-14", false, "pass4", "mail4", "mercedes")
-        ));
+        List<User> expectedUserList = UserData.userList;
         assertEquals(expectedUserList, actualUserList);
     }
 
@@ -74,23 +70,18 @@ public class UserRepositoryUnitTest {
     public void testFindAllNutritionists() {
         List<User> actualNutritionistList = userRepository.findAllNutritionist();
         List<User> expectedNutritionistList = new ArrayList<>(Arrays.asList(
-            new User(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose"),
-            new User(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe")
-        ));
+                UserData.userList.get(0),UserData.userList.get(2)));
         assertEquals(expectedNutritionistList, actualNutritionistList);
     }
 
     @DisplayName("Insert new users into the database")
     @Test
     public void testInsertNewUser() {
-        userRepository.insert(new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", true, "pass5", "mail5", "marcos"));
+        User newUser = new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", true, "pass5", "mail5", "marcos");
+        userRepository.insert(newUser);
         List<User> actualUsersList = userRepository.findAllUser();
-        List<User> expectedUsersList = new ArrayList<>(Arrays.asList(
-            new User(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose"),
-            new User(2,"Alicia","Fernandez","Lopez","2000-12-04", false, "pass2", "mail2", "alicia"),
-            new User(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe"),
-            new User(4,"Mercedes","Gil","Diaz","2000-04-14", false, "pass4", "mail4", "mercedes"),
-            new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", true, "pass5", "mail5", "marcos")));
+        List<User> expectedUsersList = UserData.userList;
+        expectedUsersList.add(newUser);
         assertEquals(expectedUsersList, actualUsersList);
     }
 }
