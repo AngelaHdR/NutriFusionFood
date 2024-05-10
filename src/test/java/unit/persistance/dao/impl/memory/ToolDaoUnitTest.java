@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
 import antiguo.memory.RecipeDaoMemory;
 import org.junit.jupiter.api.DisplayName;
@@ -20,20 +21,35 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class ToolDaoUnitTest {
     ToolDao toolDao = new ToolDaoMemory();
-    RecipeDao recipeDao = new RecipeDaoMemory();
+
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
 
     @DisplayName("Find all the tools in the database")
     @Test
     public void testFindAllTools() {
         List<ToolEntity> actualToolList = toolDao.findAllTool();
-        List<ToolEntity> expectedToolList = new ArrayList<>(Arrays.asList(
-            new ToolEntity(1,"cuchara"),
-            new ToolEntity(2,"bol"),
-            new ToolEntity(3,"sarten"),
-            new ToolEntity(4,"olla"),
-            new ToolEntity(5,"vaso medidor"),
-            new ToolEntity(6,"batidora")
-        ));
+        List<ToolEntity> expectedToolList;
+        if (lang.equals("es")) {
+            expectedToolList = new ArrayList<>(Arrays.asList(
+                    new ToolEntity(1, "cuchara"),
+                    new ToolEntity(2, "bol"),
+                    new ToolEntity(3, "sarten"),
+                    new ToolEntity(4, "olla"),
+                    new ToolEntity(5, "vaso medidor"),
+                    new ToolEntity(6, "batidora")
+            ));
+        }else if (lang.equals("en")) {
+            expectedToolList = new ArrayList<>(Arrays.asList(
+                    new ToolEntity(1, "cuchara"),
+                    new ToolEntity(2, "bol"),
+                    new ToolEntity(3, "sarten"),
+                    new ToolEntity(4, "olla"),
+                    new ToolEntity(5, "vaso medidor"),
+                    new ToolEntity(6, "batidora")
+            ));
+        }else {
+            expectedToolList=new ArrayList<>();
+        }
         assertEquals(expectedToolList, actualToolList);
     }
 
@@ -41,7 +57,15 @@ public class ToolDaoUnitTest {
     @Test
     public void testFindToolById() {
         ToolEntity actualTool = toolDao.findByIdTool(1);
-        ToolEntity expectedTool = new ToolEntity(1,"cuchara");
+        String name;
+        if (lang.equals("es")) {
+            name = "cuchara";
+        }else if (lang.equals("en")) {
+            name = "spoon";
+        }else{
+            name = null;
+        }
+        ToolEntity expectedTool=new ToolEntity(1, name);
         assertEquals(expectedTool, actualTool);
     }
 
@@ -56,7 +80,14 @@ public class ToolDaoUnitTest {
     @Test
     public void testFindToolByRecipe() {
         List<ToolEntity> actualToolList = toolDao.findByRecipe(1);
-        List<ToolEntity> expectedToolList = new ArrayList<>(Arrays.asList(new ToolEntity(3,"sarten")));
+        List<ToolEntity> expectedToolList;
+        if (lang.equals("es")){
+            expectedToolList= new ArrayList<>(Arrays.asList(new ToolEntity(3,"sarten")));
+        } else if (lang.equals("en")) {
+            expectedToolList= new ArrayList<>(Arrays.asList(new ToolEntity(3,"pan")));
+        }else{
+            expectedToolList= new ArrayList<>();
+        }
         assertEquals(expectedToolList, actualToolList);
     }
     @ParameterizedTest

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,18 +20,32 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class IngredientDaoUnitTest {
     IngredientDao ingredientDao = new IngredientDaoMemory();
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
 
     @DisplayName("Find all the ingredients in the database")
     @Test
     public void testFindAllIngredients() {
         List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
-        List<IngredientEntity> expectedIngredientList = new ArrayList<>(Arrays.asList(
-            new IngredientEntity(1,true,false,"pan",10,12, new TypeEntity()),
-            new IngredientEntity(2,false,false,"pollo",10,12, new TypeEntity()),
-            new IngredientEntity(3,false,false,"tomate",10,12, new TypeEntity()),
-            new IngredientEntity(4,false,false,"puerro",10,12, new TypeEntity()),
-            new IngredientEntity(5,false,true,"helado",10,12, new TypeEntity())
-        ));
+        List<IngredientEntity> expectedIngredientList ;
+        if (lang.equals("es")){
+            expectedIngredientList= new ArrayList<>(Arrays.asList(
+                    new IngredientEntity(1,true,false,"pan",10,12, new TypeEntity()),
+                    new IngredientEntity(2,false,false,"pollo",10,12, new TypeEntity()),
+                    new IngredientEntity(3,false,false,"tomate",10,12, new TypeEntity()),
+                    new IngredientEntity(4,false,false,"puerro",10,12, new TypeEntity()),
+                    new IngredientEntity(5,false,true,"helado",10,12, new TypeEntity())
+            ));
+        } else if (lang.equals("en")) {
+            expectedIngredientList= new ArrayList<>(Arrays.asList(
+                    new IngredientEntity(1,true,false,"bread",10,12, new TypeEntity()),
+                    new IngredientEntity(2,false,false,"chicken",10,12, new TypeEntity()),
+                    new IngredientEntity(3,false,false,"tomato",10,12, new TypeEntity()),
+                    new IngredientEntity(4,false,false,"leek",10,12, new TypeEntity()),
+                    new IngredientEntity(5,false,true,"ice cream",10,12, new TypeEntity())
+            ));
+        }else {
+            expectedIngredientList=new ArrayList<>();
+        }
         assertEquals(expectedIngredientList, actualIngredientList);
     }
 
@@ -38,7 +53,14 @@ public class IngredientDaoUnitTest {
     @Test
     public void testFindIngredientsById() {
         IngredientEntity actualIngredient = ingredientDao.findByIdIngredient(1);
-        IngredientEntity expectedIngredient = new IngredientEntity(1,true,false,"pan",10,12, new TypeEntity());
+        IngredientEntity expectedIngredient;
+        if (lang.equals("es")){
+            expectedIngredient = new IngredientEntity(1,true,false,"pan",10,12, new TypeEntity());
+        } else if (lang.equals("en")) {
+            expectedIngredient = new IngredientEntity(1,true,false,"bread",10,12, new TypeEntity());
+        }else{
+            expectedIngredient=null;
+        }
         assertEquals(expectedIngredient, actualIngredient);
     }
     @ParameterizedTest
@@ -53,6 +75,9 @@ public class IngredientDaoUnitTest {
     @Test
     public void testFindIngredientsByRecipe() {
         List<IngredientEntity> actualIngredientList = ingredientDao.findByRecipe(2);
+        if (lang.equals("es")){
+
+        }
         List<IngredientEntity> expectedIngredientList = new ArrayList<>(Arrays.asList(new IngredientEntity(3,false,false,"tomate",10,12, new TypeEntity())));
         assertEquals(expectedIngredientList, actualIngredientList);
     }
