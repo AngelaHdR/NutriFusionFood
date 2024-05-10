@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
+import data.CategoryData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,19 +28,9 @@ public class CategoryDaoUnitTest {
         List<CategoryEntity> actualCategoryList = categoryDao.findAllCategory();
         List<CategoryEntity> expectedCategoryList;
         if (lang.equals("es")){
-            expectedCategoryList = List.of(
-                    new CategoryEntity(1,"salado"),
-                    new CategoryEntity(2,"postre"),
-                    new CategoryEntity(3,"bebida"),
-                    new CategoryEntity(4,"snack")
-            );
+            expectedCategoryList = CategoryData.categoryEntityList_es;
         } else if (lang.equals("en")) {
-            expectedCategoryList = List.of(
-                    new CategoryEntity(1,"main dish"),
-                    new CategoryEntity(2,"dessert"),
-                    new CategoryEntity(3,"drink"),
-                    new CategoryEntity(4,"snack")
-            );
+            expectedCategoryList = CategoryData.categoryEntityList_en;
         }else {
             expectedCategoryList = new ArrayList<>();
         }
@@ -53,9 +44,9 @@ public class CategoryDaoUnitTest {
         CategoryEntity actualCategory = categoryDao.findByIdCategory(1);
         CategoryEntity expectedCategory;
         if (lang.equals("es")){
-            expectedCategory= new CategoryEntity(1,"salado");
+            expectedCategory = CategoryData.categoryEntityList_es.get(0);
         } else if (lang.equals("en")) {
-            expectedCategory= new CategoryEntity(1,"main dish");
+            expectedCategory = CategoryData.categoryEntityList_en.get(0);
         }else {
             expectedCategory = null;
         }

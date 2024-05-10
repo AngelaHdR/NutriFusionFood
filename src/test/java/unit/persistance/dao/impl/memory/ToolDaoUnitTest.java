@@ -10,6 +10,7 @@ import java.util.List;
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
 import antiguo.memory.RecipeDaoMemory;
+import data.ToolData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,23 +31,9 @@ public class ToolDaoUnitTest {
         List<ToolEntity> actualToolList = toolDao.findAllTool();
         List<ToolEntity> expectedToolList;
         if (lang.equals("es")) {
-            expectedToolList = new ArrayList<>(Arrays.asList(
-                    new ToolEntity(1, "cuchara"),
-                    new ToolEntity(2, "bol"),
-                    new ToolEntity(3, "sarten"),
-                    new ToolEntity(4, "olla"),
-                    new ToolEntity(5, "vaso medidor"),
-                    new ToolEntity(6, "batidora")
-            ));
+            expectedToolList = ToolData.toolEntityList_es;
         }else if (lang.equals("en")) {
-            expectedToolList = new ArrayList<>(Arrays.asList(
-                    new ToolEntity(1, "cuchara"),
-                    new ToolEntity(2, "bol"),
-                    new ToolEntity(3, "sarten"),
-                    new ToolEntity(4, "olla"),
-                    new ToolEntity(5, "vaso medidor"),
-                    new ToolEntity(6, "batidora")
-            ));
+            expectedToolList = ToolData.toolEntityList_en;
         }else {
             expectedToolList=new ArrayList<>();
         }
@@ -57,15 +44,15 @@ public class ToolDaoUnitTest {
     @Test
     public void testFindToolById() {
         ToolEntity actualTool = toolDao.findByIdTool(1);
-        String name;
+        ToolEntity expectedTool;
         if (lang.equals("es")) {
-            name = "cuchara";
+            expectedTool = ToolData.toolEntityList_es.get(0);
         }else if (lang.equals("en")) {
-            name = "spoon";
+            expectedTool = ToolData.toolEntityList_en.get(0)
+;
         }else{
-            name = null;
+            expectedTool = null;
         }
-        ToolEntity expectedTool=new ToolEntity(1, name);
         assertEquals(expectedTool, actualTool);
     }
 
@@ -82,9 +69,9 @@ public class ToolDaoUnitTest {
         List<ToolEntity> actualToolList = toolDao.findByRecipe(1);
         List<ToolEntity> expectedToolList;
         if (lang.equals("es")){
-            expectedToolList= new ArrayList<>(Arrays.asList(new ToolEntity(3,"sarten")));
+            expectedToolList= new ArrayList<>(Arrays.asList(ToolData.toolEntityList_es.get(2)));
         } else if (lang.equals("en")) {
-            expectedToolList= new ArrayList<>(Arrays.asList(new ToolEntity(3,"pan")));
+            expectedToolList= new ArrayList<>(Arrays.asList(ToolData.toolEntityList_en.get(2)));
         }else{
             expectedToolList= new ArrayList<>();
         }
@@ -102,17 +89,11 @@ public class ToolDaoUnitTest {
     @DisplayName("Insert new tools in the database")
     @Test
     public void testInsertNewTools() {
-        toolDao.insert(new ToolEntity(7, "freidora"));
+        ToolEntity newTool = new ToolEntity(7, "freidora");
+        toolDao.insert(newTool);
         List<ToolEntity> actualToolList = toolDao.findAllTool();
-        List<ToolEntity> expectedToolList = new ArrayList<>(Arrays.asList(
-            new ToolEntity(1,"cuchara"),
-            new ToolEntity(2,"bol"),
-            new ToolEntity(3,"sarten"),
-            new ToolEntity(4,"olla"),
-            new ToolEntity(5,"vaso medidor"),
-            new ToolEntity(6,"batidora"),
-            new ToolEntity(7, "freidora")
-        ));
+        List<ToolEntity> expectedToolList = ToolData.toolEntityList_es;
+        expectedToolList.add(newTool);
         assertEquals(expectedToolList, actualToolList);
     }
 
@@ -121,13 +102,8 @@ public class ToolDaoUnitTest {
     public void testDeleteTools() {
         toolDao.delete(6);
         List<ToolEntity> actualToolList = toolDao.findAllTool();
-        List<ToolEntity> expectedToolList = new ArrayList<>(Arrays.asList(
-            new ToolEntity(1,"cuchara"),
-            new ToolEntity(2,"bol"),
-            new ToolEntity(3,"sarten"),
-            new ToolEntity(4,"olla"),
-            new ToolEntity(5,"vaso medidor")
-        ));
+        List<ToolEntity> expectedToolList = ToolData.toolEntityList_es;
+        expectedToolList.remove(5);
         assertEquals(expectedToolList, actualToolList);
     }
 }

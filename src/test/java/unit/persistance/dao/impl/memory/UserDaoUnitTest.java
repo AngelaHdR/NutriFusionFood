@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import antiguo.memory.UserDaoMemory;
+import data.UserData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,11 +24,7 @@ public class UserDaoUnitTest {
     @Test
     public void testFindAllUsers() {
         List<UserEntity> actualNutritionistList = userDao.findAllUser();
-        List<UserEntity> expectedNutritionistList = new ArrayList<>(Arrays.asList(
-            new UserEntity(1,"Jose","Perez","Garcia","1989-08-18", true,"pas1","mail1","jose"),
-            new UserEntity(2,"Alicia","Fernandez","Lopez","2000-12-04", false, "pass2", "mail2", "alicia"),
-            new UserEntity(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe"),
-            new UserEntity(4,"Mercedes","Gil","Diaz","2000-04-14", false, "pass4", "mail4", "mercedes")));
+        List<UserEntity> expectedNutritionistList = UserData.userEntityList;
         assertEquals(expectedNutritionistList, actualNutritionistList);
     }
 
@@ -36,16 +33,15 @@ public class UserDaoUnitTest {
     public void testFindAllNutritionists() {
         List<UserEntity> actualNutritionistList = userDao.findAllNutritionist();
         List<UserEntity> expectedNutritionistList = new ArrayList<>(Arrays.asList(
-            new UserEntity(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose"),
-            new UserEntity(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe")));
-        assertEquals(expectedNutritionistList, actualNutritionistList);
+                UserData.userEntityList.get(0), UserData.userEntityList.get(2)));
+            assertEquals(expectedNutritionistList, actualNutritionistList);
     }
 
     @DisplayName("Find the nutritionists by their id")
     @Test
     public void testFindNutritionistById() {
         UserEntity actualNutritionist = userDao.findByIdNutritionist(1);
-        UserEntity expectedNutritionist = new UserEntity(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose");
+        UserEntity expectedNutritionist = UserData.userEntityList.get(0);
         assertEquals(expectedNutritionist, actualNutritionist);
     }
     @Test
@@ -64,14 +60,11 @@ public class UserDaoUnitTest {
     @DisplayName("Insert a new user to the database")
     @Test
     public void testInsertNewUser() {
-        userDao.insert(new UserEntity(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos"));
+        UserEntity newUser = new UserEntity(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos");
+        userDao.insert(newUser);
         List<UserEntity> actualUsersList = userDao.findAllUser();
-        List<UserEntity> expectedUsersList = new ArrayList<>(Arrays.asList(
-            new UserEntity(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose"),
-            new UserEntity(2,"Alicia","Fernandez","Lopez","2000-12-04", false, "pass2", "mail2", "alicia"),
-            new UserEntity(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe"),
-            new UserEntity(4,"Mercedes","Gil","Diaz","2000-04-14", false, "pass4", "mail4", "mercedes"),
-            new UserEntity(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos")));
+        List<UserEntity> expectedUsersList = UserData.userEntityList;
+        expectedUsersList.add(newUser);
         assertEquals(expectedUsersList, actualUsersList);
     }
 }

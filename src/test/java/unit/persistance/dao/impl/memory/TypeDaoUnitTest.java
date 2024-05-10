@@ -4,6 +4,7 @@ import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 import antiguo.memory.TypeDaoMemory;
+import data.TypeData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,23 +26,9 @@ public class TypeDaoUnitTest {
         List<TypeEntity> actualList = typeDao.findAllType();
         List<TypeEntity> expectedList;
         if (lang.equals("es")){
-            expectedList=List.of(
-                    new TypeEntity(1,"carne"),
-                    new TypeEntity(2,"pescado"),
-                    new TypeEntity(3,"lacteo"),
-                    new TypeEntity(4,"verdura"),
-                    new TypeEntity(5,"fruta"),
-                    new TypeEntity(6,"hidrados")
-            );
+            expectedList= TypeData.typeEntityList_es;
         } else if (lang.equals("en")) {
-            expectedList=List.of(
-                    new TypeEntity(1,"meat"),
-                    new TypeEntity(2,"fish"),
-                    new TypeEntity(3,"dairy"),
-                    new TypeEntity(4,"vegetable"),
-                    new TypeEntity(5,"fruit"),
-                    new TypeEntity(6,"carbs")
-            );
+            expectedList=TypeData.typeEntityList_en;
         } else{
             expectedList = new ArrayList<>();
         }
@@ -51,15 +38,14 @@ public class TypeDaoUnitTest {
     @DisplayName("Find types for given id")
     public void testFindTypeById(){
         TypeEntity actualType = typeDao.findByIdType(5);
-        String name;
+        TypeEntity expectedType;
         if (lang.equals("es")) {
-            name = "fruta";
+            expectedType = TypeData.typeEntityList_es.get(4);
         }else if (lang.equals("en")) {
-            name = "fruit";
+            expectedType = TypeData.typeEntityList_en.get(4);
         }else{
-            name = null;
+            expectedType = null;
         }
-        TypeEntity expectedType =   new TypeEntity(5,name);
         assertEquals(expectedType, actualType);
     }
 
@@ -69,7 +55,6 @@ public class TypeDaoUnitTest {
     public void returnNullWrongId(int id){
         TypeEntity actualType = typeDao.findByIdType(id);
         assertNull(actualType);
-
     }
 
 }
