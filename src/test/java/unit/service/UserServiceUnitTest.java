@@ -3,6 +3,7 @@ package unit.service;
 import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
+import data.UserData;
 import mock.repository.UserRepositoryMock;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,16 +33,14 @@ public class UserServiceUnitTest {
     public void testFindAllNutritionist(){
         List<User> actualUserList = userService.findAllNutritionist();
         List<User> expectedUserList = new ArrayList<>(Arrays.asList(
-                new User(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose"),
-                new User(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe")
-                ));
+                UserData.userList.get(0), UserData.userList.get(2)));
         assertEquals(expectedUserList, actualUserList);
     }
     @Test
     @DisplayName("Find nutritionist by their id")
     public void testFindByIdNutritionist(){
         User actualUserList = userService.findByIdNutritionist(1);
-        User expectedUserList = new User(1,"Jose","Perez","Garcia","1989-08-18", true,"p1","mail1","jose");
+        User expectedUserList = UserData.userList.get(0);
         assertEquals(expectedUserList,actualUserList);
     }
     @DisplayName("Return null for user id not nutritionist")
@@ -61,26 +60,18 @@ public class UserServiceUnitTest {
     @Test
     public void testFindAllUsers() {
         List<User> actualUserList = userService.findAllUser();
-        List<User> expectedUserList = new ArrayList<>(Arrays.asList(
-                new User(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose"),
-                new User(2,"Alicia","Fernandez","Lopez","2000-12-04", false, "pass2", "mail2", "alicia"),
-                new User(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe"),
-                new User(4,"Mercedes","Gil","Diaz","2000-04-14", false, "pass4", "mail4", "mercedes")
-        ));
+        List<User> expectedUserList = UserData.userList;
         assertEquals(expectedUserList, actualUserList);
     }
 
     @DisplayName("Insert new users into the database")
     @Test
     public void testInsertNewUser() {
-        userService.insert(new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos"));
+        User newUser = new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos");
+        userService.insert(newUser);
         List<User> actualUsersList = userService.findAllUser();
-        List<User> expectedUsersList = new ArrayList<>(Arrays.asList(
-                new User(1,"Jose","Perez","Garcia","1989-08-18", true, "pass1", "mail1", "jose"),
-                new User(2,"Alicia","Fernandez","Lopez","2000-12-04", false, "pass2", "mail2", "alicia"),
-                new User(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe"),
-                new User(4,"Mercedes","Gil","Diaz","2000-04-14", false, "pass4", "mail4", "mercedes"),
-                new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos")));
+        List<User> expectedUsersList = UserData.userList;
+        expectedUsersList.add(newUser);
         assertEquals(expectedUsersList, actualUsersList);
     }
 }

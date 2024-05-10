@@ -5,6 +5,7 @@ import com.fpmislata.NutriFusionFood.domain.entity.*;
 import com.fpmislata.NutriFusionFood.domain.service.impl.RecipeServiceImpl;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
 import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
+import data.RecipeData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -30,13 +31,6 @@ public class RecipeServiceImplMockitoTest {
 
     @InjectMocks
     private RecipeServiceImpl recipeService;
-    private final Recipe recipe1 = new Recipe(2, "Salmorejo", "es", "x", 60, "Paso 1...",
-            new ArrayList<>(List.of(new Ingredient(1, true, false, "pan", 1, 12))),
-            new ArrayList<>(List.of(new Tool(1, "batidora"))),
-            new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
-            new Category(1, "salado"), new HashMap<>());
-    private final Recipe recipe2 = new Recipe(4, "Torrijas", "es", "x", "Paso 1...", 45);
-    private final List<Recipe> recipeList = List.of(recipe1, recipe2);
 
     @Nested
     class FindAll {
@@ -50,8 +44,8 @@ public class RecipeServiceImplMockitoTest {
         @Test
         @DisplayName("when repository return recipes, service return all recipe")
         void returnAllRecipe() {
-            when(recipeRepositoryMock.findAllRecipe()).thenReturn(recipeList);
-            assertEquals(recipeList, recipeService.findAllRecipe());
+            when(recipeRepositoryMock.findAllRecipe()).thenReturn(RecipeData.recipeList);
+            assertEquals(RecipeData.recipeList, recipeService.findAllRecipe());
         }
     }
 
@@ -67,8 +61,8 @@ public class RecipeServiceImplMockitoTest {
         @Test
         @DisplayName("when id in list, service return only that recipe")
         void returnRecipeById() {
-            when(recipeRepositoryMock.findByIdRecipe(2)).thenReturn(recipe1);
-            assertEquals(recipe1, recipeService.findByIdRecipe(2));
+            when(recipeRepositoryMock.findByIdRecipe(2)).thenReturn(RecipeData.recipeList.get(1));
+            assertEquals(RecipeData.recipeList.get(1), recipeService.findByIdRecipe(2));
         }
     }
 
@@ -77,9 +71,8 @@ public class RecipeServiceImplMockitoTest {
         @Test
         @DisplayName("delete recipe by id")
         void deleteRecipeById() {
-            recipeService.delete(recipe2.getId());
-            verify(recipeRepositoryMock).delete(recipe2.getId());
-
+            recipeService.delete(RecipeData.recipeList.get(0).getId());
+            verify(recipeRepositoryMock).delete(RecipeData.recipeList.get(0).getId());
         }
     }
 
@@ -89,7 +82,7 @@ public class RecipeServiceImplMockitoTest {
         @Test
         @DisplayName("Insert new recipe")
         void insertNewRecipe() {
-            Recipe recipe3 = new Recipe(3, "Ramen", "es", "x", 240, "Paso 1...",
+            Recipe recipe3 = new Recipe(3, "Ramen", "es", "x", "Paso 1...",240,
                     new ArrayList<>(List.of(new Ingredient(2, false, false, "fideos chinos", 1, 12))),
                     new ArrayList<>(List.of(new Tool(2, "cazo"))),
                     new User(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
@@ -112,8 +105,13 @@ public class RecipeServiceImplMockitoTest {
         @Test
         @DisplayName("given one category id, service return all recipe from one  category")
         void returnAllRecipe() {
-            when(recipeRepositoryMock.findByCategory(1)).thenReturn(List.of(recipe1));
-            assertEquals(List.of(recipe1), recipeService.findByCategory(1));
+            when(recipeRepositoryMock.findByCategory(1)).thenReturn(List.of(
+                    RecipeData.recipeList.get(0),
+                    RecipeData.recipeList.get(1),
+                    RecipeData.recipeList.get(2)));
+            assertEquals(List.of(RecipeData.recipeList.get(0),
+                    RecipeData.recipeList.get(1),
+                    RecipeData.recipeList.get(2)), recipeService.findByCategory(1));
         }
     }
 }
