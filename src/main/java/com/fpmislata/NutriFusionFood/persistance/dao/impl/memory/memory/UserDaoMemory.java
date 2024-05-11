@@ -1,4 +1,4 @@
-package antiguo.memory;
+package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.UserDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.UserEntity;

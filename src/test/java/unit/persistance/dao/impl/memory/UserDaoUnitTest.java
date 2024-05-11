@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import antiguo.memory.UserDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.UserDaoMemory;
 import data.UserData;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +20,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class UserDaoUnitTest {
-    UserDao userDao = new UserDaoMemory();
-
+    UserDao userDao;
+    @BeforeEach
+    public void setUpAll(){
+        userDao = new UserDaoMemory();
+    }
+    @AfterEach
+    public void tearDownAll(){
+        userDao = null;
+    }
     @DisplayName("Find all the users from the database")
     @Test
     public void testFindAllUsers() {

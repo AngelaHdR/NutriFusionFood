@@ -10,19 +10,29 @@ import java.util.List;
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 import data.IngredientData;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
-import antiguo.memory.IngredientDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.IngredientDaoMemory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class IngredientDaoUnitTest {
-    IngredientDao ingredientDao = new IngredientDaoMemory();
-    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
 
+    IngredientDao ingredientDao;
+    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
+    @BeforeEach
+    public void setUpAll(){
+        ingredientDao = new IngredientDaoMemory();
+    }
+    @AfterEach
+    public void tearDownAll(){
+        ingredientDao = null;
+    }
     @DisplayName("Find all the ingredients in the database")
     @Test
     public void testFindAllIngredients() {
@@ -88,10 +98,20 @@ public class IngredientDaoUnitTest {
     @DisplayName("Insert new ingredients into the database")
     @Test
     public void testInsertNewIngredients() {
-        IngredientEntity newIngredient = new IngredientEntity(6,false,true,"queso",10,12, new TypeEntity(3,"lacteo"));
-        ingredientDao.insert(newIngredient);
+        IngredientEntity newIngredient;
         List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
-        List<IngredientEntity> expectedIngredientList = IngredientData.ingredientEntityList_es;
+        List<IngredientEntity> expectedIngredientList;
+        if (lang.equals("es")){
+            expectedIngredientList = IngredientData.ingredientEntityList_es;
+            newIngredient = new IngredientEntity(6,false,true,"queso",10,12, new TypeEntity(3,"lacteo"));
+        } else if (lang.equals("en")) {
+            expectedIngredientList = IngredientData.ingredientEntityList_en;
+            newIngredient = new IngredientEntity(6,false,true,"cheese",10,12, new TypeEntity(3,"dairy"));
+        } else {
+            expectedIngredientList = new ArrayList<>();
+            newIngredient = null;
+        }
+        ingredientDao.insert(newIngredient);
         expectedIngredientList.add(newIngredient);
         assertEquals(expectedIngredientList, actualIngredientList);
     }
@@ -101,7 +121,14 @@ public class IngredientDaoUnitTest {
     public void testDeleteIngredients() {
         ingredientDao.delete(5);
         List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
-        List<IngredientEntity> expectedIngredientList = IngredientData.ingredientEntityList_es;
+        List<IngredientEntity> expectedIngredientList;
+        if (lang.equals("es")){
+            expectedIngredientList = IngredientData.ingredientEntityList_es;
+        } else if (lang.equals("en")) {
+            expectedIngredientList = IngredientData.ingredientEntityList_en;
+        } else {
+            expectedIngredientList = new ArrayList<>();
+        }
         expectedIngredientList.remove(4);
         assertEquals(expectedIngredientList, actualIngredientList);
     }

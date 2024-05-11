@@ -27,7 +27,7 @@ public class RecipeEntityTest {
                 () -> assertEquals("es", recipeEntity.getLanguage()),
                 () -> assertEquals("Tortilla patata", recipeEntity.getName()),
                 () -> assertEquals("receta tipica castellana", recipeEntity.getDescription()),
-                () -> assertEquals("paso 1", recipeEntity.getSteps()),
+                () -> assertEquals("Paso 1", recipeEntity.getSteps()),
                 () -> assertEquals(120, recipeEntity.getTime()),
                 () -> assertEquals(1, recipeEntity.getUser().getId()),
                 () -> assertEquals(1, recipeEntity.getCategory().getId())

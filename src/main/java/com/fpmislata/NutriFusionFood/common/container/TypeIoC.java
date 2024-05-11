@@ -7,8 +7,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.TypeDaoJdbc;
 import com.fpmislata.NutriFusionFood.persistance.repository.TypeRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.TypeRepositoryImpl;
-
-import antiguo.memory.TypeDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.TypeDaoMemory;
 
 public class TypeIoC {
     private static TypeService typeService;

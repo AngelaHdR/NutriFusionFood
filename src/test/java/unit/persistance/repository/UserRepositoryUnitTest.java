@@ -77,7 +77,7 @@ public class UserRepositoryUnitTest {
     @DisplayName("Insert new users into the database")
     @Test
     public void testInsertNewUser() {
-        User newUser = new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", true, "pass5", "mail5", "marcos");
+        User newUser = new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos");
         userRepository.insert(newUser);
         List<User> actualUsersList = userRepository.findAllUser();
         List<User> expectedUsersList = UserData.userList;

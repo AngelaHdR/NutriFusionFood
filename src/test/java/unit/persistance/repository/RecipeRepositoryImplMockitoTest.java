@@ -47,10 +47,7 @@ public class RecipeRepositoryImplMockitoTest {
         @DisplayName("when repository return recipes, service return all recipe")
         void returnAllRecipe() {
             when(recipeDaoMock.findAllRecipe()).thenReturn(RecipeData.recipeEntityList);
-            assertAll(
-
-            );
-            assertEquals(RecipeData.recipeList.size(), recipeRepository.findAllRecipe().size());
+            assertEquals(RecipeData.recipeList, recipeRepository.findAllRecipe());
         }
     }
 

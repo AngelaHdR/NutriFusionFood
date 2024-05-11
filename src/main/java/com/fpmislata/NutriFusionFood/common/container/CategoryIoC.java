@@ -6,7 +6,7 @@ import com.fpmislata.NutriFusionFood.domain.service.CategoryService;
 import com.fpmislata.NutriFusionFood.domain.service.impl.CategoryServiceImpl;
 import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.CategoryDaoJdbc;
-import antiguo.memory.CategoryDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.CategoryDaoMemory;
 import com.fpmislata.NutriFusionFood.persistance.repository.CategoryRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.CategoryRepositoryImpl;
 
@@ -22,18 +22,17 @@ public class CategoryIoC {
     }
     public static CategoryRepository getCategoryRepository(){
         if (categoryRepository == null){
-            if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("jdbc")) {
-                categoryRepository = new CategoryRepositoryImpl(getCategoryDao());
-            }else if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("memory")) {
-                categoryDao = new CategoryDaoMemory();
-            }
+            categoryRepository = new CategoryRepositoryImpl(getCategoryDao());
         }
         return categoryRepository;
     }
     public static CategoryDao getCategoryDao(){
         if(categoryDao== null){
-
-            categoryDao= new CategoryDaoJdbc();
+            if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("jdbc")) {
+                categoryDao= new CategoryDaoJdbc();
+            }else if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("memory")) {
+                categoryDao = new CategoryDaoMemory();
+            }
         }
         return categoryDao;
     }

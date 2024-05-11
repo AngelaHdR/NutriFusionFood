@@ -18,13 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class UserServiceUnitTest {
     private static UserService userService;
 
-    @BeforeAll
-    public static void setUpAll(){
+    @BeforeEach
+    public void setUpAll(){
         UserIoC.setUserRepository(new UserRepositoryMock());
         userService= UserIoC.getUserService();
     }
-    @AfterAll
-    public static void teardownAll(){
+    @AfterEach
+    public void teardownAll(){
         UserIoC.reset();
     }
 

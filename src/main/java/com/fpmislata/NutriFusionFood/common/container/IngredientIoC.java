@@ -5,9 +5,10 @@ import com.fpmislata.NutriFusionFood.domain.service.IngredientService;
 import com.fpmislata.NutriFusionFood.domain.service.impl.IngredientServiceImpl;
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.IngredientDaoJdbc;
-import antiguo.memory.IngredientDaoMemory;
 import com.fpmislata.NutriFusionFood.persistance.repository.IngredientRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.IngredientRepositoryImpl;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.IngredientDaoMemory;
+
 
 public class IngredientIoC {
     private static IngredientDao ingredientDao;

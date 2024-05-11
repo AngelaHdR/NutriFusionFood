@@ -7,8 +7,8 @@ import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.ToolDaoJdbc;
 import com.fpmislata.NutriFusionFood.persistance.repository.ToolRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.ToolRepositoryImpl;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.ToolDaoMemory;
 
-import antiguo.memory.ToolDaoMemory;
 
 public class ToolIoC {
     private static ToolService toolService;
