@@ -8126,19 +8126,20 @@ ul {
 
 .recipe-container {
   background: linear-gradient(#F1856A 50%, #D0EEF4 50%);
-  height: 75vh;
+  height: auto;
 }
 
 .recipe-info {
-  height: 50vh;
+  margin: 25px;
+  height: auto;
 }
 
 .recipe-image {
-  width: 65vh;
+  width: 30vw;
 }
 
 .recipe-full-info {
-  width: 65vh;
+  width: 30vw;
 }
 
 .recipe-image img {
@@ -8172,6 +8173,10 @@ ul {
   right: 0;
   height: 1px;
   background-color: #000000;
+}
+
+.fav-icon {
+  font-size: 20px;
 }
 
 .profile-picture {
@@ -8274,4 +8279,4 @@ p {
   font-family: Playfair Display;
   font-style: normal;
   color: #000000;
-}/*# sourceMappingURL=custom.css.map */
+}

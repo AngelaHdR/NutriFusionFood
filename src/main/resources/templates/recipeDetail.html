@@ -17,7 +17,7 @@
             <div class="recipe-image flex-fill">
                 <img th:src="@{/images/}+recipe_+${recipe.id}+.png" alt="Recipe Image">
             </div>
-            <div class="recipe-full-info flex-fill py-3 px-4">
+            <div class="recipe-full-info flex-fill pt-3 px-4">
                 <h3 th:text="${recipe.name}"></h3>
                 <h4 class="text-fuente" th:text="${recipe.category.name}"></h4>
                 <br>
@@ -31,8 +31,8 @@
                 </ul>
                 <p>Nombre Nutricionista</p>
                 <p class="text-info" th:text="${recipe.user.name}"></p>
-                <div class="icon pb-3 fs-3">
-                    <i class="fa-solid fa-heart text-resalte"></i>
+                <div class="icon pb-3 fs-3 d-flex">
+                    <i class="fav-icon fa-solid fa-heart text-resalte"></i>
                     <p>Añadir a favoritos</p>
                 </div>
             </div>
