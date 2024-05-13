@@ -24,7 +24,7 @@ $title_normal: $base_size*1.5;
 $subtitle_size: $base_size*2.5;
 $info: $base_size*1;*/
 
-$font-family:(
+$font-family: (
   "titulo":Forum,
   "cuerpo":Playfair Display,
 );
@@ -57,61 +57,73 @@ $border-widths: (
   3: 4rem,
   4: 8rem
 );
-$border-radius:1.5rem;
+$border-radius: 1.5rem;
 
-//variables compuestas
-//cualquier texto general
-$cuerpo: (
-  "weight": map-get($font-weights,"regular"),
-  "size": map-get($font-sizes,"cuerpo"), 
-  "family": map-get($font_family,"cuerpo"), 
-  "style": map-get($font_styles,"normal"),
-  "color": map-get($theme-colors,"fuente")
+$grid-breakpoints: (
+  //tablets y moviles, logo pequeño desplegable y boton
+  xs: 315px,
+  sm: 425px,
+  //tamaño portatil mediano, quitar nombre y slogan con navbar y boton
+  md: 768px,
+  lg: 1024px,
+  // tamaño pantallas grandes, logo,nombre,slogan navbar y boton
+  xl: 1200px,
+  xxl: 1440px
 ); 
+
+  //variables compuestas
+  //cualquier texto general
+$cuerpo: (
+    "weight": map-get($font-weights, "regular"),
+    "size": map-get($font-sizes, "cuerpo"),
+    "family": map-get($font_family, "cuerpo"),
+    "style": map-get($font_styles, "normal"),
+    "color": map-get($theme-colors, "fuente")
+);
 //titulos tipo h1 de las paginas
 $titulo: (
-  "weight": map-get($font-weights,"regular"), 
-  "size": map-get($font-sizes,"title"), 
-  "family": map-get($font_family,"titulo"),
-  "style": map-get($font_styles,"normal"),
-  "color": map-get($theme-colors,"fuente")
-); 
+  "weight": map-get($font-weights, "regular"),
+  "size": map-get($font-sizes, "title"),
+  "family": map-get($font_family, "titulo"),
+  "style": map-get($font_styles, "normal"),
+  "color": map-get($theme-colors, "fuente")
+);
 //titulos de secciones y recetas
 $seccion: (
-  "weight": map-get($font-weights,"bold"),
-  "size": map-get($font-sizes,"section"), 
-  "family":  map-get($font_family,"titulo"),
-  "style": map-get($font_styles,"cursiva"),
-  "color": map-get($theme-colors,"fuente")
-); 
+  "weight": map-get($font-weights, "bold"),
+  "size": map-get($font-sizes, "section"),
+  "family": map-get($font_family, "titulo"),
+  "style": map-get($font_styles, "cursiva"),
+  "color": map-get($theme-colors, "fuente")
+);
 //textos grandes
 $subtitulo: (
   "weight":map-get($font-weights, "regular"),
-  "size": map-get($font-sizes,"subtitle"), 
-  "family": map-get($font_family,"cuerpo"),
-  "style": map-get($font_styles,"normal"),
-  "color": map-get($theme-colors,"fuente")
-); 
+  "size": map-get($font-sizes, "subtitle"),
+  "family": map-get($font_family, "cuerpo"),
+  "style": map-get($font_styles, "normal"),
+  "color": map-get($theme-colors, "fuente")
+);
 //texto dinamicos en listados
 $info: (
   "weight":map-get($font-weights, "regular"),
-  "size": map-get($font-sizes,"cuerpo"), 
-  "family": map-get($font_family,"titulo"),
-  "style": map-get($font_styles,"normal"),
-  "color": map-get($theme-colors,"info")
-); 
+  "size": map-get($font-sizes, "cuerpo"),
+  "family": map-get($font_family, "titulo"),
+  "style": map-get($font_styles, "normal"),
+  "color": map-get($theme-colors, "info")
+);
 $menu: (
   "weight":map-get($font-weights, "regular"),
-  "size": map-get($font-sizes,"nav ul li"), 
-  "family": map-get($font_family,"titulo"),
+  "size": map-get($font-sizes, "nav ul li"),
+  "family": map-get($font_family, "titulo"),
   "style": map-get($font_styles, "normal"),
-  "color": map-get($theme-colors,"fuente")
+  "color": map-get($theme-colors, "fuente")
 );
 
 //estilos globales, creo que no se usa
-$body-bg: map-get($theme-colors,"fondo");
-$body-color: map-get($theme-colors,"fuente");
-$headings-color: map-get($theme-colors,"info");
+$body-bg: map-get($theme-colors, "fondo");
+$body-color: map-get($theme-colors, "fuente");
+$headings-color: map-get($theme-colors, "info");
 
 //importar variables de bootstrap con las modificaciones anteriores
 @import '../../static/bootstrap/scss/functions';
@@ -130,22 +142,20 @@ $headings-color: map-get($theme-colors,"info");
   margin-left: 3px;
 }
 
-.slogan {
-  margin-left: 5px;
-}
 
 ul {
   list-style: none
 }
 
 //FOOTER
-.content{
-  flex:1;
+.content {
+  flex: 1;
 }
-.container{
-  padding:0;
-  margin:0;
-  min-height: 100vh; 
+
+.container {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
   min-width: 100%;
   display: flex;
   flex-direction: column;
@@ -153,18 +163,21 @@ ul {
 
 //HOME 
 .nutrifusion-food-welcome {
-  height: 50px;
+  height: 4rem;
 }
 
-.heart-icon, .globe-icon{
-  font-size: map-get($font-sizes,"title");
+
+.heart-icon,
+.globe-icon {
+  font-size: map-get($font-sizes, "title");
 }
 
-.img-aboutus{
+.img-aboutus {
   width: 40vw;
 }
-.img-recipes{
-  width:13vw;
+
+.img-recipes {
+  width: 13vw;
 }
 
 .recipe-picture {
@@ -199,64 +212,10 @@ ul {
   width: 100%;
 }
 
-.recipe-container{
-  background: linear-gradient(#F1856A 50%, #D0EEF4 50%);
-  height: auto;
-}
-
-.recipe-info{
-  margin: 25px;
-  height: auto;
-}
-
-.recipe-image {
-  width: 30vw;
-}
-
-.recipe-full-info {
-  width: 30vw;
-}
-
-.recipe-image img {
-  height: 100%;
-  width: 100%;
-}
-
-.recipe-preparation{
-  margin-left: 0;
-}
-
-.recipe-section{
-  padding-left: 35vh;
-  position: relative;
-}
-
-.recipe-steps{
-  padding-left: 35vh;
-}
-
-.recipe-section ul{
-  margin: 0;
-  padding-left: 0;
-}
-
-.recipe-section h2::after, .recipe-section ul::after{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background-color: #000000;
-}
-
-.fav-icon{
-  font-size: 20px;
-}
 
 //PROFILE
 
-.profile-picture{
+.profile-picture {
   max-height: 55vh;
   width: 90%;
 }
@@ -315,31 +274,34 @@ ul {
 
 
 //Añadir nuevas variable a continuacion de la importadas por bootstrap
-@mixin apply-font-style($style-map){
-  font-weight: map-get($style-map,"weight");
-  font-size: map-get($style-map,"size");
-  font-family: map-get($style-map,"family");
-  font-style: map-get($style-map,"style");
-  color: map-get($style-map,"color")
+@mixin apply-font-style($style-map) {
+  font-weight: map-get($style-map, "weight");
+  font-size: map-get($style-map, "size");
+  font-family: map-get($style-map, "family");
+  font-style: map-get($style-map, "style");
+  color: map-get($style-map, "color")
 }
 
-h1{
+h1 {
   @include apply-font-style($titulo);
 }
-h2{
+
+h2 {
   @include apply-font-style($seccion);
 }
-h3{
+
+h3 {
   @include apply-font-style($subtitulo);
 }
-nav li a{
+
+nav li a {
   @include apply-font-style($menu);
 }
-h5{
+
+h5 {
   @include apply-font-style($info);
 }
-p{
+
+p {
   @include apply-font-style($cuerpo);
 }
-
-
