@@ -11,4 +11,6 @@ public interface RecipeDao {
     public void insert(RecipeEntity recipeEntity);
     public List<RecipeEntity> findByCategory(Integer categoryId);
     public List<RecipeEntity> findByNutritionist(Integer nutritionistId);
+
+    public RecipeEntity findByNameAndNutritionist(String name, int userId);
 }

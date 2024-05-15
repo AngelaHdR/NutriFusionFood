@@ -34,8 +34,8 @@ public class UserDaoJdbc implements UserDao {
     @Override
     public UserEntity findByIdNutritionist(Integer id) {
         try {
-            String sql = "select * from user where id_user = ?";
-            List<Object> params = List.of(id);
+            String sql = "select * from user where id_user = ? and nutritionist = ?";
+            List<Object> params = List.of(id,1);
             ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
             userEntity = UserEntityMapper.toUserEntity(resultSet);
@@ -69,5 +69,19 @@ public class UserDaoJdbc implements UserDao {
             System.out.println("Hay un problema con la bbdd");
         }
         return userEntityList;
+    }
+
+    @Override
+    public UserEntity findByEmailOrUsername(String email, String username) {
+        try {
+            String sql = "select * from user where email =? or username = ?";
+            List<Object> params = List.of(email,username);
+            ResultSet resultSet = Rawsql.select(sql, params);
+            resultSet.next();
+            return UserEntityMapper.toUserEntity(resultSet);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

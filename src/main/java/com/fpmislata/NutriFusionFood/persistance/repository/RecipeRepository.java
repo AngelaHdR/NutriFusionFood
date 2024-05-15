@@ -11,4 +11,5 @@ public interface RecipeRepository {
     public void insert(Recipe recipe);
     public List<Recipe> findByCategory(Integer categoryId);
     public List<Recipe> findByNutritionist(Integer nutritionistId);
+    public Recipe findByNameAndNutritionist(String name, int userId);
 }

@@ -1,7 +1,7 @@
 package com.fpmislata.NutriFusionFood.domain.service.impl;
 
 import com.fpmislata.NutriFusionFood.common.container.RecipeIoC;
-import com.fpmislata.NutriFusionFood.common.exceptions.ServiceException;
+import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.Category;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.service.CategoryService;
@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> findAllCategory() {
         List<Category> categoryList= this.categoryRepository.findAllCategory();
         if (categoryList.isEmpty()){
-            throw new ServiceException("The list of categories is empty");
+            throw new BusinessException("The list of categories is empty");
         }
         return categoryList;
     }
@@ -31,7 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
     public Category findByIdCategory(Integer id) {
         Category category = this.categoryRepository.findByIdCategory(id);
         if (category==null){
-            throw new ServiceException("There is no category with id: " + id);
+            throw new BusinessException("There is no category with id: " + id);
         }
         return category;
     }

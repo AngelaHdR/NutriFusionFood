@@ -48,4 +48,9 @@ public class UserDaoMemory implements UserDao {
         return nutritionistList;
     }
 
+    @Override
+    public UserEntity findByEmailOrUsername(String email, String username) {
+        return null;
+    }
+
 }

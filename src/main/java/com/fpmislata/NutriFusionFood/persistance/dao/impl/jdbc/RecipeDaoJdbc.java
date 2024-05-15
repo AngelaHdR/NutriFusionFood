@@ -97,4 +97,18 @@ public class RecipeDaoJdbc implements RecipeDao {
         }
         return recipeEntityList;
     }
+
+    @Override
+    public RecipeEntity findByNameAndNutritionist(String name, int userId) {
+        try {
+            String sql = "SELECT r.*,u.*,c.id_category,c.name_"+lang+" as name FROM user u inner join recipe r on u.id_user=r.id_user " +
+                    "inner join category c on r.id_category=c.id_category WHERE r.id_user = ? and r.name = ?";
+            List<Object> params = List.of(name,userId);
+            ResultSet resultSet = Rawsql.select(sql, params);
+            resultSet.next();
+            return RecipeEntityMapper.toRecipeEntity(resultSet);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -64,4 +64,9 @@ public class RecipeDaoMemory implements RecipeDao {
         }
         return nutritionistList;
     }
+
+    @Override
+    public RecipeEntity findByNameAndNutritionist(String name, int userId) {
+        return null;
+    }
 }

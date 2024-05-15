@@ -120,4 +120,9 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         }
         return recipeNutritionist;
     }
+
+    @Override
+    public Recipe findByNameAndNutritionist(String name, int userId) {
+        return RecipeMapper.toRecipe(recipeDao.findByNameAndNutritionist(name, userId));
+    }
 }

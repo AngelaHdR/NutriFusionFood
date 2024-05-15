@@ -33,4 +33,9 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> findAllUser() {
         return UserMapper.toUserList(userDao.findAllUser());
     }
+
+    @Override
+    public User findByEmailOrUsername(String email, String username) {
+        return UserMapper.toUser(userDao.findByEmailOrUsername(email, username));
+    }
 }

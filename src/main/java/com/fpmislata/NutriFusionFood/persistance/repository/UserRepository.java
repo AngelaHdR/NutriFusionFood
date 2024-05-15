@@ -9,4 +9,5 @@ public interface UserRepository {
     public void insert(User user);
     public List<User> findAllNutritionist();
     public List<User> findAllUser();
+    public User findByEmailOrUsername(String email, String username);
 }
