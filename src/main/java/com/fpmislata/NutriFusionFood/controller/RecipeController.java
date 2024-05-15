@@ -1,9 +1,11 @@
 package com.fpmislata.NutriFusionFood.controller;
 
+import com.fpmislata.NutriFusionFood.common.container.IngredientIoC;
 import com.fpmislata.NutriFusionFood.common.container.RecipeIoC;
 import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
+import com.fpmislata.NutriFusionFood.domain.service.IngredientService;
 import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -16,9 +18,11 @@ import java.util.List;
 @RequestMapping("/recipes")
 public class RecipeController {
     RecipeService recipeService;
+    IngredientService ingredientService;
 
     public RecipeController() {
         this.recipeService = RecipeIoC.getRecipeService();
+        this.ingredientService = IngredientIoC.getIngredientService();
     }
     @GetMapping("")
     public String findAllRecipe(Model model){
@@ -33,7 +37,7 @@ public class RecipeController {
     }
     @GetMapping("/add")
     public String insert(Model model){
-
+        model.addAttribute("ingredientList",this.ingredientService.findAllIngredient());
         model.addAttribute("recipe",new Recipe());
         return "recipeForm";
     }
