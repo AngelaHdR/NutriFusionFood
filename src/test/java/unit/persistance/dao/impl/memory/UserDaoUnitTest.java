@@ -25,10 +25,6 @@ public class UserDaoUnitTest {
     public void setUpAll(){
         userDao = new UserDaoMemory();
     }
-    @AfterEach
-    public void tearDownAll(){
-        userDao = null;
-    }
     @DisplayName("Find all the users from the database")
     @Test
     public void testFindAllUsers() {
@@ -72,7 +68,7 @@ public class UserDaoUnitTest {
         UserEntity newUser = new UserEntity(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos");
         userDao.insert(newUser);
         List<UserEntity> actualUsersList = userDao.findAllUser();
-        List<UserEntity> expectedUsersList = UserData.userEntityList;
+        List<UserEntity> expectedUsersList = new ArrayList<>(UserData.userEntityList);
         expectedUsersList.add(newUser);
         assertEquals(expectedUsersList, actualUsersList);
     }

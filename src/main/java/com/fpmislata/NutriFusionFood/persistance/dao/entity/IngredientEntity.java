@@ -103,5 +103,17 @@ public class IngredientEntity {
             return false;
         return true;
     }
-    
+
+    @Override
+    public String toString() {
+        return "IngredientEntity{" +
+                "id=" + id +
+                ", gluten=" + gluten +
+                ", lactose=" + lactose +
+                ", name='" + name + '\'' +
+                ", startSeason=" + startSeason +
+                ", endSeason=" + endSeason +
+                ", type=" + type +
+                '}';
+    }
 }

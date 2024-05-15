@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import data.ToolData;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,10 +26,6 @@ public class ToolDaoUnitTest {
     @BeforeEach
     public void setUpAll(){
         toolDao = new ToolDaoMemory();
-    }
-    @AfterEach
-    public void tearDownAll(){
-        toolDao = null;
     }
 
     @DisplayName("Find all the tools in the database")
@@ -101,11 +96,11 @@ public class ToolDaoUnitTest {
         List<ToolEntity> expectedToolList;
         if (lang.equals("es")){
             newTool = new ToolEntity(7, "freidora");
-            expectedToolList = ToolData.toolEntityList_es;
+            expectedToolList = new ArrayList<>(ToolData.toolEntityList_es);
             expectedToolList.add(newTool);
         } else if (lang.equals("en")) {
             newTool = new ToolEntity(7, "frying pan");
-            expectedToolList = ToolData.toolEntityList_en;
+            expectedToolList = new ArrayList<>(ToolData.toolEntityList_en);
             expectedToolList.add(newTool);
         }else{
             newTool = null;
@@ -123,9 +118,9 @@ public class ToolDaoUnitTest {
         List<ToolEntity> actualToolList = toolDao.findAllTool();
         List<ToolEntity> expectedToolList;
         if (lang.equals("es")){
-            expectedToolList = ToolData.toolEntityList_es;
+            expectedToolList = new ArrayList<>(ToolData.toolEntityList_es);
         } else if (lang.equals("en")) {
-            expectedToolList = ToolData.toolEntityList_en;
+            expectedToolList = new ArrayList<>(ToolData.toolEntityList_en);
         }else{
             expectedToolList = new ArrayList<>();
         }

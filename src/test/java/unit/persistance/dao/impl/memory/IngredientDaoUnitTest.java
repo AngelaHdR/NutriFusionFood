@@ -29,10 +29,6 @@ public class IngredientDaoUnitTest {
     public void setUpAll(){
         ingredientDao = new IngredientDaoMemory();
     }
-    @AfterEach
-    public void tearDownAll(){
-        ingredientDao = null;
-    }
     @DisplayName("Find all the ingredients in the database")
     @Test
     public void testFindAllIngredients() {
@@ -99,13 +95,12 @@ public class IngredientDaoUnitTest {
     @Test
     public void testInsertNewIngredients() {
         IngredientEntity newIngredient;
-        List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
         List<IngredientEntity> expectedIngredientList;
         if (lang.equals("es")){
-            expectedIngredientList = IngredientData.ingredientEntityList_es;
+            expectedIngredientList = new ArrayList<>(IngredientData.ingredientEntityList_es);
             newIngredient = new IngredientEntity(6,false,true,"queso",10,12, new TypeEntity(3,"lacteo"));
         } else if (lang.equals("en")) {
-            expectedIngredientList = IngredientData.ingredientEntityList_en;
+            expectedIngredientList = new ArrayList<>(IngredientData.ingredientEntityList_en);
             newIngredient = new IngredientEntity(6,false,true,"cheese",10,12, new TypeEntity(3,"dairy"));
         } else {
             expectedIngredientList = new ArrayList<>();
@@ -113,7 +108,9 @@ public class IngredientDaoUnitTest {
         }
         ingredientDao.insert(newIngredient);
         expectedIngredientList.add(newIngredient);
+        List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
         assertEquals(expectedIngredientList, actualIngredientList);
+
     }
 
     @DisplayName("Delete ingredients from the database")
@@ -123,10 +120,10 @@ public class IngredientDaoUnitTest {
         List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
         List<IngredientEntity> expectedIngredientList;
         if (lang.equals("es")){
-            expectedIngredientList = IngredientData.ingredientEntityList_es;
+            expectedIngredientList = new ArrayList<>(IngredientData.ingredientEntityList_es);
         } else if (lang.equals("en")) {
-            expectedIngredientList = IngredientData.ingredientEntityList_en;
-        } else {
+            expectedIngredientList = new ArrayList<>(IngredientData.ingredientEntityList_en);
+        }else{
             expectedIngredientList = new ArrayList<>();
         }
         expectedIngredientList.remove(4);
