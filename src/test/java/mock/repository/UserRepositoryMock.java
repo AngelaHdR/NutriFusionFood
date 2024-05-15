@@ -52,4 +52,10 @@ public class UserRepositoryMock implements UserRepository {
     public List<User> findAllUser() {
         return userList;
     }
+
+    @Override
+    public User findByEmailOrUsername(String email, String username) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByEmailOrUsername'");
+    }
 }

@@ -13,7 +13,7 @@ public class UserDaoMock implements UserDao {
         new UserEntity(2,"Alicia","Fernandez","Lopez","2000-12-04", false, "pass2", "mail2", "alicia"),
         new UserEntity(3,"Pepe","Escudero","Ramirez","1985-10-24", true, "pass3", "mail3", "pepe"),
         new UserEntity(4,"Mercedes","Gil","Diaz","2000-04-14", false, "pass4", "mail4", "mercedes")
-    ));
+    )); 
 
     @Override
     public List<UserEntity> findAllUser() {
@@ -45,5 +45,11 @@ public class UserDaoMock implements UserDao {
             }
         }
         return nutritionistList;
+    }
+
+    @Override
+    public UserEntity findByEmailOrUsername(String email, String username) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByEmailOrUsername'");
     }
 }
