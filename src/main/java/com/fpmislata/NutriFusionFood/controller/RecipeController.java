@@ -2,8 +2,10 @@ package com.fpmislata.NutriFusionFood.controller;
 
 import com.fpmislata.NutriFusionFood.common.container.IngredientIoC;
 import com.fpmislata.NutriFusionFood.common.container.RecipeIoC;
+import com.fpmislata.NutriFusionFood.common.container.ToolIoC;
 import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
+import com.fpmislata.NutriFusionFood.domain.entity.Type;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
 import com.fpmislata.NutriFusionFood.domain.service.IngredientService;
 import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
@@ -19,10 +21,12 @@ import java.util.List;
 public class RecipeController {
     RecipeService recipeService;
     IngredientService ingredientService;
+    ToolService toolService;
 
     public RecipeController() {
         this.recipeService = RecipeIoC.getRecipeService();
         this.ingredientService = IngredientIoC.getIngredientService();
+        this.toolService = ToolIoC.getToolService();
     }
     @GetMapping("")
     public String findAllRecipe(Model model){
@@ -37,7 +41,10 @@ public class RecipeController {
     }
     @GetMapping("/add")
     public String insert(Model model){
-        model.addAttribute("ingredientList",this.ingredientService.findAllIngredient());
+        for (Type type: typeService.findAll()){
+            model.addAttribute("ingredientList"+type.getName(),this.ingredientService.findByType(type.getId()));
+        }
+        model.addAttribute("toolList",this.toolService.findAll());
         model.addAttribute("recipe",new Recipe());
         return "recipeForm";
     }

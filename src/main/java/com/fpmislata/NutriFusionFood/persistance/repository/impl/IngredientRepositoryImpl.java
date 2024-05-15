@@ -23,4 +23,9 @@ public class IngredientRepositoryImpl implements IngredientRepository {
     public Ingredient findByIdIngredient(Integer id) {
         return IngredientMapper.toIngredient(ingredientDao.findByIdIngredient(id));
     }
+
+    @Override
+    public List<Ingredient> findByType(int typeId) {
+        return IngredientMapper.toIngredientList(ingredientDao.findByType(typeId));
+    }
 }

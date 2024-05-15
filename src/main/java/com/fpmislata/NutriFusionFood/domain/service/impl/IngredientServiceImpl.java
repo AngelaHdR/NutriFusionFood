@@ -22,4 +22,9 @@ public class IngredientServiceImpl implements IngredientService {
     public Ingredient findByIdIngredient(Integer id) {
         return ingredientRepository.findByIdIngredient(id);
     }
+
+    @Override
+    public List<Ingredient> findByType(int typeId) {
+        return ingredientRepository.findByType(typeId);
+    }
 }

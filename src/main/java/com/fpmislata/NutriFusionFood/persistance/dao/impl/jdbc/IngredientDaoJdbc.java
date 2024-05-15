@@ -82,4 +82,21 @@ public class IngredientDaoJdbc implements IngredientDao {
         }
         return ingredientEntityList;
     }
+    @Override
+    public List<IngredientEntity> findByType(int typeId){
+        try {
+            String sql = "SELECT i.*,t.id_type,t.name_"+lang+" as name FROM type t inner join ingredient i on t.id_type=i.id_type " +
+                    " WHERE t.id_type = ?";
+            List<Object> params = List.of(typeId);
+            ResultSet resultSet = Rawsql.select(sql, params);
+            ingredientEntityList = new ArrayList<>();
+            while (resultSet.next()) {
+                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet));
+            }
+        } catch (SQLException e) {
+            System.out.println("Hay un problema con la bbdd");
+        }
+        return ingredientEntityList;
+    }
 }
+

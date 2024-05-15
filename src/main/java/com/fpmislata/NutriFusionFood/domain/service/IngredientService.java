@@ -7,4 +7,5 @@ import java.util.List;
 public interface IngredientService {
     public List<Ingredient> findAllIngredient();
     public Ingredient findByIdIngredient(Integer id);
+    public List<Ingredient> findByType(int typeId);
 }
