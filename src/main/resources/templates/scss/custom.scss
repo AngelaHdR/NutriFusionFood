@@ -58,6 +58,7 @@ $border-widths: (
   4: 8rem
 );
 $border-radius: 1.5rem;
+$input-border-width:4px;
 /*
 $grid-breakpoints: (
   //tablets y moviles, logo pequeño desplegable y boton
@@ -70,6 +71,10 @@ $grid-breakpoints: (
   xl: 1200px,
   xxl: 1440px
 ); */
+
+.dropdown-menu .form-check {
+  padding: 5px;
+}
 
   //variables compuestas
   //cualquier texto general

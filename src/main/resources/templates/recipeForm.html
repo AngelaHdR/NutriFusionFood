@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,37 +9,108 @@
     <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
     <title>Formulario recetas</title>
 </head>
+
 <body>
-    <div class="container">
-<header th:insert="fragments.html :: header">Header</header>
-<!--  Introducir un objeto receta nuevo, el listado de categorias, listado de ingredientes  -->
-<main class="content">
-    <form action="#" th:action="@{/recipes}" th:object="${recipe}">
-        <label for="title">Titulo de la receta</label>
-        <input id="title" type="text" th:field="*{name}" maxlength="50">
-        <p>Categoria de la receta</p>
-        <!--
-        <select name="category" th:field="*{category.id}">
-            <option th:each="category:${categoryList}" th:value="${category.id}" th:text="category.name"></option>
-        </select>-->
-        <label for="time">Tiempo de preparacion</label>
-        <input id="time" type="number" th:field="*{time}"><br>
-       <!--
-        <select name="ingredient" th:field="*{ingredient.id}">
-            <option th:each="ingredient:${ingredientList}" th:value="${ingredient.id}" th:text="ingredient.name"></option>
-        </select>
-        -->
-        <label for="descripcion">Descripion</label>
-        <textarea name="descripcion" id="descripcion" cols="30" rows="10" th:field="*{description}"></textarea><br>
-        <label for="pasos">Pasos a seguir</label>
-        <textarea name="pasos" id="pasos" cols="30" rows="10" th:field="*{steps}"></textarea><br>
-        <!-- Añadir opcion de adjuntar imagen -->
-        <input type="submit" value="Crear">
-    </form>    
-</main>
-<footer th:insert="fragments.html::footer"></footer>
+<div class="container">
+    <header th:insert="fragments.html :: header">Header</header>
+    <main class="content">
+        <form class=" m-2 g-3 needs-validation " novalidate>
+            <div class="row">
+
+
+                <div class="col-md-5 my-2">
+                    <label for="validationCustom01" class="form-label ">Nombre de la receta</label>
+                    <input type="text" class="form-control border-info" id="validationCustom01"
+                           value="Nombre de la receta" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-3 my-2">
+                    <label for="numero">Duración de la receta:</label>
+                    <input type="number" class="form-control  border-info" id="numero" name="numero"
+                           placeholder="Duración" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-4 my-2">
+                    <label for="categoria">Categoría:</label>
+                    <select class="form-control border-info" id="categoria" name="categoria" required>
+                        <option value="" disabled selected>Selecciona una categoría...</option>
+                        Iterar sobre la lista de categorías
+                        <option th:each="category : ${categoryList}" th:value="${category.id}"
+                                th:text="${category.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 my-2">
+                    <div th:each="type:${typeList}">
+                        <label th.text="type.name" for="type"></label>
+                        <select class="form-control border-info" id="type" name="type" required multiple>
+                            <option value="" disabled selected>Selecciona los ingredientes...</option>
+                            <!-- Iterar sobre la lista de categorías -->
+                            <option th:each="ingredient : ${'ingredientList'+type.name}" th:value="${ingredient.id}"
+                                    th:text="${ingredient.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 my-2">
+                    <label for="categoria">Utensilios:</label>
+                    <select class="form-control border-info" id="tool" name="tool" required multiple>
+                        <option value="" disabled selected>Selecciona los Utensilios...</option>
+                        <!-- Iterar sobre la lista de categorías -->
+                        <option th:each="tool : ${toolList}" th:value="${tool.id}"
+                                th:text="${tool.name}">
+                        </option>
+                    </select>
+
+                </div>
+                <div class=" col-md-6 mb-3 my-2">
+                    <label for="validationTextarea" class="form-label">Descripción de la receta</label>
+                    <textarea class="form-control border-info" id="validationTextarea"
+                              placeholder="Breve Descripción..." required></textarea>
+                    <div class="invalid-feedback">
+                        Introduce un mensaje
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-md-6 mb-3 my-2">
+                    <label for="validationTextarea" class="form-label">Pasos a seguir</label>
+                    <textarea class="form-control border-info" id="validationTextarea" placeholder="Pasos..."
+                              required></textarea>
+                    <div class="invalid-feedback">
+                        Introduce un mensaje
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center m-2 mt-2">
+                <div class="col-6 bg-info p-1">
+                    <div class="col-12 bg-info pt-2 border border-fondo bw-5">
+                        <a href="/recipes">
+                            <h4 class="text-fondo text-center">AÑADIR RECETA</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </main>
+    <footer th:insert="fragments.html::footer"></footer>
 </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-</body>
-</html>
+
 <script src="../static/js/Form.js"></script>
+<script src="../static/js/Desplegable.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
