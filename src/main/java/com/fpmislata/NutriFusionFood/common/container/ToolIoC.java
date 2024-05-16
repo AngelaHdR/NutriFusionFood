@@ -17,7 +17,7 @@ public class ToolIoC {
 
     public static ToolService getToolService(){
         if (toolService==null) {
-            toolService = new ToolServiceImpl(toolRepository);
+            toolService = new ToolServiceImpl(getToolRepository());
         }
         return toolService;
     }

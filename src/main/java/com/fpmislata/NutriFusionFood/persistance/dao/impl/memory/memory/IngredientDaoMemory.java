@@ -88,4 +88,9 @@ public class IngredientDaoMemory implements IngredientDao {
             ingredientEntityList_en.remove(findByIdIngredient(id));
         }
     }
+
+    @Override
+    public List<IngredientEntity> findByType(int typeId) {
+        return null;
+    }
 }

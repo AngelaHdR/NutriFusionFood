@@ -16,14 +16,14 @@ public class TypeIoC {
 
     public static TypeService getTypeService(){
         if (typeService==null) {
-            typeService = new TypeServiceImpl(typeRepository);
+            typeService = new TypeServiceImpl(getTypeRepository());
         }
         return typeService;
     }
 
     public static TypeRepository getTypeRepository(){
         if (typeRepository==null) {
-            typeRepository = new TypeRepositoryImpl(typeDao);
+            typeRepository = new TypeRepositoryImpl(getTypeDao());
         }
         return typeRepository;
     }

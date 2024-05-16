@@ -46,18 +46,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 my-2">
-                    <div th:each="type:${typeList}">
-                        <label th.text="type.name" for="type"></label>
-                        <select class="form-control border-info" id="type" name="type" required multiple>
-                            <option value="" disabled selected>Selecciona los ingredientes...</option>
-                            <!-- Iterar sobre la lista de categorías -->
-                            <option th:each="ingredient : ${'ingredientList'+type.name}" th:value="${ingredient.id}"
-                                    th:text="${ingredient.name}">
-                            </option>
-                        </select>
-                    </div>
+                <div th:each="entry:${ingredientMap}" class="col-md-4">
+                    <label th:text="${entry.key.name}" for="type"></label>
+                    <select class="form-control border-info" id="type" name="type" required multiple>
+                        <option value="" disabled selected>Selecciona los ingredientes...</option>
+                        <!-- Iterar sobre la lista de categorías -->
+                        <option th:each="ingredient : ${entry.value}" th:value="${ingredient.id}"
+                                th:text="${ingredient.name}">
+                        </option>
+                    </select>
                 </div>
+
             </div>
             <div class="row">
                 <div class="col-md-6 my-2">
