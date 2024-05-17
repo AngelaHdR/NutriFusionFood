@@ -1,6 +1,6 @@
 use nutrifusionfoodtest;
 
-    INSERT INTO category(id_category, name_es, name_en) VALUES(1,'Plato principal','Main dish');					
+    INSERT INTO category(id_category, name_es, name_en) VALUES(1,'Salado','Main dish');					
 	INSERT INTO category(id_category, name_es, name_en) VALUES(2,'Postre','Dessert');					
 	INSERT INTO category(id_category, name_es, name_en) VALUES(3,'Bebida','Drink');					
 	INSERT INTO category(id_category, name_es, name_en) VALUES(4,'Snack','Snack');					

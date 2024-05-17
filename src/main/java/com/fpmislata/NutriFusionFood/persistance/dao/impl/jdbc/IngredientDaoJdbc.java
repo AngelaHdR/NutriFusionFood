@@ -24,7 +24,7 @@ public class IngredientDaoJdbc implements IngredientDao {
             String sql = "SELECT i.*,t.id_type,t.name_"+lang+" as name from ingredient i inner join type t on i.id_type=t.id_type";
             ResultSet resultSet = Rawsql.select(sql, null);
             while (resultSet.next()) {
-                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet));
+                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet,lang));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -41,7 +41,7 @@ public class IngredientDaoJdbc implements IngredientDao {
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
-            ingredientEntity = IngredientEntityMapper.toIngredientEntity(resultSet);
+            ingredientEntity = IngredientEntityMapper.toIngredientEntity(resultSet,lang);
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
         }
@@ -69,13 +69,20 @@ public class IngredientDaoJdbc implements IngredientDao {
     @Override
     public List<IngredientEntity> findByRecipe(Integer recipeId) {
         try {
-            String sql = "SELECT i.*,t.id_type,t.name_"+lang+" as name FROM type t inner join ingredient i on t.id_type=i.id_type " +
-                    "inner join composed c on i.id_ingredient = c.id_ingredient WHERE c.id_recipe= ?";
+            //buscar el idioma de la receta
+            String sql = "SELECT lang FROM recipe WHERE id_recipe = ?";
             List<Object> params = List.of(recipeId);
             ResultSet resultSet = Rawsql.select(sql, params);
+            resultSet.next();
+            String lang2 = resultSet.getString("lang");
+            //mostrar la receta en su idioma
+            String sql2 = "SELECT i.*,t.id_type,t.name_"+lang2+" as name FROM type t inner join ingredient i on t.id_type=i.id_type " +
+                    "inner join composed c on i.id_ingredient = c.id_ingredient WHERE c.id_recipe= ?";
+            List<Object> params2 = List.of(recipeId);
+            ResultSet resultSet2 = Rawsql.select(sql2, params2);
             ingredientEntityList = new ArrayList<>();
-            while (resultSet.next()) {
-                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet));
+            while (resultSet2.next()) {
+                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet2,lang2));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -91,7 +98,7 @@ public class IngredientDaoJdbc implements IngredientDao {
             ResultSet resultSet = Rawsql.select(sql, params);
             ingredientEntityList = new ArrayList<>();
             while (resultSet.next()) {
-                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet));
+                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet,lang));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");

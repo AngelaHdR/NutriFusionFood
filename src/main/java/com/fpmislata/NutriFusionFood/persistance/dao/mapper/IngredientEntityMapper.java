@@ -9,8 +9,8 @@ import java.sql.SQLException;
 
 public class IngredientEntityMapper {
 
-    public static IngredientEntity toIngredientEntity(ResultSet resultSet){
-        String lang = AppPropertiesReader.getInstance().getProperty("lang");
+    public static IngredientEntity toIngredientEntity(ResultSet resultSet,String lang){
+        //String lang = AppPropertiesReader.getInstance().getProperty("lang");
         if(resultSet==null){
             return null;
         }

@@ -23,7 +23,7 @@ public class ToolDaoJdbc implements ToolDao {
             ResultSet resultSet = Rawsql.select(sql, null);
             toolEntityList = new ArrayList<>();
             while (resultSet.next()) {
-                toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet));
+                toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet,lang));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -38,7 +38,7 @@ public class ToolDaoJdbc implements ToolDao {
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
-            toolEntity = ToolEntityMapper.toToolEntity(resultSet);
+            toolEntity = ToolEntityMapper.toToolEntity(resultSet,lang);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -48,13 +48,20 @@ public class ToolDaoJdbc implements ToolDao {
     @Override
     public List<ToolEntity> findByRecipe(Integer recipeId) {
         try {
-            String sql = "SELECT t.id_tool,t.name_"+lang+" FROM tool t " +
-                    "inner join required r on t.id_tool= r.id_tool where r.id_recipe = ?";
+            //buscar el idioma de la receta
+            String sql = "SELECT lang FROM recipe WHERE id_recipe = ?";
             List<Object> params = List.of(recipeId);
             ResultSet resultSet = Rawsql.select(sql, params);
+            resultSet.next();
+            String lang2 = resultSet.getString("lang");
+            //mostrar la receta en su idioma
+            String sql2 = "SELECT t.id_tool,t.name_"+lang2+" FROM tool t " +
+                    "inner join required r on t.id_tool= r.id_tool where r.id_recipe = ?";
+            List<Object> params2 = List.of(recipeId);
+            ResultSet resultSet2 = Rawsql.select(sql2, params2);
             toolEntityList = new ArrayList<>();
-            while (resultSet.next()) {
-                toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet));
+            while (resultSet2.next()) {
+                toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet2,lang2));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");

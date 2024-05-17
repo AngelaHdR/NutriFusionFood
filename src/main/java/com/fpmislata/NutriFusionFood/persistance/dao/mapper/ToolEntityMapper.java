@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ToolEntityMapper {
-    public static ToolEntity toToolEntity(ResultSet resultSet){
-        String lang = AppPropertiesReader.getInstance().getProperty("lang");
+    public static ToolEntity toToolEntity(ResultSet resultSet,String lang){
+        //String lang = AppPropertiesReader.getInstance().getProperty("lang");
         if (resultSet == null){
             return null;
         }
