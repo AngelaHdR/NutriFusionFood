@@ -23,6 +23,8 @@
                 <br>
                 <p>Tiempo</p>
                 <p class="text-info" th:text="${recipe.time}"></p>
+                <p>Idioma</p>
+                <p class="text-info" th:text="${recipe.language}"></p>
                 <p>Alergenos</p>
                 <ul>
                     <li th:each="allergen : ${recipe.allergen}">
