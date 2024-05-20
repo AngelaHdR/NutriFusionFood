@@ -19,11 +19,9 @@ public class RecipeDaoJdbc implements RecipeDao {
     @Override
     public List<RecipeEntity> findAllRecipe() {
         try {
-            //preguntar a cesar
             String sql = "SELECT r.*,u.*,c.id_category,c.name_"+lang+" as name FROM user u inner join recipe r on u.id_user=r.id_user " +
-                    "inner join category c on r.id_category=c.id_category WHERE r.lang=?";
-            List<Object> params = List.of(lang);
-            ResultSet resultSet = Rawsql.select(sql, params);
+                    "inner join category c on r.id_category=c.id_category";
+            ResultSet resultSet = Rawsql.select(sql, null);
             recipeEntityList = new ArrayList<>();
             while (resultSet.next()) {
                 recipeEntityList.add(RecipeEntityMapper.toRecipeEntity(resultSet));
@@ -70,8 +68,8 @@ public class RecipeDaoJdbc implements RecipeDao {
     public List<RecipeEntity> findByCategory(Integer categoryId) {
         try {
             String sql = "SELECT r.*,u.*,c.id_category,c.name_"+lang+" as name FROM user u inner join recipe r on u.id_user=r.id_user " +
-                    "inner join category c on r.id_category=c.id_category WHERE r.id_category = ? and r.lang=?";
-            List<Object> params = List.of(categoryId,lang);
+                    "inner join category c on r.id_category=c.id_category WHERE r.id_category = ?";
+            List<Object> params = List.of(categoryId);
             ResultSet resultSet = Rawsql.select(sql, params);
             recipeEntityList = new ArrayList<>();
             while (resultSet.next()) {
@@ -87,8 +85,8 @@ public class RecipeDaoJdbc implements RecipeDao {
     public List<RecipeEntity> findByNutritionist(Integer nutritionistId) {
         try {
             String sql = "SELECT r.*,u.*,c.id_category,c.name_"+lang+" as name FROM user u inner join recipe r on u.id_user=r.id_user " +
-                    "inner join category c on r.id_category=c.id_category WHERE r.id_user = ? and r.lang=?";
-            List<Object> params = List.of(nutritionistId,lang);
+                    "inner join category c on r.id_category=c.id_category WHERE r.id_user = ?";
+            List<Object> params = List.of(nutritionistId);
             ResultSet resultSet = Rawsql.select(sql, params);
             recipeEntityList = new ArrayList<>();
             while (resultSet.next()) {

@@ -7,6 +7,11 @@ grant select on nutrifusionfood.* to  adminNFF@localhost;
 grant insert on nutrifusionfood.* to  adminNFF@localhost;
 grant update on nutrifusionfood.* to  adminNFF@localhost;
 grant delete on nutrifusionfood.* to  adminNFF@localhost;
+
+grant select on nutrifusionfoodtest.* to  adminNFF@localhost;
+grant insert on nutrifusionfoodtest.* to  adminNFF@localhost;
+grant update on nutrifusionfoodtest.* to  adminNFF@localhost;
+grant delete on nutrifusionfoodtest.* to  adminNFF@localhost;
 flush privileges;
 
 -- usuario nutricionista con permisos de busqueda en todas las tablas, insercion en las tablas receta, ingrediente y utensilios

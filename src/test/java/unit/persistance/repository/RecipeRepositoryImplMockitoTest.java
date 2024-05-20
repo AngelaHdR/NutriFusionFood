@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/*@ExtendWith(MockitoExtension.class)
+@ExtendWith(MockitoExtension.class)
 public class RecipeRepositoryImplMockitoTest {
     @Mock
     private RecipeDao recipeDaoMock;
@@ -126,4 +126,3 @@ public class RecipeRepositoryImplMockitoTest {
         }
     }
 }
-*/

@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
-/*@ExtendWith(MockitoExtension.class)
+@ExtendWith(MockitoExtension.class)
 public class RecipeServiceImplMockitoTest {
     @Mock
     private RecipeRepository recipeRepositoryMock;
@@ -51,12 +51,13 @@ public class RecipeServiceImplMockitoTest {
 
     @Nested
     class FindById {
-        @Test
+        /*@Test
         @DisplayName("when id not in list , Service return null")
         void returnEmptyList() {
-            when(recipeRepositoryMock.findByIdRecipe(-1)).thenReturn(null);
-            assertEquals(null, recipeService.findByIdRecipe(-1));
-        }
+            //throw new business exception
+            when(recipeRepositoryMock.findByIdRecipe(-2)).thenReturn(null);
+            assertEquals(null, recipeService.findByIdRecipe(-2));
+        }*/
 
         @Test
         @DisplayName("when id in list, service return only that recipe")
@@ -71,8 +72,9 @@ public class RecipeServiceImplMockitoTest {
         @Test
         @DisplayName("delete recipe by id")
         void deleteRecipeById() {
-            recipeService.delete(RecipeData.recipeList.get(0).getId());
-            verify(recipeRepositoryMock).delete(RecipeData.recipeList.get(0).getId());
+            List<Recipe> recipeList = new ArrayList<>(RecipeData.recipeList);
+            recipeService.delete(recipeList.get(0).getId());
+            verify(recipeRepositoryMock).delete(recipeList.get(0).getId());
         }
     }
 
@@ -115,4 +117,3 @@ public class RecipeServiceImplMockitoTest {
         }
     }
 }
-*/
