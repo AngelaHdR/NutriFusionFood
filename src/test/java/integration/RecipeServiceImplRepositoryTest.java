@@ -31,7 +31,8 @@ public class RecipeServiceImplRepositoryTest {
     private final RecipeDao recipeDao = Mockito.mock(RecipeDao.class);
     private final RecipeService recipeService =
             new RecipeServiceImpl(new RecipeRepositoryImpl(recipeDao));
-    public final List<RecipeEntity> recipeList = new ArrayList<>(RecipeData.recipeEntityList);
+    public final List<RecipeEntity> recipeEntityList = new ArrayList<>(RecipeData.recipeEntityList);
+    public final List<Recipe> recipeList = new ArrayList<>(RecipeData.recipeList);
 
     @Nested
     class FindAll {
@@ -45,7 +46,7 @@ public class RecipeServiceImplRepositoryTest {
         @Test
         @DisplayName("when repository return recipes, service return all recipe")
         void returnAllRecipe() {
-            when(recipeDao.findAllRecipe()).thenReturn(recipeList);
+            when(recipeDao.findAllRecipe()).thenReturn(recipeEntityList);
             assertEquals(recipeList, recipeService.findAllRecipe());
         }
     }
@@ -62,7 +63,7 @@ public class RecipeServiceImplRepositoryTest {
         @Test
         @DisplayName("when id in list, service return only that recipe")
         void returnRecipeById() {
-            when(recipeDao.findByIdRecipe(2)).thenReturn(recipeList.get(1));
+            when(recipeDao.findByIdRecipe(2)).thenReturn(recipeEntityList.get(1));
             assertEquals(recipeList.get(1), recipeService.findByIdRecipe(2));
         }
     }
