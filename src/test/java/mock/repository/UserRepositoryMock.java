@@ -50,6 +50,11 @@ public class UserRepositoryMock implements UserRepository {
 
     @Override
     public User findByEmailOrUsername(String email, String username) {
-        throw new UnsupportedOperationException("Unimplemented method 'findByEmailOrUsername'");
+        for (User user:userList){
+            if (user.getUsername().equals(username) || user.getEmail().equals(email)){
+                return user;
+            }
+        }
+        return null;
     }
 }

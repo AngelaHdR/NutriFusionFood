@@ -80,7 +80,7 @@ public class UserRepositoryUnitTest {
         User newUser = new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos");
         userRepository.insert(newUser);
         List<User> actualUsersList = userRepository.findAllUser();
-        List<User> expectedUsersList = UserData.userList;
+        List<User> expectedUsersList = new ArrayList<>(UserData.userList);
         expectedUsersList.add(newUser);
         assertEquals(expectedUsersList, actualUsersList);
     }

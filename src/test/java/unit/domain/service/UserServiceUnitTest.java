@@ -1,6 +1,7 @@
 package unit.domain.service;
 
 import com.fpmislata.NutriFusionFood.common.container.UserIoC;
+import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
 import data.UserData;
@@ -12,8 +13,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 public class UserServiceUnitTest {
     private static UserService userService;
@@ -46,15 +48,13 @@ public class UserServiceUnitTest {
     @DisplayName("Return null for user id not nutritionist")
     @Test
     public void returnNullIdNotNutritionist(){
-        User actualUser= userService.findByIdNutritionist(2);
-        assertNull(actualUser);
+        assertThrows(BusinessException.class,()->userService.findByIdNutritionist(2));
     }
     @DisplayName("Return null for user id not in list")
     @ParameterizedTest
     @ValueSource(ints = {0,-2,8})
     public void returnNullWrongId(int id){
-        User actualUser= userService.findByIdNutritionist(id);
-        assertNull(actualUser);
+        assertThrows(BusinessException.class,()->userService.findByIdNutritionist(-2));
     }
     @DisplayName("Find all the users in the database")
     @Test
@@ -67,11 +67,23 @@ public class UserServiceUnitTest {
     @DisplayName("Insert new users into the database")
     @Test
     public void testInsertNewUser() {
-        User newUser = new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "pass5", "mail5", "marcos");
+        User newUser = new User(5, "Marcos", "Monleon", "Miguel", "2005-10-06", false, "password5", "mail5", "marcos");
         userService.insert(newUser);
         List<User> actualUsersList = userService.findAllUser();
-        List<User> expectedUsersList = UserData.userList;
+        List<User> expectedUsersList = new ArrayList<>(UserData.userList);
         expectedUsersList.add(newUser);
         assertEquals(expectedUsersList, actualUsersList);
+    }
+    @DisplayName("Not allow same username as other user")
+    @Test
+    public void sameUsernameThrowException(){
+        User newUser = new User(5, "Marcos", "Garcia", "Lopez", "2005-10-06", false, "password5", "mail5", "pepe");
+        assertThrows(BusinessException.class,()->userService.insert(newUser));
+    }
+    @DisplayName("Not allow same email as other user")
+    @Test
+    public void sameEmailThrowException(){
+        User newUser = new User(5, "Marcos", "Garcia", "Lopez", "2005-10-06", false, "password5", "mail4", "marcos");
+        assertThrows(BusinessException.class,()->userService.insert(newUser));
     }
 }
