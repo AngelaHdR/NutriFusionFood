@@ -7,7 +7,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.IngredientDaoJdbc;
 import com.fpmislata.NutriFusionFood.persistance.repository.IngredientRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.IngredientRepositoryImpl;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.IngredientDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.IngredientDaoMemory;
 
 
 public class IngredientIoC {

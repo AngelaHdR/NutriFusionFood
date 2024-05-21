@@ -6,7 +6,7 @@ import com.fpmislata.NutriFusionFood.domain.service.CategoryService;
 import com.fpmislata.NutriFusionFood.domain.service.impl.CategoryServiceImpl;
 import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.CategoryDaoJdbc;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.CategoryDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.CategoryDaoMemory;
 import com.fpmislata.NutriFusionFood.persistance.repository.CategoryRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.CategoryRepositoryImpl;
 

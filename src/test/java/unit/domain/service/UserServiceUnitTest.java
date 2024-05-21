@@ -1,4 +1,4 @@
-package unit.service;
+package unit.domain.service;
 
 import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.entity.User;

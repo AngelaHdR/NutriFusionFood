@@ -7,7 +7,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.ToolDaoJdbc;
 import com.fpmislata.NutriFusionFood.persistance.repository.ToolRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.ToolRepositoryImpl;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.ToolDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
 
 
 public class ToolIoC {
@@ -38,5 +38,17 @@ public class ToolIoC {
             }
         }
         return toolDao;
+    }
+
+    public static void setToolService(ToolService toolService) {
+        ToolIoC.toolService = toolService;
+    }
+
+    public static void setToolRepository(ToolRepository toolRepository) {
+        ToolIoC.toolRepository = toolRepository;
+    }
+
+    public static void setToolDao(ToolDao toolDao) {
+        ToolIoC.toolDao = toolDao;
     }
 }

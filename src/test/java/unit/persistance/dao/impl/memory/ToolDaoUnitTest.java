@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.ToolDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

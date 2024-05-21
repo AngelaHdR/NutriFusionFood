@@ -10,14 +10,13 @@ import java.util.List;
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 import data.IngredientData;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.memory.IngredientDaoMemory;
+import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.IngredientDaoMemory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

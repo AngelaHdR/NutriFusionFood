@@ -1,9 +1,9 @@
-package unit.service;
+package unit.domain.service;
 
 
+import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.*;
 import com.fpmislata.NutriFusionFood.domain.service.impl.RecipeServiceImpl;
-import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
 import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
 import data.RecipeData;
 import org.junit.jupiter.api.DisplayName;
@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static data.RecipeData.recipeList;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -44,26 +44,25 @@ public class RecipeServiceImplMockitoTest {
         @Test
         @DisplayName("when repository return recipes, service return all recipe")
         void returnAllRecipe() {
-            when(recipeRepositoryMock.findAllRecipe()).thenReturn(RecipeData.recipeList);
-            assertEquals(RecipeData.recipeList, recipeService.findAllRecipe());
+            when(recipeRepositoryMock.findAllRecipe()).thenReturn(recipeList);
+            assertEquals(recipeList, recipeService.findAllRecipe());
         }
     }
 
     @Nested
     class FindById {
-        /*@Test
+        @Test
         @DisplayName("when id not in list , Service return null")
-        void returnEmptyList() {
-            //throw new business exception
+        void throwExceptionWrongId() {
             when(recipeRepositoryMock.findByIdRecipe(-2)).thenReturn(null);
-            assertEquals(null, recipeService.findByIdRecipe(-2));
-        }*/
+            assertThrows(BusinessException.class,()->recipeService.findByIdRecipe(-2));
+        }
 
         @Test
         @DisplayName("when id in list, service return only that recipe")
         void returnRecipeById() {
-            when(recipeRepositoryMock.findByIdRecipe(2)).thenReturn(RecipeData.recipeList.get(1));
-            assertEquals(RecipeData.recipeList.get(1), recipeService.findByIdRecipe(2));
+            when(recipeRepositoryMock.findByIdRecipe(2)).thenReturn(recipeList.get(1));
+            assertEquals(recipeList.get(1), recipeService.findByIdRecipe(2));
         }
     }
 
@@ -72,9 +71,19 @@ public class RecipeServiceImplMockitoTest {
         @Test
         @DisplayName("delete recipe by id")
         void deleteRecipeById() {
-            List<Recipe> recipeList = new ArrayList<>(RecipeData.recipeList);
+            when(recipeRepositoryMock.findByIdRecipe(1)).thenReturn(recipeList.get(0));
             recipeService.delete(recipeList.get(0).getId());
             verify(recipeRepositoryMock).delete(recipeList.get(0).getId());
+        }
+        @Test
+        @DisplayName("when id not in list , Service throw exception")
+        void throwExceptionWrongId() {
+            assertThrows(BusinessException.class,()->recipeService.delete(-2));
+        }
+        @Test
+        @DisplayName("when different user from profile, Service throw exception")
+        void throwExceptionWrongUser() {
+            assertThrows(BusinessException.class,()->recipeService.delete(3));
         }
     }
 
@@ -92,6 +101,7 @@ public class RecipeServiceImplMockitoTest {
             recipeService.insert(recipe3);
             verify(recipeRepositoryMock).insert(recipe3);
         }
+        //añadir test para la excepcion
     }
 
     @Nested
@@ -108,12 +118,12 @@ public class RecipeServiceImplMockitoTest {
         @DisplayName("given one category id, service return all recipe from one  category")
         void returnAllRecipe() {
             when(recipeRepositoryMock.findByCategory(1)).thenReturn(List.of(
-                    RecipeData.recipeList.get(0),
-                    RecipeData.recipeList.get(1),
-                    RecipeData.recipeList.get(2)));
-            assertEquals(List.of(RecipeData.recipeList.get(0),
-                    RecipeData.recipeList.get(1),
-                    RecipeData.recipeList.get(2)), recipeService.findByCategory(1));
+                    recipeList.get(0),
+                    recipeList.get(1),
+                    recipeList.get(2)));
+            assertEquals(List.of(recipeList.get(0),
+                    recipeList.get(1),
+                    recipeList.get(2)), recipeService.findByCategory(1));
         }
     }
 }

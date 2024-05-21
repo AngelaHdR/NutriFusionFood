@@ -33,10 +33,10 @@ public class RecipeServiceImpl implements RecipeService {
     public void delete(Integer id) {
         Recipe recipe = findByIdRecipe(id);
         if (recipe==null){
-
+            throw new BusinessException("There is no recipe with id " + id);
         }
         if (recipe.getUser().getId()!=1){
-
+            throw new BusinessException("This recipe is not from the correct user ");
         }
         recipeRepository.delete(id);
     }
