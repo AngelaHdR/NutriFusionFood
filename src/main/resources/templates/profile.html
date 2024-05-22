@@ -20,7 +20,7 @@
                 <div class="row align-items-stretch bg-resalte m-3 p-5">
                     <div class="d-none d-md-block col-md-5 align-items-center text-center py-4 bg-fondo">
                         <div class="container-fluid">
-                            <img class="profile-picture" th:src="@{/images/}+user_+${nutritionist.id}+.png"
+                            <img class="profile-picture" th:src="@{/images/user}+user_+${nutritionist.id}+.png"
                                 alt="imagen perfil">
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             <div class="row d-lg-block d-xl-inline-block">
                                 <div class="col-12 d-block">
                                     <img class="recipe-profile pb-3 rounded "
-                                        th:src="@{/images/} + recipe_ + ${recipe.id} + .jpeg">
+                                        th:src="@{/images/recipe/} + recipe_ + ${recipe.id} + .jpeg">
                                 </div>
                                 <div class="col-12 d-block">
                                     <a th:href="@{${'/recipes/' + recipe.id}}">

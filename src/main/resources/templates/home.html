@@ -18,7 +18,7 @@
                 <section class="py-5 border-bottom border-fuente text-center">
                     <h1 class="text-info">
                         Bienvenido a
-                        <img th:src="@{/images/logo_nombre.png}" alt="NutriFusion Food"
+                        <img th:src="@{/images/logo/logo_nombre.png}" alt="NutriFusion Food"
                             class="nutrifusion-food-welcome">
                         <!-- <img src="../static/images/logo_nombre.png" alt="NutriFusion Food" class="nutrifusion-food-welcome">-->
                     </h1>
@@ -33,15 +33,14 @@
                     <article class="d-inline-block px-5 py-3">
                         <div class="d-inline-block px-4 ">
                             <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3 rounded">
-                            <!-- <img src="../static/images/recetas.png" alt="recipes" class="img-recipes d-block pb-3"> -->
-                            <div class="recipe-tags bg-resalte d-inline-block text-left">
+                              <div class="recipe-tags bg-resalte d-inline-block text-left">
                                 <a href="/recipes">
                                     <h3 class="d-inline-block ml-2">Recetas</h3>
                                 </a>
                             </div>
                         </div>
                         <div class="d-inline-block px-4" th:each="category :${categoryList}">
-                            <img class="d-block pb-3 img-recipes rounded" th:src="@{/images/} + category_ + ${category.id} + .png">
+                            <img class="d-block pb-3 img-recipes rounded" th:src="@{/images/category/} + category_ + ${category.id} + .png">
                             <div class=" bg-resalte recipe-tags text-left">
                                 <a th:href="@{${'/categories/' + category.id + '/recipes'}}">
                                     <h3 class="d-inline-block ml-2" th:text="${category.name}">
@@ -59,8 +58,7 @@
                     <div>
                         <div class="d-inline-block">
                             <img th:src="@{/images/about-us.png}" alt="about-us" class="img-aboutus rounded">
-                            <!--  <img src="../static/images/about-us.png" alt="about-us" class="img-aboutus">-->
-                        </div>
+                            </div>
                         <div class="d-inline-block mx-5">
                             <h3 class="pt-2">NutriFusion Food</h3> <br>
                             <p>We want to propose a site for the cooking fans to find healthy and tasty

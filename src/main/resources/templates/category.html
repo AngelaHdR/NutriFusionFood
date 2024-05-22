@@ -18,7 +18,7 @@
         <h2 class="text-info">CATEGORIAS</h2>
                     <article class="d-inline-block px-5 py-3">
                         <div class="d-inline-block px-4 ">
-                            <img th:src="@{/images/recetas.png}" alt="recipes" class="img-recipes d-block pb-3 rounded">
+                            <img th:src="@{/images/category/recetas.png}" alt="recipes" class="img-recipes d-block pb-3 rounded">
                             <div class="recipe-tags bg-resalte d-inline-block text-left">
                                 <a href="/recipes">
                                     <h3 class="d-inline-block ml-2">Recetas</h3>
@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="d-inline-block px-4" th:each="category :${categoryList}">
-                            <img class="d-block pb-3 img-recipes rounded" th:src="@{/images/} + category_ + ${category.id} + .png">
+                            <img class="d-block pb-3 img-recipes rounded" th:src="@{/images/category/} + category_ + ${category.id} + .png">
                             <div class=" bg-resalte recipe-tags text-left">
                                 <a th:href="@{${'/categories/' + category.id + '/recipes'}}">
                                     <h3 class="d-inline-block ml-2" th:text="${category.name}">

@@ -15,7 +15,7 @@
     <div class="recipe-container d-flex justify-content-center align-items-center border-top border-bottom border-fuente">
         <div class="recipe-info bg-fondo d-flex border-top border-bottom border-left border-right border-fuente">
             <div class="recipe-image flex-fill">
-                <img th:src="@{/images/}+recipe_+${recipe.id}+.jpeg" alt="Recipe Image">
+                <img th:src="@{/images/recipe/}+recipe_+${recipe.id}+.jpeg" alt="Recipe Image">
             </div>
             <div class="recipe-full-info flex-fill pt-3 px-4">
                 <h3 th:text="${recipe.name}"></h3>
