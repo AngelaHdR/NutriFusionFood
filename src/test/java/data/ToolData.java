@@ -40,4 +40,25 @@ public class ToolData {
             new Tool(5,"measuring cup"),
             new Tool(6,"blender")
     ));
+
+    public static List<Tool> findToolList(String lang){
+        if (lang.equals("es")){
+            return toolList_es;
+        } else if (lang.equals("en")) {
+            return toolList_en;
+        }else {
+            return toolList_es;
+        }
+    }
+
+
+    public static List<ToolEntity> findToolEntityList(String lang){
+        if (lang.equals("es")){
+            return toolEntityList_es;
+        } else if (lang.equals("en")) {
+            return toolEntityList_en;
+        }else {
+            return toolEntityList_es;
+        }
+    }
 }

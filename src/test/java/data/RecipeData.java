@@ -46,4 +46,13 @@ public class RecipeData {
                     new User(3,"Pepe","Escudero","Ramirez","1985-10-24", true,"p3","mail3","pepe"),
                     new Category(3,"bebida"))
     ));
+
+    public static List<Recipe> findUserList(){
+        return recipeList;
+    }
+
+
+    public static List<RecipeEntity> findUserEntityList(){
+        return recipeEntityList;
+    }
 }

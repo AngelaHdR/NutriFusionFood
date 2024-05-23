@@ -20,4 +20,12 @@ public class UserData {
             new User(3,"Pepe","Escudero","Ramirez","1985-10-24", true,"password3","mail3","pepe"),
             new User(4,"Mercedes","Gil","Diaz","2000-04-14", false,"password4","mail4","mercedes")
     ));
+    public static List<User> findUserList(){
+        return userList;
+    }
+
+
+    public static List<UserEntity> findUserEntityList(){
+        return userEntityList;
+    }
 }

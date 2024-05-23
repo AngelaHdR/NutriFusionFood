@@ -39,4 +39,24 @@ public class IngredientData {
             new Ingredient(4,false,false,"leek",10,12, new Type(4,"vegetable")),
             new Ingredient(5,false,true,"ice cream",10,12, new Type(3,"dairy"))
     ));
+    public static List<Ingredient> findIngredientList(String lang){
+        if (lang.equals("es")){
+            return ingredientList_es;
+        } else if (lang.equals("en")) {
+            return ingredientList_en;
+        }else {
+            return ingredientList_es;
+        }
+    }
+
+
+    public static List<IngredientEntity> findIngredientEntityList(String lang){
+        if (lang.equals("es")){
+            return ingredientEntityList_es;
+        } else if (lang.equals("en")) {
+            return ingredientEntityList_en;
+        }else {
+            return ingredientEntityList_es;
+        }
+    }
 }

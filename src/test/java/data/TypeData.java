@@ -38,4 +38,25 @@ public class TypeData {
             new Type(5,"fruit"),
             new Type(6,"carbs")
     );
+
+    public static List<Type> findTypeList(String lang){
+        if (lang.equals("es")){
+            return typeList_es;
+        } else if (lang.equals("en")) {
+            return typeList_en;
+        }else {
+            return typeList_es;
+        }
+    }
+
+
+    public static List<TypeEntity> findTypeEntityList(String lang){
+        if (lang.equals("es")){
+            return typeEntityList_es;
+        } else if (lang.equals("en")) {
+            return typeEntityList_en;
+        }else {
+            return typeEntityList_es;
+        }
+    }
 }
