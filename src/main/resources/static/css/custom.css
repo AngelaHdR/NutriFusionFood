@@ -8115,6 +8115,15 @@ ul {
   margin-left: 10px;
 }
 
+.recipe-image {
+  width: 35vw;
+}
+
+.recipe-full-info {
+  width: 35vw;
+  margin-left: 10px;
+}
+
 .recipe-tags {
   width: 13vw;
   height: 40px;
@@ -8134,6 +8143,11 @@ ul {
 
 .recipe-picture img {
   height: 400px;
+  width: 100%;
+}
+
+.recipe-image img {
+  height: 100%;
   width: 100%;
 }
 
@@ -8242,4 +8256,4 @@ p {
   font-family: Playfair Display;
   font-style: normal;
   color: #000000;
-}/*# sourceMappingURL=custom.css.map */
+}

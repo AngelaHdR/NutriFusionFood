@@ -55,7 +55,9 @@ $border-widths: (
   1: 1rem,
   2: 2rem,
   3: 4rem,
-  4: 8rem
+  4: 8rem,
+  5: 16rem,
+  6: 32rem
 );
 $border-radius: 1.5rem;
 $input-border-width:4px;
@@ -194,6 +196,15 @@ ul {
   margin-left: 10px;
 }
 
+.recipe-image {
+  width: 35vw;
+}
+
+.recipe-full-info {
+  width: 35vw;
+  margin-left: 10px;
+}
+
 .recipe-tags {
   width: 13vw;
   height: 40px;
@@ -214,6 +225,11 @@ ul {
 //RECIPE LIST
 .recipe-picture img {
   height: 400px;
+  width: 100%;
+}
+
+.recipe-image img {
+  height: 100%;
   width: 100%;
 }
 
