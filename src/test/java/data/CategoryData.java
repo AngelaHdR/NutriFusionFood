@@ -30,4 +30,25 @@ public class CategoryData {
             new Category(3,"drink"),
             new Category(4,"snack")
     );
+
+    public static List<Category> findCategoryList(String lang){
+        if (lang.equals("es")){
+            return categoryList_es;
+        } else if (lang.equals("en")) {
+            return categoryList_en;
+        }else {
+            return categoryList_es;
+        }
+    }
+
+
+    public static List<CategoryEntity> findCategoryEntityList(String lang){
+        if (lang.equals("es")){
+            return categoryEntityList_es;
+        } else if (lang.equals("en")) {
+            return categoryEntityList_en;
+        }else {
+            return categoryEntityList_es;
+        }
+    }
 }
