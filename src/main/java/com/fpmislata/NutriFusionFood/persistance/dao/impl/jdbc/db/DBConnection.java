@@ -10,6 +10,13 @@ public class DBConnection {
     private final Connection connection;
 
     private final AppPropertiesReader appPropertiesReader = AppPropertiesReader.getInstance();
+    private static DBConnection instance = null;
+    public static DBConnection getInstance(){
+        if (instance==null){
+            instance = new DBConnection();
+        }
+        return instance;
+    }
 
     public DBConnection() {
         System.out.println("Establishing connection with the database...");
@@ -28,4 +35,5 @@ public class DBConnection {
     public Connection getConnection(){
         return connection;
     }
+
 }

@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.List;
 
 public class Rawsql {
-    private static final DBConnection dbconnection = new DBConnection();
+    private static final DBConnection dbconnection = DBConnection.getInstance();
 
      public static ResultSet select(String sql, List<Object> params){
          try{
