@@ -40,8 +40,6 @@ class IngredientDaoJdbcTest {
     void tearDown() throws SQLException {
         connection.getConnection().rollback();
     }
-
-    IngredientEntity ingredientEntity;
     public static List<Arguments> availableLanguages(){
         return List.of(arguments("es"),arguments("en"));
     }

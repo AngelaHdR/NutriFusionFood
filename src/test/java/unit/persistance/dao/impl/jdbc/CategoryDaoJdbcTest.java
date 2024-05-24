@@ -33,8 +33,6 @@ class CategoryDaoJdbcTest {
     void tearDown() throws SQLException {
         connection.getConnection().rollback();
     }
-
-    CategoryEntity categoryEntity;
     public static List<Arguments> availableLanguages(){
         return List.of(arguments("es"),arguments("en"));
     }

@@ -17,7 +17,7 @@ import java.util.Locale;
 public class TypeDaoJdbc implements TypeDao {
     private List<TypeEntity> typeEntityList;
     private TypeEntity typeEntity;
-    private String lang;
+    private final String lang;
 
     public TypeDaoJdbc() {
         Locale currentLocale = LocaleContextHolder.getLocale();
