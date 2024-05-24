@@ -19,8 +19,8 @@ public class UserDaoJdbc implements UserDao {
     public List<UserEntity> findAllUser() {
         try {
             userEntityList = new ArrayList<>();
-            String sql = "select * from users";
-            ResultSet resultSet = Rawsql.select(sql, null);
+            String sql = "SELECT * FROM users";
+            ResultSet resultSet = Rawsql.select(sql,null);
             while (resultSet.next()) {
                 userEntityList.add(UserEntityMapper.toUserEntity(resultSet));
             }

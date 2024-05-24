@@ -1,7 +1,7 @@
 
-drop database if exists nutrifusionfoodtest;
-create DATABASE if not exists nutrifusionfoodtest;
-use nutrifusionfoodtest;
+-- drop database if exists nutrifusionfoodtest;
+-- create DATABASE if not exists nutrifusionfoodtest;
+-- use nutrifusionfoodtest;
  create table if not exists category(
  id_category int not null,
  name_es VARCHAR(30) not null,
@@ -9,7 +9,7 @@ use nutrifusionfoodtest;
  primary key(id_category)
  );
  
-create table if not exists user(
+create table if not exists users(
     id_user INT not null,
     name_user VARCHAR(30) not null,
     surname1 VARCHAR(30) not null,
@@ -32,7 +32,7 @@ create table if not exists recipe (
     id_user int not null,
     id_category int not null,
     PRIMARY key (id_recipe),
-    Foreign Key (id_user) REFERENCES user (id_user) on delete cascade on update cascade,
+    Foreign Key (id_user) REFERENCES users (id_user) on delete cascade on update cascade,
     Foreign Key (id_category) REFERENCES category (id_category) on delete cascade on update cascade
 );
 

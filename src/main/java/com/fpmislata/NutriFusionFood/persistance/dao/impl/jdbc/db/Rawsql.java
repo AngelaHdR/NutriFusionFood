@@ -11,7 +11,7 @@ public class Rawsql {
              PreparedStatement preparedStatement = setParameters(sql,params);
              return preparedStatement.executeQuery();
          }catch (Exception e){
-             throw new RuntimeException("Error executing sql query" + sql);
+             throw new RuntimeException("Error executing sql query" + sql + e.getMessage());
          }
      }
      private static PreparedStatement setParameters (String sql, List<Object> values){

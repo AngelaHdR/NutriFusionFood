@@ -1,4 +1,4 @@
-use nutrifusionfoodtest;
+-- use nutrifusionfoodtest;
 
     INSERT INTO category(id_category, name_es, name_en) VALUES(1,'Salado','Main dish');					
 	INSERT INTO category(id_category, name_es, name_en) VALUES(2,'Postre','Dessert');					
@@ -21,10 +21,10 @@ use nutrifusionfoodtest;
 	INSERT INTO ingredient(id_ingredient, gluten, lactose, name_es, name_en, start_season, end_season, id_type) VALUES(5,false,true,'Helado','Ice cream',5,8,3);											
 	
     
-    INSERT INTO user (id_user, name_user, surname1, surname2, birth_date,nutritionist,pwd,email,username) VALUES(1,'Jose','Perez','Garcia','1989-08-18',true,'p1','mail1','jose');
-	INSERT INTO user (id_user, name_user, surname1, surname2, birth_date,nutritionist,pwd,email,username) VALUES(2,'Alicia','Fernandez','Lopez','2000-12-04',false,'p2','mail2','alicia');
-	INSERT INTO user (id_user, name_user, surname1, surname2, birth_date,nutritionist,pwd,email,username) VALUES(3,'Pepe','Escudero','Ramirez','1985-10-24',true,'p3','mail3','pepe');
-	INSERT INTO user (id_user, name_user, surname1, surname2, birth_date,nutritionist,pwd,email,username) VALUES(4,'Mercedes','Gil','Diaz','2000-04-14',false,'p4','mail4','mercedes');
+    INSERT INTO users (id_user, name_user, surname1, surname2, birth_date,nutritionist,pwd,email,username) VALUES(1,'Jose','Perez','Garcia','1989-08-18',true,'password1','mail1','jose');
+	INSERT INTO users (id_user, name_user, surname1, surname2, birth_date,nutritionist,pwd,email,username) VALUES(2,'Alicia','Fernandez','Lopez','2000-12-04',false,'password2','mail2','alicia');
+	INSERT INTO users (id_user, name_user, surname1, surname2, birth_date,nutritionist,pwd,email,username) VALUES(3,'Pepe','Escudero','Ramirez','1985-10-24',true,'password3','mail3','pepe');
+	INSERT INTO users (id_user, name_user, surname1, surname2, birth_date,nutritionist,pwd,email,username) VALUES(4,'Mercedes','Gil','Diaz','2000-04-14',false,'password4','mail4','mercedes');
 	
     
 	INSERT INTO recipe (id_recipe, description_recipe, name_recipe, lang, time_recipe, steps, id_category, id_user) VALUES(1,'Es un tortilla al cual se le agregan patatas previamente cortadas y troceadas.','Tortilla de Patata','es',30,'paso 1',1,3);												
