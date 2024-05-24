@@ -19,7 +19,7 @@ public class UserDaoJdbc implements UserDao {
     public List<UserEntity> findAllUser() {
         try {
             userEntityList = new ArrayList<>();
-            String sql = "select * from user";
+            String sql = "select * from users";
             ResultSet resultSet = Rawsql.select(sql, null);
             while (resultSet.next()) {
                 userEntityList.add(UserEntityMapper.toUserEntity(resultSet));
@@ -34,7 +34,7 @@ public class UserDaoJdbc implements UserDao {
     @Override
     public UserEntity findByIdNutritionist(Integer id) {
         try {
-            String sql = "select * from user where id_user = ? and nutritionist = ?";
+            String sql = "select * from users where id_user = ? and nutritionist = ?";
             List<Object> params = List.of(id,1);
             ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
@@ -47,7 +47,7 @@ public class UserDaoJdbc implements UserDao {
 
     @Override
     public void insert(UserEntity userEntity) {
-        String sql = "insert into user (id_user, name_user, surname1, surname2, username, email, birth_date, nutritionist, pwd)" +
+        String sql = "insert into users (id_user, name_user, surname1, surname2, username, email, birth_date, nutritionist, pwd)" +
                 " values(?,?,?,?,?,?,?,?,?)";
         List<Object> params = List.of(userEntity.getId(), userEntity.getName(), userEntity.getSurname1(),
                 userEntity.getSurname2(), userEntity.getUsername(), userEntity.getEmail(),
@@ -59,7 +59,7 @@ public class UserDaoJdbc implements UserDao {
     public List<UserEntity> findAllNutritionist() {
         try {
             userEntityList = new ArrayList<>();
-            String sql = "select * from user where nutritionist = ?";
+            String sql = "select * from users where nutritionist = ?";
             List<Object> params = List.of(1);
             ResultSet resultSet = Rawsql.select(sql, params);
             while (resultSet.next()){
@@ -74,7 +74,7 @@ public class UserDaoJdbc implements UserDao {
     @Override
     public UserEntity findByEmailOrUsername(String email, String username) {
         try {
-            String sql = "select * from user where email =? or username = ?";
+            String sql = "select * from users where email =? or username = ?";
             List<Object> params = List.of(email,username);
             ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
