@@ -5,8 +5,8 @@ import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import lombok.Getter;
-import lombok.extern.log4j.Log4j2;
+//import lombok.Getter;
+//import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +41,7 @@ public class DBConnection {
     public Connection getConnection(){
         return connection;
     }
-    public void executeScript(String scriptPath) {
+    /*public void executeScript(String scriptPath) {
         try {
             ScriptRunner scriptRunner = new ScriptRunner(connection, false, false);
 
@@ -54,5 +54,5 @@ public class DBConnection {
             log.error(String.format("Error executing script %s:\n    %s\n", scriptPath, e.getMessage()));
             throw new RuntimeException(e);
         }
-    }
+    }*/
 }
