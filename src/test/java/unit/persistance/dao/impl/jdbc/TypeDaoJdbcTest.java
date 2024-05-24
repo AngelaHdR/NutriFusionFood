@@ -32,8 +32,8 @@ class TypeDaoJdbcTest {
 
     @BeforeAll
     static void setup() throws SQLException {
-        connection.executeScript("bbdd_NFF_test.sql");
-        connection.executeScript("inserts_NFF_test.sql");
+        connection.executeScript("schemaNFFtest.sql");
+        connection.executeScript("dataNFFtest.sql");
         connection.getConnection().setAutoCommit(false);
     }
 
