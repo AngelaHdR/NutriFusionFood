@@ -1,21 +1,28 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
-import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.CategoryEntityMapper;
+import org.springframework.context.i18n.LocaleContextHolder;
 
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CategoryDaoJdbc implements CategoryDao {
     private List<CategoryEntity> categoryEntityList;
     private CategoryEntity categoryEntity;
-    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
+
+    private final String lang;
+
+    public CategoryDaoJdbc() {
+        Locale currentLocale = LocaleContextHolder.getLocale();
+        this.lang = currentLocale.getLanguage();
+    }
+
 
     @Override
     public List<CategoryEntity> findAllCategory() {

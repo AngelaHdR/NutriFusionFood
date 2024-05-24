@@ -7,16 +7,24 @@ import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.IngredientEntityMapper;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.ToolEntityMapper;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class IngredientDaoJdbc implements IngredientDao {
     private IngredientEntity ingredientEntity;
     private List<IngredientEntity> ingredientEntityList;
-    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
+    private String lang;
+
+    public IngredientDaoJdbc() {
+        Locale currentLocale = LocaleContextHolder.getLocale();
+        this.lang = currentLocale.getLanguage();
+    }
+
     @Override
     public List<IngredientEntity> findAllIngredient() {
         try {
