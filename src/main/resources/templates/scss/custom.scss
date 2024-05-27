@@ -151,8 +151,26 @@ $headings-color: map-get($theme-colors, "info");
 
 
 ul {
-  list-style: none
+  list-style: none;
 }
+
+/*
+.i8-dropdown__content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.i8-dropdown__wrap.open .i8-dropdown__content {
+  display: block;
+}
+
+.i8-dropdown__label {
+  cursor: pointer;
+}*/
+
 
 //FOOTER
 .content {
