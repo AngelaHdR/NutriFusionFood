@@ -9,14 +9,14 @@ import java.sql.SQLException;
 import java.util.Locale;
 
 public class TypeEntityMapper {
-    public static TypeEntity toTypeEntity(ResultSet resultSet,String lang){
+    public static TypeEntity toTypeEntity(ResultSet resultSet){
         if (resultSet == null){
             return null;
         }
         try {
             return new TypeEntity(
                     resultSet.getInt("id_type"),
-                    resultSet.getString("name_"+lang));
+                    resultSet.getString("name"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -7,15 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ToolEntityMapper {
-    public static ToolEntity toToolEntity(ResultSet resultSet,String lang){
-        //String lang = AppPropertiesReader.getInstance().getProperty("lang");
+    public static ToolEntity toToolEntity(ResultSet resultSet){
         if (resultSet == null){
             return null;
         }
         try {
             return new ToolEntity(
-                    resultSet.getInt("id_tool"),
-                    resultSet.getString("name_"+lang));
+                    resultSet.getInt("t.id_tool"),
+                    resultSet.getString("t.name"));
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

@@ -47,12 +47,12 @@ public class RecipeData {
                     new Category(3,"bebida"))
     ));
 
-    public static List<Recipe> findUserList(){
+    public static List<Recipe> findRecipeList(){
         return recipeList;
     }
 
 
-    public static List<RecipeEntity> findUserEntityList(){
+    public static List<RecipeEntity> findRecipeEntityList(){
         return recipeEntityList;
     }
 }

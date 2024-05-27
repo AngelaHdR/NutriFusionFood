@@ -1,6 +1,5 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
-import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
@@ -26,11 +25,11 @@ public class ToolDaoJdbc implements ToolDao {
     @Override
     public List<ToolEntity> findAllTool() {
         try {
-            String sql = "SELECT id_tool,name_"+lang+" FROM tool";
+            String sql = "SELECT t.id_tool,t.name_"+lang+" as name FROM tool t";
             ResultSet resultSet = Rawsql.select(sql, null);
             toolEntityList = new ArrayList<>();
             while (resultSet.next()) {
-                toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet,lang));
+                toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -41,13 +40,13 @@ public class ToolDaoJdbc implements ToolDao {
     @Override
     public ToolEntity findByIdTool(Integer id) {
         try {
-            String sql = "SELECT id_tool,name_"+lang+" FROM tool WHERE id_tool = ?";
+            String sql = "SELECT t.id_tool,t.name_"+lang+" as name FROM tool t WHERE id_tool = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             if(!resultSet.next()) {
                 return null;
             }
-            toolEntity = ToolEntityMapper.toToolEntity(resultSet,lang);
+            toolEntity = ToolEntityMapper.toToolEntity(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -64,13 +63,13 @@ public class ToolDaoJdbc implements ToolDao {
             resultSet.next();
             String lang2 = resultSet.getString("lang");
             //mostrar la receta en su idioma
-            String sql2 = "SELECT t.id_tool,t.name_"+lang2+" FROM tool t " +
+            String sql2 = "SELECT t.id_tool,t.name_"+lang2+" as name FROM tool t " +
                     "inner join required r on t.id_tool= r.id_tool where r.id_recipe = ?";
             List<Object> params2 = List.of(recipeId);
             ResultSet resultSet2 = Rawsql.select(sql2, params2);
             toolEntityList = new ArrayList<>();
             while (resultSet2.next()) {
-                toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet2,lang2));
+                toolEntityList.add(ToolEntityMapper.toToolEntity(resultSet2));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
