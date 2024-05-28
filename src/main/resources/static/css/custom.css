@@ -204,7 +204,7 @@ a {
 }
 a:hover {
   color: #0056b3;
-  text-decoration: underline;
+  text-decoration: underline #000;
 }
 
 a:not([href]):not([tabindex]) {
@@ -8123,12 +8123,11 @@ ul {
 }
 
 .recipe-picture {
-  width: 49.5vw;
+  width: 100vw;
 }
 
 .recipe-data {
-  width: 49.5vw;
-  margin-left: 10px;
+  width: 100vw;
 }
 
 .recipe-image {

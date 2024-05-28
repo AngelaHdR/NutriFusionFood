@@ -16,31 +16,35 @@
 <main class="content bg-fondo">
     <h1 class="title-categories bg-resalte text-center fw-normal border-top border-bottom border-fuente py-3 mb-0" th:text="${category}"></h1>
     <ul class="px-0 mb-0">
-        <a th:each="recipe, stat : ${recipeList}" th:href="@{${'/recipes/' + recipe.id}}">
-            <div class="recipes-info bg-fondo d-flex border-top border-bottom border-fuente"
-            th:classappend="${stat.index % 2 == 0 ? 'flex-row' : 'flex-row-reverse'}">
-                <div class="recipe-picture flex-fill">
-                    <img th:src="@{/images/recipe/}+recipe_+${recipe.id}+.jpeg" alt="Recipe Image">
-                </div>
-                <div class="recipe-data flex-fill justify-content-center align-center border-top pt-3">
-                    <li class="recipe-category-name fw-normal">
-                        <h2 class="recipe-name fs-1 text-fuente text-uppercase text-center" th:text="${recipe.name}"></h2>
-                        <a class="text-fuente text-uppercase text-center" th:href="@{${'/categories/' + recipe.category.id + '/recipes'}}">
-                            <h4 th:text="${recipe.category.name}" class="text-fuente">Nombre de Categoria</h4>
-                        </a>
-                        <ul class="recipe-all-data text-info px-4">
-                            <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}">
-                                <li th:text="|${'Nutricionista: ' + recipe.user.name}|"></li>
+        <div th:each="recipe, stat : ${recipeList}">
+            <section class="container-fluid d-inline-block d-md-inline-block p-0">
+                <div class="recipes-info bg-fondo border-top border-bottom border-fuente row justify-content-between">
+                    <div class="recipe-picture col-12 col-md-6 p-0"
+                        th:classappend="${stat.index % 2 == 0} ? 'order-md-first' : 'order-md-last'">
+                        <img th:src="@{/images/recipe/}+recipe_+${recipe.id}+.jpeg" alt="Recipe Image">
+                    </div>
+                    <div class="recipe-data col-12 col-md-6 justify-content-center align-center border-top pb-1 px-0"
+                        th:classappend="${stat.index % 2 == 0} ? 'order-md-last' : 'order-md-first'">
+                        <li class="recipe-category-name fw-normal">
+                            <a th:href="@{${'/recipes/' + recipe.id}}">
+                                <h2 class="recipe-name fs-1 text-fuente text-uppercase text-center" th:text="${recipe.name}"></h2>
                             </a>
-                            <li th:text="|${'Tiempo de preparación: ' + recipe.time + ' min'}|">
-                            <li>Alergenos: </li>
-                            <li th:text="|${'Descripción: ' + recipe.description}|"></li>
-                            <li th:text="|${'Idioma: ' + recipe.language}|"></li>
-                        </ul>
-                    </li>
+                            <a class="text-fuente text-uppercase text-center" th:href="@{${'/categories/' + recipe.category.id + '/recipes'}}">
+                                <h4 th:text="${recipe.category.name}" class="text-fuente">Nombre de Categoria</h4>
+                            </a>
+                            <ul class="recipe-all-data text-info px-5">
+                                <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}">
+                                    <li><strong>Nutricionista: </strong><span th:text="|${recipe.user.name}|"></span></li>
+                                </a>
+                                <li><strong>Tiempo de Preparación: </strong><span th:text="|${recipe.time + ' min'}|"></span></li>
+                                <li><strong>Descripción: </strong><span th:text="|${recipe.description}|"></span></li>
+                                <li><strong>Idioma: </strong><span th:text="|${recipe.language}|"></span></li>
+                            </ul>
+                        </li>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </section>
+        </div>
     </ul>
 </main>
 <footer th:insert="fragments.html::footer"></footer>
