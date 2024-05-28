@@ -1,9 +1,15 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
+import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
+import com.fpmislata.NutriFusionFood.domain.entity.Tool;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.RecipeEntityMapper;
+import com.fpmislata.NutriFusionFood.persistance.repository.mapper.IngredientMapper;
+import com.fpmislata.NutriFusionFood.persistance.repository.mapper.ToolMapper;
 import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.sql.ResultSet;
@@ -64,13 +70,30 @@ public class RecipeDaoJdbc implements RecipeDao {
     }
 
     @Override
-    public void insert(RecipeEntity recipeEntity) {
+    public void insert(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList) {
         recipeEntity.setLanguage(lang);
+        //insertar la receta
         String sql = "INSERT INTO recipe (id_recipe, name_recipe, lang, description_recipe, steps, time_recipe, id_user, id_category)" +
                 " VALUES(?,?,?,?,?,?,?,?)";
         List<Object> params = List.of(recipeEntity.getId(), recipeEntity.getName(), recipeEntity.getLanguage(), recipeEntity.getDescription(),
                 recipeEntity.getSteps(), recipeEntity.getTime(), recipeEntity.getUser().getId(), recipeEntity.getCategory().getId());
         Rawsql.insert(sql, params);
+
+        //insertar los ingredientes en la tabla secundaria composed
+        for (IngredientEntity ingredient:ingredientEntityList){
+            String sql2 = "INSERT INTO composed (id_recipe, id_ingredient)" +
+                    " VALUES(?,?)";
+            List<Object> params2 = List.of(recipeEntity.getId(), ingredient.getId());
+            Rawsql.insert(sql2, params2);
+        }
+
+        //insertar los utensilios en la tabla secundaria required
+        for (ToolEntity tool:toolEntityList){
+            String sql3 = "INSERT INTO required (id_recipe, id_tool)" +
+                    " VALUES(?,?)";
+            List<Object> params3 = List.of(recipeEntity.getId(), tool.getId());
+            Rawsql.insert(sql3, params3);
+        }
     }
 
     @Override
@@ -110,7 +133,6 @@ public class RecipeDaoJdbc implements RecipeDao {
     @Override
     public RecipeEntity findByNameAndNutritionist(String name, int userId) {
         try {
-
             //buscar el idioma de la receta
             String sql = "SELECT r.*,u.*,c.id_category,c.name_"+lang+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
                     "inner join category c on r.id_category=c.id_category WHERE r.id_user = ? and name_recipe = ?";

@@ -31,4 +31,11 @@ public class ToolMapper {
         }
         return toolList;
     }
+    public static List<ToolEntity> toToolEntityList(List<Tool> toolList){
+        List<ToolEntity> toolEntityList = new ArrayList<>();
+        for (Tool tool:toolList){
+            toolEntityList.add(toToolEntity(tool));
+        }
+        return toolEntityList;
+    }
 }

@@ -1,10 +1,12 @@
 package com.fpmislata.NutriFusionFood.domain.service.impl;
 
 import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
+import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
 import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeServiceImpl implements RecipeService {

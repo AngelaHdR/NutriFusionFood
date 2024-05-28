@@ -41,4 +41,11 @@ public class IngredientMapper {
         }
         return ingredientList;
     }
+    public static List<IngredientEntity> toIngredientEntityList(List<Ingredient> ingredientList){
+        List<IngredientEntity> ingredientEntityList = new ArrayList<>();
+        for (Ingredient ingredient:ingredientList){
+            ingredientEntityList.add(toIngredientEntity(ingredient));
+        }
+        return ingredientEntityList;
+    }
 }
