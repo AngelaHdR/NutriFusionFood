@@ -31,7 +31,7 @@ public class TypeDaoJdbc implements TypeDao {
             ResultSet resultSet = Rawsql.select(sql, null);
             typeEntityList = new ArrayList<>();
             while (resultSet.next()) {
-                typeEntityList.add(TypeEntityMapper.toTypeEntity(resultSet));
+                typeEntityList.add(TypeEntityMapper.toTypeEntity(resultSet,lang));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -46,7 +46,7 @@ public class TypeDaoJdbc implements TypeDao {
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             resultSet.next();
-            typeEntity = TypeEntityMapper.toTypeEntity(resultSet);
+            typeEntity = TypeEntityMapper.toTypeEntity(resultSet,lang);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

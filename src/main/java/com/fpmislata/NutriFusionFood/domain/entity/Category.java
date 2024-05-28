@@ -4,7 +4,10 @@ public class Category {
     private Integer id;
     private String name;
 
-    //Constructor (all parameters)
+    //Constructor (void, all parameters)
+    public Category() {
+    }
+
     public Category(Integer id, String name) {
         this.id = id;
         this.name = name;
@@ -15,14 +18,14 @@ public class Category {
         return this.id;
     }
     public void setId(Integer id) {
-        /* Funcionalidad no Implementada para Clientes */
+        //Funcionalidad no implementada para clientes
     }
 
     public String getName() {
         return this.name;
     }
-    public void setName(String name_es) {
-        /* Funcionalidad no Implementada para Clientes */
+    public void setName(String name) {
+        //Funcionalidad no implementada para clientes
     }
 
 }

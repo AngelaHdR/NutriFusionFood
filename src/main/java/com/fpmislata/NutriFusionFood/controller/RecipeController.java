@@ -2,6 +2,8 @@ package com.fpmislata.NutriFusionFood.controller;
 
 
 import com.fpmislata.NutriFusionFood.common.container.*;
+import com.fpmislata.NutriFusionFood.controller.mapper.IngredientMapper;
+import com.fpmislata.NutriFusionFood.controller.mapper.ToolMapper;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.Type;
@@ -56,28 +58,27 @@ public class RecipeController {
                 ingredientMap.put(type, ingredients);
             }
             model.addAttribute("ingredientMap", ingredientMap);
-            /*model.addAttribute("typeList",this.typeService.findAllType());
-            for (Type type : typeService.findAllType()) {
-                model.addAttribute("ingredientList" + type.getName(), this.ingredientService.findByType(type.getId()));
-            }*/
             model.addAttribute("toolList", this.toolService.findAllTool());
             model.addAttribute("categoryList", this.categoryService.findAllCategory());
             model.addAttribute("recipe", new Recipe());
             return "recipeForm";
         }
-        @PostMapping("")
-        public String save (Recipe recipe){
+        @PostMapping()
+            public String save (Recipe recipe, @RequestParam List<Integer> toolIdList,@RequestParam List<Integer> typeIdList){
             UserService userService = UserIoC.getUserService();
-            User user = new User();
-            user.setId(userService.findAllNutritionist().size() + 1);
-            recipe.setUser(user);
+            recipe.setUser(userService.findByIdNutritionist(1));
+            recipe.setId(recipeService.findAllRecipe().size());
+            recipe.setToolList(ToolMapper.toToolList(toolIdList));
+            recipe.setIngredientList(IngredientMapper.toIngredientList(typeIdList));
+            System.out.println(recipe);
             recipeService.insert(recipe);
-            return "redirect:/recipe";
+
+            return "redirect:/recipes";
         }
         @DeleteMapping("/{id}")
         public String delete (@PathVariable Integer id){
             recipeService.delete(id);
-            return "redirect:/recipe";
+            return "redirect:/recipes";
         }
     }
 

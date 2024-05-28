@@ -43,11 +43,11 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public void insert(Recipe recipe) {
-        List<Recipe> recipeList = recipeRepository.findByNutritionist(recipe.getUser().getId());
         Recipe recipeExists = recipeRepository.findByNameAndNutritionist(recipe.getName(),1);
         if (recipeExists!=null){
             throw new BusinessException("You already have a recipe with this name");
         }
+        System.out.println(recipe);
         recipeRepository.insert(recipe);
     }
 

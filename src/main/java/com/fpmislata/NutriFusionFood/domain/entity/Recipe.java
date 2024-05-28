@@ -158,4 +158,21 @@ public class Recipe {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", language='" + language + '\'' +
+                ", time=" + time +
+                ", steps='" + steps + '\'' +
+                ", ingredientList=" + ingredientList +
+                ", toolList=" + toolList +
+                ", user=" + user +
+                ", category=" + category +
+                ", allergen=" + allergen +
+                '}';
+    }
 }

@@ -41,12 +41,14 @@ public class RecipeDaoJdbc implements RecipeDao {
     @Override
     public RecipeEntity findByIdRecipe(Integer id) {
         try {
-            String sql2 = "SELECT r.*,u.*,c.id_category,c.name_"+lang+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
+            String sql = "SELECT r.*,u.*,c.id_category,c.name_"+lang+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
                     "inner join category c on r.id_category=c.id_category WHERE r.id_recipe = ?";
-            List<Object> params2 = List.of(id);
-            ResultSet resultSet2 = Rawsql.select(sql2, params2);
-            resultSet2.next();
-            recipeEntity = RecipeEntityMapper.toRecipeEntity(resultSet2);
+            List<Object> params = List.of(id);
+            ResultSet resultSet = Rawsql.select(sql, params);
+            if(!resultSet.next()) {
+                return null;
+            }
+            recipeEntity = RecipeEntityMapper.toRecipeEntity(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -107,19 +109,17 @@ public class RecipeDaoJdbc implements RecipeDao {
     @Override
     public RecipeEntity findByNameAndNutritionist(String name, int userId) {
         try {
+
             //buscar el idioma de la receta
-            String sql = "SELECT lang FROM recipe WHERE id_user = ? and name = ?";
+            String sql = "SELECT r.*,u.*,c.id_category,c.name_"+lang+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
+                    "inner join category c on r.id_category=c.id_category WHERE r.id_user = ? and name_recipe = ?";
             List<Object> params = List.of(userId,name);
             ResultSet resultSet = Rawsql.select(sql, params);
-            resultSet.next();
-            lang = resultSet.getString("lang");
+            if (!resultSet.next()){
+                return null;
+            }
             //mostrar la receta en su idioma
-            String sql2 = "SELECT r.*,u.*,c.id_category,c.name_"+lang+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
-                    "inner join category c on r.id_category=c.id_category WHERE r.id_user = ? and r.name = ?";
-            List<Object> params2 = List.of(name,userId);
-            ResultSet resultSet2 = Rawsql.select(sql2, params2);
-            resultSet2.next();
-            return RecipeEntityMapper.toRecipeEntity(resultSet2);
+            return RecipeEntityMapper.toRecipeEntity(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

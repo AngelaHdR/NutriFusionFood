@@ -2,13 +2,14 @@ package com.fpmislata.NutriFusionFood.persistance.dao.mapper;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 
 public class TypeEntityMapper {
-    public static TypeEntity toTypeEntity(ResultSet resultSet){
-        String lang = AppPropertiesReader.getInstance().getProperty("lang");
+    public static TypeEntity toTypeEntity(ResultSet resultSet,String lang){
         if (resultSet == null){
             return null;
         }

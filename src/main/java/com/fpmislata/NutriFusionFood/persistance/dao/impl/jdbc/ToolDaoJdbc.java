@@ -44,7 +44,9 @@ public class ToolDaoJdbc implements ToolDao {
             String sql = "SELECT id_tool,name_"+lang+" FROM tool WHERE id_tool = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
-            resultSet.next();
+            if(!resultSet.next()) {
+                return null;
+            }
             toolEntity = ToolEntityMapper.toToolEntity(resultSet,lang);
         } catch (SQLException e) {
             throw new RuntimeException(e);

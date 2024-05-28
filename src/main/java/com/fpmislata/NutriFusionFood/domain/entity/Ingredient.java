@@ -14,6 +14,9 @@ public class Ingredient {
     //Constructors (void, basic parameters and all parameters)
     public Ingredient() {
     }
+    public Ingredient(Integer id) {
+        this.id = id;
+    }
     public Ingredient(Integer id, Boolean gluten, Boolean lactose, String name, Integer startSeason, Integer endSeason) {
         this.id = id;
         this.gluten = gluten;
