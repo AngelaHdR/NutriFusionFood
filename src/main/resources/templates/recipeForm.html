@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-4 my-2">
                     <label for="categoria">Categoría:</label>
-                    <select class="form-control border-info" id="categoria" name="categoria" th:field="*{category.id}" required>
+                    <select class="form-control border-info" id="categoria" name="categoryId" required>
                         <option value="" disabled selected>Selecciona una categoría...</option>
                         <option th:each="category : ${categoryList}" th:value="${category.id}"
                                 th:text="${category.name}">
@@ -68,8 +68,8 @@
 
                 </div>
                 <div class=" col-md-6 mb-3 my-2">
-                    <label for="validationTextarea" class="form-label">Descripción de la receta</label>
-                    <textarea class="form-control border-info" id="validationTextarea"
+                    <label for="validationTextarea1" class="form-label">Descripción de la receta</label>
+                    <textarea class="form-control border-info" id="validationTextarea1"
                               placeholder="Breve Descripción..." th:field="*{description}" required></textarea>
                     <div class="invalid-feedback">
                         Introduce un mensaje
@@ -78,20 +78,23 @@
             </div>
             <div class="row">
                 <div class=" col-md-6 mb-3 my-2">
-                    <label for="validationTextarea" class="form-label">Pasos a seguir</label>
-                    <textarea class="form-control border-info" id="validationTextarea" placeholder="Pasos..." th:field="*{steps}"
+                    <label for="validationTextarea2" class="form-label">Pasos a seguir</label>
+                    <textarea class="form-control border-info" id="validationTextarea2" placeholder="Pasos..." th:field="*{steps}"
                               required></textarea>
                     <div class="invalid-feedback">
                         Introduce un mensaje
                     </div>
                 </div>
                 <div class="col-md-6 mb-3 my-2">
-                    <label for="lang" class="form-label">Idioma</label>
-                    <select class="form-control border-info" id="lang" name="lang" th:field="*{language}" required>
-                        <option value="" disabled selected>Selecciona un idioma...</option>
-                        <option th:value="'es'">Español</option>
-                        <option th:value="'en'">Ingles</option>
+                    <label for="lang">Idiomas:</label>
+                    <select class="form-control border-info" id="lang" required>
+                        <option value="" disabled selected>Selecciona el Idioma...</option>
+                        <option th:each="language : ${lang}" th:value="${language}"
+                                th:text="${language}" th:field="*{language}">
+                        </option>
                     </select>
+
+
                 </div>
             </div>
             <div class="row justify-content-center m-2 mt-2">

@@ -97,4 +97,17 @@ public class Ingredient {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "id=" + id +
+                ", gluten=" + gluten +
+                ", lactose=" + lactose +
+                ", name='" + name + '\'' +
+                ", startSeason=" + startSeason +
+                ", endSeason=" + endSeason +
+                ", type=" + type +
+                '}';
+    }
 }

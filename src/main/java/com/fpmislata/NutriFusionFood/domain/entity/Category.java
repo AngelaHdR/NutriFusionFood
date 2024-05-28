@@ -28,4 +28,11 @@ public class Category {
         //Funcionalidad no implementada para clientes
     }
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

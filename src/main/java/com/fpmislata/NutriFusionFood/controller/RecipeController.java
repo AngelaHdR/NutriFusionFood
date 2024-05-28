@@ -2,6 +2,7 @@ package com.fpmislata.NutriFusionFood.controller;
 
 
 import com.fpmislata.NutriFusionFood.common.container.*;
+import com.fpmislata.NutriFusionFood.controller.mapper.CategoryMapper;
 import com.fpmislata.NutriFusionFood.controller.mapper.IngredientMapper;
 import com.fpmislata.NutriFusionFood.controller.mapper.ToolMapper;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
@@ -60,14 +61,16 @@ public class RecipeController {
             model.addAttribute("ingredientMap", ingredientMap);
             model.addAttribute("toolList", this.toolService.findAllTool());
             model.addAttribute("categoryList", this.categoryService.findAllCategory());
+            model.addAttribute("lang",List.of("es","en"));
             model.addAttribute("recipe", new Recipe());
             return "recipeForm";
         }
         @PostMapping()
-            public String save (Recipe recipe, @RequestParam List<Integer> toolIdList,@RequestParam List<Integer> typeIdList){
+            public String save (Recipe recipe, @RequestParam List<Integer> toolIdList,@RequestParam List<Integer> typeIdList,@RequestParam Integer categoryId){
             UserService userService = UserIoC.getUserService();
             recipe.setUser(userService.findByIdNutritionist(1));
             recipe.setId(recipeService.findAllRecipe().size());
+            recipe.setCategory(CategoryMapper.toCategory(categoryId));
             recipe.setToolList(ToolMapper.toToolList(toolIdList));
             recipe.setIngredientList(IngredientMapper.toIngredientList(typeIdList));
             System.out.println(recipe);

@@ -24,4 +24,12 @@ public class Type {
     public void setName(String name) {
         /* Funcionalidad no Implementada para Clientes */
     }
+
+    @Override
+    public String toString() {
+        return "Type{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

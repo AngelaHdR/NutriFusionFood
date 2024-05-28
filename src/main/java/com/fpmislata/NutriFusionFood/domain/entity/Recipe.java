@@ -86,7 +86,7 @@ public class Recipe {
     public String getLanguage() {
         return language;
     }
-    public void setLanguaje(String language) {
+    public void setLanguage(String language) {
         this.language = language;
     }
 

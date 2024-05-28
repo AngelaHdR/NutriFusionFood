@@ -112,5 +112,19 @@ public class User {
             return false;
         return true;
     }
-    
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname1='" + surname1 + '\'' +
+                ", surname2='" + surname2 + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", nutritionist=" + nutritionist +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }
