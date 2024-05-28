@@ -37,7 +37,9 @@ public class UserDaoJdbc implements UserDao {
             String sql = "select * from users where id_user = ? and nutritionist = ?";
             List<Object> params = List.of(id,1);
             ResultSet resultSet = Rawsql.select(sql, params);
-            resultSet.next();
+            if(!resultSet.next()) {
+                return null;
+            }
             userEntity = UserEntityMapper.toUserEntity(resultSet);
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -77,7 +79,9 @@ public class UserDaoJdbc implements UserDao {
             String sql = "select * from users where email =? or username = ?";
             List<Object> params = List.of(email,username);
             ResultSet resultSet = Rawsql.select(sql, params);
-            resultSet.next();
+            if(!resultSet.next()) {
+                return null;
+            }
             return UserEntityMapper.toUserEntity(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -46,7 +46,9 @@ public class CategoryDaoJdbc implements CategoryDao {
             String sql = "SELECT id_category,name_"+lang+" as name FROM category WHERE id_category = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
-            resultSet.next();
+            if(!resultSet.next()) {
+                return null;
+            }
             categoryEntity = CategoryEntityMapper.toCategoryEntity(resultSet);
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");

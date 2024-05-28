@@ -48,7 +48,9 @@ public class IngredientDaoJdbc implements IngredientDao {
             String sql = "SELECT i.*,t.id_type,t.name_"+lang+" as name from ingredient i inner join type t on i.id_type=t.id_type where id_ingredient=?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
-            resultSet.next();
+            if(!resultSet.next()) {
+                return null;
+            }
             ingredientEntity = IngredientEntityMapper.toIngredientEntity(resultSet,lang);
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");

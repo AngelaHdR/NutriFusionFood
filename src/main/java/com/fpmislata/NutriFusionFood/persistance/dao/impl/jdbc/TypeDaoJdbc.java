@@ -45,7 +45,9 @@ public class TypeDaoJdbc implements TypeDao {
             String sql = " SELECT id_type,name_"+lang+" FROM type WHERE id_type = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
-            resultSet.next();
+            if(!resultSet.next()) {
+                return null;
+            }
             typeEntity = TypeEntityMapper.toTypeEntity(resultSet,lang);
         } catch (SQLException e) {
             throw new RuntimeException(e);
