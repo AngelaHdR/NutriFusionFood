@@ -63,17 +63,19 @@ create table if not exists tool (
 );
 
 CREATE TABLE if not exists composed (
+	id_composed int not null auto_increment,
 	id_recipe int not null,
 	id_ingredient int not null,
-    PRIMARY KEY (id_recipe, id_ingredient),
+    PRIMARY KEY (id_composed),
     Foreign Key (id_recipe) REFERENCES recipe (id_recipe) on delete cascade on update cascade,
     Foreign Key (id_ingredient) REFERENCES ingredient (id_ingredient) on delete cascade on update cascade
 );
 
 CREATE TABLE if not exists required(
+	id_required int not null auto_increment,
 	id_recipe int not null,
 	id_tool int not null,
-    PRIMARY KEY (id_recipe, id_tool),
+    PRIMARY KEY (id_required),
     Foreign Key (id_recipe) REFERENCES recipe (id_recipe) on delete cascade on update cascade,
     Foreign Key (id_tool) REFERENCES tool (id_tool) on delete cascade on update cascade
 );

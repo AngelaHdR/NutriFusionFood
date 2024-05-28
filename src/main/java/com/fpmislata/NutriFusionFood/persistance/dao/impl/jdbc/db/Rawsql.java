@@ -40,7 +40,7 @@ public class Rawsql {
                 throw new RuntimeException("Unable to retrieve the last generated ID");
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error executing SQL query:" + sql);
+            throw new RuntimeException("Error executing SQL query:" + sql + e.getMessage());
         }
     }
 

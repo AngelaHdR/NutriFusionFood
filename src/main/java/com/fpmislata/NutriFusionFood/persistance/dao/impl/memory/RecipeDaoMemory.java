@@ -1,9 +1,7 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.memory;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
-import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.entity.UserEntity;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +37,7 @@ public class RecipeDaoMemory implements RecipeDao {
     }
 
     @Override
-    public void insert(RecipeEntity recipeEntity) {
+    public void insert(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList) {
         recipeEntityList.add(recipeEntity);
     }
 

@@ -73,17 +73,17 @@ public class RecipeDaoJdbc implements RecipeDao {
     public void insert(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList) {
         recipeEntity.setLanguage(lang);
         //insertar la receta
-        String sql = "INSERT INTO recipe (id_recipe, name_recipe, lang, description_recipe, steps, time_recipe, id_user, id_category)" +
-                " VALUES(?,?,?,?,?,?,?,?)";
-        List<Object> params = List.of(recipeEntity.getId(), recipeEntity.getName(), recipeEntity.getLanguage(), recipeEntity.getDescription(),
+        String sql = "INSERT INTO recipe (name_recipe, lang, description_recipe, steps, time_recipe, id_user, id_category)" +
+                " VALUES(?,?,?,?,?,?,?)";
+        List<Object> params = List.of( recipeEntity.getName(), recipeEntity.getLanguage(), recipeEntity.getDescription(),
                 recipeEntity.getSteps(), recipeEntity.getTime(), recipeEntity.getUser().getId(), recipeEntity.getCategory().getId());
-        Rawsql.insert(sql, params);
+        Object recipeId = Rawsql.insert(sql, params);
 
         //insertar los ingredientes en la tabla secundaria composed
         for (IngredientEntity ingredient:ingredientEntityList){
             String sql2 = "INSERT INTO composed (id_recipe, id_ingredient)" +
                     " VALUES(?,?)";
-            List<Object> params2 = List.of(recipeEntity.getId(), ingredient.getId());
+            List<Object> params2 = List.of(recipeId, ingredient.getId());
             Rawsql.insert(sql2, params2);
         }
 
@@ -91,7 +91,7 @@ public class RecipeDaoJdbc implements RecipeDao {
         for (ToolEntity tool:toolEntityList){
             String sql3 = "INSERT INTO required (id_recipe, id_tool)" +
                     " VALUES(?,?)";
-            List<Object> params3 = List.of(recipeEntity.getId(), tool.getId());
+            List<Object> params3 = List.of(recipeId, tool.getId());
             Rawsql.insert(sql3, params3);
         }
     }
