@@ -15,10 +15,12 @@ public class JdbcTest {
     private static boolean initialized = false;
     @BeforeAll
     static void setup() throws SQLException {
-        connection.executeScript("schemaNFFtest.sql");
-        connection.executeScript("dataNFFtest.sql");
-        connection.getConnection().setAutoCommit(false);
-        initialized=true;
+        if (!initialized) {
+            connection.executeScript("schemaNFFtest.sql");
+            connection.executeScript("dataNFFtest.sql");
+            connection.getConnection().setAutoCommit(false);
+            initialized = true;
+        }
     }
 
     @AfterEach
