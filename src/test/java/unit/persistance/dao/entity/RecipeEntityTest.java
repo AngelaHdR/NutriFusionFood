@@ -2,6 +2,7 @@ package unit.persistance.dao.entity;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
@@ -11,9 +12,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
+import org.junit.jupiter.params.provider.Arguments;
+
+import java.util.List;
 
 public class RecipeEntityTest {
     RecipeEntity recipeEntity;
+    public static List<Arguments> availableLanguages(){
+        return List.of(arguments("es"),arguments("en"));
+    }
+
 
     @Test()
     @DisplayName("Constructor with 6 parameters")

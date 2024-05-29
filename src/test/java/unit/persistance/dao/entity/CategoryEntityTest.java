@@ -2,35 +2,34 @@ package unit.persistance.dao.entity;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static data.CategoryData.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.List;
 
 public class CategoryEntityTest {
     CategoryEntity categoryEntity;
-    private String lang = AppPropertiesReader.getInstance().getProperty("lang");
+    public static List<Arguments> availableLanguages(){
+        return List.of(arguments("es"),arguments("en"));
+    }
     @ParameterizedTest
-    @CsvSource({"1,salado,main dish","2,postre,dessert","3,bebida,drink","4,snack,snack"})
+    @MethodSource("availableLanguages")
     @DisplayName("Constructor with 3 parameters")
-    void createConstructorAllParameters(int id, String name_es,String name_en) {
-        if (lang.equals("es")){
-            categoryEntity = new CategoryEntity(id, name_es);
-            assertAll(
-                    ()->assertEquals(id, categoryEntity.getId()),
-                    ()->assertEquals(name_es, categoryEntity.getName())
-            );
-        } else if (lang.equals("en")) {
-            categoryEntity = new CategoryEntity(id, name_en);
-            assertAll(
-                    () -> assertEquals(id, categoryEntity.getId()),
-                    () -> assertEquals(name_en, categoryEntity.getName())
-            );
-        }
+    void createConstructorAllParameters(String lang) {
+        int id = findCategoryEntityList(lang).get(0).getId();
+        String name = findCategoryEntityList(lang).get(0).getName();
+        categoryEntity = new CategoryEntity(id, name);
+        assertAll(
+                ()->assertEquals(id, categoryEntity.getId()),
+                ()->assertEquals(name, categoryEntity.getName())
+        );
     }
 
     @Test
