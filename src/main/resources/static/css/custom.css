@@ -207,7 +207,7 @@ a {
 }
 a:hover {
   color: #0056b3;
-  text-decoration: underline #000;
+  text-decoration: underline;
 }
 
 a:not([href]):not([tabindex]) {
@@ -8094,6 +8094,16 @@ ul {
   flex-direction: column;
 }
 
+.error-message {
+  color: #006272;
+  max-width: 90%;
+  margin-left: 5%;
+}
+
+.error-message img {
+  height: 300px;
+}
+
 .nutrifusion-food-welcome {
   height: 4rem;
 }
@@ -8260,4 +8270,4 @@ p {
   font-family: Playfair Display;
   font-style: normal;
   color: #000000;
-}/*# sourceMappingURL=custom.css.map */
+}

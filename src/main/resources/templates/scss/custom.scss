@@ -186,6 +186,17 @@ ul {
   flex-direction: column;
 }
 
+//ERROR
+.error-message {
+  color: #006272;
+  max-width: 90%;
+  margin-left: 5%;
+}
+
+.error-message img {
+  height: 300px;
+}
+
 //HOME 
 .nutrifusion-food-welcome {
   height: 4rem;
