@@ -57,9 +57,9 @@
             <h2 class="text-info">RECETAS FAVORITAS</h2>
             <!-- Falta añadir el listado de recetas favoritas  -->
         </section>
-        <section class="container-lg text-center py-4">
+        <section class="container-lg text-center pt-4 pb-2">
             <h2 class="text-info">MIS RECETAS</h2>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-6 col-xl-4 p-2" th:each="recipe :${recipeList}">
                                 <img class="recipe-profile pb-3 rounded "
@@ -75,7 +75,6 @@
                             </div>
                     </div>
                 </div>
-                </br>
                 <!--boton para añadir nueva receta-->
                 <div class="row justify-content-center my-3" th:if="${nutritionist.id == 1}">
                     <div class="col-8 bg-info p-1">
@@ -88,8 +87,6 @@
                 </div>
             </div>
         </section>
-
-        <br><br><br>
     </main>
 </div>
 <footer th:insert="fragments.html::footer"></footer>
