@@ -90,7 +90,7 @@ RecipeRepositoryImplMockitoTest {
                     new Category(1, "salado"), new HashMap<>());
             RecipeEntity recipe6 = new RecipeEntity(3, "Ramen", "es", "x", "Paso 1...",240, UserData.userEntityList.get(0), CategoryData.categoryEntityList_es.get(0));
             recipeRepository.insert(recipe5);
-            verify(recipeDaoMock).insert(recipe6);
+            verify(recipeDaoMock).insert(recipe6,new ArrayList<>(),new ArrayList<>());
         }
     }
 

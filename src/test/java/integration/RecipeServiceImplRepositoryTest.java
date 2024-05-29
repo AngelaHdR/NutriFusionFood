@@ -92,7 +92,7 @@ public class RecipeServiceImplRepositoryTest {
             RecipeEntity recipeEntity3 = new RecipeEntity(3, "Ramen", "es", "x", "Paso 1...", 240,new UserEntity(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
                     new CategoryEntity(1, "salado"));
             recipeService.insert(recipe3);
-            verify(recipeDao).insert(recipeEntity3);
+            verify(recipeDao).insert(recipeEntity3,new ArrayList<>(),new ArrayList<>());
         }
     }
 
