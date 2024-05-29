@@ -50,7 +50,7 @@ paso 6. Añadimos esta mezcla a una sarten y cocinamos 4 mins por cada lado (poc
 paso 2. Pasamos esta salsa por un colador
 paso 3. Cortamos el pan, lo añadimos a la salsa y lo dejamos 10 mins en reposo 
 paso 4. Hechamos el ajo, sal y aceite de oliva y lo batimos
-paso 5. Por último lo metemos en la nevera y dejámos que se enfrie','es',20,2,1);
+paso 5. Por último lo metemos en la nevera y dejámos que se enfrie','es',20,8,1);
 	INSERT INTO recipe VALUES (3,'Japanese soup with noodles, eggs and meat','Ramen',"step 1. Let's start with broth, if it's store-bought, heat it and season it with soy sauce, salt and sake if not 
 simmer chicken, pork bones, or vegetables in water for a few hours.
 step 2. Cook the protein you want to add in a separate pan and set it aside.
@@ -71,7 +71,7 @@ rebozarlas uniformemente.','es',30,5,2);
 step 2. Add a handful of fruits to the blender.
 step 3. Secure the lid on your blender and blend until smooth. If the smoothie is too thick, you can add more liquid. 
 If it's too thin, you can add more fruit or ice cubes.
-step 4. Taste your smoothie and adjust the flavor as needed",'en',10,2,3);
+step 4. Taste your smoothie and adjust the flavor as needed",'en',10,9,3);
 	INSERT INTO recipe VALUES (6,'Pollo desmenuzado juntado con bechamel, rebozado y frito','Croquetas de pollo','paso 1. Cocina las pechugas de pollo en agua con sal hasta y luego desmenúzalas.
 paso 2. En una sartén grande, derrite la mantequilla a fuego medio. Agrega la harina y cocina, revolviendo 
 constantemente, durante unos minutos. Luego, poco a poco, agrega la leche, mientras continúas revolviendo.

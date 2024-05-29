@@ -16,7 +16,7 @@
 <div class="container-fluid">
     <main class="content">
         <section class="container-lg border-bottom border-fuente text-center py-4">
-            <h2 class="text-info">MI PERFIL</h2>
+            <h2 class="text-info" th:if="${nutritionist.id == 1}">MI PERFIL</h2>
             <div class="row align-items-stretch bg-resalte m-3 p-3">
                 <div class="d-none d-md-block col-md-5 bg-fondo">
                     <img class="profile-picture" th:src="@{/images/user/}+user_+${nutritionist.id}+.png"
@@ -55,7 +55,7 @@
         </section>
         <section class="container-lg border-bottom border-fuente text-center py-4">
             <h2 class="text-info">RECETAS FAVORITAS</h2>
-
+            <!-- Falta añadir el listado de recetas favoritas  -->
         </section>
         <section class="container-lg text-center py-4">
             <h2 class="text-info">MIS RECETAS</h2>
@@ -68,7 +68,7 @@
                             <a th:href="@{${'/recipes/' + recipe.id}}">
                                 <h2 class="d-inline-block ml-2 text-uppercase" th:text="${recipe.name}"></h2>
                             </a>
-                            <div class="bg-resalte p-1">
+                            <div class="bg-resalte p-1" th:if="${nutritionist.id == 1}">
                                 <div class=" pt-2 border border-fondo bw-5 bg-resalte ">
                                     <h5 class="text-fondo">EDITAR</h5>
                                 </div>
@@ -77,7 +77,7 @@
                 </div>
                 </br>
                 <!--boton para añadir nueva receta-->
-                <div class="row justify-content-center my-3">
+                <div class="row justify-content-center my-3" th:if="${nutritionist.id == 1}">
                     <div class="col-8 bg-info p-1">
                         <div class="col-12 bg-info pt-2 border border-fondo bw-5">
                             <a href="/recipes/add">
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </section>
-        <!-- Falta añadir el listado de recetas favoritas y recetas creadas -->
+
         <br><br><br>
     </main>
 </div>
