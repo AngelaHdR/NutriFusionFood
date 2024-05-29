@@ -23,7 +23,7 @@
     <ul class="px-0 mb-0">
         <div th:each="recipe, stat : ${recipeList}">
             <section class="container-fluid d-inline-block d-md-inline-block p-0">
-                <div class="recipes-info bg-fondo border-top border-bottom border-fuente row mx-0 justify-content-between">
+                <div class="recipes-info bg-fondo border-top border-bottom border-fuente row justify-content-between m-0 p-0">
                     <div class="recipe-picture col-12 col-md-6 p-0"
                         th:classappend="${stat.index % 2 == 0} ? 'order-md-first' : 'order-md-last'">
                         <img th:src="@{/images/recipe/}+recipe_+${recipe.id}+.jpeg" alt="Recipe Image">
