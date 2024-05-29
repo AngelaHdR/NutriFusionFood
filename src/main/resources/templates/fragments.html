@@ -73,13 +73,15 @@
             </div>
             <div class="col-4 col-sm-1 col-md-1 mt-4">
                 <div class="row justify-content-center">
-                    <img th:src="@{images/lang_es.png}" alt="spain"/>
-                    <!--     <img width="48" height="48" src="https://img.icons8.com/color/48/spain-2.png" alt="spain-2"/>-->
+                    <a href="?lang=es">
+                        <img th:src="@{/images/lang_es.png}" alt="spain"/>
+                    </a>
                 </div>
 
                 <div class="row justify-content-center">
-                    <img th:src="@{images/lang_en.png}" alt="usa"/>
-                    <!--  <img width="48" height="48" src="https://img.icons8.com/color/48/usa.png" alt="usa"/>-->
+                    <a href="?lang=en">
+                        <img th:src="@{/images/lang_en.png}" alt="usa"/>
+                    </a>
                 </div>
             </div>
             <div class="col-8 col-sm-3 col-md-2 d-inline rounded mt-4 mb-2">
@@ -87,7 +89,7 @@
                     <div class="col-10 bg-info justify-content-center p-1">
                         <div class="col-12 justify-content-center text-center bg-info border border-fondo bw-1">
                             <a href="/recipes/add">
-                                <h6 class="text-fondo justify-content-center pt-1 ">Log in</h6>
+                                <h6 class="text-fondo justify-content-center pt-1 " th:text="#{menu.login}">Log in</h6>
                             </a>
                         </div>
                     </div>
