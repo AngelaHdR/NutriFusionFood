@@ -28,7 +28,7 @@
                         th:classappend="${stat.index % 2 == 0} ? 'order-md-first' : 'order-md-last'">
                         <img th:src="@{/images/recipe/}+recipe_+${recipe.id}+.jpeg" alt="Recipe Image">
                     </div>
-                    <div class="recipe-data col-12 col-md-6 justify-content-center align-center border-top pb-1 px-0 my-3"
+                    <div class="recipe-data col-12 col-md-6 justify-content-center align-center border-top px-0 py-3"
                         th:classappend="${stat.index % 2 == 0} ? 'order-md-last' : 'order-md-first'">
                         <li class="recipe-category-name fw-normal">
                             <a th:href="@{${'/recipes/' + recipe.id}}">
@@ -41,9 +41,9 @@
                                 <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}">
                                     <li><strong th:text="#{recipelist.name.nutritionist}">Nutricionista: </strong><span th:text="|${recipe.user.name}|"></span></li>
                                 </a>
-                                <li><strong th:text="#{recipelist.time}">Tiempo de Preparación: </strong><span th:text="|${recipe.time + ' min'}|"></span></li>
-                                <li><strong th:text="#{recipelist.description}">Descripción: </strong><span th:text="|${recipe.description}|"></span></li>
-                                <li><strong th:text="#{recipelist.language}">Idioma: </strong><span th:text="|${recipe.language}|"></span></li>
+                                <li><strong>Tiempo de Preparación: </strong><span th:text="|${recipe.time + ' min'}|"></span></li>
+                                <li><strong>Descripción: </strong><span th:text="|${recipe.description}|"></span></li>
+                                <li><strong>Idioma: </strong><img th:src="@{/images/}+lang_+${recipe.language}+.png" alt="Recipe Language"></li>
                             </ul>
                         </li>
                     </div>

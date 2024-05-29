@@ -21,6 +21,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserDaoJdbcTest extends JdbcTest {
     private static final UserDao userDao = new UserDaoJdbc();
 
+    private static final DBConnection connection = DBConnection.getInstance();
+
+    @BeforeAll
+    static void setup() throws SQLException {
+        /*connection.executeScript("bbdd_NFF_test.sql");
+        connection.executeScript("inserts_NFF_test.sql");*/
+        connection.getConnection().setAutoCommit(false);
+    }
+
+    @AfterEach
+    void tearDown() throws SQLException {
+        connection.getConnection().rollback();
+    }
+
     @DisplayName("Find all the users from the database")
     @Test
     public void testFindAllUsers() {

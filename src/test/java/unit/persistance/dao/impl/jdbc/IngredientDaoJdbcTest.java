@@ -28,6 +28,25 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 class IngredientDaoJdbcTest extends JdbcTest {
     private static final IngredientDao ingredientDao = new IngredientDaoJdbc();
 
+    private static final DBConnection connection = DBConnection.getInstance();
+
+    @BeforeAll
+    static void setup() throws SQLException {
+       /* connection.executeScript("bbdd_NFF_test.sql");
+        connection.executeScript("inserts_NFF_test.sql");
+       */ connection.getConnection().setAutoCommit(false);
+    }
+
+    @AfterEach
+    void tearDown() throws SQLException {
+        connection.getConnection().rollback();
+    }
+
+    IngredientEntity ingredientEntity;
+    public static List<Arguments> availableLanguages(){
+        return List.of(arguments("es"),arguments("en"));
+    }
+
     @DisplayName("Find all the ingredients in the database")
     @ParameterizedTest
     @MethodSource("availableLanguages")

@@ -21,6 +21,24 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 class CategoryDaoJdbcTest extends JdbcTest {
     private static final CategoryDao categoryDao = new CategoryDaoJdbc();
 
+    private static final DBConnection connection = DBConnection.getInstance();
+
+    @BeforeAll
+    static void setup() throws SQLException {
+        /*connection.executeScript("bbdd_NFF_test.sql");
+        connection.executeScript("inserts_NFF_test.sql");*/
+        connection.getConnection().setAutoCommit(false);
+    }
+
+    @AfterEach
+    void tearDown() throws SQLException {
+        connection.getConnection().rollback();
+    }
+
+    CategoryEntity categoryEntity;
+    public static List<Arguments> availableLanguages(){
+        return List.of(arguments("es"),arguments("en"));
+    }
     @DisplayName("Find all the categories in the database")
     @ParameterizedTest
     @MethodSource("availableLanguages")
