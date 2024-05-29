@@ -60,7 +60,9 @@ public class ToolDaoJdbc implements ToolDao {
             String sql = "SELECT lang FROM recipe WHERE id_recipe = ?";
             List<Object> params = List.of(recipeId);
             ResultSet resultSet = Rawsql.select(sql, params);
-            resultSet.next();
+            if(!resultSet.next()) {
+                return null;
+            }
             String lang2 = resultSet.getString("lang");
             //mostrar la receta en su idioma
             String sql2 = "SELECT t.id_tool,t.name_"+lang2+" as name FROM tool t " +
@@ -75,13 +77,6 @@ public class ToolDaoJdbc implements ToolDao {
             System.out.println("Hay un problema con la bbdd");
         }
         return toolEntityList;
-    }
-
-    @Override
-    public void insert(ToolEntity toolEntity) {
-        String sql = "INSERT INTO tool(id_tool,name_"+lang+") VALUES(?,?,?)";
-        List<Object> params = List.of(toolEntity.getId(), toolEntity.getName());
-        Rawsql.insert(sql, params);
     }
 
     @Override

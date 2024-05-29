@@ -72,15 +72,6 @@ public class IngredientDaoMemory implements IngredientDao {
     }
 
     @Override
-    public void insert(IngredientEntity ingredientEntity) {
-        if (lang.equals("es")){
-            ingredientEntityList_es.add(ingredientEntity);
-        } else if (lang.equals("en")) {
-            ingredientEntityList_en.add(ingredientEntity);
-        }
-    }
-
-    @Override
     public void delete(Integer id) {
         if (lang.equals("es")){
             ingredientEntityList_es.remove(findByIdIngredient(id));

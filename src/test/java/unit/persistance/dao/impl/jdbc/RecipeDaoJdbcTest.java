@@ -9,6 +9,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -66,12 +67,12 @@ class RecipeDaoJdbcTest {
         assertNull(actualRecipe);
     }
 
-    @DisplayName("Find recipes by their recipes")
+    @DisplayName("Find recipes by the nutritionist")
     @ParameterizedTest
     @MethodSource("availableLanguages")
     public void testFindRecipeByNutritionist(String lang) {
         List<RecipeEntity> actualRecipeList = recipeDao.findByNutritionist(1);
-        List<RecipeEntity> expectedRecipeList = new ArrayList<>(Arrays.asList(findRecipeEntityList().get(2)));
+        List<RecipeEntity> expectedRecipeList = new ArrayList<>(Arrays.asList(findRecipeEntityList().get(1),findRecipeEntityList().get(2)));
         assertEquals(expectedRecipeList, actualRecipeList);
     }
     @ParameterizedTest
@@ -84,13 +85,13 @@ class RecipeDaoJdbcTest {
     }
 
     @DisplayName("Insert new recipes in the database")
-    @ParameterizedTest
-    @MethodSource("availableLanguages")
-    public void testInsertNewRecipes(String lang) {
+    @Test
+    public void testInsertNewRecipes() {
         RecipeEntity newRecipe= new RecipeEntity(6,"Ensalada", "es","x","Paso 1...", 15,
                 new UserEntity(3,"Pepe","Escudero","Ramirez","1985-10-24", true,"password3","mail3","pepe"),
                 new CategoryEntity(3,"bebida"));
         List<RecipeEntity> expectedRecipeList = new ArrayList<>(findRecipeEntityList());
+        expectedRecipeList.add(newRecipe);
         recipeDao.insert(newRecipe,new ArrayList<>(),new ArrayList<>());
         List<RecipeEntity> actualRecipeList = recipeDao.findAllRecipe();
         assertEquals(expectedRecipeList, actualRecipeList);
@@ -100,10 +101,10 @@ class RecipeDaoJdbcTest {
     @ParameterizedTest
     @MethodSource("availableLanguages")
     public void testDeleteRecipes(String lang) {
-        recipeDao.delete(6);
+        recipeDao.delete(5);
         List<RecipeEntity> actualRecipeList = recipeDao.findAllRecipe();
         List<RecipeEntity> expectedRecipeList = new ArrayList<>(findRecipeEntityList());
-        expectedRecipeList.remove(5);
+        expectedRecipeList.remove(4);
         assertEquals(expectedRecipeList, actualRecipeList);
     }
 

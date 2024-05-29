@@ -89,7 +89,7 @@ public class ToolDaoUnitTest {
         assertEquals(expected,actualToolList);
     }
 
-    @DisplayName("Insert new tools in the database")
+    /*@DisplayName("Insert new tools in the database")
     @Test
     public void testInsertNewTools() {
         ToolEntity newTool;
@@ -109,7 +109,7 @@ public class ToolDaoUnitTest {
         toolDao.insert(newTool);
         List<ToolEntity> actualToolList = toolDao.findAllTool();
         assertEquals(expectedToolList, actualToolList);
-    }
+    }*/
 
     @DisplayName("Delete tools from the database")
     @Test

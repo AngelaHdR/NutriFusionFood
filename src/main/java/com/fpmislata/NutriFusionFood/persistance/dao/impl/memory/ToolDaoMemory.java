@@ -73,14 +73,6 @@ public class ToolDaoMemory implements ToolDao {
         return requireToolList;
     }
 
-    @Override
-    public void insert(ToolEntity toolEntity) {
-        if (lang.equals("es")){
-            toolEntityList_es.add(toolEntity);
-        } else if (lang.equals("en")) {
-            toolEntityList_en.add(toolEntity);
-        }
-    }
 
     @Override
     public void delete(Integer id) {

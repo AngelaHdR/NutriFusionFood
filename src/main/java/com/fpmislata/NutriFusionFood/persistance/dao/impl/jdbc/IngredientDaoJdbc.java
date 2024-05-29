@@ -59,15 +59,6 @@ public class IngredientDaoJdbc implements IngredientDao {
     }
 
 
-    @Override
-    public void insert(IngredientEntity ingredientEntity) {
-        String lang = AppPropertiesReader.getInstance().getProperty("lang");
-        String sql = "INSERT INTO ingredient(id_ingredient, gluten, lactose, name_"+lang+", start_season, end_season, id_type) VALUES(?,?,?,?,?,?,?,?)";
-        List<Object> params = List.of(ingredientEntity.getId(), ingredientEntity.isGluten(), ingredientEntity.isLactose(),
-                ingredientEntity.getName(), ingredientEntity.getStartSeason(),
-                ingredientEntity.getEndSeason(), ingredientEntity.getType().getId());
-        Rawsql.insert(sql, params);
-    }
 
     @Override
     public void delete(Integer id) {
@@ -83,7 +74,9 @@ public class IngredientDaoJdbc implements IngredientDao {
             String sql = "SELECT lang FROM recipe WHERE id_recipe = ?";
             List<Object> params = List.of(recipeId);
             ResultSet resultSet = Rawsql.select(sql, params);
-            resultSet.next();
+            if(!resultSet.next()) {
+                return null;
+            }
             String lang2 = resultSet.getString("lang");
             //mostrar la receta en su idioma
             String sql2 = "SELECT i.*,t.id_type,t.name_"+lang2+" as name FROM type t inner join ingredient i on t.id_type=i.id_type " +
@@ -99,6 +92,7 @@ public class IngredientDaoJdbc implements IngredientDao {
         }
         return ingredientEntityList;
     }
+
     @Override
     public List<IngredientEntity> findByType(int typeId){
         try {
