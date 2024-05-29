@@ -24,7 +24,7 @@ public class CategoryTest {
     }
 
     @Test
-    @DisplayName("Constructor with 3 parameters")
+    @DisplayName("Constructor with 2 parameters")
     void createConstructorAllParameters() {
         category = new Category(1, "recipe");
         assertAll(
