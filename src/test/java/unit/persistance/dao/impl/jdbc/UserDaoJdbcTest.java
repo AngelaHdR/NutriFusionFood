@@ -8,6 +8,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.DBConnection;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.JdbcTest;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,22 +18,8 @@ import java.util.List;
 import static data.UserData.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserDaoJdbcTest {
+class UserDaoJdbcTest extends JdbcTest {
     private static final UserDao userDao = new UserDaoJdbc();
-
-    private static final DBConnection connection = DBConnection.getInstance();
-
-    @BeforeAll
-    static void setup() throws SQLException {
-        connection.executeScript("schemaNFFtest.sql");
-        connection.executeScript("dataNFFtest.sql");
-        connection.getConnection().setAutoCommit(false);
-    }
-
-    @AfterEach
-    void tearDown() throws SQLException {
-        connection.getConnection().rollback();
-    }
 
     @DisplayName("Find all the users from the database")
     @Test

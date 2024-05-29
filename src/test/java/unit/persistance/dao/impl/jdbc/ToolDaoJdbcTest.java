@@ -12,6 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.JdbcTest;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,24 +22,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class ToolDaoJdbcTest {
+class ToolDaoJdbcTest extends JdbcTest {
     private static final ToolDao toolDao = new ToolDaoJdbc();
-    private static final DBConnection connection = DBConnection.getInstance();
-    public static List<Arguments> availableLanguages(){
-        return List.of(arguments("es"),arguments("en"));
-    }
-
-    @BeforeAll
-    static void setup() throws SQLException {
-        connection.executeScript("schemaNFFtest.sql");
-        connection.executeScript("dataNFFtest.sql");
-        connection.getConnection().setAutoCommit(false);
-    }
-
-    @AfterEach
-    void tearDown() throws SQLException {
-        connection.getConnection().rollback();
-    }
 
     @DisplayName("Find all the tools in the database")
     @ParameterizedTest
@@ -80,18 +65,6 @@ class ToolDaoJdbcTest {
         List<ToolEntity> actualToolList = toolDao.findByRecipe(id);
         assertNull(actualToolList);
     }
-
-    /*@DisplayName("Insert new tools in the database")
-    @ParameterizedTest
-    @MethodSource("availableLanguages")
-    public void testInsertNewTools(String lang) {
-        ToolEntity newTool= new ToolEntity(7, "freidora");
-        List<ToolEntity> expectedToolList = new ArrayList<>(findToolEntityList(lang));
-        toolDao.insert(newTool);
-        expectedToolList.add(newTool);
-        List<ToolEntity> actualToolList = toolDao.findAllTool();
-        assertEquals(expectedToolList, actualToolList);
-    }*/
 
     @DisplayName("Delete tools from the database")
     @ParameterizedTest

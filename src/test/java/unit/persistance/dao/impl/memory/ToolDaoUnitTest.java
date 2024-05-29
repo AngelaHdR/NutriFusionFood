@@ -89,28 +89,6 @@ public class ToolDaoUnitTest {
         assertEquals(expected,actualToolList);
     }
 
-    /*@DisplayName("Insert new tools in the database")
-    @Test
-    public void testInsertNewTools() {
-        ToolEntity newTool;
-        List<ToolEntity> expectedToolList;
-        if (lang.equals("es")){
-            newTool = new ToolEntity(7, "freidora");
-            expectedToolList = new ArrayList<>(ToolData.toolEntityList_es);
-            expectedToolList.add(newTool);
-        } else if (lang.equals("en")) {
-            newTool = new ToolEntity(7, "frying pan");
-            expectedToolList = new ArrayList<>(ToolData.toolEntityList_en);
-            expectedToolList.add(newTool);
-        }else{
-            newTool = null;
-            expectedToolList = new ArrayList<>();
-        }
-        toolDao.insert(newTool);
-        List<ToolEntity> actualToolList = toolDao.findAllTool();
-        assertEquals(expectedToolList, actualToolList);
-    }*/
-
     @DisplayName("Delete tools from the database")
     @Test
     public void testDeleteTools() {

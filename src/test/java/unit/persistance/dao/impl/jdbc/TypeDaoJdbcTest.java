@@ -14,6 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.JdbcTest;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,25 +23,9 @@ import static data.TypeData.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class TypeDaoJdbcTest {
+class TypeDaoJdbcTest extends JdbcTest {
     private static final TypeDao typeDao = new TypeDaoJdbc();
 
-    private static final DBConnection connection = DBConnection.getInstance();
-    public static List<Arguments> availableLanguages(){
-        return List.of(arguments("es"),arguments("en"));
-    }
-
-    @BeforeAll
-    static void setup() throws SQLException {
-        connection.executeScript("schemaNFFtest.sql");
-        connection.executeScript("dataNFFtest.sql");
-        connection.getConnection().setAutoCommit(false);
-    }
-
-    @AfterEach
-    void tearDown() throws SQLException {
-        connection.getConnection().rollback();
-    }
     @ParameterizedTest
     @MethodSource("availableLanguages")
     @DisplayName("Find all types")

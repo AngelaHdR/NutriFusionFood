@@ -90,28 +90,6 @@ public class IngredientDaoUnitTest {
         assertEquals(expectedIngredientList,actualIngredientList);
     }
 
-    /*@DisplayName("Insert new ingredients into the database")
-    @Test
-    public void testInsertNewIngredients() {
-        IngredientEntity newIngredient;
-        List<IngredientEntity> expectedIngredientList;
-        if (lang.equals("es")){
-            expectedIngredientList = new ArrayList<>(IngredientData.ingredientEntityList_es);
-            newIngredient = new IngredientEntity(6,false,true,"queso",10,12, new TypeEntity(3,"lacteo"));
-        } else if (lang.equals("en")) {
-            expectedIngredientList = new ArrayList<>(IngredientData.ingredientEntityList_en);
-            newIngredient = new IngredientEntity(6,false,true,"cheese",10,12, new TypeEntity(3,"dairy"));
-        } else {
-            expectedIngredientList = new ArrayList<>();
-            newIngredient = null;
-        }
-        ingredientDao.insert(newIngredient);
-        expectedIngredientList.add(newIngredient);
-        List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
-        assertEquals(expectedIngredientList, actualIngredientList);
-
-    }*/
-
     @DisplayName("Delete ingredients from the database")
     @Test
     public void testDeleteIngredients() {

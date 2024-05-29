@@ -9,6 +9,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import util.JdbcTest;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,25 +18,9 @@ import static data.CategoryData.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class CategoryDaoJdbcTest {
+class CategoryDaoJdbcTest extends JdbcTest {
     private static final CategoryDao categoryDao = new CategoryDaoJdbc();
 
-    private static final DBConnection connection = DBConnection.getInstance();
-
-    @BeforeAll
-    static void setup() throws SQLException {
-        connection.executeScript("schemaNFFtest.sql");
-        connection.executeScript("dataNFFtest.sql");
-        connection.getConnection().setAutoCommit(false);
-    }
-
-    @AfterEach
-    void tearDown() throws SQLException {
-        connection.getConnection().rollback();
-    }
-    public static List<Arguments> availableLanguages(){
-        return List.of(arguments("es"),arguments("en"));
-    }
     @DisplayName("Find all the categories in the database")
     @ParameterizedTest
     @MethodSource("availableLanguages")

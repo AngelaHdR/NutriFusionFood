@@ -14,6 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.JdbcTest;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,25 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class IngredientDaoJdbcTest {
+class IngredientDaoJdbcTest extends JdbcTest {
     private static final IngredientDao ingredientDao = new IngredientDaoJdbc();
-
-    private static final DBConnection connection = DBConnection.getInstance();
-
-    @BeforeAll
-    static void setup() throws SQLException {
-        connection.executeScript("schemaNFFtest.sql");
-        connection.executeScript("dataNFFtest.sql");
-        connection.getConnection().setAutoCommit(false);
-    }
-
-    @AfterEach
-    void tearDown() throws SQLException {
-        connection.getConnection().rollback();
-    }
-    public static List<Arguments> availableLanguages(){
-        return List.of(arguments("es"),arguments("en"));
-    }
 
     @DisplayName("Find all the ingredients in the database")
     @ParameterizedTest
@@ -84,19 +68,6 @@ class IngredientDaoJdbcTest {
         List<IngredientEntity> actualIngredientList = ingredientDao.findByRecipe(id);
         assertNull(actualIngredientList);
     }
-
-    /*@DisplayName("Insert new ingredients into the database")
-    @ParameterizedTest
-    @MethodSource("availableLanguages")
-    public void testInsertNewIngredients(String lang) {
-        IngredientEntity newIngredient = new IngredientEntity(6,false,true,"queso",10,12, new TypeEntity(3,"lacteo"));;
-        List<IngredientEntity> expectedIngredientList = new ArrayList<>(findIngredientEntityList(lang));
-        ingredientDao.insert(newIngredient);
-        expectedIngredientList.add(newIngredient);
-        List<IngredientEntity> actualIngredientList = ingredientDao.findAllIngredient();
-        assertEquals(expectedIngredientList, actualIngredientList);
-
-    }*/
 
     @DisplayName("Delete ingredients from the database")
     @ParameterizedTest

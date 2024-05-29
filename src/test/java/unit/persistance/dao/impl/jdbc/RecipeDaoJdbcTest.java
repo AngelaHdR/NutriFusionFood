@@ -14,6 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.JdbcTest;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,23 +25,9 @@ import static data.RecipeData.findRecipeEntityList;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class RecipeDaoJdbcTest {
+class RecipeDaoJdbcTest extends JdbcTest {
     private static final RecipeDao recipeDao = new RecipeDaoJdbc();
-    private static final DBConnection connection = DBConnection.getInstance();
-    public static List<Arguments> availableLanguages(){
-        return List.of(arguments("es"),arguments("en"));
-    }
-    @BeforeAll
-    static void setup() throws SQLException {
-        connection.executeScript("schemaNFFtest.sql");
-        connection.executeScript("dataNFFtest.sql");
-        connection.getConnection().setAutoCommit(false);
-    }
 
-    @AfterEach
-    void tearDown() throws SQLException {
-        connection.getConnection().rollback();
-    }
     @DisplayName("Find all the recipes in the database")
     @ParameterizedTest
     @MethodSource("availableLanguages")
