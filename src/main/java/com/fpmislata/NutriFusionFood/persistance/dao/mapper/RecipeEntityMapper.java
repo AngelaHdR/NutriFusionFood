@@ -15,23 +15,23 @@ public class RecipeEntityMapper {
         }
         try {
             return new RecipeEntity(
-                    resultSet.getInt("r.id_recipe"),
-                    resultSet.getString("r.name_recipe"),
-                    resultSet.getString("r.lang"),
-                    resultSet.getString("r.description_recipe"),
-                    resultSet.getString("r.steps"),
-                    resultSet.getInt("r.time_recipe"),
-                    new UserEntity(resultSet.getInt("u.id_user"),
-                            resultSet.getString("u.name_user"),
-                            resultSet.getString("u.surname1"),
-                            resultSet.getString("u.surname2"),
-                            resultSet.getString("u.birth_date"),
-                            resultSet.getBoolean("u.nutritionist"),
-                            resultSet.getString("u.pwd"),
-                            resultSet.getString("u.email"),
-                            resultSet.getString("u.username")
+                    resultSet.getInt("id_recipe"),
+                    resultSet.getString("name_recipe"),
+                    resultSet.getString("lang"),
+                    resultSet.getString("description_recipe"),
+                    resultSet.getString("steps"),
+                    resultSet.getInt("time_recipe"),
+                    new UserEntity(resultSet.getInt("id_user"),
+                            resultSet.getString("name_user"),
+                            resultSet.getString("surname1"),
+                            resultSet.getString("surname2"),
+                            resultSet.getString("birth_date"),
+                            resultSet.getBoolean("nutritionist"),
+                            resultSet.getString("pwd"),
+                            resultSet.getString("email"),
+                            resultSet.getString("username")
                     ),
-                    new CategoryEntity(resultSet.getInt("c.id_category"),
+                    new CategoryEntity(resultSet.getInt("id_category"),
                             resultSet.getString("name")
                     )
             );

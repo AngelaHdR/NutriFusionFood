@@ -17,15 +17,15 @@ public class IngredientEntityMapper {
         }
         try{
             return new IngredientEntity(
-                    resultSet.getInt("i.id_ingredient"),
-                    resultSet.getBoolean("i.gluten"),
-                    resultSet.getBoolean("i.lactose"),
-                    resultSet.getString("i.name_"+lang),
-                    resultSet.getInt("i.start_season"),
-                    resultSet.getInt("i.end_season"),
+                    resultSet.getInt("id_ingredient"),
+                    resultSet.getBoolean("gluten"),
+                    resultSet.getBoolean("lactose"),
+                    resultSet.getString("name_"+lang),
+                    resultSet.getInt("start_season"),
+                    resultSet.getInt("end_season"),
                     new TypeEntity(
-                            resultSet.getInt("t.id_type"),
-                            resultSet.getString("t.name")
+                            resultSet.getInt("id_type"),
+                            resultSet.getString("name")
                     ));
         }catch (SQLException e){
             throw new RuntimeException(e);

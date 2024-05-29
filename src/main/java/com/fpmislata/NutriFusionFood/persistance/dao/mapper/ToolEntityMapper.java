@@ -13,8 +13,8 @@ public class ToolEntityMapper {
         }
         try {
             return new ToolEntity(
-                    resultSet.getInt("t.id_tool"),
-                    resultSet.getString("t.name"));
+                    resultSet.getInt("id_tool"),
+                    resultSet.getString("name"));
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

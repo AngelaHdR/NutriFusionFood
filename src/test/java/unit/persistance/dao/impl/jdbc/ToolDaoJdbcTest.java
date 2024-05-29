@@ -9,6 +9,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
 import static data.ToolData.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -18,10 +19,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class ToolDaoJdbcTest {
     private static final ToolDao toolDao = new ToolDaoJdbc();
     private static final DBConnection connection = DBConnection.getInstance();
+    public static List<Arguments> availableLanguages(){
+        return List.of(arguments("es"),arguments("en"));
+    }
 
     @BeforeAll
     static void setup() throws SQLException {
