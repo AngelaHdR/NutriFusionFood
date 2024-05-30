@@ -7,7 +7,6 @@ import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.ToolDaoJdbc;
 import com.fpmislata.NutriFusionFood.persistance.repository.ToolRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.ToolRepositoryImpl;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
 
 
 public class ToolIoC {
@@ -33,8 +32,6 @@ public class ToolIoC {
         if (toolDao==null){
             if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("jdbc")){
                 toolDao = new ToolDaoJdbc();
-            }else if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("memory")) {
-                toolDao = new ToolDaoMemory();
             }
         }
         return toolDao;

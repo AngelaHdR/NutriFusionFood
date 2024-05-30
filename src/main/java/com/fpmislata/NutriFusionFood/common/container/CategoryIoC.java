@@ -6,7 +6,6 @@ import com.fpmislata.NutriFusionFood.domain.service.CategoryService;
 import com.fpmislata.NutriFusionFood.domain.service.impl.CategoryServiceImpl;
 import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.CategoryDaoJdbc;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.CategoryDaoMemory;
 import com.fpmislata.NutriFusionFood.persistance.repository.CategoryRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.CategoryRepositoryImpl;
 
@@ -30,8 +29,6 @@ public class CategoryIoC {
         if(categoryDao== null){
             if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("jdbc")) {
                 categoryDao= new CategoryDaoJdbc();
-            }else if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("memory")) {
-                categoryDao = new CategoryDaoMemory();
             }
         }
         return categoryDao;

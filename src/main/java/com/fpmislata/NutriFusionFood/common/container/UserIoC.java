@@ -5,7 +5,6 @@ import com.fpmislata.NutriFusionFood.domain.service.UserService;
 import com.fpmislata.NutriFusionFood.domain.service.impl.UserServiceImpl;
 import com.fpmislata.NutriFusionFood.persistance.dao.UserDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.UserDaoJdbc;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.UserDaoMemory;
 import com.fpmislata.NutriFusionFood.persistance.repository.UserRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.UserRepositoryImpl;
 
@@ -29,8 +28,6 @@ public class UserIoC {
         if (userDao==null){
             if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("jdbc")){
                 userDao = new UserDaoJdbc();
-            } else if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("memory")) {
-                userDao = new UserDaoMemory();
             }
         }
         return userDao;
