@@ -2,7 +2,9 @@ package unit.persistance.repository;
 
 import com.fpmislata.NutriFusionFood.domain.entity.*;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.RecipeRepositoryImpl;
 import data.*;
 import org.junit.jupiter.api.*;
@@ -90,7 +92,8 @@ RecipeRepositoryImplMockitoTest {
                     new Category(1, "salado"), new HashMap<>());
             RecipeEntity recipe6 = new RecipeEntity(3, "Ramen", "es", "x", "Paso 1...",240, UserData.userEntityList.get(0), CategoryData.categoryEntityList_es.get(0));
             recipeRepository.insert(recipe5);
-            verify(recipeDaoMock).insert(recipe6,new ArrayList<>(),new ArrayList<>());
+            verify(recipeDaoMock).insert(recipe6,new ArrayList<>(List.of(new IngredientEntity(2, false, false, "fideos chinos", 1, 12)))
+                    ,new ArrayList<>(List.of(new ToolEntity(2, "cazo"))));
         }
     }
 

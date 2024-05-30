@@ -1,12 +1,11 @@
 package integration;
 
+import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.*;
 import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
 import com.fpmislata.NutriFusionFood.domain.service.impl.RecipeServiceImpl;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
-import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
-import com.fpmislata.NutriFusionFood.persistance.dao.entity.UserEntity;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.*;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.RecipeRepositoryImpl;
 import data.RecipeData;
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -54,10 +54,10 @@ public class RecipeServiceImplRepositoryTest {
     @Nested
     class FindById {
         @Test
-        @DisplayName("when id not in list , Service return null")
-        void returnEmptyList() {
+        @DisplayName("when id not in list , Service throw exception")
+        void throwExceptionWrongId() {
             when(recipeDao.findByIdRecipe(-1)).thenReturn(null);
-            assertEquals(null, recipeService.findByIdRecipe(-1));
+            assertThrows(BusinessException.class,()->recipeService.findByIdRecipe(-2));
         }
 
         @Test
@@ -70,6 +70,11 @@ public class RecipeServiceImplRepositoryTest {
 
     @Nested
     class Delete {
+        @Test
+        @DisplayName("if id not in list , Service throw exception")
+        void throwExceptionWrongId() {
+            assertThrows(BusinessException.class,()->recipeService.delete(-2));
+        }
         @Test
         @DisplayName("delete recipe by id")
         void deleteRecipeById() {
@@ -92,7 +97,8 @@ public class RecipeServiceImplRepositoryTest {
             RecipeEntity recipeEntity3 = new RecipeEntity(3, "Ramen", "es", "x", "Paso 1...", 240,new UserEntity(1, "Jose", "Perez", "Garcia", "1989-08-18", true, "p1", "mail1", "jose"),
                     new CategoryEntity(1, "salado"));
             recipeService.insert(recipe3);
-            verify(recipeDao).insert(recipeEntity3,new ArrayList<>(),new ArrayList<>());
+            verify(recipeDao).insert(recipeEntity3,new ArrayList<>(List.of(new IngredientEntity(2, false, false, "fideos chinos", 1, 12)))
+                    ,new ArrayList<>(List.of(new ToolEntity(2, "cazo"))));
         }
     }
 

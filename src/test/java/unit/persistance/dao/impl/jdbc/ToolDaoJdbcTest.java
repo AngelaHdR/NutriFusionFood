@@ -1,26 +1,20 @@
 package unit.persistance.dao.impl.jdbc;
 
-import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.ToolDaoJdbc;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.DBConnection;
-import com.fpmislata.NutriFusionFood.persistance.dao.impl.memory.ToolDaoMemory;
 import static data.ToolData.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import util.JdbcTest;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class ToolDaoJdbcTest extends JdbcTest {
     private static final ToolDao toolDao = new ToolDaoJdbc();

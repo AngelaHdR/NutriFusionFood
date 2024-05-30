@@ -52,7 +52,7 @@ public class RecipeServiceImplMockitoTest {
     @Nested
     class FindById {
         @Test
-        @DisplayName("when id not in list , Service return null")
+        @DisplayName("when id not in list , Service throw exception")
         void throwExceptionWrongId() {
             when(recipeRepositoryMock.findByIdRecipe(-2)).thenReturn(null);
             assertThrows(BusinessException.class,()->recipeService.findByIdRecipe(-2));
