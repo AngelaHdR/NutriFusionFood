@@ -78,8 +78,10 @@ public class RecipeServiceImplRepositoryTest {
         @Test
         @DisplayName("delete recipe by id")
         void deleteRecipeById() {
-            recipeService.delete(RecipeData.recipeList.get(0).getId());
-            verify(recipeDao).delete(RecipeData.recipeList.get(0).getId());
+            int recipeId = recipeEntityList.get(0).getId();
+            when(recipeDao.findByIdRecipe(1)).thenReturn(recipeEntityList.get(0));
+            recipeService.delete(recipeId);
+            verify(recipeDao).delete(recipeId);
         }
     }
 
@@ -116,12 +118,12 @@ public class RecipeServiceImplRepositoryTest {
         @DisplayName("given one category id, service return all recipe from one  category")
         void returnAllRecipe() {
             when(recipeDao.findByCategory(1)).thenReturn(List.of(
-                    RecipeData.recipeEntityList.get(0),
-                    RecipeData.recipeEntityList.get(1),
-                    RecipeData.recipeEntityList.get(2)));
+                    recipeEntityList.get(0),
+                    recipeEntityList.get(1),
+                    recipeEntityList.get(2)));
             assertEquals(List.of(RecipeData.recipeList.get(0),
-                    RecipeData.recipeList.get(1),
-                    RecipeData.recipeList.get(2)), recipeService.findByCategory(1));
+                    recipeList.get(1),
+                    recipeList.get(2)), recipeService.findByCategory(1));
         }
     }
 }
