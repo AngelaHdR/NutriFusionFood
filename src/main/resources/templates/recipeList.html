@@ -34,11 +34,11 @@
                             </a>
                             <ul class="recipe-all-data text-info px-5">
                                 <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}">
-                                    <li><strong>Nutricionista: </strong><span th:text="|${recipe.user.name}|"></span></li>
+                                    <li><strong th:text="#{recipelist.name.nutritionist}">Nutricionista: </strong><span th:text="|${recipe.user.name}|"></span></li>
                                 </a>
-                                <li><strong>Tiempo de Preparación: </strong><span th:text="|${recipe.time + ' min'}|"></span></li>
-                                <li><strong>Descripción: </strong><span th:text="|${recipe.description}|"></span></li>
-                                <li><strong>Idioma: </strong><span th:text="|${recipe.language}|"></span></li>
+                                <li><strong th:text="#{recipelist.time}">Tiempo de Preparación: </strong><span th:text="|${recipe.time + ' min'}|"></span></li>
+                                <li><strong th:text="#{recipelist.description}">Descripción: </strong><span th:text="|${recipe.description}|"></span></li>
+                                <li><strong th:text="#{recipelist.idiom}">Idioma: </strong><span th:text="|${recipe.language}|"></span></li>
                             </ul>
                         </li>
                     </div>
