@@ -16,7 +16,7 @@
 <div class="container-fluid">
     <main class="content">
         <section class="container-lg border-bottom border-fuente text-center py-4">
-            <h2 class="text-info" th:if="${nutritionist.id == 1}">MI PERFIL</h2>
+            <h2 class="text-info" th:if="${nutritionist.id == 1}" th:text="#{profile.section}">MI PERFIL</h2>
             <div class="row align-items-stretch bg-resalte m-3 p-3">
                 <div class="d-none d-md-block col-md-5 bg-fondo">
                     <img class="profile-picture" th:src="@{/images/user/}+user_+${nutritionist.id}+.png"
@@ -31,7 +31,7 @@
                         </div>
                         <div class="row py-1">
                             <div class="col">
-                                <h2 class="d-inline mr-2 text-info">Nombre: </h2>
+                                <h2 class="d-inline mr-2 text-info" th:text="#{profile.user.name}">Nombre: </h2>
                                 <h3 class="d-inline"
                                     th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|">
                                 </h3>
@@ -39,13 +39,13 @@
                         </div>
                         <div class="row py-1">
                             <div class="col">
-                                <h2 class="d-inline mr-2 text-info">Email: </h2>
+                                <h2 class="d-inline mr-2 text-info" th:text="#{profile.user.email}">Email: </h2>
                                 <h3 class="d-inline" th:text="${nutritionist.email}"></h3>
                             </div>
                         </div>
                         <div class="row py-1">
                             <div class="col">
-                                <h2 class="d-inline mr-2 text-info">Fecha de nacimiento: </h2>
+                                <h2 class="d-inline mr-2 text-info" th:text="#{profile.user.birthdate}">Fecha de nacimiento: </h2>
                                 <h3 class="d-inline" th:text="${nutritionist.birthDate}"></h3>
                             </div>
                         </div>
@@ -54,11 +54,11 @@
             </div>
         </section>
         <section class="container-lg border-bottom border-fuente text-center py-4">
-            <h2 class="text-info">RECETAS FAVORITAS</h2>
+            <h2 class="text-info" th:text="#{profile.user.favourite.recipe}">RECETAS FAVORITAS</h2>
             <!-- Falta añadir el listado de recetas favoritas  -->
         </section>
         <section class="container-lg text-center pt-4 pb-2">
-            <h2 class="text-info">MIS RECETAS</h2>
+            <h2 class="text-info" th:text="#{profile.user.recipes}">MIS RECETAS</h2>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-6 col-xl-4 p-2" th:each="recipe :${recipeList}">
@@ -70,7 +70,7 @@
                             </a>
                             <div class="bg-resalte p-1" th:if="${nutritionist.id == 1}">
                                 <div class=" pt-2 border border-fondo bw-5 bg-resalte ">
-                                    <h5 class="text-fondo">EDITAR</h5>
+                                    <h5 class="text-fondo" th:text="#{profile.user.buttom.edit}">EDITAR</h5>
                                 </div>
                             </div>
                     </div>
@@ -80,7 +80,7 @@
                     <div class="col-8 bg-info p-1">
                         <div class="col-12 bg-info pt-2 border border-fondo bw-5">
                             <a href="/recipes/add">
-                                <h2 class="text-fondo">CREAR UNA NUEVA RECETA</h2>
+                                <h2 class="text-fondo" th:text="#{profile.user.buttom.create}">CREAR UNA NUEVA RECETA</h2>
                             </a>
                         </div>
                     </div>
