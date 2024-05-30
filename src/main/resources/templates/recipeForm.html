@@ -17,23 +17,24 @@
         <form class=" m-2 g-3 was-validated " th:action="@{/recipes}" th:object="${recipe}" method="post" novalidate>
             <div class="row">
                 <div class="col-md-5 my-2">
-                    <label for="validationCustom01" class="form-label ">Nombre de la receta</label>
+                    <label for="validationCustom01" class="form-label " th:text="#{recipeForm.name.recipe}">Nombre de la
+                        receta</label>
                     <input type="text" class="form-control border-info" id="validationCustom01"
                            placeholder="Nombre de la receta" th:field="*{name}" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <div class="valid-feedback" th:text="#{recipeForm.message.name}">
+                        Nombre añadido
                     </div>
                 </div>
                 <div class="col-md-3 my-2">
-                    <label for="numero">Duración de la receta:</label>
+                    <label for="numero" th:text="#{recipeForm.time.recipe}">Duración de la receta:</label>
                     <input type="number" class="form-control  border-info" id="numero" name="numero"
                            placeholder="Duración" th:field="*{time}" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <div class="valid-feedback" th:text="#{recipeForm.message.time}">
+                        Duración añadida
                     </div>
                 </div>
                 <div class="col-md-4 my-2">
-                    <label for="categoria">Categoría:</label>
+                    <label for="categoria" th:text="#{recipeForm.category}">Categoría:</label>
                     <select class="form-control border-info" id="categoria" name="categoryId" required>
                         <option value="" disabled selected>Selecciona una categoría...</option>
                         <option th:each="category : ${categoryList}" th:value="${category.id}"
@@ -47,7 +48,7 @@
                     <label th:text="${entry.key.name}" for="type"></label>
                     <select class="form-control border-info" id="type" name="typeIdList" required multiple>
                         <option value="" disabled selected>Selecciona los ingredientes...</option>
-                         Iterar sobre la lista de categorías
+                        Iterar sobre la lista de categorías
                         <option th:each="ingredient: ${entry.value}" th:value="${ingredient.id}"
                                 th:text="${ingredient.name}">
                         </option>
@@ -57,7 +58,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 my-2">
-                    <label for="tool">Utensilios:</label>
+                    <label for="tool" th:text="#{recipeForm.tools}">Utensilios:</label>
                     <select class="form-control border-info" id="tool" name="toolIdList" required multiple>
                         <option value="" disabled selected>Selecciona los Utensilios...</option>
                         <!-- Iterar sobre la lista de categorías -->
@@ -68,27 +69,30 @@
 
                 </div>
                 <div class=" col-md-6 mb-3 my-2">
-                    <label for="validationTextarea1" class="form-label">Descripción de la receta</label>
+                    <label for="validationTextarea1" class="form-label" th:text="#{recipeForm.description}">Descripción
+                        de la receta</label>
                     <textarea class="form-control border-info" id="validationTextarea1"
                               placeholder="Breve Descripción..." th:field="*{description}" required></textarea>
-                    <div class="invalid-feedback">
-                        Introduce un mensaje
+                    <div class="invalid-feedback" th:text="#{recipeForm.message.description}">
+                        Introduce una descripción
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class=" col-md-6 mb-3 my-2">
-                    <label for="validationTextarea2" class="form-label">Pasos a seguir</label>
-                    <textarea class="form-control border-info" id="validationTextarea2" placeholder="Pasos..." th:field="*{steps}"
+                    <label for="validationTextarea2" class="form-label" th:text="#{recipeForm.steps}">Pasos a
+                        seguir</label>
+                    <textarea class="form-control border-info" id="validationTextarea2" placeholder="Pasos..."
+                              th:field="*{steps}"
                               required></textarea>
-                    <div class="invalid-feedback">
-                        Introduce un mensaje
+                    <div class="invalid-feedback" th:text="#{recipeForm.message.steps}">
+                        Pasos añadidos
                     </div>
                 </div>
                 <div class="col-md-6 mb-3 my-2">
-                    <label for="lang">Idiomas:</label>
+                    <label for="lang" th:text="#{recipeForm.idiom}">Idiomas:</label>
                     <select class="form-control border-info" id="lang" required>
-                        <option value="" disabled selected>Selecciona el Idioma...</option>
+                        <option value="" th:text="#{recipeForm.placeholder.idiom}" disabled selected>Selecciona el Idioma...</option>
                         <option th:each="language : ${lang}" th:value="${language}"
                                 th:text="${language}" th:field="*{language}">
                         </option>
@@ -100,7 +104,9 @@
             <div class="row justify-content-center m-2 mt-2">
                 <div class="col-6 bg-info p-1">
                     <div class="col-12 bg-info pt-2 border border-fondo bw-5">
-                        <button type="submit" class="btn btn-info text-fondo">AÑADIR RECETA</button>
+                        <button type="submit" class="btn btn-info text-fondo" th:text="#{recipeForm.buttom.add}">AÑADIR
+                            RECETA
+                        </button>
 
                     </div>
                 </div>
