@@ -29,7 +29,7 @@ public class TypeIoC {
 
     public static TypeDao getTypeDao(){
         if (typeDao==null){
-            if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("jdbc")){
+            if (AppPropertiesReader.getInstance().getProperty("daoimpl").equals("jdbc")) {
                 typeDao = new TypeDaoJdbc();
             }
         }
