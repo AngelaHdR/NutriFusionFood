@@ -81,16 +81,17 @@
                                 th:text="${tool.name}">
                         </option>
                     </select>
-
                 </div>
-                <div class=" col-md-6 mb-3 my-2">
-                    <label for="validationTextarea1" class="form-label" th:text="#{recipeForm.description}">Descripción
-                        de la receta</label>
-                    <textarea class="form-control border-info" id="validationTextarea1"
-                              placeholder="Breve Descripción..." th:field="*{description}" required></textarea>
-                    <div class="invalid-feedback" th:text="#{recipeForm.message.description}">
-                        Introduce una descripción
-                    </div>
+                <div class="col-md-6 mb-3 my-2">
+                    <label for="lang" th:text="#{recipeForm.language}">Idiomas:</label>
+                    <select class="form-control border-info" id="lang" required>
+                        <option value="" th:text="#{recipeForm.placeholder.language}" disabled selected>Selecciona el
+                            Idioma...
+                        </option>
+                        <option th:each="language : ${lang}" th:value="${language}"
+                                th:text="${language}" th:field="*{language}">
+                        </option>
+                    </select>
                 </div>
             </div>
             <div class="row mx-2">
@@ -104,25 +105,22 @@
                         Pasos añadidos
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 my-2">
-                    <label for="lang" th:text="#{recipeForm.language}">Idiomas:</label>
-                    <select class="form-control border-info" id="lang" required>
-                        <option value="" th:text="#{recipeForm.placeholder.language}" disabled selected>Selecciona el
-                            Idioma...
-                        </option>
-                        <option th:each="language : ${lang}" th:value="${language}"
-                                th:text="${language}" th:field="*{language}">
-                        </option>
-                    </select>
-
-
+                <div class=" col-md-6 mb-3 my-2">
+                    <label for="validationTextarea1" class="form-label" th:text="#{recipeForm.description}">Descripción
+                        de la receta</label>
+                    <textarea class="form-control border-info" id="validationTextarea1"
+                              placeholder="Breve Descripción..." th:field="*{description}" required></textarea>
+                    <div class="invalid-feedback" th:text="#{recipeForm.message.description}">
+                        Introduce una descripción
+                    </div>
                 </div>
             </div>
             <div class="row justify-content-center m-2">
                 <div class="col-6 bg-info p-1 ">
                     <div class="bg-info pt-2 border border-fondo" style="border-width: 5px; text-align: center;">
                         <button type="submit" class="btn btn-info text-fondo">
-                            <h4 class="text-fondo">AÑADIR RECETA</h4>
+                            <h4 class="text-fondo d-none d-sm-block">AÑADIR RECETA</h4>
+                            <h6 class="text-fondo d-block d-sm-none">AÑADIR RECETA</h6>
                         </button>
                     </div>
                 </div>
