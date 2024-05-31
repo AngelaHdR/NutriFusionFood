@@ -1,6 +1,7 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
+import com.fpmislata.NutriFusionFood.common.LangUtil;
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
@@ -18,21 +19,15 @@ import java.util.Locale;
 public class IngredientDaoJdbc implements IngredientDao {
     private IngredientEntity ingredientEntity;
     private List<IngredientEntity> ingredientEntityList;
-    private String lang;
-
-    public IngredientDaoJdbc() {
-        Locale currentLocale = LocaleContextHolder.getLocale();
-        this.lang = currentLocale.getLanguage();
-    }
 
     @Override
     public List<IngredientEntity> findAllIngredient() {
         try {
             ingredientEntityList = new ArrayList<>();
-            String sql = "SELECT i.*,t.id_type,t.name_"+lang+" as name from ingredient i inner join type t on i.id_type=t.id_type";
+            String sql = "SELECT i.*,t.id_type,t.name_"+ LangUtil.getLang()+" as name from ingredient i inner join type t on i.id_type=t.id_type";
             ResultSet resultSet = Rawsql.select(sql, null);
             while (resultSet.next()) {
-                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet,lang));
+                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet,LangUtil.getLang()));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -45,13 +40,13 @@ public class IngredientDaoJdbc implements IngredientDao {
     @Override
     public IngredientEntity findByIdIngredient(Integer id) {
         try {
-            String sql = "SELECT i.*,t.id_type,t.name_"+lang+" as name from ingredient i inner join type t on i.id_type=t.id_type where id_ingredient=?";
+            String sql = "SELECT i.*,t.id_type,t.name_"+LangUtil.getLang()+" as name from ingredient i inner join type t on i.id_type=t.id_type where id_ingredient=?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             if(!resultSet.next()) {
                 return null;
             }
-            ingredientEntity = IngredientEntityMapper.toIngredientEntity(resultSet,lang);
+            ingredientEntity = IngredientEntityMapper.toIngredientEntity(resultSet,LangUtil.getLang());
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
         }
@@ -96,13 +91,13 @@ public class IngredientDaoJdbc implements IngredientDao {
     @Override
     public List<IngredientEntity> findByType(int typeId){
         try {
-            String sql = "SELECT i.*,t.id_type,t.name_"+lang+" as name FROM type t inner join ingredient i on t.id_type=i.id_type " +
+            String sql = "SELECT i.*,t.id_type,t.name_"+LangUtil.getLang()+" as name FROM type t inner join ingredient i on t.id_type=i.id_type " +
                     " WHERE t.id_type = ?";
             List<Object> params = List.of(typeId);
             ResultSet resultSet = Rawsql.select(sql, params);
             ingredientEntityList = new ArrayList<>();
             while (resultSet.next()) {
-                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet,lang));
+                ingredientEntityList.add(IngredientEntityMapper.toIngredientEntity(resultSet,LangUtil.getLang()));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");

@@ -1,6 +1,7 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
 import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
+import com.fpmislata.NutriFusionFood.common.LangUtil;
 import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
@@ -17,17 +18,12 @@ import java.util.Locale;
 public class TypeDaoJdbc implements TypeDao {
     private List<TypeEntity> typeEntityList;
     private TypeEntity typeEntity;
-    private final String lang;
 
-    public TypeDaoJdbc() {
-        Locale currentLocale = LocaleContextHolder.getLocale();
-        this.lang = currentLocale.getLanguage();
-    }
 
     @Override
     public List<TypeEntity> findAllType() {
         try {
-            String sql = " SELECT id_type,name_"+lang+" as name FROM type";
+            String sql = " SELECT id_type,name_"+ LangUtil.getLang()+" as name FROM type";
             ResultSet resultSet = Rawsql.select(sql, null);
             typeEntityList = new ArrayList<>();
             while (resultSet.next()) {
@@ -42,7 +38,7 @@ public class TypeDaoJdbc implements TypeDao {
     @Override
     public TypeEntity findByIdType(Integer id) {
         try {
-            String sql = " SELECT id_type,name_"+lang+" as name FROM type WHERE id_type = ?";
+            String sql = " SELECT id_type,name_"+LangUtil.getLang()+" as name FROM type WHERE id_type = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             if(!resultSet.next()) {

@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
+import com.fpmislata.NutriFusionFood.common.LangUtil;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
@@ -15,17 +16,12 @@ import java.util.Locale;
 public class ToolDaoJdbc implements ToolDao {
     private List<ToolEntity> toolEntityList;
     private ToolEntity toolEntity;
-    private String lang;
 
-    public ToolDaoJdbc() {
-        Locale currentLocale = LocaleContextHolder.getLocale();
-        this.lang = currentLocale.getLanguage();
-    }
 
     @Override
     public List<ToolEntity> findAllTool() {
         try {
-            String sql = "SELECT t.id_tool,t.name_"+lang+" as name FROM tool t";
+            String sql = "SELECT t.id_tool,t.name_"+ LangUtil.getLang()+" as name FROM tool t";
             ResultSet resultSet = Rawsql.select(sql, null);
             toolEntityList = new ArrayList<>();
             while (resultSet.next()) {
@@ -40,7 +36,7 @@ public class ToolDaoJdbc implements ToolDao {
     @Override
     public ToolEntity findByIdTool(Integer id) {
         try {
-            String sql = "SELECT t.id_tool,t.name_"+lang+" as name FROM tool t WHERE id_tool = ?";
+            String sql = "SELECT t.id_tool,t.name_"+LangUtil.getLang()+" as name FROM tool t WHERE id_tool = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             if(!resultSet.next()) {

@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
+import com.fpmislata.NutriFusionFood.common.LangUtil;
 import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
@@ -16,19 +17,13 @@ public class CategoryDaoJdbc implements CategoryDao {
     private List<CategoryEntity> categoryEntityList;
     private CategoryEntity categoryEntity;
 
-    private final String lang;
-
-    public CategoryDaoJdbc() {
-        Locale currentLocale = LocaleContextHolder.getLocale();
-        this.lang = currentLocale.getLanguage();
-    }
 
 
     @Override
     public List<CategoryEntity> findAllCategory() {
         try {
             categoryEntityList = new ArrayList<>();
-            String sql = "SELECT id_category,name_"+lang+" as name FROM category";
+            String sql = "SELECT id_category,name_"+ LangUtil.getLang()+" as name FROM category";
             ResultSet resultSet = Rawsql.select(sql, null);
             while (resultSet.next()) {
                 categoryEntityList.add(CategoryEntityMapper.toCategoryEntity(resultSet));
@@ -43,7 +38,7 @@ public class CategoryDaoJdbc implements CategoryDao {
     @Override
     public CategoryEntity findByIdCategory(Integer id) {
         try {
-            String sql = "SELECT id_category,name_"+lang+" as name FROM category WHERE id_category = ?";
+            String sql = "SELECT id_category,name_"+LangUtil.getLang()+" as name FROM category WHERE id_category = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             if(!resultSet.next()) {
