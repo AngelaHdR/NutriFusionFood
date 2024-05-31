@@ -14,7 +14,8 @@
     <div class="container">
 <header th:insert="fragments.html :: header">Header</header>
 <main class="content bg-fondo">
-    <h1 class="title-categories bg-resalte text-center fw-normal border-top border-bottom border-fuente py-3 mb-0" th:text="${category}"></h1>
+    <h1 class="title-categories bg-resalte text-center fw-normal border-top border-bottom border-fuente py-3 mb-0 d-none d-sm-block" th:text="${category}"></h1>
+    <h2 class="title-categories bg-resalte text-center fw-normal border-top border-bottom border-fuente py-3 mb-0 d-block d-sm-none" th:text="${category}"></h2>
     <ul class="px-0 mb-0">
         <div th:each="recipe, stat : ${recipeList}">
             <section class="container-fluid d-inline-block d-md-inline-block p-0">
