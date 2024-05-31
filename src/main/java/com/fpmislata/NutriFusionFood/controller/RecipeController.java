@@ -42,7 +42,7 @@ public class RecipeController {
         @GetMapping("")
         public String findAllRecipe(Model model){
             model.addAttribute("recipeList", this.recipeService.findAllRecipe());
-            model.addAttribute("category", "Todas las recetas");
+            model.addAttribute("category", null);
             return "recipeList";
         }
         @GetMapping("/{id}")
