@@ -26,27 +26,38 @@
                     <div class="container-fluid py-4 align-items-center text-left">
                         <div class="row">
                             <div class="col text-center">
-                                <h1 th:text="${nutritionist.username}"></h1>
+                                <h2 class="d-none d-lg-block" th:text="${nutritionist.username}"></h2>
+                                <h3 class="d-block d-lg-none" th:text="${nutritionist.username}"></h3>
                             </div>
                         </div>
                         <div class="row py-1">
                             <div class="col">
-                                <h2 class="d-inline mr-2 text-info" th:text="#{profile.user.name}">Nombre: </h2>
-                                <h3 class="d-inline"
-                                    th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|">
-                                </h3>
+                                <!-- Texto para pantallas grandes -->
+                                <h3 class="mr-2 text-info d-none d-lg-inline" th:text="#{profile.user.name}">Nombre: </h3>
+                                <h3 class="d-none d-lg-inline" th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|"></h3>
+                                <!-- Texto para pantallas pequeñas -->
+                                <p class="d-inline mr-2 text-info d-lg-none" th:text="#{profile.user.name}">Nombre: </p>
+                                <p class="d-inline d-lg-none" th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|"></p>
                             </div>
                         </div>
                         <div class="row py-1">
                             <div class="col">
-                                <h2 class="d-inline mr-2 text-info" th:text="#{profile.user.email}">Email: </h2>
-                                <h3 class="d-inline" th:text="${nutritionist.email}"></h3>
+                                <!-- Texto para pantallas grandes -->
+                                <h3 class="mr-2 text-info d-none d-lg-inline" th:text="#{profile.user.email}">Email: </h3>
+                                <h3 class="d-none d-lg-inline" th:text="${nutritionist.email}"></h3>
+                                <!-- Texto para pantallas pequeñas -->
+                                <p class="d-inline mr-2 text-info d-lg-none" th:text="#{profile.user.email}">Email: </p>
+                                <p class="d-inline d-lg-none" th:text="${nutritionist.email}"></p>
                             </div>
                         </div>
                         <div class="row py-1">
                             <div class="col">
-                                <h2 class="d-inline mr-2 text-info" th:text="#{profile.user.birthdate}">Fecha de nacimiento: </h2>
-                                <h3 class="d-inline" th:text="${nutritionist.birthDate}"></h3>
+                                <!-- Texto para pantallas grandes -->
+                                <h3 class="mr-2 text-info d-none d-lg-inline" th:text="#{profile.user.birthdate}">Fecha de nacimiento: </h3>
+                                <h3 class="d-none d-lg-inline" th:text="${nutritionist.birthDate}"></h3>
+                                <!-- Texto para pantallas pequeñas -->
+                                <p class="d-inline mr-2 text-info d-lg-none" th:text="#{profile.user.birthdate}">Fecha de nacimiento: </p>
+                                <p class="d-inline d-lg-none" th:text="${nutritionist.birthDate}"></p>
                             </div>
                         </div>
                     </div>
@@ -60,7 +71,7 @@
         <section class="container-lg text-center pt-4 pb-2">
             <h2 class="text-info" th:text="#{profile.user.recipes}">MIS RECETAS</h2>
             <div class="container-fluid">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-12 col-md-6 col-xl-4 p-2" th:each="recipe :${recipeList}">
                                 <img class="recipe-profile pb-3 rounded "
                                      th:src="@{/images/recipe/} + recipe_ + ${recipe.id} + .jpeg">
@@ -78,9 +89,10 @@
                 <!--boton para añadir nueva receta-->
                 <div class="row justify-content-center my-3" th:if="${nutritionist.id == 1}">
                     <div class="col-8 bg-info p-1">
-                        <div class="col-12 bg-info pt-2 border border-fondo bw-5">
+                        <div class="col-12 bg-info py-2 border border-fondo bw-5">
                             <a href="/recipes/add">
-                                <h2 class="text-fondo" th:text="#{profile.user.buttom.create}">CREAR UNA NUEVA RECETA</h2>
+                                <h2 class="text-fondo d-none d-sm-inline" th:text="#{profile.user.buttom.create}">CREAR UNA NUEVA RECETA</h2>
+                                <h3 class="text-fondo d-inline d-sm-none" th:text="#{profile.user.buttom.create}">CREAR UNA NUEVA RECETA</h3>
                             </a>
                         </div>
                     </div>
