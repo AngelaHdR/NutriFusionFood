@@ -15,7 +15,7 @@
     <header th:insert="fragments.html :: header">Header</header>
     <main class="content">
         <form class=" m-2 g-3 was-validated " th:action="@{/recipes}" th:object="${recipe}" method="post" novalidate>
-            <div class="row">
+            <div class="row mx-2">
                 <div class="col-md-5 my-2">
                     <label for="validationCustom01" class="form-label " th:text="#{recipeForm.name.recipe}">Nombre de la
                         receta</label>
@@ -43,9 +43,10 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                    <ul class="nav nav-tabs mx-5 " id="myTab" role="tablist">
-                        <li th:each="entry:${ingredientMap}" class="nav-item valid " role="presentation">
+            <div class="row mx-2">
+                <div class="col-12">
+                    <ul class="nav nav-tabs d-block" id="myTab" role="tablist">
+                        <li th:each="entry:${ingredientMap}" class="nav-item valid col-auto d-inline-block mt-2" role="presentation">
                             <button th:text="${entry.key.name}" class="nav-link bg-info text-fondo "
                                     th:id="|tab-${entry.key.id}|"
                                     data-bs-toggle="tab"
@@ -53,23 +54,24 @@
                                     th:aria-controls="|tab-content-${entry.key.id}|"
                                     aria-selected="true">
                             </button>
-                            <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade p-3" th:id="|tab-content-${entry.key.id}|" role="tabpanel"
-                                     th:aria-labelledby="|tab-${entry.key.id}|">
-                                    <!-- Cicles -->
-                                    <div th:each="ingredient: ${entry.value}" class="form-check cicle">
-                                        <input class="form-check-input check-cicle invalid" type="checkbox"
-                                               th:value="${ingredient.id}" id="checkGA" name="checkGA" target="descGA">
+                        </li>
+                        <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade p-3" th:id="|tab-content-${entry.key.id}|" role="tabpanel"
+                                 th:aria-labelledby="|tab-${entry.key.id}|">
+                                <!-- Cicles -->
+                                <div th:each="ingredient: ${entry.value}" class="form-check cicle">
+                                    <input class="form-check-input check-cicle invalid" type="checkbox"
+                                           th:value="${ingredient.id}" id="checkGA" name="checkGA" target="descGA">
 
-                                        <p th:text="${ingredient.name}" class="form-check-label text-info"
-                                           for="checkGA">Nombre del ingrediente </p>
-                                    </div>
+                                    <p th:text="${ingredient.name}" class="form-check-label text-info"
+                                       for="checkGA">Nombre del ingrediente </p>
                                 </div>
                             </div>
-                        </li>
+                        </div>
                     </ul>
+                </div>
             </div>
-            <div class="row">
+            <div class="row mx-2">
                 <div class="col-md-6 my-2">
                     <label for="tool" th:text="#{recipeForm.tools}">Utensilios:</label>
                     <select class="form-control border-info" id="tool" name="toolIdList" required multiple>
@@ -91,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mx-2">
                 <div class=" col-md-6 mb-3 my-2">
                     <label for="validationTextarea2" class="form-label" th:text="#{recipeForm.steps}">Pasos a
                         seguir</label>
@@ -116,18 +118,15 @@
 
                 </div>
             </div>
-
-                <div class="row justify-content-center m-2 mt-2">
-                    <div class="col-6 bg-info p-1 ">
-                        <div class="bg-info pt-2 border border-fondo" style="border-width: 5px; text-align: center;">
-                            <button type="submit" class="btn btn-info text-fondo">
-                                <h4 class="text-fondo">AÑADIR RECETA</h4>
-                            </button>
-                        </div>
+            <div class="row justify-content-center m-2">
+                <div class="col-6 bg-info p-1 ">
+                    <div class="bg-info pt-2 border border-fondo" style="border-width: 5px; text-align: center;">
+                        <button type="submit" class="btn btn-info text-fondo">
+                            <h4 class="text-fondo">AÑADIR RECETA</h4>
+                        </button>
                     </div>
                 </div>
-
-
+            </div>
         </form>
     </main>
     <footer th:insert="fragments.html::footer"></footer>
