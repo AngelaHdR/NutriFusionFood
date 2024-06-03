@@ -47,6 +47,7 @@ public class IngredientIoC {
     public static void setIngredientService(IngredientService ingredientService) {
         IngredientIoC.ingredientService = ingredientService;
     }
+
     public static void reset() {
         ingredientService = null;
         ingredientRepository = null;

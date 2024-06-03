@@ -1,18 +1,22 @@
 package integration;
 
+import com.fpmislata.NutriFusionFood.common.container.IngredientIoC;
+import com.fpmislata.NutriFusionFood.common.container.ToolIoC;
 import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.*;
 import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
 import com.fpmislata.NutriFusionFood.domain.service.impl.RecipeServiceImpl;
+import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
+import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.*;
 import com.fpmislata.NutriFusionFood.persistance.repository.impl.RecipeRepositoryImpl;
 import data.RecipeData;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -23,16 +27,33 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static data.ToolData.*;
+import static data.IngredientData.*;
 
 @ExtendWith(MockitoExtension.class)
 public class RecipeServiceImplRepositoryTest {
     private final RecipeDao recipeDao = Mockito.mock(RecipeDao.class);
+    private final IngredientDao ingredientDao = Mockito.mock(IngredientDao.class);
+    private final ToolDao toolDao = Mockito.mock(ToolDao.class);
     private final RecipeService recipeService =
             new RecipeServiceImpl(new RecipeRepositoryImpl(recipeDao));
     public final List<RecipeEntity> recipeEntityList = new ArrayList<>(RecipeData.recipeEntityList);
     public final List<Recipe> recipeList = new ArrayList<>(RecipeData.recipeList);
+
+    @BeforeEach
+    public void setUp(){
+        IngredientIoC.setIngredientDao(ingredientDao);
+        ToolIoC.setToolDao(toolDao);
+    }
+    @AfterAll
+    public static void reset(){
+        ToolIoC.reset();
+        IngredientIoC.reset();
+    }
 
     @Nested
     class FindAll {
@@ -53,6 +74,9 @@ public class RecipeServiceImplRepositoryTest {
 
     @Nested
     class FindById {
+        public static List<Arguments> availableLanguages(){
+            return List.of(arguments("es"),arguments("en"));
+        }
         @Test
         @DisplayName("when id not in list , Service throw exception")
         void throwExceptionWrongId() {
@@ -60,29 +84,38 @@ public class RecipeServiceImplRepositoryTest {
             assertThrows(BusinessException.class,()->recipeService.findByIdRecipe(-2));
         }
 
-        /*@Test
+        @ParameterizedTest
+        @MethodSource("availableLanguages")
         @DisplayName("when id in list, service return only that recipe")
-        void returnRecipeById() {
+        void returnRecipeById(String lang) {
+            when(ingredientDao.findByRecipe(2)).thenReturn(List.of(findIngredientEntityList(lang).get(0),findIngredientEntityList(lang).get(2)));
+            when(toolDao.findByRecipe(2)).thenReturn(List.of(findToolEntityList(lang).get(1),findToolEntityList(lang).get(5)));
             when(recipeDao.findByIdRecipe(2)).thenReturn(recipeEntityList.get(1));
             assertEquals(recipeList.get(1), recipeService.findByIdRecipe(2));
-        }*/
+        }
     }
 
     @Nested
     class Delete {
+        public static List<Arguments> availableLanguages(){
+            return List.of(arguments("es"),arguments("en"));
+        }
         @Test
         @DisplayName("if id not in list , Service throw exception")
         void throwExceptionWrongId() {
             assertThrows(BusinessException.class,()->recipeService.delete(-2));
         }
-        /*@Test
-        @DisplayName("delete recipe by id")
-        void deleteRecipeById() {
-            int recipeId = recipeEntityList.get(0).getId();
-            when(recipeDao.findByIdRecipe(1)).thenReturn(recipeEntityList.get(0));
+
+        @ParameterizedTest
+        @MethodSource("availableLanguages")
+        void deleteRecipeById(String lang) {
+            int recipeId = recipeEntityList.get(1).getId();
+            when(ingredientDao.findByRecipe(2)).thenReturn(List.of(findIngredientEntityList(lang).get(0),findIngredientEntityList(lang).get(2)));
+            when(toolDao.findByRecipe(2)).thenReturn(List.of(findToolEntityList(lang).get(1),findToolEntityList(lang).get(5)));
+            when(recipeDao.findByIdRecipe(2)).thenReturn(recipeEntityList.get(0));
             recipeService.delete(recipeId);
             verify(recipeDao).delete(recipeId);
-        }*/
+        }
     }
 
     @Nested

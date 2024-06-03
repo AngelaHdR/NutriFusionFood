@@ -48,6 +48,7 @@ public class ToolIoC {
     public static void setToolDao(ToolDao toolDao) {
         ToolIoC.toolDao = toolDao;
     }
+
     public static void reset() {
         toolService = null;
         toolRepository = null;

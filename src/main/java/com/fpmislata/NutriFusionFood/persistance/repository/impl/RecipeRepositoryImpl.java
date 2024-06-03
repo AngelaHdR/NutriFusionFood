@@ -61,7 +61,8 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         List<RecipeEntity> recipeEntityList = recipeDao.findAllRecipe();
         List<Recipe> recipeList = new ArrayList<>();
         for (RecipeEntity recipeEntity : recipeEntityList) {
-            recipeList.add(addParametersMapper(recipeEntity));
+            //recipeList.add(addParametersMapper(recipeEntity));
+            recipeList.add(RecipeMapper.toRecipe(recipeEntity));
         }
         return recipeList;
     }
