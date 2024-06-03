@@ -41,6 +41,9 @@
                                 th:text="${category.name}">
                         </option>
                     </select>
+                    <div class="valid-feedback" th:text="#{recipeForm.message.category}">
+                        Categoría añadida
+                    </div>
                 </div>
             </div>
             <div class="row mx-2">
@@ -57,7 +60,7 @@
                         </li>
                         <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent">
                             <div class="tab-pane fade p-3" th:id="|tab-content-${entry.key.id}|" role="tabpanel"
-                                 th:aria-labelledby="|tab-${entry.key.id}|">
+                                 th:aria-labelledby="|tab-${entry.key.id}|" required>
                                 <!-- Cicles -->
                                 <div th:each="ingredient: ${entry.value}" class="form-check cicle">
                                     <input class="form-check-input check-cicle invalid" type="checkbox"
