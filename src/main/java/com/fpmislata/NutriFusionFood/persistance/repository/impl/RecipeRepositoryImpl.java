@@ -4,20 +4,15 @@ import com.fpmislata.NutriFusionFood.common.container.*;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.Tool;
-import com.fpmislata.NutriFusionFood.domain.entity.Type;
-import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
-import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
-import com.fpmislata.NutriFusionFood.persistance.dao.UserDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
 import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
 import com.fpmislata.NutriFusionFood.persistance.repository.mapper.IngredientMapper;
 import com.fpmislata.NutriFusionFood.persistance.repository.mapper.RecipeMapper;
 import com.fpmislata.NutriFusionFood.persistance.repository.mapper.ToolMapper;
-import com.fpmislata.NutriFusionFood.persistance.repository.mapper.TypeMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +20,13 @@ import java.util.Map;
 
 public class RecipeRepositoryImpl implements RecipeRepository {
     private RecipeDao recipeDao;
-    private UserDao userDao;
-    private CategoryDao categoryDao;
     private IngredientDao ingredientDao;
     private ToolDao toolDao;
-    private TypeDao typeDao;
 
     public RecipeRepositoryImpl(RecipeDao recipeDao) {
         this.recipeDao = recipeDao;
-        this.userDao = UserIoC.getUserDao();
-        this.categoryDao = CategoryIoC.getCategoryDao();
         this.toolDao = ToolIoC.getToolDao();
         this.ingredientDao = IngredientIoC.getIngredientDao();
-        this.typeDao = TypeIoC.getTypeDao();
     }
 
     private Recipe addParametersMapper(RecipeEntity recipeEntity){
