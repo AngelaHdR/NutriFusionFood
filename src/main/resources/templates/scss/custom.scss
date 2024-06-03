@@ -5,25 +5,6 @@
 
 
 // variables simples
-/*$font_title: Forum;
-$font_body: Playfair Display;
-$font-weight-bold: 580;
-$bg_color: #D0EEF4;
-$font_color: #000000;
-$highlight_color: #F1856A;
-$title_color: #006272;
-$theme-colors: (
-  "primary": $font_color,
-  "secondary": $bg_color,
-  "warning": $highlight_color,
-  "info": $title_color
-);
-$base_size: 1.2rem;
-$title_size: $base_size*3.5;
-$title_normal: $base_size*1.5;
-$subtitle_size: $base_size*2.5;
-$info: $base_size*1;*/
-
 $font-family: (
   "titulo":Forum,
   "cuerpo":Playfair Display,
@@ -61,18 +42,6 @@ $border-widths: (
 );
 $border-radius: 1.5rem;
 $input-border-width:4px;
-/*
-$grid-breakpoints: (
-  //tablets y moviles, logo pequeño desplegable y boton
-  xs: 315px,
-  sm: 425px,
-  //tamaño portatil mediano, quitar nombre y slogan con navbar y boton
-  md: 768px,
-  lg: 1024px,
-  // tamaño pantallas grandes, logo,nombre,slogan navbar y boton
-  xl: 1200px,
-  xxl: 1440px
-); */
 
 .dropdown-menu .form-check {
   padding: 5px;
@@ -139,7 +108,7 @@ $headings-color: map-get($theme-colors, "info");
 @import "../../static/bootstrap/scss/bootstrap.scss";
 
 
-//HEADER cambiar a medidas relativas
+//HEADER
 .nf-logo {
   height: 70px;
 }
@@ -153,24 +122,6 @@ $headings-color: map-get($theme-colors, "info");
 ul {
   list-style: none;
 }
-
-/*
-.i8-dropdown__content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.i8-dropdown__wrap.open .i8-dropdown__content {
-  display: block;
-}
-
-.i8-dropdown__label {
-  cursor: pointer;
-}*/
-
 
 //FOOTER
 .content {
@@ -273,58 +224,6 @@ ul {
   height: 50vh;
   width: 100%;
  }
-
-
-/*.welcome-text, .title-categories{
-  font-size: $title_size;
-}
-
-.categories-text, .aboutus-text{
-  font-size: $subtitle_size;
-}
-
-.heart-icon, .message,
-.title-recipe, .title-drink,
-.title-maindish, .title-desserts,
-.title-snacks, .globe-icon,
-.NFF-title{
-  font-size: $title_normal;
-}
-
-.description-aboutus, .recipe-all-data{
-  font-size: $info;
-}
-.categories-text, .title-categories,
-.recipe-name{
-  font-style: italic;
-}
-
-.welcome-text, .categories-text,
-.aboutus-text, .title-categories,
-.recipe-category-name, .recipe-all-data{
-  font-family: $font_title;
-}
-
-.message, .title-recipe,
-.title-drink, .title-maindish, 
-.title-desserts, .title-snacks,
-.description-aboutus{
-  font-family: $font_body;
-}
-.img-aboutus{
-  width: 40vw;
-}
-
-.recipe-picture,.recipe-data{
-  flex: 1;
-}
-
-.recipe-picture img {
-  height: 400px;
-  width: 100%;
-}
-*/
-
 
 
 //Añadir nuevas variable a continuacion de la importadas por bootstrap
