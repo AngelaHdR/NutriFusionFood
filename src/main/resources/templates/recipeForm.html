@@ -36,7 +36,7 @@
                 <div class="col-md-4 my-2">
                     <label for="categoria" th:text="#{recipeForm.category}">Categoría:</label>
                     <select class="form-control border-info" id="categoria" name="categoryId" required>
-                        <option value="" disabled selected>Selecciona una categoría...</option>
+                        <option th:text="#{recipeForm.placeholder.category}" value="" disabled selected>Selecciona una categoría...</option>
                         <option th:each="category : ${categoryList}" th:value="${category.id}"
                                 th:text="${category.name}">
                         </option>
@@ -75,7 +75,7 @@
                 <div class="col-md-6 my-2">
                     <label for="tool" th:text="#{recipeForm.tools}">Utensilios:</label>
                     <select class="form-control border-info" id="tool" name="toolIdList" required multiple>
-                        <option value="" disabled selected>Selecciona los Utensilios...</option>
+                        <option th:text="#{recipeForm.placeholder.tools}" value="" disabled selected>Selecciona los Utensilios...</option>
                         <!-- Iterar sobre la lista de categorías -->
                         <option th:each="tool : ${toolList}" th:value="${tool.id}"
                                 th:text="${tool.name}">

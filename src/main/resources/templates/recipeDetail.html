@@ -34,7 +34,7 @@
                         <p class="text-info" th:text="#{recipeDetail.alergen}">Alergenos:</p>
                         <ul>
                             <li th:each="allergen : ${recipe.allergen}">
-                                <label><p class="text-info" th:if="${allergen.value}" th:text="${allergen.key}"></p>
+                                <label th:if="${allergen.value}"><p class="text-info"  th:text="${allergen.key}"></p>
                                 </label>
                             </li>
                         </ul>
@@ -43,8 +43,9 @@
                         <label>
                             <p class="text-info" th:text="|${recipe.user.name}|"></p></label>
                         <div class="icon pb-3 fs-3 ">
+
+                           <label  class="text-info" th:text="#{recipeDetail.add.favourite}">Añadir a favoritos</label>
                             <i class="fav-icon fa-solid fa-heart text-resalte"></i>
-                            <p th:text="#{recipeDetail.add.favourite}">Añadir a favoritos</p>
                         </div>
                     </div>
 
