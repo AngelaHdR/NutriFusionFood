@@ -1,29 +1,24 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
-import com.fpmislata.NutriFusionFood.common.AppPropertiesReader;
 import com.fpmislata.NutriFusionFood.common.LangUtil;
 import com.fpmislata.NutriFusionFood.persistance.dao.TypeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.TypeEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
-import com.fpmislata.NutriFusionFood.persistance.dao.mapper.CategoryEntityMapper;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.TypeEntityMapper;
-import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class TypeDaoJdbc implements TypeDao {
     private List<TypeEntity> typeEntityList;
     private TypeEntity typeEntity;
 
-
     @Override
     public List<TypeEntity> findAllType() {
         try {
-            String sql = " SELECT id_type,name_"+ LangUtil.getLang()+" as name FROM type";
+            String sql = "SELECT id_type,name_"+LangUtil.getLang()+" as name FROM type";
             ResultSet resultSet = Rawsql.select(sql, null);
             typeEntityList = new ArrayList<>();
             while (resultSet.next()) {
@@ -38,7 +33,7 @@ public class TypeDaoJdbc implements TypeDao {
     @Override
     public TypeEntity findByIdType(Integer id) {
         try {
-            String sql = " SELECT id_type,name_"+LangUtil.getLang()+" as name FROM type WHERE id_type = ?";
+            String sql = "SELECT id_type,name_"+LangUtil.getLang()+" as name FROM type WHERE id_type = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
             if(!resultSet.next()) {

@@ -5,13 +5,11 @@ import com.fpmislata.NutriFusionFood.persistance.dao.CategoryDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.CategoryEntityMapper;
-import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CategoryDaoJdbc implements CategoryDao {
     private List<CategoryEntity> categoryEntityList;

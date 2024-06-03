@@ -5,13 +5,11 @@ import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.ToolEntityMapper;
-import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ToolDaoJdbc implements ToolDao {
     private List<ToolEntity> toolEntityList;
