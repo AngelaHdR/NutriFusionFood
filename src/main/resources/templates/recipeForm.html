@@ -20,7 +20,7 @@
                     <label for="validationCustom01" class="form-label " th:text="#{recipeForm.name.recipe}">Nombre de la
                         receta</label>
                     <input type="text" class="form-control border-info border-bottom border-end border-start" id="validationCustom01"
-                           placeholder="Nombre de la receta" th:field="*{name}" required>
+                           th:field="*{name}" required>
                     <div class="valid-feedback" th:text="#{recipeForm.message.name}">
                         Nombre añadido
                     </div>
@@ -28,7 +28,7 @@
                 <div class="col-md-3 my-2">
                     <label for="numero" th:text="#{recipeForm.time.recipe}">Duración de la receta:</label>
                     <input type="number" class="form-control  border-info" id="numero" name="numero"
-                           placeholder="Duración" th:field="*{time}" required>
+                          th:field="*{time}" required>
                     <div class="valid-feedback" th:text="#{recipeForm.message.time}">
                         Duración añadida
                     </div>
@@ -101,7 +101,7 @@
                 <div class=" col-md-6 mb-3 my-2">
                     <label for="validationTextarea2" class="form-label" th:text="#{recipeForm.steps}">Pasos a
                         seguir</label>
-                    <textarea class="form-control border-info" id="validationTextarea2" placeholder="Pasos..."
+                    <textarea class="form-control border-info" id="validationTextarea2"
                               th:field="*{steps}"
                               required></textarea>
                     <div class="invalid-feedback" th:text="#{recipeForm.message.steps}">
@@ -112,7 +112,7 @@
                     <label for="validationTextarea1" class="form-label" th:text="#{recipeForm.description}">Descripción
                         de la receta</label>
                     <textarea class="form-control border-info" id="validationTextarea1"
-                              placeholder="Breve Descripción..." th:field="*{description}" required></textarea>
+                              th:field="*{description}" required></textarea>
                     <div class="invalid-feedback" th:text="#{recipeForm.message.description}">
                         Introduce una descripción
                     </div>
