@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.domain.service.impl;
 
+import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.domain.service.IngredientService;
 import com.fpmislata.NutriFusionFood.persistance.repository.IngredientRepository;
@@ -20,7 +21,11 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient findByIdIngredient(Integer id) {
-        return ingredientRepository.findByIdIngredient(id);
+        Ingredient ingredient = ingredientRepository.findByIdIngredient(id);
+        if (ingredient==null){
+            throw new BusinessException("There is no recipe with id " + id);
+        }
+        return ingredient;
     }
 
     @Override

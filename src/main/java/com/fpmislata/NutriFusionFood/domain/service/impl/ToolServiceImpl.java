@@ -2,6 +2,7 @@ package com.fpmislata.NutriFusionFood.domain.service.impl;
 
 import java.util.List;
 
+import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.Tool;
 import com.fpmislata.NutriFusionFood.domain.service.ToolService;
 import com.fpmislata.NutriFusionFood.persistance.repository.ToolRepository;
@@ -21,6 +22,9 @@ public class ToolServiceImpl implements ToolService{
     @Override
     public Tool findByIdTool(Integer id) {
         Tool tool = this.toolRepository.findByIdTool(id);
+        if (tool==null){
+            throw new BusinessException("There is no recipe with id " + id);
+        }
         return tool;
     }
 }
