@@ -33,4 +33,21 @@ public class CategoryIoC {
         }
         return categoryDao;
     }
+
+    public static void setCategoryService(CategoryService categoryService) {
+        CategoryIoC.categoryService = categoryService;
+    }
+
+    public static void setCategoryRepository(CategoryRepository categoryRepository) {
+        CategoryIoC.categoryRepository = categoryRepository;
+    }
+
+    public static void setCategoryDao(CategoryDao categoryDao) {
+        CategoryIoC.categoryDao = categoryDao;
+    }
+    public static void reset() {
+        categoryService = null;
+        categoryRepository = null;
+        categoryDao = null;
+    }
 }

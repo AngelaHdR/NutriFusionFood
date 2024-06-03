@@ -32,4 +32,18 @@ public class RecipeIoC {
         }
         return recipeDao;
     }
+    public static void setRecipeService(RecipeService recipeService) {
+        RecipeIoC.recipeService = recipeService;
+    }
+    public static void setRecipeRepository(RecipeRepository recipeRepository) {
+        RecipeIoC.recipeRepository = recipeRepository;
+    }
+    public static void setRecipeDao(RecipeDao recipeDao) {
+        RecipeIoC.recipeDao = recipeDao;
+    }
+    public static void reset() {
+        recipeService = null;
+        recipeRepository = null;
+        recipeDao = null;
+    }
 }

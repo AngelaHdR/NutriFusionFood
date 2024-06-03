@@ -35,4 +35,18 @@ public class TypeIoC {
         }
         return typeDao;
     }
+    public static void setTypeService(TypeService typeService) {
+        TypeIoC.typeService = typeService;
+    }
+    public static void setTypeRepository(TypeRepository typeRepository) {
+        TypeIoC.typeRepository = typeRepository;
+    }
+    public static void setTypeDao(TypeDao typeDao) {
+        TypeIoC.typeDao = typeDao;
+    }
+    public static void reset() {
+        typeService = null;
+        typeRepository = null;
+        typeDao = null;
+    }
 }
