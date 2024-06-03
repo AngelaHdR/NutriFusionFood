@@ -64,7 +64,6 @@ public class RecipeDaoJdbc implements RecipeDao {
 
     @Override
     public void insert(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList) {
-        recipeEntity.setLanguage(LangUtil.getLang());
         //insertar la receta
         String sql = "INSERT INTO recipe (name_recipe, lang, description_recipe, steps, time_recipe, id_user, id_category)" +
                 " VALUES(?,?,?,?,?,?,?)";

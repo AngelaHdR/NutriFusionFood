@@ -65,14 +65,15 @@ public class RecipeController {
             model.addAttribute("recipe", new Recipe());
             return "recipeForm";
         }
-        @PostMapping()
-            public String save (Recipe recipe, @RequestParam List<Integer> toolIdList,@RequestParam List<Integer> typeIdList,@RequestParam Integer categoryId){
+        @PostMapping("")
+            public String save (Recipe recipe, @RequestParam List<Integer> toolIdList,@RequestParam List<Integer> typeIdList,@RequestParam Integer categoryId,@RequestParam String lang){
             UserService userService = UserIoC.getUserService();
             recipe.setUser(userService.findByIdNutritionist(1));
             recipe.setId(recipeService.findAllRecipe().size());
             recipe.setCategory(CategoryMapper.toCategory(categoryId));
             recipe.setToolList(ToolMapper.toToolList(toolIdList));
             recipe.setIngredientList(IngredientMapper.toIngredientList(typeIdList));
+            recipe.setLanguage(lang);
             System.out.println(recipe);
             recipeService.insert(recipe);
 

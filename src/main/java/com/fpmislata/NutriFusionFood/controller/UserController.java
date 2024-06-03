@@ -18,25 +18,33 @@ public class UserController {
     public UserController(){
         this.userService = UserIoC.getUserService();
     }
-    @GetMapping("")
-    public String findAllMNutritionist(Model model){
-        model.addAttribute("nutritionistList",this.userService.findAllNutritionist());
-        return "nutritionistList";
-    }
+
     @GetMapping("/{id}")
     public String findByIdNutritionist(Model model, @PathVariable Integer id){
         model.addAttribute("nutritionist", this.userService.findByIdNutritionist(id));
         model.addAttribute("recipeList",this.userService.findRecipeByNutritionist(id));
         return "profile";
     }
+
+    /*
+    Funcionalidad no implementada
+
+    @GetMapping("")
+    public String findAllMNutritionist(Model model){
+        model.addAttribute("nutritionistList",this.userService.findAllNutritionist());
+        return "nutritionistList";
+    }
+
     @GetMapping("/add")
     public String insert(Model model){
         model.addAttribute("user", new User());
         return "userForm";
     }
+
     @PostMapping("")
     public String save(User user){
         userService.insert(user);
         return "redirect:/users";
     }
+    */
 }

@@ -20,12 +20,6 @@ public class CategoryController {
         this.categoryService = CategoryIoC.getCategoryService();
     }
 
-    @GetMapping("")
-    public String findAllCategory(Model model) {
-        model.addAttribute("categoryList",this.categoryService.findAllCategory());
-        return "category";
-    }
-
     @GetMapping("/{id}/recipes")
     public String findRecipeByIdCategory(Model model, @PathVariable Integer id) {
         List<Recipe> recipeList = this.categoryService.findRecipeByCategory(id);
@@ -34,4 +28,14 @@ public class CategoryController {
         model.addAttribute("category",category);
         return "recipeList";
     }
+
+    /*
+    Funcionalidad no implementada
+
+    @GetMapping("")
+    public String findAllCategory(Model model) {
+        model.addAttribute("categoryList",this.categoryService.findAllCategory());
+        return "category";
+    }
+     */
 }

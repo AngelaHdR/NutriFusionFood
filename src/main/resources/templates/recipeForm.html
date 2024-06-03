@@ -48,7 +48,7 @@
             </div>
             <div class="row mx-2">
                 <div class="col-12">
-                    <ul class="nav nav-tabs d-block" id="myTab" role="tablist">
+                    <ul class="nav nav-tabs d-block" id="myTab" role="tablist" >
                         <li th:each="entry:${ingredientMap}" class="nav-item valid col-auto d-inline-block mt-2" role="presentation">
                             <button th:text="${entry.key.name}" class="nav-link bg-info text-fondo "
                                     th:id="|tab-${entry.key.id}|"
@@ -58,13 +58,13 @@
                                     aria-selected="true">
                             </button>
                         </li>
-                        <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent">
+                        <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent" >
                             <div class="tab-pane fade p-3" th:id="|tab-content-${entry.key.id}|" role="tabpanel"
                                  th:aria-labelledby="|tab-${entry.key.id}|" required>
                                 <!-- Cicles -->
                                 <div th:each="ingredient: ${entry.value}" class="form-check cicle">
                                     <input class="form-check-input check-cicle invalid" type="checkbox"
-                                           th:value="${ingredient.id}" id="checkGA" name="checkGA" target="descGA">
+                                           th:value="${ingredient.id}" id="checkGA" name="typeIdList" target="descGA">
 
                                     <p th:text="${ingredient.name}" class="form-check-label text-info"
                                        for="checkGA">Nombre del ingrediente </p>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="col-md-6 mb-3 my-2">
                     <label for="lang" th:text="#{recipeForm.language}">Idiomas:</label>
-                    <select class="form-control border-info" id="lang" required>
+                    <select class="form-control border-info" id="lang" name="lang" required>
                         <option value="" th:text="#{recipeForm.placeholder.language}" disabled selected>Selecciona el
                             Idioma...
                         </option>
