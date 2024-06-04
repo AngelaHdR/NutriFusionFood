@@ -81,7 +81,16 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     }
 
     public void insert(Recipe recipe) {
-        recipeDao.insert(RecipeMapper.toRecipeEntity(recipe),IngredientMapper.toIngredientEntityList(recipe.getIngredientList()),ToolMapper.toToolEntityList(recipe.getToolList()));
+        recipeDao.insert(RecipeMapper.toRecipeEntity(recipe),
+                IngredientMapper.toIngredientEntityList(recipe.getIngredientList()),
+                ToolMapper.toToolEntityList(recipe.getToolList()));
+    }
+
+    @Override
+    public void update(Recipe recipe) {
+        recipeDao.update(RecipeMapper.toRecipeEntity(recipe),
+                IngredientMapper.toIngredientEntityList(recipe.getIngredientList()),
+                ToolMapper.toToolEntityList(recipe.getToolList()));
     }
 
     @Override

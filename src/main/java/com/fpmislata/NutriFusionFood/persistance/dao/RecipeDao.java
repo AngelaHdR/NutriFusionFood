@@ -11,6 +11,7 @@ public interface RecipeDao {
     public RecipeEntity findByIdRecipe(Integer id);
     public void delete(Integer id);
     public void insert(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList);
+    public void update(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList);
     public List<RecipeEntity> findByCategory(Integer categoryId);
     public List<RecipeEntity> findByNutritionist(Integer nutritionistId);
 

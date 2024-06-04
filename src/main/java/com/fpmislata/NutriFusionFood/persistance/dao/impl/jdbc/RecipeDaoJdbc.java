@@ -86,6 +86,31 @@ public class RecipeDaoJdbc implements RecipeDao {
     }
 
     @Override
+    public void update(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList) {
+        //actualizar la receta
+        String sql = "UPDATE recipe SET name_recipe = ?, lang = ?, description_recipe = ?, steps = ?, time_recipe = ?, id_user = ?, id_category = ? WHERE id_recipe = ?";
+        List<Object> params = List.of( recipeEntity.getName(), recipeEntity.getLanguage(), recipeEntity.getDescription(),
+                recipeEntity.getSteps(), recipeEntity.getTime(), recipeEntity.getUser().getId(), recipeEntity.getCategory().getId(), recipeEntity.getId());
+        Object recipeId = Rawsql.update(sql, params);
+
+        //insertar los ingredientes en la tabla secundaria composed
+        for (IngredientEntity ingredient:ingredientEntityList){
+            String sql2 = "INSERT INTO composed (id_recipe, id_ingredient)" +
+                    " VALUES(?,?)";
+            List<Object> params2 = List.of(recipeId, ingredient.getId());
+            Rawsql.insert(sql2, params2);
+        }
+
+        //insertar los utensilios en la tabla secundaria required
+        for (ToolEntity tool:toolEntityList){
+            String sql3 = "INSERT INTO required (id_recipe, id_tool)" +
+                    " VALUES(?,?)";
+            List<Object> params3 = List.of(recipeId, tool.getId());
+            Rawsql.insert(sql3, params3);
+        }
+    }
+
+    @Override
     public List<RecipeEntity> findByCategory(Integer categoryId) {
         try {
             String sql = "SELECT r.*,u.*,c.id_category,c.name_"+LangUtil.getLang()+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +

@@ -52,6 +52,11 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public void update(Recipe recipe) {
+        recipeRepository.update(recipe);
+    }
+
+    @Override
     public List<Recipe> findByCategory(Integer categoryId) {
         return this.recipeRepository.findByCategory(categoryId);
     }

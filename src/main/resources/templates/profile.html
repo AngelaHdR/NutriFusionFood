@@ -81,7 +81,9 @@
                             </a>
                             <div class="bg-resalte p-1" th:if="${nutritionist.id == 1}">
                                 <div class=" pt-2 border border-fondo bw-5 bg-resalte ">
-                                    <h5 class="text-fondo" th:text="#{profile.user.buttom.edit}">EDITAR</h5>
+                                    <a th:href="@{${'/recipes/edit/'+recipe.id}}">
+                                        <h5 class="text-fondo" th:text="#{profile.user.buttom.edit}">EDITAR</h5>
+                                    </a>
                                 </div>
                             </div>
                     </div>

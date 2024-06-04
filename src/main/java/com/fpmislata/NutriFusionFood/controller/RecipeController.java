@@ -107,7 +107,7 @@ public class RecipeController {
                 recipe.setId(id);
                 return "update-recipe";
             }
-            //recipeService.update(recipe);
+            recipeService.update(recipe);
             return "redirect:/recipes";
     }
     }

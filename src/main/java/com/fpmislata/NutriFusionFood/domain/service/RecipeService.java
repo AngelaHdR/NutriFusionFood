@@ -9,6 +9,7 @@ public interface RecipeService {
     public Recipe findByIdRecipe(Integer id);
     public void delete(Integer id);
     public void insert(Recipe recipe);
+    public void update(Recipe recipe);
     public List<Recipe> findByCategory(Integer categoryId);
     public List<Recipe> findByNutritionist(Integer nutritionistId);
 }
