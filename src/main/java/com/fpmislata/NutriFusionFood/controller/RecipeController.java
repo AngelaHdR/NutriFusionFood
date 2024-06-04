@@ -13,6 +13,7 @@ import com.fpmislata.NutriFusionFood.domain.service.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -84,5 +85,30 @@ public class RecipeController {
             recipeService.delete(id);
             return "redirect:/recipes";
         }
+        @GetMapping("/edit/{id}")
+        public String showUpdateForm(@PathVariable int id, Model model){
+            Recipe recipe = recipeService.findByIdRecipe(id);
+            List<Type> types = typeService.findAllType();
+            Map<Type, List<Ingredient>> ingredientMap = new HashMap<>();
+            for (Type type : types) {
+                List<Ingredient> ingredients = ingredientService.findByType(type.getId());
+                ingredientMap.put(type, ingredients);
+            }
+            model.addAttribute("ingredientMap", ingredientMap);
+            model.addAttribute("toolList", toolService.findAllTool());
+            model.addAttribute("categoryList", categoryService.findAllCategory());
+            model.addAttribute("lang", List.of("es", "en"));
+            model.addAttribute("recipe", recipe);
+            return "updateRecipeForm";
+        }
+        @PutMapping("/update/{id}")
+        public String updateRecipe(@PathVariable int id, @ModelAttribute Recipe recipe, BindingResult result, Model model) {
+            if (result.hasErrors()) {
+                recipe.setId(id);
+                return "update-recipe";
+            }
+            recipeService.update(recipe);
+            return "redirect:/recipes";
+    }
     }
 
