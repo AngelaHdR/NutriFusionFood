@@ -1,5 +1,7 @@
 package com.fpmislata.NutriFusionFood.domain.entity;
 
+import java.util.Objects;
+
 public class Tool {
     private Integer id;
     private String name;
@@ -31,5 +33,18 @@ public class Tool {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tool tool = (Tool) o;
+        return Objects.equals(id, tool.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

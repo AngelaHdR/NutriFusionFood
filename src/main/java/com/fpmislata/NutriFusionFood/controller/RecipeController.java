@@ -99,7 +99,7 @@ public class RecipeController {
             model.addAttribute("categoryList", categoryService.findAllCategory());
             model.addAttribute("lang", List.of("es", "en"));
             model.addAttribute("recipe", recipe);
-            return "updateRecipeForm";
+            return "recipeUpdate";
         }
         @PutMapping("/update/{id}")
         public String updateRecipe(@PathVariable int id, @ModelAttribute Recipe recipe, BindingResult result, Model model) {
@@ -107,7 +107,7 @@ public class RecipeController {
                 recipe.setId(id);
                 return "update-recipe";
             }
-            recipeService.update(recipe);
+            //recipeService.update(recipe);
             return "redirect:/recipes";
     }
     }

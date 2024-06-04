@@ -13,7 +13,7 @@
 <div class="container">
     <header th:insert="fragments.html :: header">Header</header>
     <main class="content">
-        <form class=" m-2 g-3 was-validated " th:action="@{/recipes}" th:object="${recipe}" method="post" novalidate>
+        <form class=" m-2 g-3 was-validated " th:action="@{/recipes/update/{id}(id=${recipe.id}}" th:object="${recipe}" method="post" novalidate>
             <input type="hidden" name="_method" value="PUT"/>
             <div class="row mx-2">
                 <div class="col-md-5 my-2">
@@ -65,7 +65,7 @@
                                 <div th:each="ingredient: ${entry.value}" class="form-check cicle">
                                     <input class="form-check-input check-cicle invalid" type="checkbox"
                                            th:value="${ingredient.id}" id="checkGA" name="typeIdList" target="descGA"
-                                           th:checked="${#lists.contains(recipe.ingredienList, ingredient.key)}">
+                                           th:checked="${#lists.contains(recipe.ingredientList, ingredient)}">
 
                                     <p th:text="${ingredient.name}" class="form-check-label text-info"
                                        for="checkGA">Nombre del ingrediente </p>
@@ -79,9 +79,8 @@
                 <div class="col-md-6 my-2">
                     <label for="tool" th:text="#{recipeForm.tools}">Utensilios:</label>
                     <select class="form-control border-info" id="tool" name="toolIdList" required multiple>
-                        <option th:text="#{recipeForm.placeholder.tools}" value="" disabled selected>Selecciona los Utensilios...</option>
                         <option th:each="tool : ${toolList}" th:value="${tool.id}"
-                                th:text="${tool.name}" th:selected="${#lists.contains(recipe.toolList, tool.key)}">
+                                th:text="${tool.name}" th:attr="(selected=${#lists.contains(recipe.toolList, tool)})">
                         </option>
                     </select>
                 </div>
@@ -92,7 +91,7 @@
                             Idioma...
                         </option>
                         <option th:each="language : ${lang}" th:value="${language}"
-                                th:text="${language}" th:selected="${language == recipe.lang}">
+                                th:text="${language}" th:selected="${language == recipe.language}">
                         </option>
                     </select>
                 </div>
@@ -127,8 +126,8 @@
                         </button>
                     </div>
                 </div>
-                <div class="col-2 bg-info p-1 ">
-                    <a th:href="@{/recipes}" class="btn btn-secondary">Cancelar</a>
+                <div class="col-2 bg-info p-1">
+                    <a th:href="@{/recipes}" class="btn btn-info border border-fondo text-fondo">Cancelar</a>
                 </div>
             </div>
         </form>
