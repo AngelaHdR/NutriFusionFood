@@ -91,12 +91,19 @@ And Forum for the titles, menu and other elements:
 
 ## 3. FRONTEND
 
+### Technologies used
+### Programming languages
+
 ## 4. BACKEND
 
+### Technologies used
 ### Architecture
-### 
+### Programming languages
 
 ## 5. DATABASE
+
+### Design
+### Roles and privileges
 
 ### Design
 ### Users and privileges
