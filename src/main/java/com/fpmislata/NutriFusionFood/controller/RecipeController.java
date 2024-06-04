@@ -67,7 +67,9 @@ public class RecipeController {
             return "recipeForm";
         }
         @PostMapping("")
-            public String save (Recipe recipe, @RequestParam List<Integer> toolIdList,@RequestParam List<Integer> typeIdList,@RequestParam Integer categoryId,@RequestParam String lang){
+            public String save (Recipe recipe, @RequestParam List<Integer> toolIdList,
+                                @RequestParam List<Integer> typeIdList,@RequestParam Integer categoryId,
+                                @RequestParam String lang){
             UserService userService = UserIoC.getUserService();
             recipe.setUser(userService.findByIdNutritionist(1));
             recipe.setId(recipeService.findAllRecipe().size());
@@ -102,11 +104,19 @@ public class RecipeController {
             return "recipeUpdate";
         }
         @PutMapping("/update/{id}")
-        public String updateRecipe(@PathVariable int id, @ModelAttribute Recipe recipe, BindingResult result, Model model) {
+        public String updateRecipe(@PathVariable int id, @ModelAttribute Recipe recipe, BindingResult result, Model model,
+                                   @RequestParam List<Integer> toolIdList, @RequestParam List<Integer> typeIdList,
+                                   @RequestParam Integer categoryId) {
             if (result.hasErrors()) {
                 recipe.setId(id);
-                return "update-recipe";
+                return "recipeUpdate";
             }
+            UserService userService = UserIoC.getUserService();
+            recipe.setUser(userService.findByIdNutritionist(1));
+            recipe.setCategory(CategoryMapper.toCategory(categoryId));
+            recipe.setToolList(ToolMapper.toToolList(toolIdList));
+            recipe.setIngredientList(IngredientMapper.toIngredientList(typeIdList));
+            System.out.println(recipe);
             recipeService.update(recipe);
             return "redirect:/recipes";
     }

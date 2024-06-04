@@ -87,7 +87,7 @@
                 </div>
                 <div class="col-md-6 mb-3 my-2">
                     <label for="lang" th:text="#{recipeForm.language}">Idiomas:</label>
-                    <select class="form-control border-info" id="lang" name="lang" required>
+                    <select class="form-control border-info" th:field="*{language}" id="lang" name="lang" required>
                         <option value="" th:text="#{recipeForm.placeholder.language}" disabled selected>Selecciona el
                             Idioma...
                         </option>

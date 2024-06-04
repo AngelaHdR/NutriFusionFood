@@ -13,7 +13,7 @@
 <div class="container">
     <header th:insert="fragments.html :: header">Header</header>
     <main class="content">
-        <form class=" m-2 g-3 was-validated " th:action="@{/recipes/update/{id}(id=${recipe.id}}" th:object="${recipe}" method="post" novalidate>
+        <form class=" m-2 g-3 was-validated " th:action="@{${'/recipes/update/'+recipe.id}}" th:object="${recipe}" method="post" novalidate>
             <input type="hidden" name="_method" value="PUT"/>
             <div class="row mx-2">
                 <div class="col-md-5 my-2">

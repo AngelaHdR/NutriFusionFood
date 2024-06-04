@@ -2,6 +2,7 @@ package com.fpmislata.NutriFusionFood.domain.service.impl;
 
 import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
+import com.fpmislata.NutriFusionFood.domain.entity.Tool;
 import com.fpmislata.NutriFusionFood.domain.service.RecipeService;
 import com.fpmislata.NutriFusionFood.persistance.repository.RecipeRepository;
 

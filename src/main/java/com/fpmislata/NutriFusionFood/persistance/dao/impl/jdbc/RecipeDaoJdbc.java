@@ -1,7 +1,11 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc;
 
 import com.fpmislata.NutriFusionFood.common.LangUtil;
+import com.fpmislata.NutriFusionFood.common.container.IngredientIoC;
+import com.fpmislata.NutriFusionFood.common.container.ToolIoC;
+import com.fpmislata.NutriFusionFood.persistance.dao.IngredientDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
+import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
@@ -87,26 +91,48 @@ public class RecipeDaoJdbc implements RecipeDao {
 
     @Override
     public void update(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList) {
+        IngredientDao ingredientDao = IngredientIoC.getIngredientDao();
+        List<IngredientEntity> oldIngredientEntityList = ingredientDao.findByRecipe(recipeEntity.getId());
+        ToolDao toolDao = ToolIoC.getToolDao();
+        List<ToolEntity> oldToolEntityList = toolDao.findByRecipe(recipeEntity.getId());
         //actualizar la receta
         String sql = "UPDATE recipe SET name_recipe = ?, lang = ?, description_recipe = ?, steps = ?, time_recipe = ?, id_user = ?, id_category = ? WHERE id_recipe = ?";
         List<Object> params = List.of( recipeEntity.getName(), recipeEntity.getLanguage(), recipeEntity.getDescription(),
                 recipeEntity.getSteps(), recipeEntity.getTime(), recipeEntity.getUser().getId(), recipeEntity.getCategory().getId(), recipeEntity.getId());
-        Object recipeId = Rawsql.update(sql, params);
+        Rawsql.update(sql, params);
 
-        //insertar los ingredientes en la tabla secundaria composed
+        //insertar los nuevos ingredientes en la tabla secundaria composed y borrar los antiguos
         for (IngredientEntity ingredient:ingredientEntityList){
-            String sql2 = "INSERT INTO composed (id_recipe, id_ingredient)" +
-                    " VALUES(?,?)";
-            List<Object> params2 = List.of(recipeId, ingredient.getId());
-            Rawsql.insert(sql2, params2);
+            if (!oldIngredientEntityList.contains(ingredient)){
+                String sql2 = "INSERT INTO composed (id_recipe, id_ingredient)" +
+                        " VALUES(?,?)";
+                List<Object> params2 = List.of(recipeEntity.getId(), ingredient.getId());
+                Rawsql.insert(sql2, params2);
+            }
+        }
+        for (IngredientEntity ingredient:oldIngredientEntityList){
+            if (!ingredientEntityList.contains(ingredient)){
+                String sql2 = "DELETE FROM composed WHERE id_recipe = ? and id_ingredient = ?";
+                List<Object> params2 = List.of(recipeEntity.getId(), ingredient.getId());
+                Rawsql.delete(sql2, params2);
+            }
         }
 
-        //insertar los utensilios en la tabla secundaria required
+        //insertar los nuevos utensilios en la tabla secundaria required y borrar los antiguos
         for (ToolEntity tool:toolEntityList){
-            String sql3 = "INSERT INTO required (id_recipe, id_tool)" +
-                    " VALUES(?,?)";
-            List<Object> params3 = List.of(recipeId, tool.getId());
-            Rawsql.insert(sql3, params3);
+            if (!oldToolEntityList.contains(tool)){
+                String sql3 = "INSERT INTO required (id_recipe, id_tool)" +
+                        " VALUES(?,?)";
+                List<Object> params3 = List.of(recipeEntity.getId(), tool.getId());
+                Rawsql.insert(sql3, params3);
+            }
+        }
+        for (ToolEntity tool:oldToolEntityList){
+            if (!toolEntityList.contains(tool)){
+                String sql2 = "DELETE FROM required WHERE id_recipe = ? and id_tool = ?";
+                List<Object> params2 = List.of(recipeEntity.getId(), tool.getId());
+                Rawsql.delete(sql2, params2);
+            }
         }
     }
 
