@@ -31,17 +31,6 @@ class TypeDaoJdbcTest extends JdbcTest {
         return List.of(arguments("es"),arguments("en"));
     }
 
-    @BeforeAll
-    static void setup() throws SQLException {
-        /*connection.executeScript("bbdd_NFF_test.sql");
-        connection.executeScript("inserts_NFF_test.sql");*/
-        connection.getConnection().setAutoCommit(false);
-    }
-
-    @AfterEach
-    void tearDown() throws SQLException {
-        connection.getConnection().rollback();
-    }
     @ParameterizedTest
     @MethodSource("availableLanguages")
     @DisplayName("Find all types")

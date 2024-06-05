@@ -103,13 +103,13 @@ public class RecipeRepositoryImplDaoTest extends JdbcTest {
             assertEquals(new ArrayList<>(), recipeRepository.findByCategory(id));
         }
 
-        /*@Test
+        @Test
         @DisplayName("given one category id, service return all recipe from one  category")
         void returnAllRecipe() {
             assertEquals(List.of(recipeList.get(0),
                     recipeList.get(1),
                     recipeList.get(2)), recipeRepository.findByCategory(1));
-        }*/
+        }
 
     }
 }

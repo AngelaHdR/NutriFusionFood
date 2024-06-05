@@ -64,12 +64,12 @@ public class RecipeServiceImplRepositoryTest {
             assertEquals(0, recipeService.findAllRecipe().size());
         }
 
-       /* @Test
+        @Test
         @DisplayName("when repository return recipes, service return all recipe")
         void returnAllRecipe() {
             when(recipeDao.findAllRecipe()).thenReturn(recipeEntityList);
             assertEquals(recipeList, recipeService.findAllRecipe());
-        }*/
+        }
     }
 
     @Nested
@@ -146,8 +146,7 @@ public class RecipeServiceImplRepositoryTest {
             when(recipeDao.findByCategory(id)).thenReturn(new ArrayList<>());
             assertEquals(new ArrayList<>(), recipeService.findByCategory(id));
         }
-
-        /*@Test
+        @Test
         @DisplayName("given one category id, service return all recipe from one  category")
         void returnAllRecipe() {
             when(recipeDao.findByCategory(1)).thenReturn(List.of(
@@ -157,7 +156,7 @@ public class RecipeServiceImplRepositoryTest {
             assertEquals(List.of(RecipeData.recipeList.get(0),
                     recipeList.get(1),
                     recipeList.get(2)), recipeService.findByCategory(1));
-        }*/
+        }
     }
 }
 
