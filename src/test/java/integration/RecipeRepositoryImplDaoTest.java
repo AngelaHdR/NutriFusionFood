@@ -42,12 +42,12 @@ public class RecipeRepositoryImplDaoTest extends JdbcTest {
     @Nested
     class FindAll {
 
-        /*@Test
+        @Test
         @DisplayName("when repository return recipes, service return all recipe")
         void returnAllRecipe() {
             when(recipeDaoMock.findAllRecipe()).thenReturn(RecipeData.recipeEntityList);
             assertEquals(recipeList, recipeRepository.findAllRecipe());
-        }*/
+        }
     }
 
     @Nested
@@ -59,12 +59,12 @@ public class RecipeRepositoryImplDaoTest extends JdbcTest {
             assertNull(recipeRepository.findByIdRecipe(id));
         }
 
-        /*@Test
+        @Test
         @DisplayName("when id in list, service return only that recipe")
         void returnRecipeById() {
             when(recipeDaoMock.findByIdRecipe(2)).thenReturn(RecipeData.recipeEntityList.get(1));
             assertEquals(recipeList.get(1), recipeRepository.findByIdRecipe(2));
-        }*/
+        }
     }
 
     @Nested

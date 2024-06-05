@@ -25,15 +25,19 @@ public class DBConnection {
 
     public DBConnection() {
         System.out.println("Establishing connection with the database...");
+        String host = appPropertiesReader.getProperty("nutrifusionfood.datasource.url");
+        String user = appPropertiesReader.getProperty("nutrifusionfood.datasource.username");
+        String passwd = appPropertiesReader.getProperty("nutrifusionfood.datasource.password");
         try {
             connection = DriverManager.getConnection(
-                    appPropertiesReader.getProperty("nutrifusionfood.datasource.url"),
-                    appPropertiesReader.getProperty("nutrifusionfood.datasource.username"),
-                    appPropertiesReader.getProperty("nutrifusionfood.datasource.password")
+                    host,
+                    user,
+                    passwd
             );
             System.out.println("Connection established with the database");
         } catch (SQLException e) {
-            throw new RuntimeException("Error connecting to the database.");
+            throw new RuntimeException("Error connecting to the database. " +
+                    host +" "+ user +" "+ passwd + " " + e.getMessage());
         }
     }
 
