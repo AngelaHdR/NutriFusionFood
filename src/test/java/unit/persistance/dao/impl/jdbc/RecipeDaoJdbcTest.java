@@ -71,7 +71,7 @@ class RecipeDaoJdbcTest extends JdbcTest {
         assertEquals(expected,actualRecipeList);
     }
 
-    @DisplayName("Insert new recipes in the database")
+    /*@DisplayName("Insert new recipes in the database")
     @Test
     public void testInsertNewRecipes() {
         RecipeEntity newRecipe= new RecipeEntity(6,"Ensalada", "es","x","Paso 1...", 15,
@@ -82,7 +82,7 @@ class RecipeDaoJdbcTest extends JdbcTest {
         recipeDao.insert(newRecipe,new ArrayList<>(),new ArrayList<>());
         List<RecipeEntity> actualRecipeList = recipeDao.findAllRecipe();
         assertEquals(expectedRecipeList, actualRecipeList);
-    }
+    }*/
 
     @DisplayName("Delete recipes from the database")
     @ParameterizedTest

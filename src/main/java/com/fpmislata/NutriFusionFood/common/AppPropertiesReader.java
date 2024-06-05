@@ -9,10 +9,6 @@ public class AppPropertiesReader {
 
     public static AppPropertiesReader instace;
 
-    private AppPropertiesReader() {
-        loadAppProperties();
-    }
-
     public static AppPropertiesReader getInstance() {
         if (instace == null) {
             instace = new AppPropertiesReader();
@@ -20,13 +16,29 @@ public class AppPropertiesReader {
         return instace;
     }
 
-    private void loadAppProperties() {
-        String fileName = "application.properties";
-        try (InputStream input = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName)) {
+    private AppPropertiesReader() {
+        loadProperties("application.properties");
+        // Detectar el perfil y cargar las propiedades correspondientes
+        String activeProfile = getProperty("spring.profiles.active");
+        if (activeProfile != null) {
+            loadProperties("application-" + activeProfile + ".properties");
+        } else {
+            System.out.println("No s'ha especificat cap perfil actiu");
+        }
+    }
+
+
+    private void loadProperties(String filename) {
+        try (InputStream input = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename)) {
+            if (input == null) {
+                System.out.println("Lo siento, no se pudo encontrar el archivo " + filename);
+                return;
+            }
+
+            // Cargar las propiedades desde el archivo de configuración
             properties.load(input);
         } catch (IOException e) {
-            System.out.println("Error loading properties file: " + fileName);
-            throw new RuntimeException("Error loading properties file: " + fileName);
+            e.printStackTrace();
         }
     }
 

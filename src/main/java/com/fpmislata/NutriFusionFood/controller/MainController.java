@@ -16,7 +16,7 @@ public class MainController {
         this.categoryService = CategoryIoC.getCategoryService();
     }
 
-    @GetMapping("/home")
+    @GetMapping("")
     public String showMainPage(Model model) {
         model.addAttribute("categoryList", categoryService.findAllCategory());
         return "home";
