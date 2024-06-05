@@ -14,66 +14,63 @@
             <form class="m-2 g-3 was-validated" th:action="@{/nutritionists/1}" th:object="${user}" method="post" novalidate>
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-6 col-lg-4 my-2">
-                        <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control border-info" id="name"
-                            placeholder="Nombre" th:field="*{name}" required>
-                        <div class="valid-feedback">Looks good!</div>
-                    </div>
+                        <label th:text="|#{userForm.name}|" for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control border-info" id="name" name="name"
+                               th:field="*{name}" required></div>
+
                     <div class="col-12 col-md-6 col-lg-4 my-2">
-                        <label for="username" class="form-label">Nombre de Usuario</label>
+                        <label th:text="|#{userForm.username}|" for="username" class="form-label">Nombre de Usuario</label>
                         <input type="text" class="form-control border-info" id="username"
-                            placeholder="Nombre de Usuario" th:field="*{username}" required>
-                        <div class="valid-feedback">Looks good!</div>
-                    </div>
+                               th:field="*{username}" required></div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-6 col-lg-4 my-2">
-                        <label for="surname1" class="form-label">Apellido 1</label>
+                        <label th:text="|#{userForm.surname1}|" for="surname1" class="form-label">Apellido 1</label>
                         <input type="text" class="form-control border-info" id="surname1"
-                            placeholder="Apellido 1" th:field="*{surname1}" required>
-                        <div class="valid-feedback">Looks good!</div>
-                    </div>
+                               th:field="*{surname1}" required></div>
+
                     <div class="col-12 col-md-6 col-lg-4 my-2">
-                        <label for="surname2" class="form-label">Apellido 2</label>
+                        <label th:text="|#{userForm.surname2}|" for="surname2" class="form-label">Apellido 2</label>
                         <input type="text" class="form-control border-info" id="surname2"
-                            placeholder="Apellido 2" th:field="*{surname2}" required>
-                        <div class="valid-feedback">Looks good!</div>
-                    </div>
+                               th:field="*{surname2}" required></div>
+
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-8 my-2">
-                        <label for="email" class="form-label">Email</label>
+                        <label th:text="|#{userForm.email}|"  for="email" class="form-label">Email</label>
                         <input type="email" class="form-control border-info" id="email"
-                            placeholder="ejemplo@correo.com" th:field="*{email}" required>
-                        <div class="valid-feedback">Looks good!</div>
+                           th:field="*{email}" required>
+                        <div  th:text="|#{userForm.message.addEmail}|" class="invalid-feedback">Añade un Correo electronico</div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-6 col-lg-4 my-2">
-                        <label for="password" class="form-label">Password</label>
+                        <label th:text="|#{userForm.password}|"  for="password" class="form-label">Contraseña</label>
                         <input type="password" class="form-control border-info" id="password"
-                            placeholder="Password" th:field="*{password}" required>
-                        <div class="valid-feedback">Looks good!</div>
+                            th:field="*{password}" required>
+                        <div  th:text="|#{userForm.message.addpassword}|" class="invalid-feedback">Añade una contraseña</div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 my-2">
-                        <label for="birthDate" class="form-label">Fecha de Nacimiento</label>
+                        <label  th:text="|#{userForm.birthdate}|" for="birthDate" class="form-label">Fecha de Nacimiento</label>
                         <input type="date" class="form-control border-info" id="birthDate"
-                            placeholder="dd/mm/aaaa" th:field="*{birthDate}" required>
-                        <div class="valid-feedback">Looks good!</div>
+                          th:field="*{birthDate}" required>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-8 my-2">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input border-info" id="nutritionist">
-                            <label for="nutritionist" class="form-check-label text-info">¿Eres un nutricionista?</label>
+                            <label th:text="|#{userForm.nutritionist}|"  for="nutritionist" class="form-check-label text-info">¿Eres un nutricionista?</label>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center m-2 my-2">
                     <div class="col-12 col-md-6 col-lg-4 bg-info p-1">
                         <div class="col-12 bg-info pt-2 border border-fondo text-center bw-5">
-                            <button type="submit" class="btn btn-info text-fondo">INICIAR SESIÓN</button>
+                            <button type="submit" class="btn btn-info text-fondo" >
+                                <h4 th:text="|#{userForm.button.signup}|" class="text-fondo d-none d-sm-block">INICIAR SESION</h4>
+                                <h6 th:text="|#{userForm.button.signup}|" class="text-fondo d-block d-sm-none">INICIAR SESION</h6>
+                                </button>
                         </div>
                     </div>
                 </div>
