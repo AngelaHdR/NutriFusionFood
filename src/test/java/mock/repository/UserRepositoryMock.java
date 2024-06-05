@@ -36,7 +36,7 @@ public class UserRepositoryMock implements UserRepository {
     public List<User> findAllNutritionist() {
         List<User> nutritionistList = new ArrayList<>();
         for (User user:userList){
-            if (user.isNutritionist()){
+            if (user.getNutritionist()){
                 nutritionistList.add(user);
             }
         }

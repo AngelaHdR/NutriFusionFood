@@ -32,7 +32,7 @@ public class UserMapper {
                 user.getSurname1(),
                 user.getSurname2(),
                 user.getBirthDate(),
-                user.isNutritionist(),
+                user.getNutritionist(),
                 user.getPassword(),
                 user.getEmail(),
                 user.getUsername());

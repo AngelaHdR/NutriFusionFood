@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.domain.service.impl;
 
+import com.fpmislata.NutriFusionFood.common.Auth;
 import com.fpmislata.NutriFusionFood.common.container.RecipeIoC;
 import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
@@ -30,18 +31,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insert(User user) {
-        List<User> userList = this.userRepository.findAllUser();
-        User userExists = this.userRepository.findByEmailOrUsername(user.getEmail(), user.getUsername());
-        if (userExists!=null){
-            throw new BusinessException("This email or username is already in use");
-        }
         if (user.getPassword().length()<8){
             throw new BusinessException("The password has to contain minimum 8 characters");
         }
-        if (user.isNutritionist()==null){
+        if (user.getNutritionist()==null){
             user.setNutritionist(false);
         }
-        userRepository.insert(user);
+        User userExists = this.userRepository.findByEmailOrUsername(user.getEmail(), user.getUsername());
+        if (userExists!=null){
+            Auth.setUser(userExists);
+            //throw new BusinessException("This email or username is already in use");
+        }else{
+            userRepository.insert(user);
+        }
     }
 
     @Override

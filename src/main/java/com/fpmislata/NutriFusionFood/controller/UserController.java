@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.controller;
 
+import com.fpmislata.NutriFusionFood.common.Auth;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,10 +35,10 @@ public class UserController {
 
     @PostMapping("")
     public String save(User user){
-        user.setId(userService.findAllUser().size());
+        //user.setId(userService.findAllUser().size());
         System.out.println(user);
         userService.insert(user);
-        return "redirect:/nutritionists/1";
+        return "redirect:/nutritionists/"+ Auth.getUser().getId();
     }
 
     /*

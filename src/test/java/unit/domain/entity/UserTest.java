@@ -25,7 +25,7 @@ class UserTest {
                 ()->assertEquals("Perez",user.getSurname1()),
                 ()->assertEquals("Garcia",user.getSurname2()),
                 ()->assertEquals("1989-08-18",user.getBirthDate()),
-                ()->assertEquals(true,user.isNutritionist()),
+                ()->assertEquals(true,user.getNutritionist()),
                 ()->assertEquals("p1",user.getPassword()),
                 ()->assertEquals("mail1",user.getEmail()),
                 ()->assertEquals("jose",user.getUsername())

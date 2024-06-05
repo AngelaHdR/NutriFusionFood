@@ -62,7 +62,7 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public Boolean isNutritionist() {
+    public Boolean getNutritionist() {
         return this.nutritionist;
     }
     public void setNutritionist(Boolean nutritionist) {
