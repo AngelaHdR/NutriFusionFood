@@ -32,6 +32,14 @@ public class UserController {
         return "userForm";
     }
 
+    @PostMapping("")
+    public String save(User user){
+        user.setId(userService.findAllUser().size());
+        System.out.println(user);
+        userService.insert(user);
+        return "redirect:/nutritionists/1";
+    }
+
     /*
     Funcionalidad no implementada
 
@@ -41,10 +49,6 @@ public class UserController {
         return "nutritionistList";
     }
 
-    @PostMapping("")
-    public String save(User user){
-        userService.insert(user);
-        return "redirect:/users";
-    }
+
     */
 }

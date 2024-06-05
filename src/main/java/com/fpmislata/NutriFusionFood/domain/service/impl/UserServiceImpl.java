@@ -38,6 +38,9 @@ public class UserServiceImpl implements UserService {
         if (user.getPassword().length()<8){
             throw new BusinessException("The password has to contain minimum 8 characters");
         }
+        if (user.isNutritionist()==null){
+            user.setNutritionist(false);
+        }
         userRepository.insert(user);
     }
 

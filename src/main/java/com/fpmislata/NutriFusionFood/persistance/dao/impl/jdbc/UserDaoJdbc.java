@@ -49,9 +49,9 @@ public class UserDaoJdbc implements UserDao {
 
     @Override
     public void insert(UserEntity userEntity) {
-        String sql = "insert into users (id_user, name_user, surname1, surname2, username, email, birth_date, nutritionist, pwd)" +
-                " values(?,?,?,?,?,?,?,?,?)";
-        List<Object> params = List.of(userEntity.getId(), userEntity.getName(), userEntity.getSurname1(),
+        String sql = "insert into users (name_user, surname1, surname2, username, email, birth_date, nutritionist, pwd)" +
+                " values(?,?,?,?,?,?,?,?)";
+        List<Object> params = List.of(userEntity.getName(), userEntity.getSurname1(),
                 userEntity.getSurname2(), userEntity.getUsername(), userEntity.getEmail(),
                 userEntity.getBirthDate(), userEntity.isNutritionist(), userEntity.getPassword());
         Rawsql.insert(sql, params);
