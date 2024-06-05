@@ -26,6 +26,12 @@ public class UserController {
         return "profile";
     }
 
+    @GetMapping("/add")
+    public String insert(Model model){
+        model.addAttribute("user", new User());
+        return "userForm";
+    }
+
     /*
     Funcionalidad no implementada
 
@@ -33,12 +39,6 @@ public class UserController {
     public String findAllMNutritionist(Model model){
         model.addAttribute("nutritionistList",this.userService.findAllNutritionist());
         return "nutritionistList";
-    }
-
-    @GetMapping("/add")
-    public String insert(Model model){
-        model.addAttribute("user", new User());
-        return "userForm";
     }
 
     @PostMapping("")
