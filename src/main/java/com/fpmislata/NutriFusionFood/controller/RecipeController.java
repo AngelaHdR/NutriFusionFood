@@ -1,6 +1,7 @@
 package com.fpmislata.NutriFusionFood.controller;
 
 
+import com.fpmislata.NutriFusionFood.common.Auth;
 import com.fpmislata.NutriFusionFood.common.container.*;
 import com.fpmislata.NutriFusionFood.controller.mapper.CategoryMapper;
 import com.fpmislata.NutriFusionFood.controller.mapper.IngredientMapper;
@@ -50,12 +51,19 @@ public class RecipeController {
 
     @GetMapping("/{id}")
     public String findByIdRecipe(Model model, @PathVariable Integer id) {
+        System.out.println(Auth.getUser());
+        if (Auth.getUser().getId()==null){
+            return "redirect:/nutritionists/add";
+        }
         model.addAttribute("recipe", this.recipeService.findByIdRecipe(id));
         return "recipeDetail";
     }
 
     @GetMapping("/add")
     public String insert(Model model) {
+        if (Auth.getUser().getId()==null){
+            return "redirect:/nutritionists/add";
+        }
         List<Type> types = typeService.findAllType();
         Map<Type, List<Ingredient>> ingredientMap = new HashMap<>();
         for (Type type : types) {
@@ -95,6 +103,9 @@ public class RecipeController {
 
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable int id, Model model) {
+        if (Auth.getUser().getId()==null){
+            return "redirect:/nutritionists/add";
+        }
         Recipe recipe = recipeService.findByIdRecipe(id);
         List<Type> types = typeService.findAllType();
         Map<Type, List<Ingredient>> ingredientMap = new HashMap<>();

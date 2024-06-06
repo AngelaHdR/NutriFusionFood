@@ -24,6 +24,9 @@ public class UserController {
     public String findByIdNutritionist(Model model, @PathVariable Integer id){
         model.addAttribute("nutritionist", this.userService.findByIdNutritionist(id));
         model.addAttribute("recipeList",this.userService.findRecipeByNutritionist(id));
+        if (Auth.getUser().getId()==null){
+            return "redirect:/nutritionists/add";
+        }
         return "profile";
     }
 
