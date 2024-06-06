@@ -20,6 +20,20 @@ public class UserController {
         this.userService = UserIoC.getUserService();
     }
 
+    @GetMapping("/{id}")
+    public String findByIdUser(Model model, @PathVariable Integer id){
+        User user = userService.findByIdUser(id);
+        if (Auth.getUser().getId()==null){
+            return "redirect:/users/login";
+        } else if (user.getNutritionist()) {
+            return "redirect:/nutritionists/"+user.getId();
+        } else if (!user.getNutritionist()) {
+            return "redirect:/clients/"+user.getId();
+        }else {
+            return "error";
+        }
+    }
+
     @GetMapping("/nutritionists/{id}")
     public String findByIdNutritionist(Model model, @PathVariable Integer id){
         model.addAttribute("nutritionist", this.userService.findByIdNutritionist(id));
@@ -27,7 +41,7 @@ public class UserController {
         if (Auth.getUser().getId()==null){
             return "redirect:/users/login";
         }
-        return "profile";
+        return "profileNutritionist";
     }
 
     @GetMapping("/clients/{id}")
@@ -36,24 +50,37 @@ public class UserController {
         if (Auth.getUser().getId()==null){
             return "redirect:/users/login";
         }
-        return "profile";
+        if (Auth.getUser().getId()!=id){
+            return "error";
+        }
+        return "profileClient";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/login/add")
     public String login(Model model){
         model.addAttribute("user", new User());
         return "login";
+    }
+    @PostMapping("/login")
+    public String enter(User user){
+        Auth.setUser(userService.findByEmailOrUsername(user.getEmail(),user.getUsername()));
+        if (Auth.getUser().getNutritionist()){
+            return "redirect:/nutritionists/"+Auth.getUser().getId();
+        } else if (!Auth.getUser().getNutritionist()) {
+            return "redirect:/clients/"+Auth.getUser().getId();
+        }else {
+            return "error";
+        }
     }
 
     @GetMapping("/add")
     public String insert(Model model){
         model.addAttribute("user", new User());
-        return "userForm";
+        return "signup";
     }
 
     @PostMapping("")
     public String save(User user){
-        //user.setId(userService.findAllUser().size());
         System.out.println(user);
         userService.insert(user);
         return "redirect:/users/nutritionists/"+ Auth.getUser().getId();

@@ -12,4 +12,5 @@ public interface UserService {
     public List<User> findAllNutritionist();
     public List<User> findAllUser();
     public List<Recipe> findRecipeByNutritionist(Integer nutritionistId);
+    public User findByEmailOrUsername(String email, String username);
 }
