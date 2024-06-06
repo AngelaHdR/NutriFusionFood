@@ -38,7 +38,7 @@
                                 <h4 th:text="${recipe.category.name}" class="text-fuente">Nombre de Categoria</h4>
                             </a>
                             <ul class="recipe-all-data text-info px-5">
-                                <a class="text-info" th:href="@{${'/nutritionists/' + recipe.user.id}}">
+                                <a class="text-info" th:href="@{${'/users/nutritionists/' + recipe.user.id}}">
                                     <li><strong th:text="#{recipelist.name.nutritionist}">Nutricionista: </strong><span th:text="|${recipe.user.name}|"></span></li>
                                 </a>
                                 <li><strong>Tiempo de Preparación: </strong><span th:text="|${recipe.time + ' min'}|"></span></li>
