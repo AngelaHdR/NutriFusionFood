@@ -14,7 +14,7 @@ public class UserRepositoryImpl implements UserRepository {
         this.userDao = userDao;
     }
 
-    @Override
+    /*@Override
     public User findByIdNutritionist(Integer id) {
         return UserMapper.toUser(userDao.findByIdNutritionist(id));
     }
@@ -22,7 +22,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User findByIdClient(Integer id) {
         return UserMapper.toUser(userDao.findByIdClient(id));
-    }
+    }*/
 
     @Override
     public User findByIdUser(Integer id) {

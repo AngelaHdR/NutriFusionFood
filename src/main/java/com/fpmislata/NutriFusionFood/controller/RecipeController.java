@@ -82,7 +82,7 @@ public class RecipeController {
     public String save(Recipe recipe, @RequestParam List<Integer> toolIdList,
                        @RequestParam List<Integer> typeIdList, @RequestParam Integer categoryId) {
         UserService userService = UserIoC.getUserService();
-        recipe.setUser(userService.findByIdNutritionist(Auth.getUser().getId()));
+        recipe.setUser(userService.findByIdUser(Auth.getUser().getId()));
         recipe.setId(recipeService.findAllRecipe().size());
         recipe.setCategory(CategoryMapper.toCategory(categoryId));
         recipe.setToolList(ToolMapper.toToolList(toolIdList));
@@ -129,7 +129,7 @@ public class RecipeController {
             return "recipeUpdate";
         }
         UserService userService = UserIoC.getUserService();
-        recipe.setUser(userService.findByIdNutritionist(1));
+        recipe.setUser(userService.findByIdUser(1));
         recipe.setCategory(CategoryMapper.toCategory(categoryId));
         recipe.setToolList(ToolMapper.toToolList(toolIdList));
         recipe.setIngredientList(IngredientMapper.toIngredientList(typeIdList));

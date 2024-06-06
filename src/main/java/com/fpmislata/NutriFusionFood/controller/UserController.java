@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/nutritionists/{id}")
     public String findByIdNutritionist(Model model, @PathVariable Integer id){
-        model.addAttribute("nutritionist", this.userService.findByIdNutritionist(id));
+        model.addAttribute("nutritionist", this.userService.findByIdUser(id));
         model.addAttribute("recipeList",this.userService.findRecipeByNutritionist(id));
         if (Auth.getUser().getId()==null){
             return "redirect:/users/login";
@@ -46,7 +46,7 @@ public class UserController {
 
     @GetMapping("/clients/{id}")
     public String findByIdClient(Model model, @PathVariable Integer id){
-        model.addAttribute("client", this.userService.findByIdClient(id));
+        model.addAttribute("client", this.userService.findByIdUser(id));
         if (Auth.getUser().getId()==null){
             return "redirect:/users/login";
         }
@@ -81,7 +81,6 @@ public class UserController {
 
     @PostMapping("")
     public String save(User user){
-        System.out.println(user);
         userService.insert(user);
         return "redirect:/users/nutritionists/"+ Auth.getUser().getId();
     }

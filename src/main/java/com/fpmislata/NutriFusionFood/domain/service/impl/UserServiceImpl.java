@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
         this.recipeRepository = RecipeIoC.getRecipeRepository();
     }
 
-    @Override
+    /*@Override
     public User findByIdNutritionist(Integer id) {
         User user = this.userRepository.findByIdNutritionist(id);
         if (user==null) {
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException("There is no client with id: " + id);
         }
         return user;
-    }
+    }*/
 
     @Override
     public User findByIdUser(Integer id) {

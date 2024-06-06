@@ -46,7 +46,7 @@ public class UserDaoJdbc implements UserDao {
         return userEntity;
     }
 
-    @Override
+    /*@Override
     public UserEntity findByIdNutritionist(Integer id) {
         try {
             String sql = "select * from users where id_user = ? and nutritionist = ?";
@@ -76,7 +76,7 @@ public class UserDaoJdbc implements UserDao {
             System.out.println("Hay un problema con la bbdd");
         }
         return userEntity;
-    }
+    }*/
 
     @Override
     public void insert(UserEntity userEntity) {
@@ -132,8 +132,5 @@ public class UserDaoJdbc implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
-
-
 }
