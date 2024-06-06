@@ -25,6 +25,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User findByIdUser(Integer id) {
+        return UserMapper.toUser(userDao.findByIdUser(id));
+    }
+
+    @Override
     public void insert(User user) {
         userDao.insert(UserMapper.toUserEntity(user));
     }
@@ -40,7 +45,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findByEmailOrUsername(String email, String username) {
-        return UserMapper.toUser(userDao.findByEmailOrUsername(email, username));
+    public User findByEmail(String email, String password) {
+        return UserMapper.toUser(userDao.findByEmail(email, password));
+    }
+    @Override
+    public User findByUsername(String username, String password) {
+        return UserMapper.toUser(userDao.findByUsername(username,password));
     }
 }

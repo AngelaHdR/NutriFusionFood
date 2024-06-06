@@ -63,7 +63,7 @@ public class UserController {
     }
     @PostMapping("/login")
     public String enter(User user){
-        Auth.setUser(userService.findByEmailOrUsername(user.getEmail(),user.getUsername()));
+        Auth.setUser(userService.findByEmailOrUsername(user));
         if (Auth.getUser().getNutritionist()){
             return "redirect:/nutritionists/"+Auth.getUser().getId();
         } else if (!Auth.getUser().getNutritionist()) {

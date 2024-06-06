@@ -10,5 +10,7 @@ public interface UserDao {
     public UserEntity findByIdClient(Integer id);
     public void insert(UserEntity userEntity);
     public List<UserEntity> findAllNutritionist();
-    public UserEntity findByEmailOrUsername(String email, String username);
+    public UserEntity findByEmail(String email,String password);
+    public UserEntity findByUsername(String username, String password);
+    public UserEntity findByIdUser(Integer id);
 }

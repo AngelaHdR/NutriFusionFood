@@ -44,7 +44,7 @@ public class UserDaoMock implements UserDao {
     }
 
     @Override
-    public UserEntity findByEmailOrUsername(String email, String username) {
+    public UserEntity findByEmail(String email, String username) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findByEmailOrUsername'");
     }

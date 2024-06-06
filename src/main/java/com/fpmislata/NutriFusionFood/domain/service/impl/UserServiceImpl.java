@@ -39,6 +39,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByIdUser(Integer id) {
+        User user = this.userRepository.findByIdUser(id);
+        if (user==null) {
+            throw new BusinessException("There is no user with id: " + id);
+        }
+        return user;
+    }
+
+    @Override
     public void insert(User user) {
         if (user.getPassword().length()<8){
             throw new BusinessException("The password has to contain minimum 8 characters");
@@ -46,10 +55,11 @@ public class UserServiceImpl implements UserService {
         if (user.getNutritionist()==null){
             user.setNutritionist(false);
         }
-        User userExists = this.userRepository.findByEmailOrUsername(user.getEmail(), user.getUsername());
-        if (userExists!=null){
-            Auth.setUser(userExists);
-            //throw new BusinessException("This email or username is already in use");
+        User userExists1 = this.userRepository.findByEmail(user.getEmail(), user.getPassword());
+        User userExists2 = this.userRepository.findByUsername(user.getUsername(), user.getPassword());
+
+        if (userExists1!=null || userExists2!=null){
+            throw new BusinessException("This email or username is already in use");
         }else{
             user.setId(userRepository.findAllUser().size()+1);
             userRepository.insert(user);
@@ -77,6 +87,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Recipe> findRecipeByNutritionist(Integer nutritionistId){
         return this.recipeRepository.findByNutritionist(nutritionistId);
+    }
+
+    @Override
+    public User findByEmailOrUsername(User user) {
+        if (user.getUsername()==null){
+            return this.userRepository.findByEmail(user.getEmail(),user.getPassword());
+        } else if (user.getEmail()==null) {
+            return this.userRepository.findByUsername(user.getUsername(),user.getPassword());
+        }
+        return null;
     }
 
 }

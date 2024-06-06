@@ -49,7 +49,7 @@ public class UserRepositoryMock implements UserRepository {
     }
 
     @Override
-    public User findByEmailOrUsername(String email, String username) {
+    public User findByEmail(String email, String username) {
         for (User user:userList){
             if (user.getUsername().equals(username) || user.getEmail().equals(email)){
                 return user;
