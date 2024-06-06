@@ -13,21 +13,36 @@ import com.fpmislata.NutriFusionFood.common.container.UserIoC;
 import com.fpmislata.NutriFusionFood.domain.service.UserService;
 
 @Controller
-@RequestMapping("/nutritionists")
+@RequestMapping("/users")
 public class UserController {
     UserService userService;
     public UserController(){
         this.userService = UserIoC.getUserService();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/nutritionists/{id}")
     public String findByIdNutritionist(Model model, @PathVariable Integer id){
         model.addAttribute("nutritionist", this.userService.findByIdNutritionist(id));
         model.addAttribute("recipeList",this.userService.findRecipeByNutritionist(id));
         if (Auth.getUser().getId()==null){
-            return "redirect:/nutritionists/add";
+            return "redirect:/users/login";
         }
         return "profile";
+    }
+
+    @GetMapping("/clients/{id}")
+    public String findByIdClient(Model model, @PathVariable Integer id){
+        model.addAttribute("client", this.userService.findByIdClient(id));
+        if (Auth.getUser().getId()==null){
+            return "redirect:/users/login";
+        }
+        return "profile";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("user", new User());
+        return "login";
     }
 
     @GetMapping("/add")
@@ -41,7 +56,7 @@ public class UserController {
         //user.setId(userService.findAllUser().size());
         System.out.println(user);
         userService.insert(user);
-        return "redirect:/nutritionists/"+ Auth.getUser().getId();
+        return "redirect:/users/nutritionists/"+ Auth.getUser().getId();
     }
 
     /*
