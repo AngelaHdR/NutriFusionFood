@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<header>
+<header th:fragment="header">
     <div class=" container-fluid text-center border-fuente bg-resalte">
         <div class="row justify-content-between text-center">
             <div class="col-12 col-sm-4 col-md-3 d-inline-block align-top">
@@ -63,8 +63,8 @@
                                         <li><a class="dropdown-item" href="/categories/4/recipes" th:text="#{menu.dropdown5}">Snack</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item border-top border-fuente"><a
-                                        th:href="@{'/nutritionists/1' + '?lang=' + ${#locale.language}}"
+                                <li th:if="${@authService.getCurrentUserId() != null}" class="nav-item border-top border-fuente"><a
+                                        th:href="@{'/nutritionists/'+${@authService.getCurrentUserId()} + '?lang=' + ${#locale.language}}"
                                         class="nav-link active" th:text="#{menu.profile}">PERFIL</a></li>
                             </ul>
                         </div>
