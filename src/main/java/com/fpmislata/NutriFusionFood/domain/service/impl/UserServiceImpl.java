@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
             Auth.setUser(userExists);
             //throw new BusinessException("This email or username is already in use");
         }else{
+            user.setId(userRepository.findAllUser().size()+1);
             userRepository.insert(user);
             Auth.setUser(user);
         }

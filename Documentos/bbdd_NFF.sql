@@ -24,7 +24,7 @@ create table if not exists users(
 
 create table if not exists recipe (
     id_recipe int not null auto_increment,
-    description_recipe varchar(100) not null,
+    description_recipe text not null,
     name_recipe VARCHAR(30) not null,
     steps text not null,
     lang VARCHAR(5) not null,

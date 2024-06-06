@@ -80,15 +80,14 @@ public class RecipeController {
 
     @PostMapping("")
     public String save(Recipe recipe, @RequestParam List<Integer> toolIdList,
-                       @RequestParam List<Integer> typeIdList, @RequestParam Integer categoryId,
-                       @RequestParam String lang) {
+                       @RequestParam List<Integer> typeIdList, @RequestParam Integer categoryId) {
         UserService userService = UserIoC.getUserService();
-        recipe.setUser(userService.findByIdNutritionist(1));
+        recipe.setUser(userService.findByIdNutritionist(Auth.getUser().getId()));
         recipe.setId(recipeService.findAllRecipe().size());
         recipe.setCategory(CategoryMapper.toCategory(categoryId));
         recipe.setToolList(ToolMapper.toToolList(toolIdList));
         recipe.setIngredientList(IngredientMapper.toIngredientList(typeIdList));
-        recipe.setLanguage(lang);
+        //recipe.setLanguage(lang);
         System.out.println(recipe);
         recipeService.insert(recipe);
 
