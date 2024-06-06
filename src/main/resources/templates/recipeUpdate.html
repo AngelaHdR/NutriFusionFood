@@ -10,16 +10,18 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container p-0 m-0">
     <header th:insert="fragments.html :: header">Header</header>
-    <main class="content">
-        <form class=" m-2 g-3 was-validated " th:action="@{${'/recipes/update/'+recipe.id}}" th:object="${recipe}" method="post" novalidate>
+    <main class="content p-0 m-0">
+        <form class=" m-2 g-3 was-validated " th:action="@{${'/recipes/update/'+recipe.id}}" th:object="${recipe}"
+              method="post" novalidate>
             <input type="hidden" name="_method" value="PUT"/>
             <div class="row mx-2">
                 <div class="col-md-5 my-2">
                     <label for="validationCustom01" class="form-label " th:text="#{recipeForm.name.recipe}">Nombre de la
                         receta</label>
-                    <input type="text" class="form-control border-info border-bottom border-end border-start" id="validationCustom01"
+                    <input type="text" class="form-control border-info border-bottom border-end border-start"
+                           id="validationCustom01"
                            th:field="*{name}" required>
                     <div class="valid-feedback" th:text="#{recipeForm.message.name}">
                         Nombre añadido
@@ -36,7 +38,9 @@
                 <div class="col-md-4 my-2">
                     <label for="categoria" th:text="#{recipeForm.category}">Categoría:</label>
                     <select class="form-control border-info" id="categoria" name="categoryId" required>
-                        <option th:text="#{recipeForm.placeholder.category}" value="" disabled selected>Selecciona una categoría...</option>
+                        <option th:text="#{recipeForm.placeholder.category}" value="" disabled selected>Selecciona una
+                            categoría...
+                        </option>
                         <option th:each="category : ${categoryList}" th:value="${category.id}"
                                 th:text="${category.name}" th:selected="${category.id == recipe.category.id}">
                         </option>
@@ -48,8 +52,9 @@
             </div>
             <div class="row mx-2">
                 <div class="col-12">
-                    <ul class="nav nav-tabs d-block" id="myTab" role="tablist" >
-                        <li th:each="entry:${ingredientMap}" class="nav-item valid col-auto d-inline-block mt-2" role="presentation">
+                    <ul class="nav nav-tabs d-block" id="myTab" role="tablist">
+                        <li th:each="entry:${ingredientMap}" class="nav-item valid col-auto d-inline-block mt-2"
+                            role="presentation">
                             <button th:text="${entry.key.name}" class="nav-link bg-info text-fondo "
                                     th:id="|tab-${entry.key.id}|"
                                     data-bs-toggle="tab"
@@ -58,7 +63,7 @@
                                     aria-selected="true">
                             </button>
                         </li>
-                        <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent" >
+                        <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent">
                             <div class="tab-pane fade p-3" th:id="|tab-content-${entry.key.id}|" role="tabpanel"
                                  th:aria-labelledby="|tab-${entry.key.id}|" required>
 
@@ -117,19 +122,26 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center m-2">
-                <div class="col-6 bg-info p-1 ">
+            <div class="row justify-content-center p-0 m-0">
+
+                <div class="col-10 col-sm-5 bg-info p-1 mx-2">
                     <div class="bg-info pt-2 border border-fondo" style="border-width: 5px; text-align: center;">
                         <button type="submit" class="btn btn-info text-fondo">
-                            <h4 class="text-fondo d-none d-sm-block">ACTUALIZAR RECETA</h4>
-                            <h6 class="text-fondo d-block d-sm-none">ACTUALIZAR RECETA</h6>
+                            <h4 th:text="#{updateForm.buttom.update}" class="text-fondo d-none d-sm-block">ACTUALIZAR RECETA</h4>
+                            <h6 th:text="#{updateForm.buttom.update}" class="text-fondo d-block d-sm-none">ACTUALIZAR RECETA</h6>
                         </button>
                     </div>
                 </div>
-                <div class="col-2 bg-info p-1">
-                    <a th:href="@{/recipes}" class="btn btn-info border border-fondo text-fondo">Cancelar</a>
+                <div class="col-10 col-sm-5 bg-info p-1 ">
+                    <div class="bg-info pt-2 border border-fondo" style="border-width: 5px; text-align: center;">
+                        <button type="submit" class="btn btn-info text-fondo">
+                            <h4 th:text="#{updateForm.buttom.cancel}" class="text-fondo d-none d-sm-block">CANCELAR</h4>
+                            <h6 th:text="#{updateForm.buttom.cancel}" class="text-fondo d-block d-sm-none">CANCELAR</h6>
+                        </button>
+                    </div>
                 </div>
             </div>
+
         </form>
     </main>
     <footer th:insert="fragments.html::footer"></footer>
