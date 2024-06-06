@@ -1,4 +1,3 @@
-
 drop database if exists nutrifusionfood;
 create DATABASE if not exists nutrifusionfood;
 use nutrifusionfood;

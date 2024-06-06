@@ -47,13 +47,13 @@ use nutrifusionfood;
 	INSERT INTO ingredient VALUES (32,false,false,'Arroz','Rice',1,12,6);
     
 	INSERT INTO users VALUES (1,'Jose','Perez','Garcia','jose','josepegar@gmail.com','1935-12-08',true,'abcgr43k');
-	INSERT INTO users VALUES (2,'Alicia','Fernandez','Lopez','alicia','alifernanlop@gmail.com','1995-06-21',false,'cdpo31df');
+	INSERT INTO users VALUES (2,'Diana','Fernandez','Lopez','Diana','dianafernanlop@gmail.com','1995-06-21',false,'fpdaw2324');
 	INSERT INTO users VALUES (3,'Pepe','Escudero','Ramirez','pepe','pepescura@gmail.com','1985-10-24',true,'plqw98j3');
 	INSERT INTO users VALUES (4,'Mercedes','Gil','Diaz','mercedes','mercedergil@gmail.com','2000-04-14',false,'afdgr43k');
-	INSERT INTO users VALUES (5,'Soledad','Berenguer','Reyes','Sole','salesher@gmail.com','2001-03-28',true,'fepo31df');
+	INSERT INTO users VALUES (5,'Soledad','Berenguer','Reyes','Sole','salesher@gmail.com','2001-03-28',true,'123456789');
 	INSERT INTO users VALUES (6,'Àngela','Hermosilla','del Rio','Angela','angela321@gmail.com','2002-06-10',true,'plqw9lo1');
 	INSERT INTO users VALUES (7,'Cain','Medina','Roca','Kayn','medroca@gmail.com','1982-03-23',false,'lpcgr43k');
-	INSERT INTO users VALUES (8,'Andreu','Andreu','Andreu','Andreu','andre14@gmail.com','2002-10-08',true,'clpo31dr');
+	INSERT INTO users VALUES (8,'Andreu','Alfonso','Megina','Andreu','andreu14@gmail.com','2002-10-08',true,'clpo31dr');
 	INSERT INTO users VALUES (9,'Victor','Garcia','Espert','Victor','vgaresp213@gmail.com','2001-03-02',true,'vlqx48j5');
 	INSERT INTO users VALUES (10,'Carla','Rubio','Delgado','Carla','delcar@gmail.com','1973-08-19',false,'pbdg123f');
 	INSERT INTO users VALUES (11,'Patricio','Real','Pastor','Patri','realp@gmail.com','2001-10-06',true,'n3go31df');
