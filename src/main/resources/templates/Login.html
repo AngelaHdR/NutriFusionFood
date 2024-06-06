@@ -12,7 +12,7 @@
         <header th:insert="fragments.html :: header">Header</header>
         <main class="content">
             <form class="m-2 g-3 was-validated" th:action="@{/users/login}" th:object="${user}" method="post" novalidate>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center m-0 p-0">
 
                     <div class="col-12 col-md-6 col-lg-4 my-2">
                         <label th:text="|#{userForm.username}|" for="username" class="form-label">Nombre de Usuario</label>
@@ -20,7 +20,7 @@
                                th:field="*{username}" required></div>
                 </div>
 
-                <div class="row justify-content-center">
+                <div class="row justify-content-center m-0 p-0">
                     <div class="col-12 col-md-6 col-lg-4 my-2">
                         <label th:text="|#{userForm.password}|"  for="password" class="form-label">Contraseña</label>
                         <input type="password" class="form-control border-info" id="password"

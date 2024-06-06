@@ -58,6 +58,7 @@ public class UserController {
 
     @GetMapping("/login/add")
     public String login(Model model){
+        Auth.setUser(new User());
         model.addAttribute("user", new User());
         return "Login";
     }
