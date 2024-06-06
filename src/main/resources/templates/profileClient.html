@@ -16,49 +16,49 @@
 <div class="container-fluid">
     <main class="content">
         <section class="container-lg border-bottom border-fuente text-center py-4">
-            <h2 class="text-info" th:if="${nutritionist.id==T(com.fpmislata.NutriFusionFood.common.Auth).getUser().getId()}"
+            <h2 class="text-info" th:if="${client.id==T(com.fpmislata.NutriFusionFood.common.Auth).getUser().getId()}"
                 th:text="#{profile.section}">MI PERFIL</h2>
             <div class="row align-items-stretch bg-resalte m-3 p-3">
                 <div class="d-none d-md-block col-md-5 bg-fondo">
-                    <img class="profile-picture" th:src="@{/images/user/}+user_+${nutritionist.id}+.png"
+                    <img class="profile-picture" th:src="@{/images/user/}+user_+${client.id}+.png"
                          alt="imagen perfil">
                 </div>
                 <div class="col-md-7 px-4 py-4 bg-fondo">
                     <div class="container-fluid py-4 align-items-center text-left">
                         <div class="row">
                             <div class="col text-center">
-                                <h2 class="d-none d-lg-block" th:text="${nutritionist.username}"></h2>
-                                <h3 class="d-block d-lg-none" th:text="${nutritionist.username}"></h3>
+                                <h2 class="d-none d-lg-block" th:text="${client.username}"></h2>
+                                <h3 class="d-block d-lg-none" th:text="${client.username}"></h3>
                             </div>
                         </div>
                         <div class="row py-1">
                             <div class="col">
                                 <!-- Texto para pantallas grandes -->
                                 <h3 class="mr-2 text-info d-none d-lg-inline" th:text="#{profile.user.name}">Nombre: </h3>
-                                <h3 class="d-none d-lg-inline" th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|"></h3>
+                                <h3 class="d-none d-lg-inline" th:text="|${client.name} ${client.surname1} ${client.surname2}|"></h3>
                                 <!-- Texto para pantallas pequeñas -->
                                 <p class="d-inline mr-2 text-info d-lg-none" th:text="#{profile.user.name}">Nombre: </p>
-                                <p class="d-inline d-lg-none" th:text="|${nutritionist.name} ${nutritionist.surname1} ${nutritionist.surname2}|"></p>
+                                <p class="d-inline d-lg-none" th:text="|${client.name} ${client.surname1} ${client.surname2}|"></p>
                             </div>
                         </div>
                         <div class="row py-1">
                             <div class="col">
                                 <!-- Texto para pantallas grandes -->
                                 <h3 class="mr-2 text-info d-none d-lg-inline" th:text="#{profile.user.email}">Email: </h3>
-                                <h3 class="d-none d-lg-inline" th:text="${nutritionist.email}"></h3>
+                                <h3 class="d-none d-lg-inline" th:text="${client.email}"></h3>
                                 <!-- Texto para pantallas pequeñas -->
                                 <p class="d-inline mr-2 text-info d-lg-none" th:text="#{profile.user.email}">Email: </p>
-                                <p class="d-inline d-lg-none" th:text="${nutritionist.email}"></p>
+                                <p class="d-inline d-lg-none" th:text="${client.email}"></p>
                             </div>
                         </div>
                         <div class="row py-1">
                             <div class="col">
                                 <!-- Texto para pantallas grandes -->
                                 <h3 class="mr-2 text-info d-none d-lg-inline" th:text="#{profile.user.birthdate}">Fecha de nacimiento: </h3>
-                                <h3 class="d-none d-lg-inline" th:text="${nutritionist.birthDate}"></h3>
+                                <h3 class="d-none d-lg-inline" th:text="${client.birthDate}"></h3>
                                 <!-- Texto para pantallas pequeñas -->
                                 <p class="d-inline mr-2 text-info d-lg-none" th:text="#{profile.user.birthdate}">Fecha de nacimiento: </p>
-                                <p class="d-inline d-lg-none" th:text="${nutritionist.birthDate}"></p>
+                                <p class="d-inline d-lg-none" th:text="${client.birthDate}"></p>
                             </div>
                         </div>
                     </div>
