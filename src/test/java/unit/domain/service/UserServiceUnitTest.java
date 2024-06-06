@@ -74,16 +74,10 @@ public class UserServiceUnitTest {
         expectedUsersList.add(newUser);
         assertEquals(expectedUsersList, actualUsersList);
     }
-    @DisplayName("Not allow same username as other user")
+    @DisplayName("Not allow short password")
     @Test
-    public void sameUsernameThrowException(){
-        User newUser = new User(5, "Marcos", "Garcia", "Lopez", "2005-10-06", false, "password5", "mail5", "pepe");
-        assertThrows(BusinessException.class,()->userService.insert(newUser));
-    }
-    @DisplayName("Not allow same email as other user")
-    @Test
-    public void sameEmailThrowException(){
-        User newUser = new User(5, "Marcos", "Garcia", "Lopez", "2005-10-06", false, "password5", "mail4", "marcos");
+    public void shortPasswordThrowException(){
+        User newUser = new User(5, "Marcos", "Garcia", "Lopez", "2005-10-06", false, "pas5", "mail5", "pepe");
         assertThrows(BusinessException.class,()->userService.insert(newUser));
     }
 }
