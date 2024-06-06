@@ -20,6 +20,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User findByIdClient(Integer id) {
+        return UserMapper.toUser(userDao.findByIdClient(id));
+    }
+
+    @Override
     public void insert(User user) {
         userDao.insert(UserMapper.toUserEntity(user));
     }

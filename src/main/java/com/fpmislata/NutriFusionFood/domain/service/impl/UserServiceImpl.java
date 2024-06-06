@@ -30,6 +30,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByIdClient(Integer id) {
+        User user = this.userRepository.findByIdClient(id);
+        if (user==null) {
+            throw new BusinessException("There is no client with id: " + id);
+        }
+        return user;
+    }
+
+    @Override
     public void insert(User user) {
         if (user.getPassword().length()<8){
             throw new BusinessException("The password has to contain minimum 8 characters");
