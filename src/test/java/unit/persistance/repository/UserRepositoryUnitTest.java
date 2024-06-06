@@ -39,21 +39,21 @@ public class UserRepositoryUnitTest {
     @DisplayName("Find nutritionists by their id")
     @Test
     public void testFindNutritionistById() {
-        User actualUser = userRepository.findByIdNutritionist(1);
+        User actualUser = userRepository.findByIdUser(1);
         User expectedUser = UserData.userList.get(0);
         assertEquals(expectedUser, actualUser);
     }
     @DisplayName("Return null for user id not nutritionist")
     @Test
     public void returnNullIdNotNutritionist(){
-        User actualUser= userRepository.findByIdNutritionist(2);
+        User actualUser= userRepository.findByIdUser(2);
         assertNull(actualUser);
     }
     @DisplayName("Return null for user id not in list")
     @ParameterizedTest
     @ValueSource(ints = {0,-2,8})
     public void returnNullWrongId(int id){
-        User actualUser= userRepository.findByIdNutritionist(id);
+        User actualUser= userRepository.findByIdUser(id);
         assertNull(actualUser);
     }
 

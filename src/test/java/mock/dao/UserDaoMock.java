@@ -17,7 +17,7 @@ public class UserDaoMock implements UserDao {
     }
 
     @Override
-    public UserEntity findByIdNutritionist(Integer id) {
+    public UserEntity findByIdUser(Integer id) {
         List<UserEntity> nutritionistList = findAllNutritionist();
         for (UserEntity userEntity:nutritionistList){
             if (userEntity.getId().equals(id)){
@@ -46,6 +46,11 @@ public class UserDaoMock implements UserDao {
     @Override
     public UserEntity findByEmail(String email, String username) {
         // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByEmailOrUsername'");
+    }
+
+    @Override
+    public UserEntity findByUsername(String username, String password) {
         throw new UnsupportedOperationException("Unimplemented method 'findByEmailOrUsername'");
     }
 }

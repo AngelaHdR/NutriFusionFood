@@ -23,18 +23,6 @@ class UserDaoJdbcTest extends JdbcTest {
 
     private static final DBConnection connection = DBConnection.getInstance();
 
-    @BeforeAll
-    static void setup() throws SQLException {
-        /*connection.executeScript("bbdd_NFF_test.sql");
-        connection.executeScript("inserts_NFF_test.sql");*/
-        connection.getConnection().setAutoCommit(false);
-    }
-
-    @AfterEach
-    void tearDown() throws SQLException {
-        connection.getConnection().rollback();
-    }
-
     @DisplayName("Find all the users from the database")
     @Test
     public void testFindAllUsers() {
@@ -54,22 +42,16 @@ class UserDaoJdbcTest extends JdbcTest {
 
     @DisplayName("Find the nutritionists by their id")
     @Test
-    public void testFindNutritionistById() {
-        UserEntity actualNutritionist = userDao.findByIdNutritionist(1);
+    public void testFindUsersById() {
+        UserEntity actualNutritionist = userDao.findByIdUser(1);
         UserEntity expectedNutritionist = findUserEntityList().get(0);
         assertEquals(expectedNutritionist, actualNutritionist);
-    }
-    @Test
-    @DisplayName("Return null for clients")
-    public void returnNullClientId(){
-        UserEntity actualUser = userDao.findByIdNutritionist(2);
-        assertNull(actualUser);
     }
     @ParameterizedTest
     @ValueSource(ints={0,-3,30})
     @DisplayName("Return null for negative,zero or wrong id")
     public void returnNullWrongId(int id){
-        UserEntity actualUser = userDao.findByIdNutritionist(id);
+        UserEntity actualUser = userDao.findByIdUser(id);
         assertNull(actualUser);
     }
     @DisplayName("Insert a new user to the database")

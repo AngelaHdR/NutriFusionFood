@@ -13,17 +13,6 @@ public class UserRepositoryMock implements UserRepository {
 
 
     @Override
-    public User findByIdNutritionist(Integer id) {
-        List<User> nutritionistList = findAllNutritionist();
-        for (User user:nutritionistList){
-            if (user.getId()==id){
-                return user;
-            }
-        }
-        return null;
-    }
-
-    @Override
     public void insert(User user) {
         userList.add(user);
     }
@@ -49,12 +38,27 @@ public class UserRepositoryMock implements UserRepository {
     }
 
     @Override
+    public User findByIdUser(Integer id) {
+        for (User user:userList){
+            if (user.getId()==id){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public User findByEmail(String email, String username) {
         for (User user:userList){
             if (user.getUsername().equals(username) || user.getEmail().equals(email)){
                 return user;
             }
         }
+        return null;
+    }
+
+    @Override
+    public User findByUsername(String username, String password) {
         return null;
     }
 }

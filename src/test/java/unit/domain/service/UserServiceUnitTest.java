@@ -40,21 +40,17 @@ public class UserServiceUnitTest {
     }
     @Test
     @DisplayName("Find nutritionist by their id")
-    public void testFindByIdNutritionist(){
-        User actualUserList = userService.findByIdNutritionist(1);
+    public void testfindByIdUser(){
+        User actualUserList = userService.findByIdUser(1);
         User expectedUserList = UserData.userList.get(0);
         assertEquals(expectedUserList,actualUserList);
     }
-    @DisplayName("Return null for user id not nutritionist")
-    @Test
-    public void returnNullIdNotNutritionist(){
-        assertThrows(BusinessException.class,()->userService.findByIdNutritionist(2));
-    }
-    @DisplayName("Return null for user id not in list")
+
+    @DisplayName("Throw exception for user id not in list")
     @ParameterizedTest
-    @ValueSource(ints = {0,-2,8})
-    public void returnNullWrongId(int id){
-        assertThrows(BusinessException.class,()->userService.findByIdNutritionist(-2));
+    @ValueSource(ints = {0,-2})
+    public void throwExceptionWrongId(int id){
+        assertThrows(BusinessException.class,()->userService.findByIdUser(id));
     }
     @DisplayName("Find all the users in the database")
     @Test
