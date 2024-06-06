@@ -48,6 +48,22 @@ public class UserDaoJdbc implements UserDao {
     }
 
     @Override
+    public UserEntity findByIdClient(Integer id) {
+        try {
+            String sql = "select * from users where id_user = ? and nutritionist = ?";
+            List<Object> params = List.of(id,0);
+            ResultSet resultSet = Rawsql.select(sql, params);
+            if(!resultSet.next()) {
+                return null;
+            }
+            userEntity = UserEntityMapper.toUserEntity(resultSet);
+        } catch (SQLException e) {
+            System.out.println("Hay un problema con la bbdd");
+        }
+        return userEntity;
+    }
+
+    @Override
     public void insert(UserEntity userEntity) {
         String sql = "insert into users (name_user, surname1, surname2, username, email, birth_date, nutritionist, pwd)" +
                 " values(?,?,?,?,?,?,?,?)";

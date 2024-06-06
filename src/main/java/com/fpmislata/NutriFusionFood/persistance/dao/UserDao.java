@@ -7,6 +7,7 @@ import java.util.List;
 public interface UserDao {
     public List<UserEntity> findAllUser();
     public UserEntity findByIdNutritionist(Integer id);
+    public UserEntity findByIdClient(Integer id);
     public void insert(UserEntity userEntity);
     public List<UserEntity> findAllNutritionist();
     public UserEntity findByEmailOrUsername(String email, String username);
