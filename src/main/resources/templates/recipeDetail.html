@@ -70,7 +70,8 @@
                     <p class="text-info" th:text="${recipe.steps}"></p>
                 </div>
             </section>
-            <form th:if="${recipe.user.id==1}" th:action="'/recipes/'+${recipe.id}" th:method="delete">
+            <form th:if="${recipe.user.id==T(com.fpmislata.NutriFusionFood.common.Auth).getUser().getId()}"
+                  th:action="'/recipes/'+${recipe.id}" th:method="delete">
                 <div class="row justify-content-center m-2">
                     <div class="col-6 bg-info p-1 ">
                         <div class="bg-info pt-2 border border-fondo" style="border-width: 5px; text-align: center;">

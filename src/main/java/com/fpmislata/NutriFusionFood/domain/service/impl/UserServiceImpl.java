@@ -43,7 +43,9 @@ public class UserServiceImpl implements UserService {
             //throw new BusinessException("This email or username is already in use");
         }else{
             userRepository.insert(user);
+            Auth.setUser(user);
         }
+
     }
 
     @Override
