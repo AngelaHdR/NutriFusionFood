@@ -64,7 +64,7 @@
                                     </ul>
                                 </li>
                                 <li th:if="${@authService.getCurrentUserId() != null}" class="nav-item border-top border-fuente"><a
-                                        th:href="@{'/users/id/'+${@authService.getCurrentUserId()} + '?lang=' + ${#locale.language}}"
+                                        th:href="@{'/users/'+${@authService.getCurrentUserId()} + '?lang=' + ${#locale.language}}"
                                         class="nav-link active" th:text="#{menu.profile}">PERFIL</a></li>
                             </ul>
                         </div>

@@ -107,7 +107,7 @@ public class UserDaoJdbc implements UserDao {
     @Override
     public UserEntity findByEmail(String email,String password) {
         try {
-            String sql = "select * from users where email =? and password = ?";
+            String sql = "select * from users where email =? and pwd = ?";
             List<Object> params = List.of(email,password);
             ResultSet resultSet = Rawsql.select(sql, params);
             if(!resultSet.next()) {
@@ -122,7 +122,7 @@ public class UserDaoJdbc implements UserDao {
     @Override
     public UserEntity findByUsername(String email, String password) {
         try {
-            String sql = "select * from users where email =? or password = ?";
+            String sql = "select * from users where email =? or pwd = ?";
             List<Object> params = List.of(email,password);
             ResultSet resultSet = Rawsql.select(sql, params);
             if(!resultSet.next()) {

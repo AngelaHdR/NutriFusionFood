@@ -26,9 +26,9 @@ public class UserController {
         if (Auth.getUser().getId()==null){
             return "redirect:/users/login";
         } else if (user.getNutritionist()) {
-            return "redirect:/nutritionists/"+user.getId();
+            return "redirect:/users/nutritionists/"+user.getId();
         } else if (!user.getNutritionist()) {
-            return "redirect:/clients/"+user.getId();
+            return "redirect:/users/clients/"+user.getId();
         }else {
             return "error";
         }
@@ -59,15 +59,15 @@ public class UserController {
     @GetMapping("/login/add")
     public String login(Model model){
         model.addAttribute("user", new User());
-        return "login";
+        return "Login";
     }
     @PostMapping("/login")
     public String enter(User user){
         Auth.setUser(userService.findByEmailOrUsername(user));
         if (Auth.getUser().getNutritionist()){
-            return "redirect:/nutritionists/"+Auth.getUser().getId();
+            return "redirect:/users/nutritionists/"+Auth.getUser().getId();
         } else if (!Auth.getUser().getNutritionist()) {
-            return "redirect:/clients/"+Auth.getUser().getId();
+            return "redirect:/users/clients/"+Auth.getUser().getId();
         }else {
             return "error";
         }

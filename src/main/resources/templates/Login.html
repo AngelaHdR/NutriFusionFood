@@ -11,7 +11,7 @@
     <div class="container">
         <header th:insert="fragments.html :: header">Header</header>
         <main class="content">
-            <form class="m-2 g-3 was-validated" th:action="@{/users}" th:object="${user}" method="post" novalidate>
+            <form class="m-2 g-3 was-validated" th:action="@{/users/login}" th:object="${user}" method="post" novalidate>
                 <div class="row justify-content-center">
 
                     <div class="col-12 col-md-6 col-lg-4 my-2">
