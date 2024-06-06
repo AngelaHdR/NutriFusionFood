@@ -53,7 +53,7 @@ public class RecipeController {
     public String findByIdRecipe(Model model, @PathVariable Integer id) {
         System.out.println(Auth.getUser());
         if (Auth.getUser().getId()==null){
-            return "redirect:/users/login";
+            return "redirect:/users/login/add";
         }
         model.addAttribute("recipe", this.recipeService.findByIdRecipe(id));
         return "recipeDetail";
@@ -62,7 +62,7 @@ public class RecipeController {
     @GetMapping("/add")
     public String insert(Model model) {
         if (Auth.getUser().getId()==null){
-            return "redirect:/users/login";
+            return "redirect:/users/login/add";
         }
         List<Type> types = typeService.findAllType();
         Map<Type, List<Ingredient>> ingredientMap = new HashMap<>();
@@ -103,7 +103,7 @@ public class RecipeController {
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable int id, Model model) {
         if (Auth.getUser().getId()==null){
-            return "redirect:/users/login";
+            return "redirect:/users/login/add";
         }
         Recipe recipe = recipeService.findByIdRecipe(id);
         List<Type> types = typeService.findAllType();

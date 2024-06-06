@@ -24,7 +24,7 @@ public class UserController {
     public String findByIdUser(Model model, @PathVariable Integer id){
         User user = userService.findByIdUser(id);
         if (Auth.getUser().getId()==null){
-            return "redirect:/users/login";
+            return "redirect:/users/login/add";
         } else if (user.getNutritionist()) {
             return "redirect:/users/nutritionists/"+user.getId();
         } else if (!user.getNutritionist()) {
@@ -39,7 +39,7 @@ public class UserController {
         model.addAttribute("nutritionist", this.userService.findByIdUser(id));
         model.addAttribute("recipeList",this.userService.findRecipeByNutritionist(id));
         if (Auth.getUser().getId()==null){
-            return "redirect:/users/login";
+            return "redirect:/users/login/add";
         }
         return "profileNutritionist";
     }
@@ -48,7 +48,7 @@ public class UserController {
     public String findByIdClient(Model model, @PathVariable Integer id){
         model.addAttribute("client", this.userService.findByIdUser(id));
         if (Auth.getUser().getId()==null){
-            return "redirect:/users/login";
+            return "redirect:/users/login/add";
         }
         if (Auth.getUser().getId()!=id){
             return "error";
