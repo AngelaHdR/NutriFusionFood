@@ -129,7 +129,7 @@ public class RecipeController {
             return "recipeUpdate";
         }
         UserService userService = UserIoC.getUserService();
-        recipe.setUser(userService.findByIdUser(1));
+        recipe.setUser(userService.findByIdUser(Auth.getUser().getId()));
         recipe.setCategory(CategoryMapper.toCategory(categoryId));
         recipe.setToolList(ToolMapper.toToolList(toolIdList));
         recipe.setIngredientList(IngredientMapper.toIngredientList(typeIdList));
