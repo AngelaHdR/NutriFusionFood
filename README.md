@@ -8,7 +8,7 @@ designed for foodies and people who love to eat and cook. Our goal is to make ho
 food more achievable for everyone, we plan to do this by making an online platform where 
 people can look up recipes uploaded by certified nutritionists.
 
-![GUANTE]()
+
 
 If you visit our page you will be able to see an extensive list of recipes. In each 
 recipe you can see who uploaded it, the time it would take you and a small description. 
@@ -16,12 +16,12 @@ If you happen to like it, you can sign up to access the rest of the details, by 
 on the title you can see what ingredients and tools you will need as well as the steps to
 complete it.
 
-Also you can use it as other social media, if you like the recipes that a particular 
+Also, you can use it as other social media, if you like the recipes that a particular 
 nutritionist posts you can directly look at their profile to see all the recipes that 
 they have created. Each recipe has also a button to save it in your own profile as your 
 favorite recipes.
 
-![CORAZON]()
+
 
 If you sign up as a nutritionist you will have the same features as the other users 
 and more. In your profile page you will have options to create new recipes and modify 
@@ -56,7 +56,7 @@ design to Wix, here we defined the colors, size and styles of all the main pages
 For the logo, we use *Smashing Logo* to find the basic idea and *Gimp* to modify the logo proposed, 
 add our personal touches and adapt it to our design. We ended up with the logo that you can see here:
 
-![NF]()
+![NF](src/main/resources/static/images/logo/logo_NFF.png)
 
 ### Color palette
 We wanted a style that was clean, attractive and sophisticated and we wanted to avoid the typical 
@@ -65,7 +65,7 @@ using three colors as a base for the design, one light color for the background,
 the things that we want to stand out and the last one darker for the titles. We ended up with the combination 
 that you can see down here:
 
-![COLOR PALETTE]()
+![COLOR PALETTE](src/main/resources/static/images/readme/colors.png)
 
 ### Typography
 We selected the following typographies because we wanted to reflect simplicity, elegancy and familiarity
@@ -74,15 +74,17 @@ the titles.
 
 We decided to go with Playfair Display for the main text:
 
-![PLAYFAIR]()
+![PLAYFAIR](src/main/resources/static/images/readme/playfair.png)
 
 And Forum for the titles, menu and other elements:
 
-![FORUM]()
+![FORUM](src/main/resources/static/images/readme/forum.png)
 
 
 ### Mockup
 The web is made up of 5 pages that you are allowed to access or not depending on your user status.
+
+![FORUM](src/main/resources/static/images/readme/visitant.png)
 
 If you are **not logged** in you can only access the following pages:
 - A landing page where users can log in, access to the categories of the recipes and get 
@@ -90,11 +92,15 @@ information with an About us section.
 - A page full of recipes, it can be with all the recipes mixed or filtered by category. 
 Each recipe has a photo, the name of the creator and a small description.
 
+![FORUM](src/main/resources/static/images/readme/cliente.png)
+
 If you are **logged in** you can also access the following pages:
 - A page with the details of the recipe. Which include the ingredients and tools required and the steps 
 of the recipe.
 - Your profile page, where you will have general information about you and your favorite recipes. If you 
 are a nutritionist you have a section with your own recipes, that you can modify and delete.
+
+![FORUM](src/main/resources/static/images/readme/nutritionist.png)
 
 If you are a **nutritionist** you have also access to one last page:
 - A form to add new recipes to your profile.
@@ -119,7 +125,9 @@ This toolkit has useful elements such as the dropdown, tabs, forms and buttons.
 We used the nesting properties to simplify the writing, we created composed variables to apply multiple styles 
 at the same time and we used mixins to automatize the assignment of styles to the variables.
 
-![THYMELEAF]() ![BOOTSTRAP]() ![SASS]()
+![THYMELEAF](src/main/resources/static/images/readme/thymeleaf.png) 
+![BOOTSTRAP](src/main/resources/static/images/readme/bootstrap.png) 
+![SASS](src/main/resources/static/images/readme/sass.png)
 
 ### Programming languages
 We use different languages for the frontend, each one with its use:
@@ -132,7 +140,8 @@ the Sass modifications and then we have our own classes, mainly to adjust the im
 - **JavaScript:** some of the bootstrap elements used JavaScript to make animations, for example the dropdown, 
 some menus and the tabs menu. We used mostly the JavaScript code proposed by bootstrap.
 
-![HTML]() ![CSS]()
+![HTML](src/main/resources/static/images/readme/html.png) 
+![CSS](src/main/resources/static/images/readme/css.png)
 
 ## 4. BACKEND
 
@@ -143,7 +152,7 @@ Firstly, we used Spring, a Java framework that simplifies building applications.
 like dependency injection, aspect-oriented programming, and data access, which helped streamline our development 
 and made our code more maintainable.
 
-![SPRING]()
+![SPRING](src/main/resources/static/images/readme/spring.png)
 
 To ensure our code was reliable, we used Mockito. This testing framework allowed us to create mock objects, 
 simulating the behavior of real objects in a controlled manner. This made our testing process much easier and 
@@ -170,7 +179,7 @@ for managing and manipulating databases provided us with a reliable and efficien
 ## 5. DATABASE
 ### ER
 
-![ENTIDAD RELACION]()
+![ENTIDAD RELACION](src/main/resources/static/images/readme/ER.png)
 
 ### Design
 Our database is primarily structured around two main entities: User and Recipe.
@@ -237,9 +246,9 @@ Git branching model that involves the use of feature branches and multiple prima
 use directories to classify and organize our feature branches, so finally we ended up with a structure similar to the
 programming architecture but with the different tasks related to each part.
 
-![GITHUB]()
+![GITHUB](src/main/resources/static/images/readme/github.png)
 
-![BRANCHES]() ![SUB BRANCHES]()
+![BRANCHES](src/main/resources/static/images/readme/branches.png)![SUB BRANCHES](src/main/resources/static/images/readme/subbranches.png)
 
 The branch where we worked mostly is the develop branch, from this branch we created all the different feature branches. 
 When we wanted to release our program we had to create a release branch to finish the main changes before the release 
