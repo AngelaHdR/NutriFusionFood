@@ -41,9 +41,9 @@
                                 <a class="text-info" th:href="@{${'/users/nutritionists/' + recipe.user.id}}">
                                     <li><strong th:text="#{recipelist.name.nutritionist}">Nutricionista: </strong><span th:text="|${recipe.user.name}|"></span></li>
                                 </a>
-                                <li><strong>Tiempo de Preparación: </strong><span th:text="|${recipe.time + ' min'}|"></span></li>
-                                <li><strong>Descripción: </strong><span th:text="|${recipe.description}|"></span></li>
-                                <li><strong>Idioma: </strong><img th:src="@{/images/}+lang_+${recipe.language}+.png" alt="Recipe Language"></li>
+                                <li><strong th:text="#{recipelist.time}">Tiempo de Preparación: </strong><span th:text="|${recipe.time + ' min'}|"></span></li>
+                                <li><strong th:text="#{recipelist.description}">Descripción: </strong><span th:text="|${recipe.description}|"></span></li>
+                                <li><strong th:text="#{recipelist.language}">Idioma: </strong><img th:src="@{/images/}+lang_+${recipe.language}+.png" alt="Recipe Language"></li>
                             </ul>
                         </li>
                     </div>

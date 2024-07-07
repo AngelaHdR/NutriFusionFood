@@ -56,6 +56,12 @@ public class UserController {
         return "profileClient";
     }
 
+    @GetMapping("/nutritionists")
+    public String findAllMNutritionist(Model model){
+        model.addAttribute("nutritionistList",this.userService.findAllNutritionist());
+        return "nutritionistList";
+    }
+
     @GetMapping("/login/add")
     public String login(Model model){
         Auth.setUser(new User());
@@ -89,11 +95,7 @@ public class UserController {
     /*
     Funcionalidad no implementada
 
-    @GetMapping("")
-    public String findAllMNutritionist(Model model){
-        model.addAttribute("nutritionistList",this.userService.findAllNutritionist());
-        return "nutritionistList";
-    }
+
 
 
     */
