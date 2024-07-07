@@ -11,7 +11,7 @@ public class Recipe {
     private String name;
     private String language;
     private int time;
-    private String steps;
+    private List<Step> steps;
     private List<Ingredient> ingredientList;
     private List<Tool> toolList;
     private User user;
@@ -22,7 +22,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(Integer id, String name, String language, String description, String steps, int time) {
+    public Recipe(Integer id, String name, String language, String description, List<Step> steps, int time) {
         this.id = id;
         this.description = description;
         this.name = name;
@@ -34,7 +34,7 @@ public class Recipe {
         allergen.put("lactose", false);
     }
 
-    public Recipe(Integer id, String name, String language, String description, String steps,
+    public Recipe(Integer id, String name, String language, String description, List<Step> steps,
                   int time, List<Ingredient> ingredientList, List<Tool> toolList, User user,
                   Category category, Map<String, Boolean> allergen) {
         this.id = id;
@@ -52,7 +52,7 @@ public class Recipe {
         allergen.put("lactose", false);
     }
 
-    public Recipe(Integer id, String name, String language, String description, String steps,
+    public Recipe(Integer id, String name, String language, String description, List<Step> steps,
                   int time, User user, Category category) {
         this.id = id;
         this.description = description;
@@ -104,10 +104,10 @@ public class Recipe {
         this.allergen = allergen;
     }
 
-    public String getSteps() {
+    public List<Step> getSteps() {
         return steps;
     }
-    public void setSteps(String steps) {
+    public void setSteps(List<Step> steps) {
         this.steps = steps;
     }
 

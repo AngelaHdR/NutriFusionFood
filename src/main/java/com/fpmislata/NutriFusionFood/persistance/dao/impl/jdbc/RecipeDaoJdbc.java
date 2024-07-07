@@ -11,6 +11,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.RecipeEntityMapper;
+import com.fpmislata.NutriFusionFood.persistance.dao.mapper.StepsMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,12 +44,15 @@ public class RecipeDaoJdbc implements RecipeDao {
         try {
             String sql = "SELECT r.*,u.*,c.id_category,c.name_"+ LangUtil.getLang() +" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
                     "inner join category c on r.id_category=c.id_category WHERE r.id_recipe = ?";
+            String sql1 = "SELECT s.* FROM steps s WHERE s.id_recipe = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
+            ResultSet resultSet1 = Rawsql.select(sql1,params);
             if(!resultSet.next()) {
                 return null;
             }
             recipeEntity = RecipeEntityMapper.toRecipeEntity(resultSet);
+            recipeEntity.setSteps(StepsMapper.toStepsList(resultSet1));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

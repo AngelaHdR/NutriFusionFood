@@ -5,6 +5,7 @@ import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.User;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.CategoryEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.StepEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.UserEntity;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class RecipeMapper {
                 recipeEntity.getName(),
                 recipeEntity.getLanguage(),
                 recipeEntity.getDescription(),
-                recipeEntity.getSteps(),
+                StepMapper.toStepsList(recipeEntity.getSteps()),
                 recipeEntity.getTime(),
                 UserMapper.toUser(recipeEntity.getUser()),
                 CategoryMapper.toCategory(recipeEntity.getCategory())
@@ -37,7 +38,7 @@ public class RecipeMapper {
                 recipe.getName(),
                 recipe.getLanguage(),
                 recipe.getDescription(),
-                recipe.getSteps(),
+                StepMapper.toStepsEntityList(recipe.getSteps()),
                 recipe.getTime(),
                 new UserEntity(
                         user.getId(),

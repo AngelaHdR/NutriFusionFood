@@ -19,7 +19,6 @@ public class RecipeEntityMapper {
                     resultSet.getString("name_recipe"),
                     resultSet.getString("lang"),
                     resultSet.getString("description_recipe"),
-                    resultSet.getString("steps"),
                     resultSet.getInt("time_recipe"),
                     new UserEntity(resultSet.getInt("id_user"),
                             resultSet.getString("name_user"),

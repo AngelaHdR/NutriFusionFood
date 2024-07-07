@@ -1,6 +1,7 @@
 package com.fpmislata.NutriFusionFood.persistance.dao.entity;
 
 
+import java.util.List;
 import java.util.Objects;
 
 public class RecipeEntity {
@@ -8,14 +9,23 @@ public class RecipeEntity {
     private String name;
     private String language;
     private String description;
-    private String steps;
+    private List<StepEntity> steps;
     private int time;
-    private UserEntity user; //El usuario es siempre un nutricionista
+    private UserEntity user;
     private CategoryEntity category;
 
     //Constructor
 
-    public RecipeEntity(Integer id, String name,String language, String description, String steps, int time, UserEntity user, CategoryEntity category) {
+    public RecipeEntity(Integer id, String name,String language, String description, int time, UserEntity user, CategoryEntity category) {
+        this.id = id;
+        this.description = description;
+        this.name = name;
+        this.language = language;
+        this.time = time;
+        this.user = user;
+        this.category = category;
+    }
+    public RecipeEntity(Integer id, String name,String language, String description, List<StepEntity> steps, int time, UserEntity user, CategoryEntity category) {
         this.id = id;
         this.description = description;
         this.name = name;
@@ -76,10 +86,10 @@ public class RecipeEntity {
         this.category = category;
     }
 
-    public String getSteps() {
+    public List<StepEntity> getSteps() {
         return steps;
     }
-    public void setSteps(String steps) {
+    public void setSteps(List<StepEntity> steps) {
         this.steps = steps;
     }
 
