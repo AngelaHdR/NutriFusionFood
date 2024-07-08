@@ -1,5 +1,6 @@
 package com.fpmislata.NutriFusionFood.domain.service.impl;
 
+import com.fpmislata.NutriFusionFood.common.Auth;
 import com.fpmislata.NutriFusionFood.common.exceptions.BusinessException;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
 import com.fpmislata.NutriFusionFood.domain.entity.Tool;
@@ -36,7 +37,7 @@ public class RecipeServiceImpl implements RecipeService {
         if (recipe==null){
             throw new BusinessException("There is no recipe with id " + id);
         }
-        if (recipe.getUser().getId()!=1){
+        if (recipe.getUser().getId()!= Auth.getUser().getId()){
             throw new BusinessException("This recipe is not from the correct user ");
         }
         recipeRepository.delete(id);
@@ -48,12 +49,18 @@ public class RecipeServiceImpl implements RecipeService {
         if (recipeExists!=null){
             throw new BusinessException("You already have a recipe with this name");
         }
+        if (recipe.getUser().getId()!= Auth.getUser().getId()){
+            throw new BusinessException("This recipe is not from the correct user ");
+        }
         System.out.println(recipe);
         recipeRepository.insert(recipe);
     }
 
     @Override
     public void update(Recipe recipe) {
+        if (recipe.getUser().getId()!= Auth.getUser().getId()){
+            throw new BusinessException("This recipe is not from the correct user ");
+        }
         recipeRepository.update(recipe);
     }
 

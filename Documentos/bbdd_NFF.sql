@@ -25,7 +25,6 @@ create table if not exists recipe (
     id_recipe int not null auto_increment,
     description_recipe text not null,
     name_recipe VARCHAR(30) not null,
-    steps text not null,
     lang VARCHAR(5) not null,
     time_recipe int not null,
     id_user int not null,
@@ -35,10 +34,11 @@ create table if not exists recipe (
     Foreign Key (id_category) REFERENCES category (id_category) on delete cascade on update cascade
 );
 create table if not exists steps (
+	id int not null auto_increment,
     id_recipe int not null,
-    id_step int not null auto_increment,
+    id_step int not null,
     description_step text not null,
-    PRIMARY key (id_recipe,id_step),
+    PRIMARY key (id),
     Foreign key (id_recipe) REFERENCES recipe (id_recipe) on delete cascade on update cascade
 );
 

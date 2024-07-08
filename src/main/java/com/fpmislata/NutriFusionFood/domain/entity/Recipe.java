@@ -11,6 +11,7 @@ public class Recipe {
     private String name;
     private String language;
     private int time;
+    //private String stepsDescription;
     private List<Step> steps;
     private List<Ingredient> ingredientList;
     private List<Tool> toolList;
@@ -20,15 +21,16 @@ public class Recipe {
 
     //Constructors (void, basic parameters, with user and category and all parameters)
     public Recipe() {
+        this.allergen = new HashMap<>();
+        allergen.put("gluten", false);
+        allergen.put("lactose", false);
     }
 
-    public Recipe(Integer id, String name, String language, String description, List<Step> steps, int time) {
-        this.id = id;
+    public Recipe(String name, String language, String description, int time) {
         this.description = description;
         this.name = name;
         this.language = language;
         this.time = time;
-        this.steps = steps;
         this.allergen = new HashMap<>();
         allergen.put("gluten", false);
         allergen.put("lactose", false);

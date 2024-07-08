@@ -61,7 +61,7 @@
                         <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent" >
                             <div class="tab-pane fade p-3" th:id="|tab-content-${entry.key.id}|" role="tabpanel"
                                  th:aria-labelledby="|tab-${entry.key.id}|" required>
-                                <!-- Cicles -->
+                                <!-- Ingredientes -->
                                 <div th:each="ingredient: ${entry.value}" class="form-check cicle">
                                     <input class="form-check-input check-cicle invalid" type="checkbox"
                                            th:value="${ingredient.id}" id="checkGA" name="typeIdList" target="descGA">
@@ -102,8 +102,7 @@
                     <label for="validationTextarea2" class="form-label" th:text="#{recipeForm.steps}">Pasos a
                         seguir</label>
                     <textarea class="form-control border-info" id="validationTextarea2"
-                              th:field="*{steps}"
-                              required></textarea>
+                              th:value="${stepsDescription}" name="stepsDescription" required></textarea>
                     <div class="invalid-feedback" th:text="#{recipeForm.message.steps}">
                         Pasos añadidos
                     </div>

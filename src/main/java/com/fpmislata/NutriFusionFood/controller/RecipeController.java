@@ -5,6 +5,7 @@ import com.fpmislata.NutriFusionFood.common.Auth;
 import com.fpmislata.NutriFusionFood.common.container.*;
 import com.fpmislata.NutriFusionFood.controller.mapper.CategoryMapper;
 import com.fpmislata.NutriFusionFood.controller.mapper.IngredientMapper;
+import com.fpmislata.NutriFusionFood.controller.mapper.StepsMapper;
 import com.fpmislata.NutriFusionFood.controller.mapper.ToolMapper;
 import com.fpmislata.NutriFusionFood.domain.entity.Ingredient;
 import com.fpmislata.NutriFusionFood.domain.entity.Recipe;
@@ -80,14 +81,15 @@ public class RecipeController {
 
     @PostMapping("")
     public String save(Recipe recipe, @RequestParam List<Integer> toolIdList,
-                       @RequestParam List<Integer> typeIdList, @RequestParam Integer categoryId) {
+                       @RequestParam List<Integer> typeIdList, @RequestParam Integer categoryId,
+                       @RequestParam String stepsDescription) {
         UserService userService = UserIoC.getUserService();
         recipe.setUser(userService.findByIdUser(Auth.getUser().getId()));
         recipe.setId(recipeService.findAllRecipe().size());
         recipe.setCategory(CategoryMapper.toCategory(categoryId));
         recipe.setToolList(ToolMapper.toToolList(toolIdList));
         recipe.setIngredientList(IngredientMapper.toIngredientList(typeIdList));
-        //recipe.setLanguage(lang);
+        recipe.setSteps(StepsMapper.toStepSave(stepsDescription));
         System.out.println(recipe);
         recipeService.insert(recipe);
 
@@ -123,16 +125,14 @@ public class RecipeController {
     @PutMapping("/update/{id}")
     public String updateRecipe(@PathVariable int id, @ModelAttribute Recipe recipe, BindingResult result, Model model,
                                @RequestParam List<Integer> toolIdList, @RequestParam List<Integer> typeIdList,
-                               @RequestParam Integer categoryId) {
-        if (result.hasErrors()) {
-            recipe.setId(id);
-            return "recipeUpdate";
-        }
+                               @RequestParam Integer categoryId, @RequestParam String steps) {
+
         UserService userService = UserIoC.getUserService();
         recipe.setUser(userService.findByIdUser(Auth.getUser().getId()));
         recipe.setCategory(CategoryMapper.toCategory(categoryId));
         recipe.setToolList(ToolMapper.toToolList(toolIdList));
         recipe.setIngredientList(IngredientMapper.toIngredientList(typeIdList));
+        recipe.setSteps(StepsMapper.toStepUpdate(steps));
         System.out.println(recipe);
         recipeService.update(recipe);
         return "redirect:/recipes";

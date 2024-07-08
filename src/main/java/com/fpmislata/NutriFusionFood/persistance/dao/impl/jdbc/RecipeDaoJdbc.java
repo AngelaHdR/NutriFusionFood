@@ -8,6 +8,7 @@ import com.fpmislata.NutriFusionFood.persistance.dao.RecipeDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.ToolDao;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.IngredientEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.RecipeEntity;
+import com.fpmislata.NutriFusionFood.persistance.dao.entity.StepEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import com.fpmislata.NutriFusionFood.persistance.dao.impl.jdbc.db.Rawsql;
 import com.fpmislata.NutriFusionFood.persistance.dao.mapper.RecipeEntityMapper;
@@ -32,6 +33,12 @@ public class RecipeDaoJdbc implements RecipeDao {
             recipeEntityList = new ArrayList<>();
             while (resultSet.next()) {
                 recipeEntityList.add(RecipeEntityMapper.toRecipeEntity(resultSet));
+            }
+            for(RecipeEntity recipe:recipeEntityList){
+                String sql1 = "SELECT s.* FROM steps s WHERE s.id_recipe = ?";
+                List<Object> params1 = List.of(recipe.getId());
+                ResultSet resultSet1 = Rawsql.select(sql1,params1);
+                recipe.setSteps(StepsMapper.toStepsList(resultSet1));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -70,11 +77,19 @@ public class RecipeDaoJdbc implements RecipeDao {
     @Override
     public void insert(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList) {
         //insertar la receta
-        String sql = "INSERT INTO recipe (name_recipe, lang, description_recipe, steps, time_recipe, id_user, id_category)" +
-                " VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO recipe (name_recipe, lang, description_recipe, time_recipe, id_user, id_category)" +
+                " VALUES(?,?,?,?,?,?)";
         List<Object> params = List.of( recipeEntity.getName(), recipeEntity.getLanguage(), recipeEntity.getDescription(),
-                recipeEntity.getSteps(), recipeEntity.getTime(), recipeEntity.getUser().getId(), recipeEntity.getCategory().getId());
+                recipeEntity.getTime(), recipeEntity.getUser().getId(), recipeEntity.getCategory().getId());
         Object recipeId = Rawsql.insert(sql, params);
+
+        //insertar los pasos
+        for (StepEntity step:recipeEntity.getSteps()){
+            String sql3 = "INSERT INTO steps (id_recipe, id_step, description_step)" +
+                    " VALUES(?,?,?)";
+            List<Object> params3 = List.of(recipeId, step.getId(),step.getDescription());
+            Rawsql.insert(sql3, params3);
+        }
 
         //insertar los ingredientes en la tabla secundaria composed
         for (IngredientEntity ingredient:ingredientEntityList){
@@ -100,10 +115,21 @@ public class RecipeDaoJdbc implements RecipeDao {
         ToolDao toolDao = ToolIoC.getToolDao();
         List<ToolEntity> oldToolEntityList = toolDao.findByRecipe(recipeEntity.getId());
         //actualizar la receta
-        String sql = "UPDATE recipe SET name_recipe = ?, lang = ?, description_recipe = ?, steps = ?, time_recipe = ?, id_user = ?, id_category = ? WHERE id_recipe = ?";
+        String sql = "UPDATE recipe SET name_recipe = ?, lang = ?, description_recipe = ?, time_recipe = ?, id_user = ?, id_category = ? WHERE id_recipe = ?";
         List<Object> params = List.of( recipeEntity.getName(), recipeEntity.getLanguage(), recipeEntity.getDescription(),
-                recipeEntity.getSteps(), recipeEntity.getTime(), recipeEntity.getUser().getId(), recipeEntity.getCategory().getId(), recipeEntity.getId());
+                recipeEntity.getTime(), recipeEntity.getUser().getId(), recipeEntity.getCategory().getId(), recipeEntity.getId());
         Rawsql.update(sql, params);
+
+        //actualizar los pasos
+        String sql1 = "DELETE FROM steps WHERE id_recipe = ?";
+        List<Object> params1 = List.of(recipeEntity.getId());
+        Rawsql.delete(sql1, params1);
+        for (StepEntity step:recipeEntity.getSteps()){
+            String sql3 = "INSERT INTO steps (id_recipe, id_step, description_step)" +
+                    " VALUES(?,?,?)";
+            List<Object> params3 = List.of(recipeEntity.getId(), step.getId(),step.getDescription());
+            Rawsql.insert(sql3, params3);
+        }
 
         //insertar los nuevos ingredientes en la tabla secundaria composed y borrar los antiguos
         for (IngredientEntity ingredient:ingredientEntityList){
@@ -151,6 +177,12 @@ public class RecipeDaoJdbc implements RecipeDao {
             while (resultSet.next()) {
                 recipeEntityList.add(RecipeEntityMapper.toRecipeEntity(resultSet));
             }
+            for(RecipeEntity recipe:recipeEntityList){
+                String sql1 = "SELECT s.* FROM steps s WHERE s.id_recipe = ?";
+                List<Object> params1 = List.of(recipe.getId());
+                ResultSet resultSet1 = Rawsql.select(sql1,params1);
+                recipe.setSteps(StepsMapper.toStepsList(resultSet1));
+            }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
         }
@@ -167,6 +199,12 @@ public class RecipeDaoJdbc implements RecipeDao {
             recipeEntityList = new ArrayList<>();
             while (resultSet.next()) {
                 recipeEntityList.add(RecipeEntityMapper.toRecipeEntity(resultSet));
+            }
+            for(RecipeEntity recipe:recipeEntityList){
+                String sql1 = "SELECT s.* FROM steps s WHERE s.id_recipe = ?";
+                List<Object> params1 = List.of(recipe.getId());
+                ResultSet resultSet1 = Rawsql.select(sql1,params1);
+                recipe.setSteps(StepsMapper.toStepsList(resultSet1));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");

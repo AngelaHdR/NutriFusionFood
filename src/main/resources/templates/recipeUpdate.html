@@ -11,7 +11,7 @@
 
 <body>
 <div class="container p-0 m-0">
-    <header th:insert="fragments.html :: header">Header</header>
+    <header th:insert="~{fragments.html :: header}">Header</header>
     <main class="content p-0 m-0">
         <form class=" m-2 g-3 was-validated " th:action="@{${'/recipes/update/'+recipe.id}}" th:object="${recipe}"
               method="post" novalidate>
@@ -103,11 +103,11 @@
             </div>
             <div class="row mx-2">
                 <div class=" col-md-6 mb-3 my-2">
-                    <label for="validationTextarea2" class="form-label" th:text="#{recipeForm.steps}">Pasos a
+                    <label for="validationCustom02" class="form-label" th:text="#{recipeForm.steps}">Pasos a
                         seguir</label>
-                    <textarea class="form-control border-info" id="validationTextarea2"
-                              th:field="*{steps}"
-                              required></textarea>
+
+                    <textarea class="form-control border-info" id="validationCustom02" name="steps"
+                              th:value="${steps}" th:text="*{steps}" required></textarea>
                     <div class="invalid-feedback" th:text="#{recipeForm.message.steps}">
                         Pasos añadidos
                     </div>
@@ -144,7 +144,7 @@
 
         </form>
     </main>
-    <footer th:insert="fragments.html::footer"></footer>
+    <footer th:insert="~{fragments.html::footer}"></footer>
 </div>
 
 <script src="../static/js/Form.js"></script>
