@@ -1,5 +1,7 @@
 package com.fpmislata.NutriFusionFood.domain.entity;
 
+import java.util.List;
+
 public class User {
     private Integer id;
     private String name;
@@ -10,6 +12,7 @@ public class User {
     private String password;
     private String email;
     private String username;
+    private List<Recipe> favorites;
 
     //Constructors (void and all parameters)
     public User(){
@@ -89,6 +92,14 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public List<Recipe> getFavorites() {
+        return favorites;
+    }
+    public void setFavorites(List<Recipe> favorites) {
+        this.favorites = favorites;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

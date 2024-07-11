@@ -23,6 +23,13 @@ public class RecipeDaoJdbc implements RecipeDao {
     private List<RecipeEntity> recipeEntityList;
     private RecipeEntity recipeEntity;
 
+    private RecipeEntity completesteps(RecipeEntity recipeEntity){
+        String sql1 = "SELECT s.* FROM steps s WHERE s.id_recipe = ?";
+        List<Object> params1 = List.of(recipeEntity.getId());
+        ResultSet resultSet1 = Rawsql.select(sql1,params1);
+        recipeEntity.setSteps(StepsMapper.toStepsList(resultSet1));
+        return recipeEntity;
+    }
 
     @Override
     public List<RecipeEntity> findAllRecipe() {
@@ -32,13 +39,7 @@ public class RecipeDaoJdbc implements RecipeDao {
             ResultSet resultSet = Rawsql.select(sql, null);
             recipeEntityList = new ArrayList<>();
             while (resultSet.next()) {
-                recipeEntityList.add(RecipeEntityMapper.toRecipeEntity(resultSet));
-            }
-            for(RecipeEntity recipe:recipeEntityList){
-                String sql1 = "SELECT s.* FROM steps s WHERE s.id_recipe = ?";
-                List<Object> params1 = List.of(recipe.getId());
-                ResultSet resultSet1 = Rawsql.select(sql1,params1);
-                recipe.setSteps(StepsMapper.toStepsList(resultSet1));
+                recipeEntityList.add(completesteps(RecipeEntityMapper.toRecipeEntity(resultSet)));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -51,15 +52,12 @@ public class RecipeDaoJdbc implements RecipeDao {
         try {
             String sql = "SELECT r.*,u.*,c.id_category,c.name_"+ LangUtil.getLang() +" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
                     "inner join category c on r.id_category=c.id_category WHERE r.id_recipe = ?";
-            String sql1 = "SELECT s.* FROM steps s WHERE s.id_recipe = ?";
             List<Object> params = List.of(id);
             ResultSet resultSet = Rawsql.select(sql, params);
-            ResultSet resultSet1 = Rawsql.select(sql1,params);
             if(!resultSet.next()) {
                 return null;
             }
-            recipeEntity = RecipeEntityMapper.toRecipeEntity(resultSet);
-            recipeEntity.setSteps(StepsMapper.toStepsList(resultSet1));
+            recipeEntity = completesteps(RecipeEntityMapper.toRecipeEntity(resultSet));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -175,13 +173,7 @@ public class RecipeDaoJdbc implements RecipeDao {
             ResultSet resultSet = Rawsql.select(sql, params);
             recipeEntityList = new ArrayList<>();
             while (resultSet.next()) {
-                recipeEntityList.add(RecipeEntityMapper.toRecipeEntity(resultSet));
-            }
-            for(RecipeEntity recipe:recipeEntityList){
-                String sql1 = "SELECT s.* FROM steps s WHERE s.id_recipe = ?";
-                List<Object> params1 = List.of(recipe.getId());
-                ResultSet resultSet1 = Rawsql.select(sql1,params1);
-                recipe.setSteps(StepsMapper.toStepsList(resultSet1));
+                recipeEntityList.add(completesteps(RecipeEntityMapper.toRecipeEntity(resultSet)));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -198,13 +190,7 @@ public class RecipeDaoJdbc implements RecipeDao {
             ResultSet resultSet = Rawsql.select(sql, params);
             recipeEntityList = new ArrayList<>();
             while (resultSet.next()) {
-                recipeEntityList.add(RecipeEntityMapper.toRecipeEntity(resultSet));
-            }
-            for(RecipeEntity recipe:recipeEntityList){
-                String sql1 = "SELECT s.* FROM steps s WHERE s.id_recipe = ?";
-                List<Object> params1 = List.of(recipe.getId());
-                ResultSet resultSet1 = Rawsql.select(sql1,params1);
-                recipe.setSteps(StepsMapper.toStepsList(resultSet1));
+                recipeEntityList.add(completesteps(RecipeEntityMapper.toRecipeEntity(resultSet)));
             }
         } catch (SQLException e) {
             System.out.println("Hay un problema con la bbdd");
@@ -228,5 +214,36 @@ public class RecipeDaoJdbc implements RecipeDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void addFavorites(RecipeEntity recipeEntity, Integer userId) {
+        String sql = "INSERT INTO favorites (id_recipe, id_user) VALUES(?,?)";
+        List<Object> params = List.of(recipeEntity.getId(), userId);
+        Object favoriteId = Rawsql.insert(sql, params);
+    }
+
+    @Override
+    public void removeFavorites(RecipeEntity recipeEntity, Integer userId) {
+        String sql = "DELETE FROM favorites WHERE id_recipe = ? and id_user = ?";
+        List<Object> params = List.of(recipeEntity.getId(), userId);
+        Rawsql.delete(sql, params);
+    }
+
+    @Override
+    public List<RecipeEntity> findFavoritesByUser(Integer userId) {
+        try {
+            String sql = "SELECT f.* FROM favorites f WHERE f.id_user = ?";
+            List<Object> params = List.of(userId);
+            ResultSet resultSet = Rawsql.select(sql, params);
+            recipeEntityList = new ArrayList<>();
+            while (resultSet.next()) {
+                System.out.println(findByIdRecipe(resultSet.getInt("id_recipe")));
+                recipeEntityList.add(findByIdRecipe(resultSet.getInt("id_recipe")));
+            }
+        } catch (SQLException e) {
+            System.out.println("Hay un problema con la bbdd");
+        }
+        return recipeEntityList;
     }
 }

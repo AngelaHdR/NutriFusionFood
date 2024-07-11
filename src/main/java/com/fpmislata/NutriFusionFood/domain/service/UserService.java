@@ -13,5 +13,6 @@ public interface UserService {
     public List<User> findAllNutritionist();
     public List<User> findAllUser();
     public List<Recipe> findRecipeByNutritionist(Integer nutritionistId);
+    public List<Recipe> findFavoritesByUser(Integer userId);
     public User findByEmailOrUsername(User user);
 }

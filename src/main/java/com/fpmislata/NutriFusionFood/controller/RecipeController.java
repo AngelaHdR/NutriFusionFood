@@ -137,5 +137,11 @@ public class RecipeController {
         recipeService.update(recipe);
         return "redirect:/recipes";
     }
+    @PostMapping("/{id}")
+    public String modifyFavorites(@PathVariable Integer recipeId,Boolean status){
+        Integer userId = Auth.getUser().getId();
+        this.recipeService.modifyFavorites(recipeId, status, userId);
+        return "redirect:/recipes/{id}";
+    }
 }
 

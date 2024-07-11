@@ -14,6 +14,8 @@ public interface RecipeDao {
     public void update(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList);
     public List<RecipeEntity> findByCategory(Integer categoryId);
     public List<RecipeEntity> findByNutritionist(Integer nutritionistId);
-
     public RecipeEntity findByNameAndNutritionist(String name, int userId);
+    public void addFavorites(RecipeEntity recipeEntity, Integer userId);
+    public void removeFavorites(RecipeEntity recipeEntity, Integer userId);
+    public List<RecipeEntity> findFavoritesByUser(Integer userId);
 }

@@ -21,6 +21,14 @@ create table if not exists users(
     primary key (id_user)
 );
 
+create table if not exists favorites(
+    id_favorites INT not null auto_increment,
+    id_user INT not null,
+    id_recipe INT not null,
+    Foreign KEY (id_user) REFERENCES users (id_user) on delete cascade on update cascade,
+    Foreign Key (id_recipe) REFERENCES recipe (id_recipe) on delete cascade on update cascade,
+);
+
 create table if not exists recipe (
     id_recipe int not null auto_increment,
     description_recipe text not null,

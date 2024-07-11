@@ -12,4 +12,5 @@ public interface RecipeService {
     public void update(Recipe recipe);
     public List<Recipe> findByCategory(Integer categoryId);
     public List<Recipe> findByNutritionist(Integer nutritionistId);
+    public void modifyFavorites(Integer recipeId, Boolean status, Integer userId);
 }

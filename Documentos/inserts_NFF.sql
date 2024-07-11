@@ -106,9 +106,7 @@ INSERT INTO steps VALUES (23,5,2,'Add a handful of fruits to the blender.');
 INSERT INTO steps VALUES (24,5,3,'Secure the lid on your blender and blend until smooth. If the smoothie is too thick, you can add more liquid. If it is too thin, you can add more fruit or ice cubes.');
 INSERT INTO steps VALUES (25,5,4,'Taste your smoothie and adjust the flavor as needed');
 INSERT INTO steps VALUES (26,6,1,'Cocina las pechugas de pollo en agua con sal hasta y luego desmenúzalas.');
-INSERT INTO steps VALUES (27,6,2,'En una sartén grande, derrite la mantequilla a fuego medio. Agrega la harina y cocina, revolviendo constantemente, durante unos minutos. 
-Luego, poco a poco, agrega la leche, mientras continúas revolviendo.
-Cocina la mezcla hasta que espese y se convierta en una salsa suave y cremosa.');
+INSERT INTO steps VALUES (27,6,2,'En una sartén grande, derrite la mantequilla a fuego medio. Agrega la harina y cocina, revolviendo constantemente, durante unos minutos. Luego, poco a poco, agrega la leche, mientras continúas revolviendo.Cocina la mezcla hasta que espese y se convierta en una salsa suave y cremosa.');
 INSERT INTO steps VALUES (28,6,3,'Una vez lista, agrega el pollo desmenuzado a la mezcla y revuelve hasta que esté bien incorporado.');
 INSERT INTO steps VALUES (29,6,4,'Transfiere la mezcla a un recipiente y déjala enfriar en la nevera hasta que esté lo suficientemente firme como para formar croquetas.');
 INSERT INTO steps VALUES (30,6,5,'Una vez que la mezcla esté fría, forma pequeñas croquetas con las manos. Pasa cada croqueta primero por el pan rallado, luego por los huevos batidos y finalmente por el pan rallado nuevamente.');

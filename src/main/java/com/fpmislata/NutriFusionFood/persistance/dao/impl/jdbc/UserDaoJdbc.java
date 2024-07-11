@@ -77,7 +77,6 @@ public class UserDaoJdbc implements UserDao {
         }
         return userEntity;
     }*/
-
     @Override
     public void insert(UserEntity userEntity) {
         String sql = "insert into users (name_user, surname1, surname2, username, email, birth_date, nutritionist, pwd)" +

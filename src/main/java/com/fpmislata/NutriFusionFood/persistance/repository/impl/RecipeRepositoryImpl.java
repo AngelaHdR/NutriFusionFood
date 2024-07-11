@@ -116,4 +116,19 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     public Recipe findByNameAndNutritionist(String name, int userId) {
         return RecipeMapper.toRecipe(recipeDao.findByNameAndNutritionist(name, userId));
     }
+
+    @Override
+    public void addFavorites(Recipe recipe, Integer userId) {
+        recipeDao.addFavorites(RecipeMapper.toRecipeEntity(recipe),userId);
+    }
+
+    @Override
+    public void removeFavorites(Recipe recipe, Integer userId) {
+        recipeDao.removeFavorites(RecipeMapper.toRecipeEntity(recipe),userId);
+    }
+
+    @Override
+    public List<Recipe> findFavoritesByUser(Integer userId) {
+        return RecipeMapper.toRecipeList(recipeDao.findFavoritesByUser(userId));
+    }
 }

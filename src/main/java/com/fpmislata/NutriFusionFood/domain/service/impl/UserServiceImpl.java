@@ -90,6 +90,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<Recipe> findFavoritesByUser(Integer userId) {
+        return this.recipeRepository.findFavoritesByUser(userId);
+    }
+
+
+    @Override
     public User findByEmailOrUsername(User user) {
         if (user.getUsername()==null){
             return this.userRepository.findByEmail(user.getEmail(),user.getPassword());

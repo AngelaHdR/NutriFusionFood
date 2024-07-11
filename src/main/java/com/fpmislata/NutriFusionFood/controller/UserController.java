@@ -38,6 +38,8 @@ public class UserController {
     public String findByIdNutritionist(Model model, @PathVariable Integer id){
         model.addAttribute("nutritionist", this.userService.findByIdUser(id));
         model.addAttribute("recipeList",this.userService.findRecipeByNutritionist(id));
+        model.addAttribute("favorites",this.userService.findFavoritesByUser(id));
+        //System.out.println(this.userService.findFavoritesByUser(id));
         if (Auth.getUser().getId()==null){
             return "redirect:/users/login/add";
         }
@@ -46,6 +48,7 @@ public class UserController {
 
     @GetMapping("/clients/{id}")
     public String findByIdClient(Model model, @PathVariable Integer id){
+        model.addAttribute("favorites",this.userService.findFavoritesByUser(id));
         model.addAttribute("client", this.userService.findByIdUser(id));
         if (Auth.getUser().getId()==null){
             return "redirect:/users/login/add";
@@ -87,11 +90,10 @@ public class UserController {
     }
 
     @PostMapping("")
-    public String save(User user){
+    public String save(User user) {
         userService.insert(user);
-        return "redirect:/users/nutritionists/"+ Auth.getUser().getId();
+        return "redirect:/users/nutritionists/" + Auth.getUser().getId();
     }
-
     /*
     Funcionalidad no implementada
 

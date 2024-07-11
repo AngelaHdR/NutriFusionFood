@@ -13,4 +13,8 @@ public interface RecipeRepository {
     public List<Recipe> findByCategory(Integer categoryId);
     public List<Recipe> findByNutritionist(Integer nutritionistId);
     public Recipe findByNameAndNutritionist(String name, int userId);
+
+    public void addFavorites(Recipe recipe, Integer userId);
+    public void removeFavorites(Recipe recipe, Integer userId);
+    public List<Recipe> findFavoritesByUser(Integer userId);
 }

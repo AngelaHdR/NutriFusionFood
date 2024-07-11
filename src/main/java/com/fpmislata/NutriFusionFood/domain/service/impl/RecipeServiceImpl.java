@@ -52,7 +52,6 @@ public class RecipeServiceImpl implements RecipeService {
         if (recipe.getUser().getId()!= Auth.getUser().getId()){
             throw new BusinessException("This recipe is not from the correct user ");
         }
-        System.out.println(recipe);
         recipeRepository.insert(recipe);
     }
 
@@ -72,5 +71,17 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public List<Recipe> findByNutritionist(Integer nutritionistId) {
         return this.recipeRepository.findByNutritionist(nutritionistId);
+    }
+
+    @Override
+    public void modifyFavorites(Integer recipeId, Boolean status, Integer userId) {
+        Recipe recipe = findByIdRecipe(recipeId);
+        if (recipe.getUser().getId()== Auth.getUser().getId()){
+            throw new BusinessException("This recipe is from the current user ");
+        }
+        if (status){
+            this.recipeRepository.removeFavorites(recipe,userId);
+        }
+        this.recipeRepository.addFavorites(recipe,userId);
     }
 }

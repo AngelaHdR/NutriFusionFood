@@ -169,7 +169,7 @@ public class Recipe {
                 ", name='" + name + '\'' +
                 ", language='" + language + '\'' +
                 ", time=" + time +
-                ", steps='" + steps + '\'' +
+                ", steps=" + steps +
                 ", ingredientList=" + ingredientList +
                 ", toolList=" + toolList +
                 ", user=" + user +
