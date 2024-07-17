@@ -18,29 +18,44 @@ public class FilterController {
 
     @GetMapping("/filters")
     public String findAllFilters(Model model) {
+        //model.addAttribute("timeMin",this.recipeService.findTimeMin());
+        model.addAttribute("timeMin",5);
+        //model.addAttribute("timeMax",this.recipeService.findTimeMax());
+        model.addAttribute("timeMax",200);
+        model.addAttribute("allergenList",this.recipeService.findByIdRecipe(1).getAllergen());
         return "filters";
     }
 
-    @PostMapping("")
+    /*@PostMapping("/search")
     public String search(Model model, @RequestParam String allergen, @RequestParam Integer timeMin, @RequestParam Integer timeMax) {
-        if (!allergen.isEmpty()) {
-            return "redirect:/filters/allergens/{allergen}";
-        } else if (timeMin != 0 || timeMax != 0) {
-            return "redirect:/filters/time/{timeMin}_{timeMax}";
+        if (allergen.equals("null")) {
+            return "redirect:/recipes/time";
         } else {
-            return "redirect:/recipes";
+            return "redirect:/recipes/allergens/{allergen}";
         }
     }
-
     @GetMapping("/allergens/{allergen}")
-    public String findNoLactoseRecipe(Model model, @PathVariable String allergen) {
+    public String findAllergenRecipe(Model model, @PathVariable String allergen) {
+        model.addAttribute("recipeList", this.recipeService.findByAllergen(allergen));
+        model.addAttribute("category", allergen.toUpperCase() + " FREE");
+        return "recipeList";
+    }
+    @GetMapping("/time")
+    public String findTimeRecipe(Model model, @RequestParam Integer timeMin, @RequestParam Integer timeMax) {
+        model.addAttribute("recipeList", this.recipeService.findByTime(timeMin, timeMax));
+        model.addAttribute("category", timeMin+" - "+timeMax+" min");
+        return "recipeList";
+    }*/
+
+    @PostMapping("/allergens")
+    public String findByAllergenRecipe(Model model, @RequestParam String allergen) {
         model.addAttribute("recipeList", this.recipeService.findByAllergen(allergen));
         model.addAttribute("category", allergen.toUpperCase() + " FREE");
         return "recipeList";
     }
 
-    @GetMapping("/time/{timeMin}_{timeMax}")
-    public String findNoLactoseRecipe(Model model, @PathVariable Integer timeMin, @PathVariable Integer timeMax) {
+    @PostMapping("/time")
+    public String findByTimeRecipe(Model model, @RequestParam Integer timeMin, @RequestParam Integer timeMax) {
         model.addAttribute("recipeList", this.recipeService.findByTime(timeMin, timeMax));
         model.addAttribute("category", timeMin+" - "+timeMax+" min");
         return "recipeList";
