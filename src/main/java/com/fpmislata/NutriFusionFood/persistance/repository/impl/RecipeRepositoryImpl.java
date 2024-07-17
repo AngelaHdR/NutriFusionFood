@@ -60,7 +60,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         List<RecipeEntity> recipeEntityList = recipeDao.findAllRecipe();
         List<Recipe> recipeList = new ArrayList<>();
         for (RecipeEntity recipeEntity : recipeEntityList) {
-            recipeList.add(RecipeMapper.toRecipe(recipeEntity));
+            recipeList.add(addParametersMapper(recipeEntity));
         }
         return recipeList;
     }
@@ -134,7 +134,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         List<Recipe> recipeList = findAllRecipe();
         List<Recipe> noGlutenRecipeList = new ArrayList<>();
         for (Recipe recipe:recipeList){
-            if (!recipe.getAllergen().get("lactose")){
+            if (!recipe.getAllergen().get("gluten")){
                 noGlutenRecipeList.add(recipe);
             }
         }
@@ -142,17 +142,8 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     }
 
     @Override
-    public List<Recipe> findByTimeMin(Integer timeMin) {
-        List<RecipeEntity> recipeEntityList = recipeDao.findByCategory(timeMin);
-        List<Recipe> recipeList = new ArrayList<>();
-        for (RecipeEntity recipeEntity : recipeEntityList) {
-            recipeList.add(addParametersMapper(recipeEntity));
-        }
-        return recipeList;
-    }
-    @Override
-    public List<Recipe> findByTimeMax(Integer timeMax) {
-        List<RecipeEntity> recipeEntityList = recipeDao.findByCategory(timeMax);
+    public List<Recipe> findByTime(Integer timeMin, Integer timeMax) {
+        List<RecipeEntity> recipeEntityList = recipeDao.findByTime(timeMin,timeMax);
         List<Recipe> recipeList = new ArrayList<>();
         for (RecipeEntity recipeEntity : recipeEntityList) {
             recipeList.add(addParametersMapper(recipeEntity));

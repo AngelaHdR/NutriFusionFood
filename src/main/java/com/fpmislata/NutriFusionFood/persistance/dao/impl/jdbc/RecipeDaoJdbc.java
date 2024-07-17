@@ -218,28 +218,11 @@ public class RecipeDaoJdbc implements RecipeDao {
     }
 
     @Override
-    public List<RecipeEntity> findByTimeMin(Integer timeMin) {
+    public List<RecipeEntity> findByTime(Integer timeMin,Integer timeMax) {
         try {
             String sql = "SELECT r.*,u.*,c.id_category,c.name_"+LangUtil.getLang()+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
-                    "inner join category c on r.id_category=c.id_category WHERE r.time > ?";
-            List<Object> params = List.of(timeMin);
-            ResultSet resultSet = Rawsql.select(sql, params);
-            recipeEntityList = new ArrayList<>();
-            while (resultSet.next()) {
-                recipeEntityList.add(completesteps(RecipeEntityMapper.toRecipeEntity(resultSet)));
-            }
-        } catch (SQLException e) {
-            System.out.println("Hay un problema con la bbdd");
-        }
-        return recipeEntityList;
-    }
-
-    @Override
-    public List<RecipeEntity> findByTimeMax(Integer timeMax) {
-        try {
-            String sql = "SELECT r.*,u.*,c.id_category,c.name_"+LangUtil.getLang()+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
-                    "inner join category c on r.id_category=c.id_category WHERE r.time < ?";
-            List<Object> params = List.of(timeMax);
+                    "inner join category c on r.id_category=c.id_category WHERE r.time_recipe > ? and r.time_recipe < ?";
+            List<Object> params = List.of(timeMin,timeMax);
             ResultSet resultSet = Rawsql.select(sql, params);
             recipeEntityList = new ArrayList<>();
             while (resultSet.next()) {

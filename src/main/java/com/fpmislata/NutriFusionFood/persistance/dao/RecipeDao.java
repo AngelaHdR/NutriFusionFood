@@ -17,8 +17,7 @@ public interface RecipeDao {
     //Filters
     public List<RecipeEntity> findByCategory(Integer categoryId);
     public List<RecipeEntity> findByNutritionist(Integer nutritionistId);
-    public List<RecipeEntity> findByTimeMax(Integer timeMax);
-    public List<RecipeEntity> findByTimeMin(Integer timeMin);
+    public List<RecipeEntity> findByTime(Integer timeMin,Integer timeMax);
     public RecipeEntity findByNameAndNutritionist(String name, int userId);
 
     //CRUD for favorites

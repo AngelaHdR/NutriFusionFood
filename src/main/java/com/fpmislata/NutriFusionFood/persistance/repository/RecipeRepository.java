@@ -18,8 +18,7 @@ public interface RecipeRepository {
     public Recipe findByNameAndNutritionist(String name, int userId);
     public List<Recipe> findByNoLactose();
     public List<Recipe> findByNoGluten();
-    public List<Recipe> findByTimeMax(Integer timeMax);
-    public List<Recipe> findByTimeMin(Integer timeMin);
+    public List<Recipe> findByTime(Integer timeMin, Integer timeMax);
     public void addFavorites(Recipe recipe, Integer userId);
     public void removeFavorites(Recipe recipe, Integer userId);
     public List<Recipe> findFavoritesByUser(Integer userId);

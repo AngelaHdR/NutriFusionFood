@@ -74,6 +74,22 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public List<Recipe> findByAllergen(String allergen) {
+        if (allergen.equals("lactose")){
+            return this.recipeRepository.findByNoLactose();
+        } else if (allergen.equals("gluten")) {
+            return this.recipeRepository.findByNoGluten();
+        }else {
+            throw new BusinessException(("This allergen doesn't exist"));
+        }
+    }
+
+    @Override
+    public List<Recipe> findByTime(Integer timeMin, Integer timeMax) {
+        return this.recipeRepository.findByTime(timeMin,timeMax);
+    }
+
+    @Override
     public void modifyFavorites(Integer recipeId, Boolean status, Integer userId) {
         Recipe recipe = findByIdRecipe(recipeId);
         if (recipe.getUser().getId()== Auth.getUser().getId()){

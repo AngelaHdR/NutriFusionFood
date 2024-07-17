@@ -52,7 +52,6 @@ public class RecipeController {
 
     @GetMapping("/{id}")
     public String findByIdRecipe(Model model, @PathVariable Integer id) {
-        System.out.println(Auth.getUser());
         if (Auth.getUser().getId()==null){
             return "redirect:/users/login/add";
         }
