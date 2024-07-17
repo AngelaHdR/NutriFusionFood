@@ -14,5 +14,6 @@ public interface RecipeService {
     public List<Recipe> findByNutritionist(Integer nutritionistId);
     public List<Recipe> findByAllergen(String allergen);
     public List<Recipe> findByTime(Integer timeMin, Integer timeMax);
+    public List<Integer> findMaxMinTime();
     public void modifyFavorites(Integer recipeId, Boolean status, Integer userId);
 }

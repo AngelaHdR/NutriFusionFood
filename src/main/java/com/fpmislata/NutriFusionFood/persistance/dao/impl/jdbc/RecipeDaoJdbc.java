@@ -233,7 +233,21 @@ public class RecipeDaoJdbc implements RecipeDao {
         }
         return recipeEntityList;
     }
-
+    @Override
+    public List<Integer> findMaxMinTime() {
+        try {
+            String sql = "SELECT max(time_recipe) as max, min(time_recipe) as min FROM recipe";
+            ResultSet resultSet = Rawsql.select(sql, null);
+            resultSet.next();
+            List<Integer> minMaxTime = new ArrayList<>();
+            minMaxTime.add(resultSet.getInt("min")-1);
+            minMaxTime.add(resultSet.getInt("max")+1);
+            return minMaxTime;
+        }catch (SQLException e){
+            System.out.println("Hay un problema con la bbdd");
+        }
+        return null;
+    }
 
 
     //Favorite recipes for each user

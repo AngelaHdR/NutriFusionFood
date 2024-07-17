@@ -150,6 +150,10 @@ public class RecipeRepositoryImpl implements RecipeRepository {
         }
         return recipeList;
     }
+    @Override
+    public List<Integer> findMaxMinTime(){
+        return recipeDao.findMaxMinTime();
+    }
 
     @Override
     public void addFavorites(Recipe recipe, Integer userId) {

@@ -18,10 +18,8 @@ public class FilterController {
 
     @GetMapping("/filters")
     public String findAllFilters(Model model) {
-        //model.addAttribute("timeMin",this.recipeService.findTimeMin());
-        model.addAttribute("timeMin",5);
-        //model.addAttribute("timeMax",this.recipeService.findTimeMax());
-        model.addAttribute("timeMax",200);
+        model.addAttribute("timeMin",this.recipeService.findMaxMinTime().get(0));
+        model.addAttribute("timeMax",this.recipeService.findMaxMinTime().get(1));
         model.addAttribute("allergenList",this.recipeService.findByIdRecipe(1).getAllergen());
         return "filters";
     }

@@ -88,6 +88,9 @@ public class RecipeServiceImpl implements RecipeService {
     public List<Recipe> findByTime(Integer timeMin, Integer timeMax) {
         return this.recipeRepository.findByTime(timeMin,timeMax);
     }
+    public List<Integer> findMaxMinTime(){
+        return this.recipeRepository.findMaxMinTime();
+    }
 
     @Override
     public void modifyFavorites(Integer recipeId, Boolean status, Integer userId) {
