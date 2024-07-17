@@ -7,14 +7,21 @@ import com.fpmislata.NutriFusionFood.persistance.dao.entity.ToolEntity;
 import java.util.List;
 
 public interface RecipeDao {
+    //CRUD
+    public void insert(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList);
+    public void update(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList);
     public List<RecipeEntity> findAllRecipe();
     public RecipeEntity findByIdRecipe(Integer id);
     public void delete(Integer id);
-    public void insert(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList);
-    public void update(RecipeEntity recipeEntity, List<IngredientEntity> ingredientEntityList, List<ToolEntity> toolEntityList);
+
+    //Filters
     public List<RecipeEntity> findByCategory(Integer categoryId);
     public List<RecipeEntity> findByNutritionist(Integer nutritionistId);
+    public List<RecipeEntity> findByTimeMax(Integer timeMax);
+    public List<RecipeEntity> findByTimeMin(Integer timeMin);
     public RecipeEntity findByNameAndNutritionist(String name, int userId);
+
+    //CRUD for favorites
     public void addFavorites(RecipeEntity recipeEntity, Integer userId);
     public void removeFavorites(RecipeEntity recipeEntity, Integer userId);
     public List<RecipeEntity> findFavoritesByUser(Integer userId);

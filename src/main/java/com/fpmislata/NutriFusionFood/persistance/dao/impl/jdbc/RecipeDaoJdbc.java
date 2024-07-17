@@ -31,6 +31,8 @@ public class RecipeDaoJdbc implements RecipeDao {
         return recipeEntity;
     }
 
+
+
     @Override
     public List<RecipeEntity> findAllRecipe() {
         try {
@@ -103,6 +105,23 @@ public class RecipeDaoJdbc implements RecipeDao {
                     " VALUES(?,?)";
             List<Object> params3 = List.of(recipeId, tool.getId());
             Rawsql.insert(sql3, params3);
+        }
+    }
+
+    //Verification for the insert, no duplicate recipes accepted in one profile
+    @Override
+    public RecipeEntity findByNameAndNutritionist(String name, int userId) {
+        try {
+            String sql = "SELECT r.*,u.*,c.id_category,c.name_"+LangUtil.getLang()+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
+                    "inner join category c on r.id_category=c.id_category WHERE r.id_user = ? and name_recipe = ?";
+            List<Object> params = List.of(userId,name);
+            ResultSet resultSet = Rawsql.select(sql, params);
+            if (!resultSet.next()){
+                return null;
+            }
+            return RecipeEntityMapper.toRecipeEntity(resultSet);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -199,23 +218,42 @@ public class RecipeDaoJdbc implements RecipeDao {
     }
 
     @Override
-    public RecipeEntity findByNameAndNutritionist(String name, int userId) {
+    public List<RecipeEntity> findByTimeMin(Integer timeMin) {
         try {
-            //buscar el idioma de la receta
             String sql = "SELECT r.*,u.*,c.id_category,c.name_"+LangUtil.getLang()+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
-                    "inner join category c on r.id_category=c.id_category WHERE r.id_user = ? and name_recipe = ?";
-            List<Object> params = List.of(userId,name);
+                    "inner join category c on r.id_category=c.id_category WHERE r.time > ?";
+            List<Object> params = List.of(timeMin);
             ResultSet resultSet = Rawsql.select(sql, params);
-            if (!resultSet.next()){
-                return null;
+            recipeEntityList = new ArrayList<>();
+            while (resultSet.next()) {
+                recipeEntityList.add(completesteps(RecipeEntityMapper.toRecipeEntity(resultSet)));
             }
-            //mostrar la receta en su idioma
-            return RecipeEntityMapper.toRecipeEntity(resultSet);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Hay un problema con la bbdd");
         }
+        return recipeEntityList;
     }
 
+    @Override
+    public List<RecipeEntity> findByTimeMax(Integer timeMax) {
+        try {
+            String sql = "SELECT r.*,u.*,c.id_category,c.name_"+LangUtil.getLang()+" as name FROM users u inner join recipe r on u.id_user=r.id_user " +
+                    "inner join category c on r.id_category=c.id_category WHERE r.time < ?";
+            List<Object> params = List.of(timeMax);
+            ResultSet resultSet = Rawsql.select(sql, params);
+            recipeEntityList = new ArrayList<>();
+            while (resultSet.next()) {
+                recipeEntityList.add(completesteps(RecipeEntityMapper.toRecipeEntity(resultSet)));
+            }
+        } catch (SQLException e) {
+            System.out.println("Hay un problema con la bbdd");
+        }
+        return recipeEntityList;
+    }
+
+
+
+    //Favorite recipes for each user
     @Override
     public void addFavorites(RecipeEntity recipeEntity, Integer userId) {
         String sql = "INSERT INTO favorites (id_recipe, id_user) VALUES(?,?)";

@@ -118,6 +118,49 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     }
 
     @Override
+    public List<Recipe> findByNoLactose() {
+        List<Recipe> recipeList = findAllRecipe();
+        List<Recipe> noLactoseRecipeList = new ArrayList<>();
+        for (Recipe recipe:recipeList){
+            if (!recipe.getAllergen().get("lactose")){
+                noLactoseRecipeList.add(recipe);
+            }
+        }
+        return noLactoseRecipeList;
+    }
+
+    @Override
+    public List<Recipe> findByNoGluten() {
+        List<Recipe> recipeList = findAllRecipe();
+        List<Recipe> noGlutenRecipeList = new ArrayList<>();
+        for (Recipe recipe:recipeList){
+            if (!recipe.getAllergen().get("lactose")){
+                noGlutenRecipeList.add(recipe);
+            }
+        }
+        return noGlutenRecipeList;
+    }
+
+    @Override
+    public List<Recipe> findByTimeMin(Integer timeMin) {
+        List<RecipeEntity> recipeEntityList = recipeDao.findByCategory(timeMin);
+        List<Recipe> recipeList = new ArrayList<>();
+        for (RecipeEntity recipeEntity : recipeEntityList) {
+            recipeList.add(addParametersMapper(recipeEntity));
+        }
+        return recipeList;
+    }
+    @Override
+    public List<Recipe> findByTimeMax(Integer timeMax) {
+        List<RecipeEntity> recipeEntityList = recipeDao.findByCategory(timeMax);
+        List<Recipe> recipeList = new ArrayList<>();
+        for (RecipeEntity recipeEntity : recipeEntityList) {
+            recipeList.add(addParametersMapper(recipeEntity));
+        }
+        return recipeList;
+    }
+
+    @Override
     public void addFavorites(Recipe recipe, Integer userId) {
         recipeDao.addFavorites(RecipeMapper.toRecipeEntity(recipe),userId);
     }
