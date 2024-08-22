@@ -43,7 +43,7 @@ public class UserController {
         if (Auth.getUser().getId()==null){
             return "redirect:/users/login/add";
         }
-        return "profileNutritionist";
+        return "users/profileNutritionist";
     }
 
     @GetMapping("/clients/{id}")
@@ -56,13 +56,13 @@ public class UserController {
         if (Auth.getUser().getId()!=id){
             return "error";
         }
-        return "profileClient";
+        return "users/profileClient";
     }
 
     @GetMapping("/nutritionists")
     public String findAllMNutritionist(Model model){
         model.addAttribute("nutritionistList",this.userService.findAllNutritionist());
-        return "nutritionistList";
+        return "users/nutritionistList";
     }
 
     @GetMapping("/login/add")

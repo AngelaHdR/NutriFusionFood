@@ -26,7 +26,7 @@ public class CategoryController {
         model.addAttribute("recipeList", recipeList);
         String category=recipeList.get(0).getCategory().getName();
         model.addAttribute("category",category);
-        return "recipeList";
+        return "recipes/recipeList";
     }
 
     /*

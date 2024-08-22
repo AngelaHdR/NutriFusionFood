@@ -47,7 +47,7 @@ public class RecipeController {
     public String findAllRecipe(Model model) {
         model.addAttribute("recipeList", this.recipeService.findAllRecipe());
         model.addAttribute("category", null);
-        return "recipeList";
+        return "recipes/recipeList";
     }
 
     @GetMapping("/{id}")
@@ -56,7 +56,7 @@ public class RecipeController {
             return "redirect:/users/login/add";
         }
         model.addAttribute("recipe", this.recipeService.findByIdRecipe(id));
-        return "recipeDetail";
+        return "recipes/recipeDetail";
     }
 
     @GetMapping("/add")
@@ -75,7 +75,7 @@ public class RecipeController {
         model.addAttribute("categoryList", this.categoryService.findAllCategory());
         model.addAttribute("lang", List.of("es", "en"));
         model.addAttribute("recipe", new Recipe());
-        return "recipeForm";
+        return "recipes/recipeForm";
     }
 
     @PostMapping("")
@@ -118,7 +118,7 @@ public class RecipeController {
         model.addAttribute("categoryList", categoryService.findAllCategory());
         model.addAttribute("lang", List.of("es", "en"));
         model.addAttribute("recipe", recipe);
-        return "recipeUpdate";
+        return "recipes/recipeUpdate";
     }
 
     @PutMapping("/update/{id}")

@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/custom.css}"> <!--link para verlo con chrome enlace css-->
-    <link rel="stylesheet" href="../static/css/custom.css"> <!-- link verlo previsualizador enlace css-->
+    <link rel="stylesheet" href="../../static/css/custom.css"> <!-- link verlo previsualizador enlace css-->
     <script src="https://kit.fontawesome.com/2508d31af3.js" crossorigin="anonymous"></script>
-    <title>Formulario recetas</title>
+    <title>Formulario actualizacion receta</title>
 </head>
 
 <body>
-<div class="container">
-    <header th:insert="fragments.html :: header">Header</header>
-    <main class="content">
-        <form class=" m-2 g-3 was-validated " th:action="@{/recipes}" th:object="${recipe}" method="post" novalidate>
+<div class="container p-0 m-0">
+    <header th:insert="~{fragments.html :: header}">Header</header>
+    <main class="content p-0 m-0">
+        <form class=" m-2 g-3 was-validated " th:action="@{${'/recipes/update/'+recipe.id}}" th:object="${recipe}"
+              method="post" novalidate>
+            <input type="hidden" name="_method" value="PUT"/>
             <div class="row mx-2">
                 <div class="col-md-5 my-2">
                     <label for="validationCustom01" class="form-label " th:text="#{recipeForm.name.recipe}">Nombre de la
                         receta</label>
-                    <input type="text" class="form-control border-info border-bottom border-end border-start" id="validationCustom01"
+                    <input type="text" class="form-control border-info border-bottom border-end border-start"
+                           id="validationCustom01"
                            th:field="*{name}" required>
                     <div class="valid-feedback" th:text="#{recipeForm.message.name}">
                         Nombre añadido
@@ -28,7 +30,7 @@
                 <div class="col-md-3 my-2">
                     <label for="numero" th:text="#{recipeForm.time.recipe}">Duración de la receta:</label>
                     <input type="number" class="form-control  border-info" id="numero" name="numero"
-                          th:field="*{time}" required>
+                           th:field="*{time}" required>
                     <div class="valid-feedback" th:text="#{recipeForm.message.time}">
                         Duración añadida
                     </div>
@@ -36,9 +38,11 @@
                 <div class="col-md-4 my-2">
                     <label for="categoria" th:text="#{recipeForm.category}">Categoría:</label>
                     <select class="form-control border-info" id="categoria" name="categoryId" required>
-                        <option th:text="#{recipeForm.placeholder.category}" value="" disabled selected>Selecciona una categoría...</option>
+                        <option th:text="#{recipeForm.placeholder.category}" value="" disabled selected>Selecciona una
+                            categoría...
+                        </option>
                         <option th:each="category : ${categoryList}" th:value="${category.id}"
-                                th:text="${category.name}">
+                                th:text="${category.name}" th:selected="${category.id == recipe.category.id}">
                         </option>
                     </select>
                     <div class="valid-feedback" th:text="#{recipeForm.message.category}">
@@ -48,8 +52,9 @@
             </div>
             <div class="row mx-2">
                 <div class="col-12">
-                    <ul class="nav nav-tabs d-block" id="myTab" role="tablist" >
-                        <li th:each="entry:${ingredientMap}" class="nav-item valid col-auto d-inline-block mt-2" role="presentation">
+                    <ul class="nav nav-tabs d-block" id="myTab" role="tablist">
+                        <li th:each="entry:${ingredientMap}" class="nav-item valid col-auto d-inline-block mt-2"
+                            role="presentation">
                             <button th:text="${entry.key.name}" class="nav-link bg-info text-fondo "
                                     th:id="|tab-${entry.key.id}|"
                                     data-bs-toggle="tab"
@@ -58,13 +63,14 @@
                                     aria-selected="true">
                             </button>
                         </li>
-                        <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent" >
+                        <div th:each="entry:${ingredientMap}" class="tab-content" id="myTabContent">
                             <div class="tab-pane fade p-3" th:id="|tab-content-${entry.key.id}|" role="tabpanel"
                                  th:aria-labelledby="|tab-${entry.key.id}|" required>
-                                <!-- Ingredientes -->
+
                                 <div th:each="ingredient: ${entry.value}" class="form-check cicle">
                                     <input class="form-check-input check-cicle invalid" type="checkbox"
-                                           th:value="${ingredient.id}" id="checkGA" name="typeIdList" target="descGA">
+                                           th:value="${ingredient.id}" id="checkGA" name="typeIdList" target="descGA"
+                                           th:checked="${#lists.contains(recipe.ingredientList, ingredient)}">
 
                                     <p th:text="${ingredient.name}" class="form-check-label text-info"
                                        for="checkGA">Nombre del ingrediente </p>
@@ -78,10 +84,8 @@
                 <div class="col-md-6 my-2">
                     <label for="tool" th:text="#{recipeForm.tools}">Utensilios:</label>
                     <select class="form-control border-info" id="tool" name="toolIdList" required multiple>
-                        <option th:text="#{recipeForm.placeholder.tools}" value="" disabled selected>Selecciona los Utensilios...</option>
-                        <!-- Iterar sobre la lista de categorías -->
                         <option th:each="tool : ${toolList}" th:value="${tool.id}"
-                                th:text="${tool.name}">
+                                th:text="${tool.name}" th:attr="(selected=${#lists.contains(recipe.toolList, tool)})">
                         </option>
                     </select>
                 </div>
@@ -92,17 +96,18 @@
                             Idioma...
                         </option>
                         <option th:each="language : ${lang}" th:value="${language}"
-                                th:text="${language}">
+                                th:text="${language}" th:selected="${language == recipe.language}">
                         </option>
                     </select>
                 </div>
             </div>
             <div class="row mx-2">
                 <div class=" col-md-6 mb-3 my-2">
-                    <label for="validationTextarea2" class="form-label" th:text="#{recipeForm.steps}">Pasos a
+                    <label for="validationCustom02" class="form-label" th:text="#{recipeForm.steps}">Pasos a
                         seguir</label>
-                    <textarea class="form-control border-info" id="validationTextarea2"
-                              th:value="${stepsDescription}" name="stepsDescription" required></textarea>
+
+                    <textarea class="form-control border-info" id="validationCustom02" name="steps"
+                              th:value="${steps}" th:text="*{steps}" required></textarea>
                     <div class="invalid-feedback" th:text="#{recipeForm.message.steps}">
                         Pasos añadidos
                     </div>
@@ -117,23 +122,33 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center m-2">
-                <div class="col-6 bg-info p-1 ">
+            <div class="row justify-content-center p-0 m-0">
+
+                <div class="col-10 col-sm-5 bg-info p-1 mx-2">
                     <div class="bg-info pt-2 border border-fondo" style="border-width: 5px; text-align: center;">
                         <button type="submit" class="btn btn-info text-fondo">
-                            <h4 class="text-fondo d-none d-sm-block">AÑADIR RECETA</h4>
-                            <h6 class="text-fondo d-block d-sm-none">AÑADIR RECETA</h6>
+                            <h4 th:text="#{updateForm.buttom.update}" class="text-fondo d-none d-sm-block">ACTUALIZAR RECETA</h4>
+                            <h6 th:text="#{updateForm.buttom.update}" class="text-fondo d-block d-sm-none">ACTUALIZAR RECETA</h6>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-10 col-sm-5 bg-info p-1 ">
+                    <div class="bg-info pt-2 border border-fondo" style="border-width: 5px; text-align: center;">
+                        <button type="submit" class="btn btn-info text-fondo">
+                            <h4 th:text="#{updateForm.buttom.cancel}" class="text-fondo d-none d-sm-block">CANCELAR</h4>
+                            <h6 th:text="#{updateForm.buttom.cancel}" class="text-fondo d-block d-sm-none">CANCELAR</h6>
                         </button>
                     </div>
                 </div>
             </div>
+
         </form>
     </main>
-    <footer th:insert="fragments.html::footer"></footer>
+    <footer th:insert="~{fragments.html::footer}"></footer>
 </div>
 
-<script src="../static/js/Form.js"></script>
-<script src="../static/js/Desplegable.js"></script>
+<script src="../../static/js/Form.js"></script>
+<script src="../../static/js/Desplegable.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>

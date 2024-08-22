@@ -49,13 +49,13 @@ public class FilterController {
     public String findByAllergenRecipe(Model model, @RequestParam String allergen) {
         model.addAttribute("recipeList", this.recipeService.findByAllergen(allergen));
         model.addAttribute("category", allergen.toUpperCase() + " FREE");
-        return "recipeList";
+        return "recipes/recipeList";
     }
 
     @PostMapping("/time")
     public String findByTimeRecipe(Model model, @RequestParam Integer timeMin, @RequestParam Integer timeMax) {
         model.addAttribute("recipeList", this.recipeService.findByTime(timeMin, timeMax));
         model.addAttribute("category", timeMin+" - "+timeMax+" min");
-        return "recipeList";
+        return "recipes/recipeList";
     }
 }
