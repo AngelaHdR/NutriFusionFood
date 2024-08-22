@@ -32,6 +32,7 @@ public class RecipeController {
     IngredientService ingredientService;
     ToolService toolService;
     TypeService typeService;
+    UserService userService;
 
 
     public RecipeController() {
@@ -40,7 +41,7 @@ public class RecipeController {
         this.typeService = TypeIoC.getTypeService();
         this.toolService = ToolIoC.getToolService();
         this.ingredientService = IngredientIoC.getIngredientService();
-
+        this.userService = UserIoC.getUserService();
     }
 
     @GetMapping("")
@@ -56,6 +57,11 @@ public class RecipeController {
             return "redirect:/users/login/add";
         }
         model.addAttribute("recipe", this.recipeService.findByIdRecipe(id));
+        if (this.userService.findFavoritesByUser(Auth.getUser().getId()).contains(recipeService.findByIdRecipe(id))) {
+            model.addAttribute("favorite", true);
+        }else{
+            model.addAttribute("favorite", false);
+        }
         return "recipes/recipeDetail";
     }
 
@@ -137,9 +143,9 @@ public class RecipeController {
         return "redirect:/recipes";
     }
     @PostMapping("/{id}")
-    public String modifyFavorites(@PathVariable Integer recipeId,Boolean status){
+    public String modifyFavorites(@PathVariable Integer id, @RequestParam Boolean status){
         Integer userId = Auth.getUser().getId();
-        this.recipeService.modifyFavorites(recipeId, status, userId);
+        this.recipeService.modifyFavorites(id, status, userId);
         return "redirect:/recipes/{id}";
     }
 }

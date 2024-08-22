@@ -100,7 +100,8 @@ public class RecipeServiceImpl implements RecipeService {
         }
         if (status){
             this.recipeRepository.removeFavorites(recipe,userId);
+        }else {
+            this.recipeRepository.addFavorites(recipe, userId);
         }
-        this.recipeRepository.addFavorites(recipe,userId);
     }
 }

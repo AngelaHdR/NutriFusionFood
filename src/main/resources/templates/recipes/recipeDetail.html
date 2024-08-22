@@ -43,9 +43,15 @@
                         <label>
                             <p class="text-info" th:text="|${recipe.user.name}|"></p></label>
                         <div class="icon pb-3 fs-3 ">
-
-                           <label  class="text-info" th:text="#{recipeDetail.add.favourite}">Añadir a favoritos</label>
-                            <i class="fav-icon fa-solid fa-heart text-resalte"></i>
+                            <label  class="text-info" th:text="#{recipeDetail.add.favourite}">Añadir a favoritos</label>
+                            <form th:action="'/recipes/'+${recipe.id}" th:method="post" th:object="${favorite}">
+                            <button th:if="${favorite}"
+                                    class="bg-fondo border-0" name="status" value="true">
+                                <i class="fav-icon fa-solid fa-heart text-resalte"></i></button>
+                            <button th:if="${!favorite}"
+                                    class="bg-fondo border-0" name="status" value="false">
+                                <i class="fav-icon fa-regular fa-heart text-resalte"></i></button>
+                            </form>
                         </div>
                     </div>
 

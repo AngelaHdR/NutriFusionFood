@@ -60,7 +60,7 @@ public class UserController {
     }
 
     @GetMapping("/nutritionists")
-    public String findAllMNutritionist(Model model){
+    public String findAllNutritionist(Model model){
         model.addAttribute("nutritionistList",this.userService.findAllNutritionist());
         return "users/nutritionistList";
     }
@@ -94,11 +94,4 @@ public class UserController {
         userService.insert(user);
         return "redirect:/users/nutritionists/" + Auth.getUser().getId();
     }
-    /*
-    Funcionalidad no implementada
-
-
-
-
-    */
 }
